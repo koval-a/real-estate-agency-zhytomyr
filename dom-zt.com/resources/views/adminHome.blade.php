@@ -8,6 +8,21 @@
                 <div class="card-header">Dashboard Admin</div>
                 <div class="card-body">
                     You are Admin.
+
+                    -add obekt
+                    -edit obekt
+                    -hidden obekt
+                    -delete obekt
+                    -view obekt
+
+                    -add rieltor
+                    -delete rieltor
+
+                    -search obekt
+                    -filter obekt
+                    -create report xls + download
+
+                    
                 </div>
             </div>
         </div>

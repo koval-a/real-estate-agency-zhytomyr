@@ -14,6 +14,11 @@
                         </div>
                     @endif
 
+                    -view obekt auth rieltor
+                    -add note to obekt
+                    -delete note to obekt
+                    -filter obekt by type
+
                     {{ __('You are logged in!') }}
                 </div>
             </div>

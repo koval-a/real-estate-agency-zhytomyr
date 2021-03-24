@@ -19,14 +19,18 @@ class CreateUsersSeeder extends Seeder
             [
                'name'=>'Admin',
                'email'=>'admin@dom-zt.com',
-                'is_admin'=>'1',
+               'is_admin'=>'1',
                'password'=> bcrypt('123456'),
+               'avatar'=> 'admin.png',
+               'phone'=> '000-000-0000',
             ],
             [
-               'name'=>'User',
-               'email'=>'user@dom-zt.com',
-                'is_admin'=>'0',
+               'name'=>'Rieltor',
+               'email'=>'rieltor@dom-zt.com',
+               'is_admin'=>'0',
                'password'=> bcrypt('123456'),
+               'avatar'=> 'rieltor.png',
+               'phone'=> '098-001-0101',
             ],
         ];
   
