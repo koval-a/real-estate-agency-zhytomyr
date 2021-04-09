@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Апр 09 2021 г., 15:27
+-- Время создания: Апр 09 2021 г., 15:43
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -27,6 +27,13 @@ CREATE TABLE `appointment_house` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `appointment_house`
+--
+
+INSERT INTO `appointment_house` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'test', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -39,6 +46,13 @@ CREATE TABLE `appointment_land` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `appointment_land`
+--
+
+INSERT INTO `appointment_land` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'test', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -53,9 +67,39 @@ CREATE TABLE `blog` (
   `post` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `img_url` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` int(12) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `blog`
+--
+
+INSERT INTO `blog` (`id`, `date_publish`, `title`, `post`, `img_url`, `user_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(1, '2021-04-11', '5 типів квартир які варто купити', 'В цій статті ми розповіпо про 5 типів кварти, які варто купити. Ці типи квартир завжду будуть актуальними та реантабельними на ринку нерухомості і за потреба швидко продадуться.\r\n\r\nТип 1. Квартира - студія.\r\nТип 2. Углова квартира на 1 поверсі.\r\nТип 3. Квартира із панорамними вікнами.\r\nТип 4. Квартира в центрі міста.\r\nТип 5. Квартира у престижному рафоні міста.\r\n\r\nЗаключення:\r\nЯку саме квартуру вам купити - це верішувати вам, але де її купувати,  то це в dom-zt.com\r\n', 'https://kvartirka.com/blog/wp-content/uploads/2020/01/CTjBGLa2AdB1W7UbfBMMYdaTp9FxuUfBv7Cn.jpg', 2, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `blog_category`
+--
+
+CREATE TABLE `blog_category` (
+  `id` int(12) NOT NULL,
+  `name` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatede_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `blog_category`
+--
+
+INSERT INTO `blog_category` (`id`, `name`, `created_at`, `updatede_at`) VALUES
+(1, 'Новини', '2021-04-09 15:41:35', '2021-04-09 15:41:35'),
+(2, 'Статті', '2021-04-09 15:42:03', '2021-04-09 15:42:03'),
+(3, 'Поради', '2021-04-09 15:42:03', '2021-04-09 15:42:03');
 
 -- --------------------------------------------------------
 
@@ -69,6 +113,16 @@ CREATE TABLE `category` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Земельна ділянка', NULL, NULL),
+(2, 'Будинок', NULL, NULL),
+(3, 'Квартира', NULL, NULL),
+(4, 'Комерційна нерухомість', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,6 +166,14 @@ CREATE TABLE `location` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `location`
+--
+
+INSERT INTO `location` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Житомир', NULL, NULL),
+(2, 'Житомирська область', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -158,6 +220,13 @@ CREATE TABLE `note` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `note`
+--
+
+INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, '2021-04-12', 'Квартира в центрі продаж срочний', 2, 2, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -188,6 +257,13 @@ CREATE TABLE `obekts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `obekts`
+--
+
+INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `opalenya`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_land_id`, `appointment_house_id`, `type_house`, `rieltor_id`, `created_at`, `updated_at`) VALUES
+(2, 'Квартира в центрі', 'Квартира в центрі міста', '35900.00', 3, '45.00', 1, 'https://kvartirka.com/blog/wp-content/uploads/2020/01/CTjBGLa2AdB1W7UbfBMMYdaTp9FxuUfBv7Cn.jpg', 1, 2, 5, 1, 1, 0, 0, 0, 1, 1, 'Квартира', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -250,7 +326,14 @@ ALTER TABLE `appointment_land`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `blog_user_id_index` (`user_id`);
+  ADD KEY `blog_user_id_index` (`user_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Индексы таблицы `blog_category`
+--
+ALTER TABLE `blog_category`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `category`
@@ -325,25 +408,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `appointment_house`
 --
 ALTER TABLE `appointment_house`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `appointment_land`
 --
 ALTER TABLE `appointment_land`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `blog_category`
+--
+ALTER TABLE `blog_category`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
@@ -361,7 +450,7 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT для таблицы `location`
 --
 ALTER TABLE `location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -373,13 +462,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `obekts`
 --
 ALTER TABLE `obekts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -395,6 +484,7 @@ ALTER TABLE `users`
 -- Ограничения внешнего ключа таблицы `blog`
 --
 ALTER TABLE `blog`
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `blog_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
