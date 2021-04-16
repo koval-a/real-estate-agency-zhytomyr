@@ -45,7 +45,7 @@ class RieltorController extends AC
     {
         $note = Note::find($id);
 
-        if($note->delete()){
+        if(Note::find($id)->delete()){
             //alert ok
             Session::flash('message_alert_success', 'Нотатка видалена успішно.');
             return redirect("/manage/rieltor/my-note");
