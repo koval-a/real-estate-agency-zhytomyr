@@ -6,6 +6,24 @@
 
         <h1>Нотатки</h1>
         <hr>
+
+        @if (Session::has('message_alert_success'))
+            <div class="alert alert-success p-2">
+                {{ Session::get('message_alert_success') }}
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+        @elseif(Session::has('message_alert_error'))
+            <div class="alert alert-danger p-2">
+                {{ Session::get('message_alert_error') }}
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+        @elseif(Session::has('message_alert_info'))
+            <div class="alert alert-info p-2">
+                {{ Session::get('message_alert_info') }}
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+        @endif
+
         <table class="table">
             <thead>
                 <tr class="bg-secondary text-white">
@@ -42,14 +60,16 @@
                         {{ $note->date_publish }}
                     </td>
                     <td>
-                       {{ $note->obekt_id }}
-                        <br> <code> Вставити назву посиланням </code>
+                        <a href="/obekts/{$slug}">
+                           {{ $note->obekt_id }}
+                            <br> <code> Вставити назву посиланням </code>
+                        </a>
                     </td>
                     <td>
                         {{ $note->note_text }}
                     </td>
                     <td>
-                        <a href="#" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+                        <a href="{{ route('rieltor.note.delete', $note->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
                     </td>
                 </tr>
             @endforeach

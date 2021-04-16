@@ -44,6 +44,7 @@ class CreateObektsTable extends Migration
             $table->string('type_house');
 
             $table->unsignedBigInteger('rieltor_id')->index();
+            $table->string('slug');
             $table->timestamps();
         });
 
