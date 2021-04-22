@@ -40,24 +40,18 @@ class RieltorController extends AC
 
         $countNotes = count($notes);
 
-        return view('rieltor.note', compact('notes', 'countNotes'));
+        $obekts = Obekts::where('rieltor_id', '=', $getUserID)->get();
+
+        return view('rieltor.note', compact('notes', 'countNotes', 'obekts'));
     }
 
     public function deleteNote($id)
     {
         $note = Note::find($id);
 
-        if($note->delete()){
-            //alert ok
-            Session::flash('message_alert_success', 'Нотатка видалена успішно.');
-            return redirect("/manage/rieltor/my-note");
-        }else{
-            //alert error
-            Session::flash('message_alert_error', 'Пимилка видалення!');
-//            return view('rieltor.note');
-        }
+        $note->delete();
 
-
+        return redirect("/manage/rieltor/my-note");
     }
 
     public function insertNote(Request $request)
@@ -70,7 +64,6 @@ class RieltorController extends AC
         $note->date_publish = date('Y-m-d');
 
         if($note->save()){
-//            Session::flash('message_alert_success', 'Нотатка додано успішно.');
             return redirect("/manage/rieltor/my-note");
         }
     }

@@ -8,7 +8,7 @@ class Note extends Model
 {
     protected $table = 'note';
 
-    public function Obekts()
+    public function obekts()
     {
         return $this->belongsTo('App\Models\Obekts');
     }

@@ -61,8 +61,13 @@
                     </td>
                     <td>
                         <a href="/obekts/{$slug}">
-                           {{ $note->obekt_id }}
-                            <br> <code> Вставити назву посиланням </code>
+                            @foreach($obekts as $key => $obk)
+
+                                @if($obk->id == $note->obekt_id)
+                                    <a href="/obekt/{{ $obk->slug }}">{{ $obk->name }}</a>
+                                @endif
+
+                            @endforeach
                         </a>
                     </td>
                     <td>
