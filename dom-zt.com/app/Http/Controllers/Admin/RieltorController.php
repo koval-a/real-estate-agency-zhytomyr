@@ -34,7 +34,7 @@ class RieltorController extends AC
     public function getNote()
     {
         $getUserID = Auth::user()->id;
-        $notes = Note::where('user_id', '=', $getUserID)->get();
+        $notes = Note::where('user_id', '=', $getUserID)->orderBy('id', 'desc')->get();//paginate(4);
 //        $obekts = Obekts::where('rieltor_id', '=', $getUserID)->get();
 //        $notes = $obekts->note;
 
@@ -66,6 +66,13 @@ class RieltorController extends AC
         if($note->save()){
             return redirect("/manage/rieltor/my-note");
         }
+    }
+
+    public function showObekt($slug)
+    {
+        $obekt = Obekts::where('slug', '=', $slug)->get();
+
+        return view('pages.obekt', compact('obekt'));
     }
 
 }

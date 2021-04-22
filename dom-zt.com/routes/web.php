@@ -27,6 +27,7 @@ Route::get('/contact', function () { return view('pages.contact'); });
 Route::get('/about-us', function () { return view('pages.about'); });
 
 Route::get('/blog/{slug}', function () { return view('pages.about'); });
+Route::get('/obekt/{slug}', [RieltorController::class, 'showObekt']);
 
 Auth::routes();
 

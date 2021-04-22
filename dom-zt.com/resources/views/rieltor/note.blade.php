@@ -80,6 +80,7 @@
             @endforeach
             </tbody>
         </table>
+{{--        {{ $notes->links() }}--}}
         @if($notes->isEmpty())
             <span class="mt-5 p-2 rounded text-white bg-warning">У вас немає нотаток</span>
             <a href="#" class="btn btn-primary shadow">Додати нотатку</a>
@@ -102,7 +103,14 @@
                             @csrf
                             <select name="obekt_id" id="obekt_id" class="form-control mt-1 required">
                                 <option value="0" selected>-Оберіть об'єкт-</option>
-                                <option value="2" selected>Test Obekt</option>
+                                @foreach($obekts as $key => $obk)
+
+                                    @if($obk->rieltor_id == $note->user_id)
+                                        <option value="{{$obk->id}}">{{$obk->name}}</option>
+                                    @endif
+
+                                @endforeach
+
 
                             </select>
 
