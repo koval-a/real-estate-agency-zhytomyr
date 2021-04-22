@@ -47,8 +47,9 @@ class RieltorController extends AC
 
     public function deleteNote($id)
     {
-        $note = Note::find($id);
+        $note = Note::where('id', '=', $id)->get();
 
+//        $note->findOrFail($id)->delete();
         $note->delete();
 
         return redirect("/manage/rieltor/my-note");
