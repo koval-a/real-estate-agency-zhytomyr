@@ -9,8 +9,8 @@
 
 .item-rieltor-obekt img {
 
-    min-height: 500px;
-    max-height: 500px;
+    min-height: 300px;
+    max-height: 300px;
 }
 
 .item-rieltor-obekt h3 {
@@ -31,4 +31,9 @@
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+.img-rieltor-accaunt {
+    width: 100%;
+    height: 300px;
 }
