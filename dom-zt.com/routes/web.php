@@ -36,9 +36,14 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [RieltorController::class, 'index'])->name('home');
 
-    Route::get('/my-note', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
-    Route::post('/my-note/insert', [RieltorController::class, 'insertNote'])->name('rieltor.note.insert');
-    Route::get('/my-note/delete/{$id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
+    Route::group(['prefix'=>'/my-note', 'namespace' => 'Admin'], function(){
+        Route::get('/', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
+        Route::post('/insert', [RieltorController::class, 'insertNote'])->name('rieltor.note.insert');
+        Route::get('/delete/{$id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
+    });
+//    Route::get('/my-note', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
+//    Route::post('/my-note/insert', [RieltorController::class, 'insertNote'])->name('rieltor.note.insert');
+//    Route::get('/my-note/delete/{$id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
 
     Route::get('/my-real-estate/{category}', [RieltorController::class, 'viewObekt'])->name('rieltor.view');
 });
