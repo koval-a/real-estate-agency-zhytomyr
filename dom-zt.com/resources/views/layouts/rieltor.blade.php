@@ -54,16 +54,16 @@
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="component-alert.html">Квартири</a>
+                                <a href="{{ route('rieltor.view', 'flat') }}">Квартири</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="component-badge.html">Будинки</a>
+                                <a href="{{ route('rieltor.view', 'house') }}">Будинки</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="component-breadcrumb.html">Комерційна нерухомість</a>
+                                <a href="{{ route('rieltor.view', 'commercial-real-estate') }}">Комерційна нерухомість</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="component-breadcrumb.html">Земельні ділянки</a>
+                                <a href="{{ route('rieltor.view', 'land') }}">Земельні ділянки</a>
                             </li>
                         </ul>
                     </li>

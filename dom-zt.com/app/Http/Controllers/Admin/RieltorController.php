@@ -47,12 +47,11 @@ class RieltorController extends AC
 
     public function deleteNote($id)
     {
-        $note = Note::where('id', '=', $id)->get();
+        $not = Note::find($id);
 
-//        $note->findOrFail($id)->delete();
-        $note->delete();
-
-        return redirect("/manage/rieltor/my-note");
+        if($not->delete()){
+            return redirect("/manage/rieltor/my-note/");
+        }
     }
 
     public function insertNote(Request $request)
@@ -74,6 +73,44 @@ class RieltorController extends AC
         $obekt = Obekts::where('slug', '=', $slug)->get();
 
         return view('pages.obekt', compact('obekt'));
+    }
+
+    public function viewObekt($category)
+    {
+        $getUserID = Auth::user()->id;
+        // 1 - land
+        // 2 - house
+        // 3 - flat
+        // 4 - commerce estate
+
+        switch ($category)
+        {
+            case 'land':
+            {
+                $categoryName = 'Земельні ділянки';
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 1)->get();
+                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+            }
+            case 'house' :
+            {
+                $categoryName = 'Будинки';
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 2)->get();
+                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+            }
+            case 'flat' :
+            {
+                $categoryName = 'Квартири';
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 3)->get();
+                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+            }
+            case 'commercial-real-estate' :
+            {
+                $categoryName = 'Комерційна нерухомість';
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 4)->get();
+                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+            }
+        }
+
     }
 
 }

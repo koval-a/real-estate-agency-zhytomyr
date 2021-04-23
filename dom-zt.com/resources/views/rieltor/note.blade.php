@@ -12,24 +12,6 @@
             </button>
         </div>
         <hr>
-
-        @if (Session::has('message_alert_success'))
-            <div class="alert alert-success p-2">
-                {{ Session::get('message_alert_success') }}
-                <button type="button" class="btn-close" aria-label="Close"></button>
-            </div>
-        @elseif(Session::has('message_alert_error'))
-            <div class="alert alert-danger p-2">
-                {{ Session::get('message_alert_error') }}
-                <button type="button" class="btn-close" aria-label="Close"></button>
-            </div>
-        @elseif(Session::has('message_alert_info'))
-            <div class="alert alert-info p-2">
-                {{ Session::get('message_alert_info') }}
-                <button type="button" class="btn-close" aria-label="Close"></button>
-            </div>
-        @endif
-
         <table class="table">
             <thead>
                 <tr class="bg-secondary text-white">

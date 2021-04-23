@@ -116,7 +116,9 @@
                     <div class="col-6 col-lg-6 col-md-6">
 
                         <div class="item-rieltor-obekt img-rieltor-accaunt">
-                            <h3 class="text-light1">Квартири</h3>
+                            <h3 class="text-light1">
+                                <a href="{{ route('rieltor.view', 'flat') }}">Квартири</a>
+                            </h3>
                             <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="flat" class="shadow img-fluid rounded">
                         </div>
 
@@ -125,7 +127,9 @@
                     <div class="col-6 col-lg-6 col-md-6">
 
                         <div class="item-rieltor-obekt img-rieltor-accaunt">
-                            <h3 class="text-light">Будинки</h3>
+                            <h3 class="text-light">
+                                <a href="{{ route('rieltor.view', 'house') }}"> Будинки </a>
+                            </h3>
                             <img src="https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg" alt="house" class="shadow img-fluid rounded">
                         </div>
 
@@ -134,7 +138,9 @@
                     <div class="col-6 col-lg-6 col-md-6">
 
                         <div class="item-rieltor-obekt img-rieltor-accaunt">
-                            <h3>Земельні ділянки</h3>
+                            <h3>
+                                <a href="{{ route('rieltor.view', 'land') }}">Земельні ділянки</a>
+                            </h3>
                             <img src="https://www.futurity.org/wp/wp-content/uploads/2020/01/land-use-biodiversity_1600.jpg" alt="land" class="shadow img-fluid rounded">
                         </div>
 
@@ -143,7 +149,9 @@
                     <div class="col-6 col-lg-6 col-md-6">
 
                         <div class="item-rieltor-obekt img-rieltor-accaunt">
-                            <h3 class="text-light">Комерційна нерухомість</h3>
+                            <h3 class="text-light">
+                                <a href="{{ route('rieltor.view', 'commercial-real-estate') }}">Комерційна нерухомість</a>
+                            </h3>
                             <img src="https://officesnapshots.com/wp-content/uploads/2021/02/fca-eisner-amper-f.oudeman-med-05.jpg" alt="commere-estate" class="shadow img-fluid rounded">
                         </div>
 

@@ -39,9 +39,8 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
     Route::get('/my-note', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
     Route::post('/my-note/insert', [RieltorController::class, 'insertNote'])->name('rieltor.note.insert');
     Route::get('/my-note/delete/{$id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
-//
-//    Route::get('/my-real-estate', [RieltorController::class, 'index'])->name('rieltor.estate');
-//    Route::get('/my-real-estate/view/{$id}', [RieltorController::class, 'estate_view'])->name('rieltor.estate.view');
+
+    Route::get('/my-real-estate/{category}', [RieltorController::class, 'viewObekt'])->name('rieltor.view');
 });
 
 // Auth access to Dashboard Admin
