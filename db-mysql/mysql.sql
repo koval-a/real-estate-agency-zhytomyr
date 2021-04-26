@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Апр 26 2021 г., 23:11
+-- Время создания: Апр 26 2021 г., 23:39
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -133,6 +133,16 @@ CREATE TABLE `files` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `files`
+--
+
+INSERT INTO `files` (`id`, `url_img`, `obekt_id`, `created_at`, `updated_at`) VALUES
+(1, 'falt/3/pic-01.png\r\n', 3, NULL, NULL),
+(2, 'flat/3/pic-04.png', 3, NULL, NULL),
+(3, 'flat/3/pic-02.png', 3, NULL, NULL),
+(4, 'flat/3/pic-03.png', 3, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -148,6 +158,15 @@ CREATE TABLE `location` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `location`
+--
+
+INSERT INTO `location` (`id`, `region_id`, `rayon_id`, `city_id`, `city_rayon_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 29, 1, 8, NULL, NULL),
+(2, 1, 29, 1, 4, NULL, NULL),
+(3, 1, 29, 1, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -181,6 +200,20 @@ CREATE TABLE `location_city_rayon` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `location_city_rayon`
+--
+
+INSERT INTO `location_city_rayon` (`id`, `rayon_city`, `created_at`, `updated_at`) VALUES
+(1, 'Крошня', NULL, NULL),
+(2, 'Вокзал', NULL, NULL),
+(3, 'Центр', NULL, NULL),
+(4, 'Богунія', NULL, NULL),
+(5, 'Гідропарк', NULL, NULL),
+(6, 'Малікова', NULL, NULL),
+(7, 'Рудня', NULL, NULL),
+(8, 'Довженка', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -300,6 +333,13 @@ CREATE TABLE `note` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `note`
+--
+
+INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, '2021-04-28', 'Офіс на Довженка потрібно Терміново здати в оренду', 1, 2, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -327,9 +367,21 @@ CREATE TABLE `obekts` (
   `appointment_id` bigint(20) UNSIGNED NOT NULL,
   `rieltor_id` bigint(20) UNSIGNED NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `obekts`
+--
+
+INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'Офіс на Довженка', 'Офіс під будь який вид діялності', '200.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Автономне', 0, 0, 0, 12, 2, 'office-on-dovzenka', '2021-04-03 23:33:59', NULL),
+(3, 'Квартира', 'Офіс під будь який вид діялності', '200.00', 1, '50.00', 1, 'flat.png', 1, 2, 12, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'flat-1', '2021-04-12 23:34:02', NULL),
+(4, 'Будинок', 'Офіс під будь який вид діялності', '1450.00', 2, '130.00', 2, 'house.png', 1, 5, 2, 0, 1, 'Автономне', 0, 0, 0, 12, 2, 'house', '2021-04-20 23:34:05', NULL),
+(5, 'Земля', 'Офіс під будь який вид діялності', '12200.00', 3, '300.00', 3, 'land.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 12, 2, 'land', '2021-04-24 23:34:08', NULL),
+(6, 'Комерційна нерухомість', 'Офіс під будь який вид діялності', '600.00', 1, '110.00', 1, 'com.png', 1, 3, 5, 3, 1, 'Автономне', 0, 0, 0, 12, 2, 'commercial-estate', '2021-04-25 23:34:11', NULL),
+(7, 'Офіс на Площі', 'Офіс під будь який вид діялності', '500.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'office', '2021-04-26 23:34:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -512,13 +564,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT для таблицы `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `location`
 --
 ALTER TABLE `location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `location_city`
@@ -530,7 +582,7 @@ ALTER TABLE `location_city`
 -- AUTO_INCREMENT для таблицы `location_city_rayon`
 --
 ALTER TABLE `location_city_rayon`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `location_rayon`
@@ -554,13 +606,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `obekts`
 --
 ALTER TABLE `obekts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
