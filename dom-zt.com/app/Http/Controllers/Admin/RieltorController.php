@@ -56,6 +56,12 @@ class RieltorController extends AC
         }
     }
 
+    public function removeNote(Note $note)
+    {
+       $note->delete();
+       return view('rieltor.note');
+    }
+
     public function insertNote(Request $request)
     {
         // New Note
