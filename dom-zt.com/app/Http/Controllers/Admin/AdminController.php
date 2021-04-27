@@ -36,11 +36,6 @@ class AdminController extends AC
         return view('adminHome', compact('countCommerceEstate', 'countFlat', 'countHouse', 'countLand'));
     }
 
-    public function indexRieltor()
-    {
-        return view('admin.rieltor.index');
-    }
-
     // START - RIELTORS //
 
     public function getRieltors()
@@ -111,6 +106,11 @@ class AdminController extends AC
             }
         }
 
+    }
+
+    public function note()
+    {
+        return view('admin.note');
     }
 
     public function settings()

@@ -53,14 +53,14 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [AdminController::class, 'indexAdmin'])->name('admin.home')->middleware('is_admin');
-    Route::get('/rieltors', [AdminController::class, 'indexRieltor'])->name('admin.rieltors')->middleware('is_admin');
+    Route::get('/rieltors', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
 //    Route::get('/real-estate', [AdminController::class, 'estate'])->name('admin.estate')->middleware('is_admin');
     Route::get('/delete/rieltor/{id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
 
     Route::get('/obekts/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
 
 
-    Route::get('/note', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
+    Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
 //    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
 //    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');

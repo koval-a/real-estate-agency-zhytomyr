@@ -76,7 +76,7 @@
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="application-email.html" class='sidebar-link'>
+                            <a href="{{ route('admin.note') }}" class='sidebar-link'>
                                 <i class="bi bi-sticky-fill"></i>
                                 <span>Нотатки</span>
                             </a>
