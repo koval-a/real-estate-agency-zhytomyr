@@ -16,9 +16,9 @@
                     <td>
                         Назва
                     </td>
-                    <td>
-                       Тип об'єкту
-                    </td>
+{{--                    <td>--}}
+{{--                       Тип об'єкту--}}
+{{--                    </td>--}}
                     <td>
                         Ціна ($)
                     </td>
@@ -42,9 +42,9 @@
                         <td>
                             <a href="/obekt/{{ $item->slug }}">{{ $item->name }}</a>
                         </td>
-                        <td>
-                            {{ $item->type_house }}
-                        </td>
+{{--                        <td>--}}
+{{--                            {{ $item->type_house }}--}}
+{{--                        </td>--}}
                         <td>
                             {{ $item->price }}
                         </td>
