@@ -14,7 +14,7 @@ return [
         'address' => '',
         'email' => ''
     ],
-    'about_text' => 'About us',
+    'about_text' => 'About our company text description',
     'work' => [
         'day' => [
             'start' => '09:00',
