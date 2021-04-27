@@ -35,11 +35,12 @@ Auth::routes();
 Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [RieltorController::class, 'index'])->name('home');
+    Route::get('/my-note/delete/{id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
 
     Route::group(['prefix'=>'/my-note', 'namespace' => 'Admin'], function(){
         Route::get('/', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
         Route::post('/insert', [RieltorController::class, 'insertNote'])->name('rieltor.note.insert');
-        Route::get('/delete/{$id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
+
     });
 //    Route::get('/my-note', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
 //    Route::post('/my-note/insert', [RieltorController::class, 'insertNote'])->name('rieltor.note.insert');
@@ -54,7 +55,7 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
     Route::get('/dashboard', [AdminController::class, 'indexAdmin'])->name('admin.home')->middleware('is_admin');
     Route::get('/rieltors', [AdminController::class, 'indexRieltor'])->name('admin.rieltors')->middleware('is_admin');
 //    Route::get('/real-estate', [AdminController::class, 'estate'])->name('admin.estate')->middleware('is_admin');
-//    Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
+    Route::get('/delete/rieltor/{id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
 //    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
 
     Route::group(['prefix'=>'manage/admin/blog', 'namespace' => 'Admin'], function(){

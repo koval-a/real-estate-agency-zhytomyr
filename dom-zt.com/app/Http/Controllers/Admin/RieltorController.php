@@ -5,17 +5,18 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Note;
+//use App\Note;
 use App\Models\Obekts;
 //use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
 
-class RieltorController //extends AC
+class RieltorController extends AC
 {
 
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -54,12 +55,6 @@ class RieltorController //extends AC
         }else{
             dd('Ont delete');
         }
-    }
-
-    public function removeNote(Note $note)
-    {
-       $note->delete();
-       return view('rieltor.note');
     }
 
     public function insertNote(Request $request)

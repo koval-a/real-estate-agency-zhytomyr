@@ -51,6 +51,9 @@ class AdminController extends AC
     public function deleteRieltor($id)
     {
         // remove
+        $data = User::find($id);
+        $data->delete();
+        return redirect('/home');
     }
 
     public function editRieltor(Request $request, $id)
