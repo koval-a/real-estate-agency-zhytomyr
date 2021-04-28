@@ -40,7 +40,7 @@
                             {{ $item->created_at->format('Y-m-d') }}
                         </td>
                         <td>
-                            <a href="/obekt/{{ $item->slug }}">{{ $item->name }}</a>
+                            <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                         </td>
 {{--                        <td>--}}
 {{--                            {{ $item->type_house }}--}}

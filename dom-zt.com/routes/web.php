@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RieltorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,11 @@ Route::get('/', function () {
 });
 
 // Pages
-Route::get('/contact', function () { return view('pages.contact'); });
-Route::get('/about-us', function () { return view('pages.about'); });
+Route::get('/contact',[PublicController::class, 'contact'])->name('contact');
+Route::get('/about-us', [PublicController::class, 'about'])->name('about');
 
-Route::get('/blog/{slug}', function () { return view('pages.about'); });
-Route::get('/obekt/{slug}', [RieltorController::class, 'showObekt']);
+Route::get('/blog/{slug}', [PublicController::class, 'blog'])->name('blog.view');
+Route::get('/obekt/{slug}', [PublicController::class, 'obekt'])->name('obekt.view');
 
 Auth::routes();
 
