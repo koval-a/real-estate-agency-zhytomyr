@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Note;
 use App\Models\Obekts;
 use App\Users;
 use App\Models\User;
@@ -106,25 +107,25 @@ class AdminController extends AC
             {
                 $categoryName = 'Земельні ділянки';
                 $obekts = Obekts::where('category_id', '=', 1)->get();
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'categoryName'));
             }
             case 'house' :
             {
                 $categoryName = 'Будинки';
                 $obekts = Obekts::where('category_id', '=', 2)->get();
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'categoryName'));
             }
             case 'flat' :
             {
                 $categoryName = 'Квартири';
                 $obekts = Obekts::where('category_id', '=', 3)->get();
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'categoryName'));
             }
             case 'commercial-real-estate' :
             {
                 $categoryName = 'Комерційна нерухомість';
                 $obekts = Obekts::where('category_id', '=', 4)->get();
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'categoryName'));
             }
         }
 
@@ -132,7 +133,14 @@ class AdminController extends AC
 
     public function note()
     {
-        return view('admin.note');
+        $getUserID = Auth::user()->id;
+        $notes = Note::where('user_id', '=', $getUserID)->orderBy('id', 'desc')->paginate(10);
+
+        $countNotes = count($notes);
+
+        $obekts = Obekts::where('rieltor_id', '=', $getUserID)->get();
+
+        return view('admin.note', compact('notes', 'countNotes', 'obekts'));
     }
 
     public function settings()

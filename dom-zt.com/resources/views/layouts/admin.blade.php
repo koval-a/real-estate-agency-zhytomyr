@@ -40,7 +40,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Меню</li>
 
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item  ">
                             <a href="{{ route('admin.home') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Панель</span>
