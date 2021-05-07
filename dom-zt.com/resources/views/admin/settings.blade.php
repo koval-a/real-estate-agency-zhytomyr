@@ -28,95 +28,95 @@
                         <h4><i class="bi bi-envelope"></i> Контакти</h4>
                         <label for="contact-address">Адреса</label>
                         <input type="text" class="form-control" id="address" required>
-                        <label for="contact-address">Телефон (Kyivstar)</label>
+                        <label for="contact-address">Телефон #1</label>
                         <input type="tel" class="form-control" id="phoneKyivstar" required>
-                        <label for="contact-address">Телефон (Lifecell)</label>
-                        <input type="tel" class="form-control" id="phoneLifecell" required>
-                        <label for="contact-address">Телефон (Vodafone)</label>
+                        <label for="contact-address">Телефон #2</label>
+{{--                        <input type="tel" class="form-control" id="phoneLifecell" required>--}}
+{{--                        <label for="contact-address">Телефон (Vodafone)</label>--}}
                         <input type="tel" class="form-control" id="phoneVodafone" required>
                         <label for="contact-address">Email</label>
                         <input type="email" class="form-control" id="email" required>
                     </div>
                     <div class="col-md-4">
                         <h4><i class="bi bi-link"></i> Соціальні мережі</h4>
-                        <label for="contact-social"><i class="bi bi-instagram"></i> Instagram</label>
-                        <input type="text" class="form-control" id="soicalInstagram" required>
+{{--                        <label for="contact-social"><i class="bi bi-instagram"></i> Instagram</label>--}}
+{{--                        <input type="text" class="form-control" id="soicalInstagram" required>--}}
                         <label for="contact-social"><i class="bi bi-facebook"></i> Facebook</label>
                         <input type="text" class="form-control" id="soicalFacebook" required>
-                        <label for="contact-social"><i class="bi bi-youtube"></i> YouTube</label>
-                        <input type="text" class="form-control" id="soicalYouTube" required>
-                        <label for="contact-social"><i class="bi bi-twitter"></i> Twitter</label>
-                        <input type="text" class="form-control" id="soicalTwitter" required>
-                        <label for="contact-social"><i class="bi bi-telegram"></i> Telegram</label>
-                        <input type="text" class="form-control" id="soicalTelegram" required>
-                        <label for="contact-social">Viber</label>
-                        <input type="text" class="form-control" id="soicalViber" required>
+{{--                        <label for="contact-social"><i class="bi bi-youtube"></i> YouTube</label>--}}
+{{--                        <input type="text" class="form-control" id="soicalYouTube" required>--}}
+{{--                        <label for="contact-social"><i class="bi bi-twitter"></i> Twitter</label>--}}
+{{--                        <input type="text" class="form-control" id="soicalTwitter" required>--}}
+{{--                        <label for="contact-social"><i class="bi bi-telegram"></i> Telegram</label>--}}
+{{--                        <input type="text" class="form-control" id="soicalTelegram" required>--}}
+{{--                        <label for="contact-social">Viber</label>--}}
+{{--                        <input type="text" class="form-control" id="soicalViber" required>--}}
                     </div>
-                    <div class="col-md-4">
-                        <h4><i class="bi bi-clock"></i> Графік роботи</h4> <br>
-                        <h5>Будні</h5>
+{{--                    <div class="col-md-4">--}}
+{{--                        <h4><i class="bi bi-clock"></i> Графік роботи</h4> <br>--}}
+{{--                        <h5>Будні</h5>--}}
 
-                        <div class="d-flex justify-content-between">
-                            <span>Початок</span>
-                            <span>Кінець</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">
-                                <div class="hours-start">
-                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>
-                                    <span>Години</span>
-                                </div>
-                                <div class="minutes-start">
-                                    <span> </span>
-                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>
-                                    <span>Хвилини</span>
-                                </div>
-                            </div>
-                            <div class="img">
+{{--                        <div class="d-flex justify-content-between">--}}
+{{--                            <span>Початок</span>--}}
+{{--                            <span>Кінець</span>--}}
+{{--                        </div>--}}
+{{--                        <div class="d-flex justify-content-between">--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <div class="hours-start">--}}
+{{--                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>--}}
+{{--                                    <span>Години</span>--}}
+{{--                                </div>--}}
+{{--                                <div class="minutes-start">--}}
+{{--                                    <span> </span>--}}
+{{--                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>--}}
+{{--                                    <span>Хвилини</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="img">--}}
 
-                            </div>
-                            <div class="d-flex">
-                                <div class="hours-end">
-                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>
-                                    <span>Години</span>
-                                </div>
-                                <div class="minutes-end">
+{{--                            </div>--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <div class="hours-end">--}}
+{{--                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>--}}
+{{--                                    <span>Години</span>--}}
+{{--                                </div>--}}
+{{--                                <div class="minutes-end">--}}
 
-                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>
-                                    <span>Хвилини</span>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <h5>Вихідні</h5>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">
-                                <div class="hours-start">
-                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>
-                                    <span>Години</span>
-                                </div>
-                                <div class="minutes-start">
-                                    <span> </span>
-                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>
-                                    <span>Хвилини</span>
-                                </div>
-                            </div>
-                            <div class="img">
+{{--                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>--}}
+{{--                                    <span>Хвилини</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <br>--}}
+{{--                        <h5>Вихідні</h5>--}}
+{{--                        <div class="d-flex justify-content-between">--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <div class="hours-start">--}}
+{{--                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>--}}
+{{--                                    <span>Години</span>--}}
+{{--                                </div>--}}
+{{--                                <div class="minutes-start">--}}
+{{--                                    <span> </span>--}}
+{{--                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>--}}
+{{--                                    <span>Хвилини</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="img">--}}
 
-                            </div>
-                            <div class="d-flex">
-                                <div class="hours-end">
-                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>
-                                    <span>Години</span>
-                                </div>
-                                <div class="minutes-end">
+{{--                            </div>--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <div class="hours-end">--}}
+{{--                                    <input type="number" class="form-control" min="1" max="24" step="1" id="workBudniStart" required>--}}
+{{--                                    <span>Години</span>--}}
+{{--                                </div>--}}
+{{--                                <div class="minutes-end">--}}
 
-                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>
-                                    <span>Хвилини</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                                    <input type="number" class="form-control" min="0" max="59" step="1"id="workBudniEnd" required>--}}
+{{--                                    <span>Хвилини</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 <button type="submit" class="btn btn-block w-25 btn-success mt-5 p-2">Зберегти</button>
             </form>

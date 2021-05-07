@@ -35,7 +35,7 @@ class RieltorController extends AC
     public function getNote()
     {
         $getUserID = Auth::user()->id;
-        $notes = Note::where('user_id', '=', $getUserID)->orderBy('id', 'desc')->get();//paginate(4);
+        $notes = Note::where('user_id', '=', $getUserID)->orderBy('id', 'desc')->paginate(10);
 //        $obekts = Obekts::where('rieltor_id', '=', $getUserID)->get();
 //        $notes = $obekts->note;
 

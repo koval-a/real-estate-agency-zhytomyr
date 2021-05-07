@@ -71,6 +71,27 @@ class AdminController extends AC
 
     // END - RIELTORS //
 
+    // START - CLEINTS //
+
+    public function getClients()
+    {
+        $clients = 'Клієнти';
+
+        return view('admin.clients', compact('clients'));
+    }
+
+    public function insertClients(Request $request)
+    {
+
+    }
+
+    public function deleteClients($id)
+    {
+
+    }
+
+    // END - CLEINTS //
+
     public function viewObekt($category)
     {
         // 1 - land

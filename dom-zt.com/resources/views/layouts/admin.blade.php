@@ -76,6 +76,13 @@
                         </li>
 
                         <li class="sidebar-item  ">
+                            <a href="{{ route('admin.clients') }}" class='sidebar-link'>
+                                <i class="bi bi-person"></i>
+                                <span>Клієнти</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
                             <a href="{{ route('admin.note') }}" class='sidebar-link'>
                                 <i class="bi bi-sticky-fill"></i>
                                 <span>Нотатки</span>
@@ -84,12 +91,12 @@
 
                         <li class="sidebar-title">Блог</li>
 
-                        <li class="sidebar-item  ">
-                            <a href="application-email.html" class='sidebar-link'>
-                                <i class="bi bi-tag-fill"></i>
-                                <span>Категоії</span>
-                            </a>
-                        </li>
+{{--                        <li class="sidebar-item  ">--}}
+{{--                            <a href="application-email.html" class='sidebar-link'>--}}
+{{--                                <i class="bi bi-tag-fill"></i>--}}
+{{--                                <span>Категоії</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="sidebar-item  ">
                             <a href="application-chat.html" class='sidebar-link'>
