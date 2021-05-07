@@ -27,22 +27,22 @@
                     <div class="col-md-4">
                         <h4><i class="bi bi-envelope"></i> Контакти</h4>
                         <label for="contact-address">Адреса</label>
-                        <input type="text" class="form-control" id="address" required>
+                        <input type="text" class="form-control" id="address" value=" {{ Config::get('adminsettings.contact.address')}}" required>
                         <label for="contact-address">Телефон #1</label>
-                        <input type="tel" class="form-control" id="phoneKyivstar" required>
+                        <input type="tel" class="form-control" id="phoneKyivstar"  value=" {{ Config::get('adminsettings.contact.phone_1')}}" required>
                         <label for="contact-address">Телефон #2</label>
-{{--                        <input type="tel" class="form-control" id="phoneLifecell" required>--}}
+                        <input type="tel" class="form-control" id="phoneLifecell"  value=" {{ Config::get('adminsettings.contact.phone_2')}}" required>
 {{--                        <label for="contact-address">Телефон (Vodafone)</label>--}}
-                        <input type="tel" class="form-control" id="phoneVodafone" required>
+{{--                        <input type="tel" class="form-control" id="phoneVodafone" required>--}}
                         <label for="contact-address">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" class="form-control" id="email"  value=" {{ Config::get('adminsettings.contact.email')}}" required>
                     </div>
                     <div class="col-md-4">
                         <h4><i class="bi bi-link"></i> Соціальні мережі</h4>
 {{--                        <label for="contact-social"><i class="bi bi-instagram"></i> Instagram</label>--}}
 {{--                        <input type="text" class="form-control" id="soicalInstagram" required>--}}
                         <label for="contact-social"><i class="bi bi-facebook"></i> Facebook</label>
-                        <input type="text" class="form-control" id="soicalFacebook" required>
+                        <input type="text" class="form-control" id="soicalFacebook"  value=" {{ Config::get('adminsettings.social.facebook')}}" required>
 {{--                        <label for="contact-social"><i class="bi bi-youtube"></i> YouTube</label>--}}
 {{--                        <input type="text" class="form-control" id="soicalYouTube" required>--}}
 {{--                        <label for="contact-social"><i class="bi bi-twitter"></i> Twitter</label>--}}

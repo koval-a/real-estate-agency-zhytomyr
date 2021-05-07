@@ -2,27 +2,24 @@
 return [
 
     'social' => [
-        'instagram' => '',
-        'youtube' => '',
-        'facebook' => '',
-        'twitter' => '',
-        'telegram' => '',
-        'viber' => ''
+        'facebook' => 'https://facebook.com/'
     ],
     'contact' => [
-        'phone' => '',
-        'address' => '',
-        'email' => ''
+        'phone_1' => '+38 (096) 425 84 55',
+        'phone_2' => '+38 (096) 203 02 60',
+        'address' => 'м.Житомир вул.Леха Качинського буд. 1, офіс 55',
+        'email' => 'zhitomir.myno@gmail.ocm'
     ],
-    'about_text' => 'About our company text description',
+    'about_text' => 'Агенство нерухомості "Житомир"',
     'work' => [
         'day' => [
-            'start' => '09:00',
-            'end' => '17:00'
+            'start' => '10:00',
+            'end' => '18:00'
         ],
         'weekend'=> [
-            'start' => '10:00',
-            'end' => '16:00'
+            'start' => '',
+            'end' => '',
+            'info' => 'За домовленістю'
         ]
     ]
 ];

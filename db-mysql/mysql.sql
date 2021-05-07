@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Апр 26 2021 г., 23:39
+-- Время создания: Май 07 2021 г., 15:42
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -11,7 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- База данных: `real_estate_agancy`
+-- База данных: `dom_zt`
 --
 
 -- --------------------------------------------------------
@@ -21,11 +21,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointment` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                               `id` bigint(20) UNSIGNED NOT NULL,
+                               `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                               `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                               `created_at` timestamp NULL DEFAULT NULL,
+                               `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -47,7 +47,8 @@ INSERT INTO `appointment` (`id`, `name`, `type`, `created_at`, `updated_at`) VAL
 (12, 'Офісна нерухомість', 'Комерційна нерухомість', NULL, NULL),
 (13, 'Індустріальна нерухомість', 'Комерційна нерухомість', NULL, NULL),
 (14, 'Апартаменти', 'Комерційна нерухомість', NULL, NULL),
-(15, 'Соціальна нерухомість', 'Комерційна нерухомість', NULL, NULL);
+(15, 'Соціальна нерухомість', 'Комерційна нерухомість', NULL, NULL),
+(16, 'Без призначення', 'Бім+Квартира', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,8 @@ CREATE TABLE `location` (
 INSERT INTO `location` (`id`, `region_id`, `rayon_id`, `city_id`, `city_rayon_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 29, 1, 8, NULL, NULL),
 (2, 1, 29, 1, 4, NULL, NULL),
-(3, 1, 29, 1, 5, NULL, NULL);
+(3, 1, 29, 1, 5, NULL, NULL),
+(4, 1, 27, 2, 9, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,7 +188,8 @@ CREATE TABLE `location_city` (
 --
 
 INSERT INTO `location_city` (`id`, `city`, `created_at`, `updated_at`) VALUES
-(1, 'Житомир', NULL, NULL);
+(1, 'Житомир', NULL, NULL),
+(2, 'Не Житомир', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -213,7 +216,8 @@ INSERT INTO `location_city_rayon` (`id`, `rayon_city`, `created_at`, `updated_at
 (5, 'Гідропарк', NULL, NULL),
 (6, 'Малікова', NULL, NULL),
 (7, 'Рудня', NULL, NULL),
-(8, 'Довженка', NULL, NULL);
+(8, 'Довженка', NULL, NULL),
+(9, 'Не район Житомира', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -338,7 +342,11 @@ CREATE TABLE `note` (
 --
 
 INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '2021-04-28', 'Офіс на Довженка потрібно Терміново здати в оренду', 1, 2, NULL, NULL);
+(1, '2021-04-28', 'Офіс на Довженка потрібно Терміново здати в оренду', 1, 2, NULL, NULL),
+(2, '2021-04-26', '213', 4, 2, '2021-04-26 20:56:20', '2021-04-26 20:56:20'),
+(3, '2021-04-27', 'Квартира', 3, 2, '2021-04-26 21:39:48', '2021-04-26 21:39:48'),
+(4, '2021-04-27', 'Земля', 5, 2, '2021-04-26 21:39:57', '2021-04-26 21:39:57'),
+(5, '2021-04-27', 'Під магазин', 6, 2, '2021-04-26 21:40:10', '2021-04-26 21:40:10');
 
 -- --------------------------------------------------------
 
@@ -367,21 +375,44 @@ CREATE TABLE `obekts` (
   `appointment_id` bigint(20) UNSIGNED NOT NULL,
   `rieltor_id` bigint(20) UNSIGNED NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `obekts`
 --
 
-INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Офіс на Довженка', 'Офіс під будь який вид діялності', '200.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Автономне', 0, 0, 0, 12, 2, 'office-on-dovzenka', '2021-04-03 23:33:59', NULL),
-(3, 'Квартира', 'Офіс під будь який вид діялності', '200.00', 1, '50.00', 1, 'flat.png', 1, 2, 12, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'flat-1', '2021-04-12 23:34:02', NULL),
-(4, 'Будинок', 'Офіс під будь який вид діялності', '1450.00', 2, '130.00', 2, 'house.png', 1, 5, 2, 0, 1, 'Автономне', 0, 0, 0, 12, 2, 'house', '2021-04-20 23:34:05', NULL),
-(5, 'Земля', 'Офіс під будь який вид діялності', '12200.00', 3, '300.00', 3, 'land.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 12, 2, 'land', '2021-04-24 23:34:08', NULL),
-(6, 'Комерційна нерухомість', 'Офіс під будь який вид діялності', '600.00', 1, '110.00', 1, 'com.png', 1, 3, 5, 3, 1, 'Автономне', 0, 0, 0, 12, 2, 'commercial-estate', '2021-04-25 23:34:11', NULL),
-(7, 'Офіс на Площі', 'Офіс під будь який вид діялності', '500.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'office', '2021-04-26 23:34:14', NULL);
+INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `created_at`, `updated_at`) VALUES
+(1, 'Офіс на Довженка', 'Офіс під будь який вид діялності', '200.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Автономне', 0, 0, 0, 12, 2, 'office-on-dovzenka', 1, '2021-04-03 23:33:59', NULL),
+(3, 'Квартира', 'Офіс під будь який вид діялності', '200.00', 1, '50.00', 1, 'flat.png', 1, 2, 12, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'flat-1', 1, '2021-04-12 23:34:02', NULL),
+(4, 'Будинок', 'Офіс під будь який вид діялності', '1450.00', 2, '130.00', 2, 'house.png', 1, 5, 2, 0, 1, 'Автономне', 0, 0, 0, 12, 2, 'house', 1, '2021-04-20 23:34:05', NULL),
+(5, 'Земля', 'Офіс під будь який вид діялності', '12200.00', 3, '300.00', 3, 'land.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 12, 2, 'land', 1, '2021-04-24 23:34:08', NULL),
+(6, 'Комерційна нерухомість', 'Офіс під будь який вид діялності', '600.00', 1, '110.00', 1, 'com.png', 1, 3, 5, 3, 1, 'Автономне', 0, 0, 0, 12, 2, 'commercial-estate', 1, '2021-04-25 23:34:11', NULL),
+(7, 'Офіс на Площі', 'Офіс під будь який вид діялності', '500.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'office', 1, '2021-04-26 23:34:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `owner`
+--
+
+CREATE TABLE `owner` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `phone` int(12) NOT NULL,
+  `address` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `owner`
+--
+
+INSERT INTO `owner` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'Bob Jefri', 990010000, 'Житомир, вул.Київська 88', '2021-04-28 12:49:15', '2021-04-28 12:49:15');
 
 -- --------------------------------------------------------
 
@@ -405,11 +436,11 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_admin` int(11) NOT NULL DEFAULT '0',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -419,9 +450,9 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `avatar`, `phone`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@dom-zt.com', NULL, '$2y$10$seRtjZqJ1587f1Zvw5DmEeFS8o4lq8/JVSOUaIQAGhDrvtMxItzCK', 'admin.png', '098-000-0001', 'admin', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
-(2, 'Rieltor', 'rieltor@dom-zt.com', NULL, '$2y$10$ho5KIuJxj.osCd2i/5DXZ.xx/GAXpb3V/tM2L76Ohr9UXV2trN11W', 'rieltor.png', '098-000-0002', 'default', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07');
+INSERT INTO `users` (`id`, `name`, `email`, `is_admin`, `email_verified_at`, `password`, `avatar`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@dom-zt.com', 1, NULL, '$2y$10$seRtjZqJ1587f1Zvw5DmEeFS8o4lq8/JVSOUaIQAGhDrvtMxItzCK', 'avatar.png', '098-000-0001', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
+(2, 'Rieltor', 'rieltor@dom-zt.com', 0, NULL, '$2y$10$ho5KIuJxj.osCd2i/5DXZ.xx/GAXpb3V/tM2L76Ohr9UXV2trN11W', 'avatar.png', '098-000-0002', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07');
 
 --
 -- Индексы сохранённых таблиц
@@ -505,8 +536,10 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `note`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_2` (`id`),
   ADD KEY `note_obekt_id_index` (`obekt_id`),
-  ADD KEY `note_user_id_index` (`user_id`);
+  ADD KEY `note_user_id_index` (`user_id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Индексы таблицы `obekts`
@@ -516,7 +549,14 @@ ALTER TABLE `obekts`
   ADD KEY `obekts_category_id_index` (`category_id`),
   ADD KEY `obekts_location_id_index` (`location_id`),
   ADD KEY `obekts_appointment_id_index` (`appointment_id`),
-  ADD KEY `obekts_rieltor_id_index` (`rieltor_id`);
+  ADD KEY `obekts_rieltor_id_index` (`rieltor_id`),
+  ADD KEY `owner_id` (`owner_id`);
+
+--
+-- Индексы таблицы `owner`
+--
+ALTER TABLE `owner`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `password_resets`
@@ -540,7 +580,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `blog_article`
@@ -570,19 +610,19 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT для таблицы `location`
 --
 ALTER TABLE `location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `location_city`
 --
 ALTER TABLE `location_city`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `location_city_rayon`
 --
 ALTER TABLE `location_city_rayon`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `location_rayon`
@@ -606,13 +646,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `obekts`
 --
 ALTER TABLE `obekts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `owner`
+--
+ALTER TABLE `owner`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -659,5 +705,6 @@ ALTER TABLE `note`
 ALTER TABLE `obekts`
   ADD CONSTRAINT `obekts_appointment_id_foreign` FOREIGN KEY (`appointment_id`) REFERENCES `appointment` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `obekts_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `obekts_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `obekts_location_id_foreign` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `obekts_rieltor_id_foreign` FOREIGN KEY (`rieltor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;

@@ -6,6 +6,7 @@ use App\Models\Obekts;
 use App\Users;
 use App\Models\User;
 use App\Models\Rieltors;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,7 +76,7 @@ class AdminController extends AC
 
     public function getClients()
     {
-        $clients = 'Клієнти';
+        $clients = Owner::all();
 
         return view('admin.clients', compact('clients'));
     }
