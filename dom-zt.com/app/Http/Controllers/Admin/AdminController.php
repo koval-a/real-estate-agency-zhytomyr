@@ -56,8 +56,11 @@ class AdminController extends AC
     {
         // remove
         $data = User::find($id);
-        $data->delete();
-        return redirect('/home');
+
+        if($data->delete()){
+            return redirect('/manage/admin/rieltors');
+        }
+
     }
 
     public function editRieltor(Request $request, $id)
@@ -84,12 +87,23 @@ class AdminController extends AC
 
     public function insertClients(Request $request)
     {
+        $newOwner = new Owner();
+        $newOwner->name = $request->input('name');
+        $newOwner->phone = $request->input('phone');
+        $newOwner->address = $request->input('address');
 
+        if($newOwner->save()){
+            return redirect('/manage/admin/clients');
+        }
     }
 
     public function deleteClients($id)
     {
+        $owner = Owner::find($id);
 
+        if($owner->delete()){
+            return redirect('/manage/admin/clients');
+        }
     }
 
     // END - CLEINTS //

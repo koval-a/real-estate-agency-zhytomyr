@@ -54,9 +54,13 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [AdminController::class, 'indexAdmin'])->name('admin.home')->middleware('is_admin');
+
     Route::get('/rieltors', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
-    Route::get('/clients', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
     Route::get('/delete/rieltor/{id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
+
+    Route::get('/clients', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
+    Route::get('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+
 
     Route::get('/obekts/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
 

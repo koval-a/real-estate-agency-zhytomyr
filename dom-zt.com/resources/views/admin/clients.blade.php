@@ -52,7 +52,7 @@
                         {{ $owner->address }}
                     </td>
                     <td>
-                        <a href="" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
                     </td>
                 </tr>
             @endforeach
