@@ -159,6 +159,8 @@ class AdminController extends AC
         return view('admin.note', compact('notes', 'countNotes', 'obekts'));
     }
 
+    // START - BLOG //
+
     public function getBlog()
     {
         $blog = Blog::orderBy('id', 'desc')->get();//paginate(2);
@@ -197,6 +199,8 @@ class AdminController extends AC
             return redirect('/manage/admin/blog');
         }
     }
+
+    // END - BLOG //
 
     public function settings()
     {

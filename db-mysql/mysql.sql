@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Май 10 2021 г., 19:44
+-- Время создания: Май 10 2021 г., 22:46
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -33,22 +33,33 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`id`, `name`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'Землі сільськогосподарського призначення', 'Земля', NULL, NULL),
-(2, 'Землі природно-заповідного та іншого природоохоронного призначення', 'Земля', NULL, NULL),
-(3, 'Землі житлової та громадської забудови', 'Земля', NULL, NULL),
-(4, 'Землі оздоровчого призначення', 'Земля', NULL, NULL),
-(5, 'Землі рекреаційного призначення', 'Земля', NULL, NULL),
-(6, 'Землі історико-культурного призначення', 'Земля', NULL, NULL),
-(7, 'Землі лісогосподарського призначення', 'Земля', NULL, NULL),
-(8, 'Землі водного фонду', 'Земля', NULL, NULL),
-(9, 'Землі промисловості, транспорту, зв\'язку, енергетики, оборони та іншого призначення', 'Земля', NULL, NULL),
-(10, 'Нерухомість вільного призначення', 'Комерційна нерухомість', NULL, NULL),
-(11, 'Нерухомість для роздрібної торгівлі', 'Комерційна нерухомість', NULL, NULL),
-(12, 'Офісна нерухомість', 'Комерційна нерухомість', NULL, NULL),
-(13, 'Індустріальна нерухомість', 'Комерційна нерухомість', NULL, NULL),
-(14, 'Апартаменти', 'Комерційна нерухомість', NULL, NULL),
-(15, 'Соціальна нерухомість', 'Комерційна нерухомість', NULL, NULL),
-(16, 'Без призначення', 'Бім+Квартира', NULL, NULL);
+(17, 'Земля сільськогосподарського призначення ', 'Земля', NULL, NULL),
+(18, 'Земля житлової й суспільної забудови ', 'Земля', NULL, NULL),
+(19, 'Земля оздоровчого призначення ', 'Земля', NULL, NULL),
+(20, 'Земля рекреаційного призначення ', 'Земля', NULL, NULL),
+(21, 'Земля лісового фонду ', 'Земля', NULL, NULL),
+(22, 'Земля водного фонду ', 'Земля', NULL, NULL),
+(23, 'Земля промисловості, транспорту та іншого призначення ', 'Земля', NULL, NULL),
+(24, 'Земля запасу, резервного фонду та загального користування', 'Земля', NULL, NULL),
+(25, 'Магазин', 'Комерційна нерухомість', NULL, NULL),
+(26, 'Салон', 'Комерційна нерухомість', NULL, NULL),
+(27, 'Ресторан/кафе/бар', 'Комерційна нерухомість', NULL, NULL),
+(28, 'Кав’ярня', 'Комерційна нерухомість', NULL, NULL),
+(29, 'Офісні приміщення ', 'Комерційна нерухомість', NULL, NULL),
+(30, 'Склад/ангар ', 'Комерційна нерухомість', NULL, NULL),
+(31, 'Окремі будівлі ', 'Комерційна нерухомість', NULL, NULL),
+(32, 'Частина будівлі', 'Комерційна нерухомість', NULL, NULL),
+(33, 'База відпочинку/готель', 'Комерційна нерухомість', NULL, NULL),
+(34, 'Приміщення промислового призначення', 'Комерційна нерухомість', NULL, NULL),
+(35, 'МАФ', 'Комерційна нерухомість', NULL, NULL),
+(36, 'Торгова точка на ринку', 'Комерційна нерухомість', NULL, NULL),
+(37, 'АЗС', 'Комерційна нерухомість', NULL, NULL),
+(38, 'Автомийка', 'Комерційна нерухомість', NULL, NULL),
+(39, 'Шиномонтаж', 'Комерційна нерухомість', NULL, NULL),
+(40, 'СТО (станція тех. обслуговування)', 'Комерційна нерухомість', NULL, NULL),
+(41, 'Фермерське господарство', 'Комерційна нерухомість', NULL, NULL),
+(42, 'Інше', 'Комерційна нерухомість', NULL, NULL),
+(43, '-none-', 'Квартира/Будинок', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -57,15 +68,15 @@ INSERT INTO `appointment` (`id`, `name`, `type`, `created_at`, `updated_at`) VAL
 --
 
 CREATE TABLE `blog_article` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
-  `author_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+                                `id` bigint(20) UNSIGNED NOT NULL,
+                                `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `category_id` bigint(20) UNSIGNED NOT NULL,
+                                `author_id` bigint(20) UNSIGNED NOT NULL,
+                                `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -84,11 +95,11 @@ INSERT INTO `blog_article` (`id`, `picture`, `title`, `text`, `slug`, `category_
 --
 
 CREATE TABLE `blog_category` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                                 `id` bigint(20) UNSIGNED NOT NULL,
+                                 `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                 `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                 `created_at` timestamp NULL DEFAULT NULL,
+                                 `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -106,11 +117,11 @@ INSERT INTO `blog_category` (`id`, `name`, `slug`, `created_at`, `updated_at`) V
 --
 
 CREATE TABLE `category` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                            `id` bigint(20) UNSIGNED NOT NULL,
+                            `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                            `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                            `created_at` timestamp NULL DEFAULT NULL,
+                            `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -130,22 +141,12 @@ INSERT INTO `category` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `files` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `url_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `obekt_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                         `id` bigint(20) UNSIGNED NOT NULL,
+                         `url_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `obekt_id` bigint(20) UNSIGNED NOT NULL,
+                         `created_at` timestamp NULL DEFAULT NULL,
+                         `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `files`
---
-
-INSERT INTO `files` (`id`, `url_img`, `obekt_id`, `created_at`, `updated_at`) VALUES
-(1, 'falt/3/pic-01.png\r\n', 3, NULL, NULL),
-(2, 'flat/3/pic-04.png', 3, NULL, NULL),
-(3, 'flat/3/pic-02.png', 3, NULL, NULL),
-(4, 'flat/3/pic-03.png', 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -154,13 +155,13 @@ INSERT INTO `files` (`id`, `url_img`, `obekt_id`, `created_at`, `updated_at`) VA
 --
 
 CREATE TABLE `location` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `region_id` bigint(20) UNSIGNED NOT NULL,
-  `rayon_id` bigint(20) UNSIGNED NOT NULL,
-  `city_id` bigint(20) UNSIGNED NOT NULL,
-  `city_rayon_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                            `id` bigint(20) UNSIGNED NOT NULL,
+                            `region_id` bigint(20) UNSIGNED NOT NULL,
+                            `rayon_id` bigint(20) UNSIGNED NOT NULL,
+                            `city_id` bigint(20) UNSIGNED NOT NULL,
+                            `city_rayon_id` bigint(20) UNSIGNED NOT NULL,
+                            `created_at` timestamp NULL DEFAULT NULL,
+                            `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -168,10 +169,8 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`id`, `region_id`, `rayon_id`, `city_id`, `city_rayon_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 29, 1, 8, NULL, NULL),
-(2, 1, 29, 1, 4, NULL, NULL),
-(3, 1, 29, 1, 5, NULL, NULL),
-(4, 1, 27, 2, 9, NULL, NULL);
+(5, 1, 75, 30, 34, NULL, NULL),
+(6, 1, 51, 93, 24, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,10 +179,10 @@ INSERT INTO `location` (`id`, `region_id`, `rayon_id`, `city_id`, `city_rayon_id
 --
 
 CREATE TABLE `location_city` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                                 `id` bigint(20) UNSIGNED NOT NULL,
+                                 `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                 `created_at` timestamp NULL DEFAULT NULL,
+                                 `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -191,8 +190,97 @@ CREATE TABLE `location_city` (
 --
 
 INSERT INTO `location_city` (`id`, `city`, `created_at`, `updated_at`) VALUES
-(1, 'Житомир', NULL, NULL),
-(2, 'Не Житомир', NULL, NULL);
+(3, 'смт.Гуйва', NULL, NULL),
+(4, 'c. Туровець', NULL, NULL),
+(5, 'c. Мошківка', NULL, NULL),
+(6, 'c. Лісівщина', NULL, NULL),
+(7, 'c. Кринички', NULL, NULL),
+(8, 'c. Грабівка', NULL, NULL),
+(9, 'c. Троянів', NULL, NULL),
+(10, 'c. Ставецьке', NULL, NULL),
+(11, 'c. Бистрі', NULL, NULL),
+(12, 'c. Двірець', NULL, NULL),
+(13, 'c. Волиця', NULL, NULL),
+(14, 'c. Вишневе', NULL, NULL),
+(15, 'c. Садки', NULL, NULL),
+(16, 'c. Вигода', NULL, NULL),
+(17, 'c. Соснівка', NULL, NULL),
+(18, 'c. Рудня-Городище', NULL, NULL),
+(19, 'c. Роздольне', NULL, NULL),
+(20, 'c. Гай', NULL, NULL),
+(21, 'c. Скоморохи', NULL, NULL),
+(22, 'c. Світин', NULL, NULL),
+(23, 'c. Ружки', NULL, NULL),
+(24, 'c. Павленківка', NULL, NULL),
+(25, 'c. Озерянка', NULL, NULL),
+(26, 'c. Червоний Степок', NULL, NULL),
+(27, 'c. Миролюбівка', NULL, NULL),
+(28, 'c. Леонівка', NULL, NULL),
+(29, 'c. Млинище', NULL, NULL),
+(30, 'c. Лука', NULL, NULL),
+(31, 'c. Вершина', NULL, NULL),
+(32, 'с. Тарасівка', NULL, NULL),
+(33, 'с. Ліщин', NULL, NULL),
+(34, 'с. Калинівка', NULL, NULL),
+(35, 'с. Перлявка', NULL, NULL),
+(36, 'с. Катеринівка', NULL, NULL),
+(37, 'с. Новоселиця', NULL, NULL),
+(38, 'с. Давидівка', NULL, NULL),
+(39, 'с. Бондарці', NULL, NULL),
+(40, 'с. Барашівка', NULL, NULL),
+(41, 'с. Улянівка', NULL, NULL),
+(42, 'с. Михайлівка', NULL, NULL),
+(43, 'с. Залізня', NULL, NULL),
+(44, 'с. Головенка', NULL, NULL),
+(45, 'с. Нова Вигода', NULL, NULL),
+(46, 'с. Гадзинка', NULL, NULL),
+(47, 'с. Березина', NULL, NULL),
+(48, 'с. Крута', NULL, NULL),
+(49, 'с. Глибочок', NULL, NULL),
+(50, 'с. Старошийка', NULL, NULL),
+(51, 'с. Покостівка', NULL, NULL),
+(52, 'с. Іванківці', NULL, NULL),
+(53, 'с. Городище', NULL, NULL),
+(54, 'с. Вертокиївка', NULL, NULL),
+(55, 'с. Рудківка', NULL, NULL),
+(56, 'с. Нова Василівка', NULL, NULL),
+(57, 'с. Мусіївка', NULL, NULL),
+(58, 'с. Василівка', NULL, NULL),
+(59, 'с. Болярка', NULL, NULL),
+(60, 'с. Руденька', NULL, NULL),
+(61, 'с. Нова Рудня', NULL, NULL),
+(62, 'с. Черемошне', NULL, NULL),
+(63, 'с. Дубовець', NULL, NULL),
+(64, 'с. Богданівка', NULL, NULL),
+(65, 'с. Березівка', NULL, NULL),
+(66, 'с. Рудня Пошта', NULL, NULL),
+(67, 'с. Заможне', NULL, NULL),
+(68, 'с. Левків', NULL, NULL),
+(69, 'с. Клітчин', NULL, NULL),
+(70, 'c. Сінгури', NULL, NULL),
+(71, 'c. Пряжів', NULL, NULL),
+(72, 'c. Піски', NULL, NULL),
+(73, 'c. Тетерівка', NULL, NULL),
+(74, 'c. Станишівка', NULL, NULL),
+(75, 'c. Слобода-Селець', NULL, NULL),
+(76, 'c. Піщанка', NULL, NULL),
+(77, 'c. Оліївка', NULL, NULL),
+(78, 'с. Корчак', NULL, NULL),
+(79, 'с. Кодня', NULL, NULL),
+(80, 'с. Сонячне', NULL, NULL),
+(81, 'с. Кам\'янка', NULL, NULL),
+(82, 'с. Довжик', NULL, NULL),
+(83, 'с. Тригір\'я', NULL, NULL),
+(84, 'с. Вереси', NULL, NULL),
+(85, 'с. Буки', NULL, NULL),
+(86, 'смт. Озерне', NULL, NULL),
+(87, 'смт. Новогуйвинське', NULL, NULL),
+(88, 'с. Іванівка', NULL, NULL),
+(89, 'с. Зарічани', NULL, NULL),
+(90, 'с. Дениші', NULL, NULL),
+(91, 'с. Глибочиця', NULL, NULL),
+(92, 'с. Висока Піч', NULL, NULL),
+(93, '-none-', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -201,10 +289,10 @@ INSERT INTO `location_city` (`id`, `city`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `location_city_rayon` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `rayon_city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                                       `id` bigint(20) UNSIGNED NOT NULL,
+                                       `rayon_city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                       `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                       `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -212,15 +300,31 @@ CREATE TABLE `location_city_rayon` (
 --
 
 INSERT INTO `location_city_rayon` (`id`, `rayon_city`, `created_at`, `updated_at`) VALUES
-(1, 'Крошня', NULL, NULL),
-(2, 'Вокзал', NULL, NULL),
-(3, 'Центр', NULL, NULL),
-(4, 'Богунія', NULL, NULL),
-(5, 'Гідропарк', NULL, NULL),
-(6, 'Малікова', NULL, NULL),
-(7, 'Рудня', NULL, NULL),
-(8, 'Довженка', NULL, NULL),
-(9, 'Не район Житомира', NULL, NULL);
+(10, 'Вокзал', '2021-05-10 22:06:20', '2021-05-10 22:06:20'),
+(11, 'Крошня', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(12, 'Мальованка', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(13, 'Сінний ринок', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(14, 'Центр', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(15, 'Чулочна фабрика', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(16, 'Аеропорт', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(17, 'Житній ринок', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(18, 'Корбутівка', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(19, 'Музична фабрика', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(20, 'Паперова фабрика', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(21, 'Польова', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(22, 'Промавтоматика', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(23, 'Мар\'янівка', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(24, 'Глобал', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(25, 'Богунія', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(26, 'Хмільники', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(27, 'Промавтоматика', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(28, 'Смолянка', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(29, 'Східний', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(30, 'Малікова', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(31, 'Максютова', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(32, 'ДОС', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(33, 'Хінчанка', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
+(34, '-none-', '2021-05-10 22:38:48', '2021-05-10 22:38:48');
 
 -- --------------------------------------------------------
 
@@ -231,8 +335,8 @@ INSERT INTO `location_city_rayon` (`id`, `rayon_city`, `created_at`, `updated_at
 CREATE TABLE `location_rayon` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `rayon` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -240,37 +344,31 @@ CREATE TABLE `location_rayon` (
 --
 
 INSERT INTO `location_rayon` (`id`, `rayon`, `created_at`, `updated_at`) VALUES
-(20, 'Андрушківський', NULL, NULL),
-(21, 'Березівська', NULL, NULL),
-(22, 'Брусилівська', NULL, NULL),
-(23, 'Високівська', NULL, NULL),
-(24, 'Вишевицька', NULL, NULL),
-(25, 'Вільшанська', NULL, NULL),
-(26, 'Волицька', NULL, NULL),
-(27, 'Глибочицька', NULL, NULL),
-(28, 'Городоцька', NULL, NULL),
-(29, 'Житомирська', NULL, NULL),
-(30, 'Квітнева', NULL, NULL),
-(31, 'Корнинська', NULL, NULL),
-(32, 'Коростишівська', NULL, NULL),
-(33, 'Курненська', NULL, NULL),
-(34, 'Любарська', NULL, NULL),
-(35, 'Миропільська', NULL, NULL),
-(36, 'Новоборівська', NULL, NULL),
-(37, 'Новогуйвинська', NULL, NULL),
-(38, 'Оліївська', NULL, NULL),
-(39, 'Попільнянська', NULL, NULL),
-(40, 'Потіївська', NULL, NULL),
-(41, 'Пулинська', NULL, NULL),
-(42, 'Радомишльська', NULL, NULL),
-(43, 'Романівська', NULL, NULL),
-(44, 'Станишівська', NULL, NULL),
-(45, 'Старосілецька', NULL, NULL),
-(46, 'Тетерівська', NULL, NULL),
-(47, 'Харитонівська', NULL, NULL),
-(48, 'Хорошівська', NULL, NULL),
-(49, 'Черняхівська', NULL, NULL),
-(50, 'Чуднівська', NULL, NULL);
+(51, 'м.Житомир', '2021-05-10 22:14:17', '2021-05-10 22:14:17'),
+(52, 'Попільнянський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(53, 'Брусилівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(54, 'Черняхівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(55, 'Радомишльський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(56, 'Коростишівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(57, 'Пулинський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(58, 'Любарський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(59, 'Романівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(60, 'Хорошівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(61, 'Андрушівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(62, 'Чуднівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(63, 'Олевський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(64, 'Овруцький', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(65, 'Хорошівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(66, 'Лугинський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(67, 'Народицький', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(68, 'Баранівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(69, 'Ємільчинський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(70, 'Малинський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(71, 'Новоград-Волинський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(72, 'Коростенський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(73, 'Бердичівський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(74, 'Ружинський', '2021-05-10 22:17:41', '2021-05-10 22:17:41'),
+(75, 'Житомирський', '2021-05-10 22:37:06', '2021-05-10 22:37:06');
 
 -- --------------------------------------------------------
 
@@ -345,10 +443,8 @@ CREATE TABLE `note` (
 --
 
 INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '2021-04-28', 'Офіс на Довженка потрібно Терміново здати в оренду', 1, 2, NULL, NULL),
-(2, '2021-04-26', '213', 4, 2, '2021-04-26 20:56:20', '2021-04-26 20:56:20'),
-(3, '2021-04-27', 'Квартира', 3, 2, '2021-04-26 21:39:48', '2021-04-26 21:39:48'),
-(4, '2021-04-27', 'Земля', 5, 2, '2021-04-26 21:39:57', '2021-04-26 21:39:57');
+(5, '2021-05-10', 'Admin', 8, 1, NULL, NULL),
+(6, '2021-05-11', 'Rieltor', 8, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -387,12 +483,7 @@ CREATE TABLE `obekts` (
 --
 
 INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `created_at`, `updated_at`) VALUES
-(1, 'Офіс на Довженка', 'Офіс під будь який вид діялності', '200.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Автономне', 0, 0, 0, 12, 2, 'office-on-dovzenka', 1, '2021-04-03 23:33:59', NULL),
-(3, 'Квартира', 'Офіс під будь який вид діялності', '200.00', 1, '50.00', 1, 'flat.png', 1, 2, 12, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'flat-1', 1, '2021-04-12 23:34:02', NULL),
-(4, 'Будинок', 'Офіс під будь який вид діялності', '1450.00', 2, '130.00', 2, 'house.png', 1, 5, 2, 0, 1, 'Автономне', 0, 0, 0, 12, 2, 'house', 1, '2021-04-20 23:34:05', NULL),
-(5, 'Земля', 'Офіс під будь який вид діялності', '12200.00', 3, '300.00', 3, 'land.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 12, 2, 'land', 1, '2021-04-24 23:34:08', NULL),
-(6, 'Комерційна нерухомість', 'Офіс під будь який вид діялності', '600.00', 1, '110.00', 1, 'com.png', 1, 3, 5, 3, 1, 'Автономне', 0, 0, 0, 12, 2, 'commercial-estate', 1, '2021-04-25 23:34:11', NULL),
-(7, 'Офіс на Площі', 'Офіс під будь який вид діялності', '500.00', 4, '30.00', 1, 'office.png', 0, 2, 5, 1, 1, 'Центральне', 0, 0, 0, 12, 2, 'office', 1, '2021-04-26 23:34:14', NULL);
+(8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 1, 'Автономне', 0, 0, 0, 43, 2, 'flat-on-kievska', 1, '2021-05-10 22:43:16', '2021-05-10 22:43:16');
 
 -- --------------------------------------------------------
 
@@ -583,7 +674,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT для таблицы `blog_article`
@@ -613,25 +704,25 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT для таблицы `location`
 --
 ALTER TABLE `location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `location_city`
 --
 ALTER TABLE `location_city`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT для таблицы `location_city_rayon`
 --
 ALTER TABLE `location_city_rayon`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT для таблицы `location_rayon`
 --
 ALTER TABLE `location_rayon`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT для таблицы `location_region`
@@ -649,13 +740,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `obekts`
 --
 ALTER TABLE `obekts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `owner`
