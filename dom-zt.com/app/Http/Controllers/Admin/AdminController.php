@@ -173,9 +173,18 @@ class AdminController extends AC
     {
         $blog = Blog::find($id);
 
-        if($blog->delete()){
-            return redirect('/manage/admin/blog');
+        $image = $blog->picture;
+        $path = public_path('files/images/blog');
+
+        if(file_exists($path.$image))
+        {
+            if($blog->delete()){
+                unlink($path.$image);
+
+                return redirect('/manage/admin/blog');
+            }
         }
+
     }
 
     public function newBlog()
@@ -189,12 +198,25 @@ class AdminController extends AC
         $blog->title = $request->input('title');
         $blog->slug = $request->input('slug');
         $blog->text = $request->input('text');
-        $blog->picture = $request->input('imgInp');
+
         $blog->author_id = 1;// Адміністратор
         $blog->category_id = 2;//Статті
 
-        // TODO: - Save image on server folder '/public/files/images/blog/'
+        // Image save on server
+        if ($request->hasFile('imgInp')) {
+            // check validate
+            $request->validate([
+                'imgInp' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            ]);
+            // generate new file name
+            $imageName = time().'.'.$request->imgInp->extension();
+            // move to folder image
+            $request->imgInp->move(public_path('files/images/blog'), $imageName);
+            // save new name image to database
+            $blog->picture = $imageName;
+        }
 
+        // save data
         if($blog->save()){
             return redirect('/manage/admin/blog');
         }

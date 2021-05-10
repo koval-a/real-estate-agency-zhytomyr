@@ -28,7 +28,7 @@
 
         <h1>Новий пост</h1>
         <hr>
-        <form action="{{ route('admin.blog.insert') }}" method="POST">
+        <form action="{{ route('admin.blog.insert') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
                 <div class="col-md-8">
