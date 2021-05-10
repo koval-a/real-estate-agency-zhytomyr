@@ -28,6 +28,9 @@
                 <td>
                     Опис
                 </td>
+                <td>
+                    Дія
+                </td>
             </tr>
             </thead>
             <tbody>
@@ -53,6 +56,9 @@
                     </td>
                     <td>
                         {{ $item->description }}
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
                     </td>
                 </tr>
             @endforeach
