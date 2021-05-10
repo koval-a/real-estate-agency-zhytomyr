@@ -178,10 +178,12 @@ class AdminController extends AC
 
         if(file_exists($path.$image))
         {
-            if($blog->delete()){
-                unlink($path.$image);
+            unlink($path.$image);
 
-                return redirect('/manage/admin/blog');
+            if($blog->delete()){
+
+//                return redirect('/manage/admin/blog');
+                return back()->with("success", "Пост видалено успішно.");
             }
         }
 
@@ -218,7 +220,8 @@ class AdminController extends AC
 
         // save data
         if($blog->save()){
-            return redirect('/manage/admin/blog');
+//            return redirect('/manage/admin/blog');
+            return back()->with("success", "Blog insert successfully.");
         }
     }
 

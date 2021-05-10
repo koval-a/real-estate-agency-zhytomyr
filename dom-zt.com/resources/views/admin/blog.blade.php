@@ -10,7 +10,20 @@
                 <a href="{{ route('admin.blog.new') }}" class="btn btn-success w-100">Новий пост</a>
             </div>
         </div>
+        <div class="row py-2">
+            <div class="col-xl-6">
+                @if(Session::get('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>{{Session::get('success')}}
+                    </div>
 
+                @elseif(Session::get('failed'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>{{Session::get('failed')}}
+                    </div>
+                @endif
+            </div>
+        </div>
         <hr>
         <table class="table">
             <thead>
