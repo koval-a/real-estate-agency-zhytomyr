@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Май 10 2021 г., 22:46
+-- Время создания: Май 10 2021 г., 22:56
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -483,7 +483,7 @@ CREATE TABLE `obekts` (
 --
 
 INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `created_at`, `updated_at`) VALUES
-(8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 1, 'Автономне', 0, 0, 0, 43, 2, 'flat-on-kievska', 1, '2021-05-10 22:43:16', '2021-05-10 22:43:16');
+(8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 1, 'Автономне', 0, 0, 0, 43, 1, 'flat-on-kievska', 1, '2021-05-10 22:43:16', '2021-05-10 22:43:16');
 
 -- --------------------------------------------------------
 
