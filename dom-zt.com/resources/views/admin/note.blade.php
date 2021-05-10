@@ -42,7 +42,7 @@
                         {{ $note->date_publish }}
                     </td>
                     <td>
-                        <a href="/obekts/{$slug}">
+
                             @foreach($obekts as $key => $obk)
 
                                 @if($obk->id == $note->obekt_id)
@@ -50,7 +50,7 @@
                                 @endif
 
                             @endforeach
-                        </a>
+
                     </td>
                     <td>
                         {{ $note->note_text }}

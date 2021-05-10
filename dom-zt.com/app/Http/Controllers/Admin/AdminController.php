@@ -112,9 +112,9 @@ class AdminController extends AC
 
     public function viewObekt($category)
     {
-        // 1 - land
+        // 3 - land
         // 2 - house
-        // 3 - flat
+        // 1 - flat
         // 4 - commerce estate
 
         switch ($category)
@@ -122,7 +122,7 @@ class AdminController extends AC
             case 'land':
             {
                 $categoryName = 'Земельні ділянки';
-                $obekts = Obekts::where('category_id', '=', 1)->get();
+                $obekts = Obekts::where('category_id', '=', 3)->get();
                 return view('admin.obekt', compact('obekts', 'categoryName'));
             }
             case 'house' :
@@ -134,7 +134,7 @@ class AdminController extends AC
             case 'flat' :
             {
                 $categoryName = 'Квартири';
-                $obekts = Obekts::where('category_id', '=', 3)->get();
+                $obekts = Obekts::where('category_id', '=', 1)->get();
                 return view('admin.obekt', compact('obekts', 'categoryName'));
             }
             case 'commercial-real-estate' :
