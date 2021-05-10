@@ -99,27 +99,27 @@
 {{--                        </li>--}}
 
                         <li class="sidebar-item  ">
-                            <a href="application-chat.html" class='sidebar-link'>
+                            <a href="{{ route('admin.blog') }}" class='sidebar-link'>
                                 <i class="bi bi-file-text-fill"></i>
                                 <span>Пости</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
-                            <a href="application-gallery.html" class='sidebar-link'>
-                                <i class="bi bi-image-fill"></i>
-                                <span>Галерея</span>
-                            </a>
-                        </li>
+{{--                        <li class="sidebar-item  ">--}}
+{{--                            <a href="application-gallery.html" class='sidebar-link'>--}}
+{{--                                <i class="bi bi-image-fill"></i>--}}
+{{--                                <span>Галерея</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="sidebar-title">Додатково</li>
 
-                        <li class="sidebar-item  ">
-                            <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
-                                <i class="bi bi-bar-chart-fill"></i>
-                                <span>Статистика</span>
-                            </a>
-                        </li>
+{{--                        <li class="sidebar-item  ">--}}
+{{--                            <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>--}}
+{{--                                <i class="bi bi-bar-chart-fill"></i>--}}
+{{--                                <span>Статистика</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="sidebar-item  ">
                             <a href="{{ route('admin.settings') }}" class='sidebar-link'>

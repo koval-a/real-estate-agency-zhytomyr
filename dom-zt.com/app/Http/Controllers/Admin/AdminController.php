@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Blog;
 use App\Models\Note;
 use App\Models\Obekts;
 use App\Users;
@@ -10,6 +11,7 @@ use App\Models\Rieltors;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AdminController extends AC
 {
@@ -155,6 +157,32 @@ class AdminController extends AC
         $obekts = Obekts::where('rieltor_id', '=', $getUserID)->get();
 
         return view('admin.note', compact('notes', 'countNotes', 'obekts'));
+    }
+
+    public function getBlog()
+    {
+        $blog = Blog::all();
+        $countBlogItem = Blog::count();
+
+        return view('admin.blog', compact('blog', 'countBlogItem'));
+    }
+
+    public function deleteBlog($id)
+    {
+        $blog = Blog::find($id);
+
+        if($blog->delete()){
+            return redirect('/manage/admin/blog');
+        }
+    }
+
+    public function insertBlog(Request $request)
+    {
+        $blog = new Blog();
+
+        if($blog->save()){
+            return redirect('/manage/admin/blog');
+        }
     }
 
     public function settings()

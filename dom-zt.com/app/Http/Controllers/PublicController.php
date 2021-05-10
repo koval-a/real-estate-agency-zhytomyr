@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Obekts;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -24,8 +25,10 @@ class PublicController extends Controller
         return view('pages.contact');
     }
 
-    public function blog()
+    public function blog($slug)
     {
-        return view('');
+        $blog = Blog::where('slug', '=', $slug)->get();
+
+        return view('pages.blog', compact('blog'));
     }
 }
