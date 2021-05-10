@@ -66,12 +66,14 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
 
     Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
+
     Route::get('/blog', [AdminController::class, 'getBlog'])->name('admin.blog')->middleware('is_admin');
     Route::get('/blog/delete/{$id}', [AdminController::class, 'deleteBlog'])->name('admin.blog.delete')->middleware('is_admin');
+    Route::get('/blog/new-post/', [AdminController::class, 'newBlog'])->name('admin.blog.new')->middleware('is_admin');
+    Route::post('/blog/insert/', [AdminController::class, 'insertBlog'])->name('admin.blog.insert')->middleware('is_admin');
+
+
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
-//    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
-//    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
-//    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
 
 
     Route::group(['prefix'=>'manage/admin/blog', 'namespace' => 'Admin'], function(){

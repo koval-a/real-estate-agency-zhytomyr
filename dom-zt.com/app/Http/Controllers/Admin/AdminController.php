@@ -161,7 +161,7 @@ class AdminController extends AC
 
     public function getBlog()
     {
-        $blog = Blog::all();
+        $blog = Blog::orderBy('id', 'desc')->get();//paginate(2);
         $countBlogItem = Blog::count();
 
         return view('admin.blog', compact('blog', 'countBlogItem'));
@@ -176,9 +176,22 @@ class AdminController extends AC
         }
     }
 
+    public function newBlog()
+    {
+        return view('admin.blog-new');
+    }
+
     public function insertBlog(Request $request)
     {
         $blog = new Blog();
+        $blog->title = $request->input('title');
+        $blog->slug = $request->input('slug');
+        $blog->text = $request->input('text');
+        $blog->picture = $request->input('imgInp');
+        $blog->author_id = 1;// Адміністратор
+        $blog->category_id = 2;//Статті
+
+        // TODO: - Save image on server folder '/public/files/images/blog/'
 
         if($blog->save()){
             return redirect('/manage/admin/blog');

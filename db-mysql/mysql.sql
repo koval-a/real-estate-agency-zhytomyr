@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Май 07 2021 г., 15:42
+-- Время создания: Май 10 2021 г., 19:44
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -61,18 +61,21 @@ CREATE TABLE `blog_article` (
   `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL,
   `author_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `blog_article`
 --
 
-INSERT INTO `blog_article` (`id`, `picture`, `title`, `text`, `category_id`, `author_id`, `created_at`, `updated_at`) VALUES
-(1, 'picture.png', 'Нові квартири в Житомирі', 'Текст про Нові квартири в Житомирі', 1, 2, NULL, NULL);
+INSERT INTO `blog_article` (`id`, `picture`, `title`, `text`, `slug`, `category_id`, `author_id`, `created_at`, `updated_at`) VALUES
+(1, 'blog.jpeg', 'Нові квартири в Житомирі', 'Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі', 'blog-flat-zhytomir', 1, 2, '2021-05-09 18:09:52', NULL),
+(2, 'blog.jpeg', 'delete', 'qweewqqewqweewq', 'test', 1, 2, '2021-05-10 18:36:24', NULL),
+(3, 'йуц.png', 'Test blog 2', 'jsdhf hskdjf dhsfkjsf lkshdf lskdfj slkdfjslkdfhl', '123-asd-das-ads-ads', 2, 1, '2021-05-10 16:36:26', '2021-05-10 16:36:26');
 
 -- --------------------------------------------------------
 
@@ -345,8 +348,7 @@ INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `c
 (1, '2021-04-28', 'Офіс на Довженка потрібно Терміново здати в оренду', 1, 2, NULL, NULL),
 (2, '2021-04-26', '213', 4, 2, '2021-04-26 20:56:20', '2021-04-26 20:56:20'),
 (3, '2021-04-27', 'Квартира', 3, 2, '2021-04-26 21:39:48', '2021-04-26 21:39:48'),
-(4, '2021-04-27', 'Земля', 5, 2, '2021-04-26 21:39:57', '2021-04-26 21:39:57'),
-(5, '2021-04-27', 'Під магазин', 6, 2, '2021-04-26 21:40:10', '2021-04-26 21:40:10');
+(4, '2021-04-27', 'Земля', 5, 2, '2021-04-26 21:39:57', '2021-04-26 21:39:57');
 
 -- --------------------------------------------------------
 
@@ -412,7 +414,8 @@ CREATE TABLE `owner` (
 --
 
 INSERT INTO `owner` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Bob Jefri', 990010000, 'Житомир, вул.Київська 88', '2021-04-28 12:49:15', '2021-04-28 12:49:15');
+(1, 'Bob Jefri', 990010000, 'Житомир, вул.Київська 88', '2021-04-28 12:49:15', '2021-04-28 12:49:15'),
+(2, 'wqe', 990010011, 'qeqew', '2021-05-08 20:31:26', '2021-05-08 20:31:26');
 
 -- --------------------------------------------------------
 
@@ -586,7 +589,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT для таблицы `blog_article`
 --
 ALTER TABLE `blog_article`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `blog_category`
@@ -604,7 +607,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT для таблицы `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `location`
@@ -646,7 +649,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `obekts`
@@ -658,7 +661,7 @@ ALTER TABLE `obekts`
 -- AUTO_INCREMENT для таблицы `owner`
 --
 ALTER TABLE `owner`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

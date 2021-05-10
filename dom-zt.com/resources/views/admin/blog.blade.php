@@ -7,7 +7,7 @@
                 <h1>Блог ({{$countBlogItem}})</h1>
             </div>
             <div class="col-md-2 align-content-right">
-                <a href="#" class="btn btn-success w-100">Новий пост</a>
+                <a href="{{ route('admin.blog.new') }}" class="btn btn-success w-100">Новий пост</a>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
                         {{ $item->created_at->format('Y-m-d') }}
                     </td>
                     <td>
-                        <img src="/files/images/blog/{{ $blog[0]->picture }}" alt="blog-image" class="rounded shadow m-auto" width="200px">
+                        <img src="/files/images/blog/{{ $item->picture }}" alt="blog-image" class="rounded shadow m-auto" width="200px">
                         <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>
                     </td>
                     <td class="col-md-4">
@@ -55,5 +55,6 @@
             @endforeach
             </tbody>
         </table>
+{{--        {{ $blog->links() }}--}}
     </div>
 @endsection
