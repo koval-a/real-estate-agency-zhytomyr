@@ -67,21 +67,48 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
 
-    Route::get('/blog', [AdminController::class, 'getBlog'])->name('admin.blog')->middleware('is_admin');
-    Route::get('/blog/delete/{$id}', [AdminController::class, 'deleteBlog'])->name('admin.blog.delete')->middleware('is_admin');
-    Route::get('/blog/new-post/', [AdminController::class, 'newBlog'])->name('admin.blog.new')->middleware('is_admin');
-    Route::post('/blog/insert/', [AdminController::class, 'insertBlog'])->name('admin.blog.insert')->middleware('is_admin');
-
-
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
 
+    Route::group(['prefix'=>'/blog', 'namespace' => 'Admin'], function(){
 
-    Route::group(['prefix'=>'manage/admin/blog', 'namespace' => 'Admin'], function(){
-
-//        Route::get('/posts', [BlogController::class, 'index'])->name('admin.blog')->middleware('is_admin');
-//        Route::pos('/new-post', [BlogController::class, 'newPost'])->name('admin.blog.new.post')->middleware('is_admin');
-//        Route::post('/insert-new-post', [BlogController::class, 'insertNewPost'])->name('admin.blog.insert.post')->middleware('is_admin');
+        Route::get('/', [AdminController::class, 'getBlog'])->name('admin.blog')->middleware('is_admin');
+        Route::get('/delete/{$id}', [AdminController::class, 'deleteBlog'])->name('admin.blog.delete')->middleware('is_admin');
+        Route::get('/new-post/', [AdminController::class, 'newBlog'])->name('admin.blog.new')->middleware('is_admin');
+        Route::post('/insert/', [AdminController::class, 'insertBlog'])->name('admin.blog.insert')->middleware('is_admin');
 
     });
 });
 
+Route::get('/clear/cache', function() {
+
+    Artisan::call('cache:clear');
+
+    dd("Clear Cache - Done");
+
+});
+
+Route::get('/clear/config', function() {
+
+    Artisan::call('config:clear');
+    dd("Clear Cache Config - Done");
+
+});
+Route::get('/clear/view', function() {
+
+    Artisan::call('view:clear');
+    dd("Clear Cache View - Done");
+
+});
+Route::get('/clear/route', function() {
+
+    Artisan::call('route:clear');
+    dd("Clear Cache Route - Done");
+
+});
+
+Route::get('/clear', function() {
+
+    Artisan::call('cache:clear');  Artisan::call('config:clear');  Artisan::call('view:clear'); Artisan::call('route:clear');
+    dd("Clear Cache All - Done");
+
+});

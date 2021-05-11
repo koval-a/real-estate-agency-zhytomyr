@@ -32,9 +32,9 @@ class AdminController extends AC
      */
     public function indexAdmin()
     {
-        $countLand = Obekts::where('category_id', 1)->count();
+        $countLand = Obekts::where('category_id', 3)->count();
         $countHouse = Obekts::where('category_id', 2)->count();
-        $countFlat = Obekts::where('category_id', 3)->count();
+        $countFlat = Obekts::where('category_id', 1)->count();
         $countCommerceEstate = Obekts::where('category_id', 4)->count();
 
         return view('adminHome', compact('countCommerceEstate', 'countFlat', 'countHouse', 'countLand'));
