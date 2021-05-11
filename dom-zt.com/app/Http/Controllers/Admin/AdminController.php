@@ -12,6 +12,7 @@ use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Config;
 
 class AdminController extends AC
 {
@@ -230,6 +231,19 @@ class AdminController extends AC
     public function settings()
     {
         return view('admin.settings');
+    }
+
+    public function settingsSave(Request $request)
+    {
+        $about_text = $request->input('about_text');
+//        config()->set('adminsettings.about_text', $about_text);
+
+        if(Config::set('adminsettings.about_text', $about_text)){
+            return back()->with("success", "Налаштування збережено");
+        }
+
+        return back()->with("failed", "Помилка!");
+
     }
 }
 

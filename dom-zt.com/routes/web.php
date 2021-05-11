@@ -67,8 +67,6 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
 
-    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
-
     Route::group(['prefix'=>'/blog', 'namespace' => 'Admin'], function(){
 
         Route::get('/', [AdminController::class, 'getBlog'])->name('admin.blog')->middleware('is_admin');
@@ -77,6 +75,10 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::post('/insert/', [AdminController::class, 'insertBlog'])->name('admin.blog.insert')->middleware('is_admin');
 
     });
+
+    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
+    Route::post('/settings/save', [AdminController::class, 'settingsSave'])->name('admin.settings.save')->middleware('is_admin');
+
 });
 
 Route::get('/clear/cache', function() {

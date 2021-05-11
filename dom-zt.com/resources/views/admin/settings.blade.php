@@ -15,7 +15,7 @@
 
         <div class="form-info-save">
 
-            <form action="" method="POST">
+            <form action="{{ route('admin.settings.save') }}" method="POST">
                 @csrf
                 <h4><i class="bi bi-textarea"></i> Опис про нас</h4>
                 <label for="about-us">Про нас</label>
