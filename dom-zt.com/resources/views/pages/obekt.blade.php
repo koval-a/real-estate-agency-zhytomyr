@@ -2,17 +2,6 @@
 
 @section('content')
     <div class="container">
-        <h1>Карточка Об'єкта</h1>
-        <hr>
-        @foreach($obekt as $key => $item)
-            name: {{ $item->name }}
-            <br>
-            description: {{ $item->description }}
-            <br>
-           $ {{ $item->price }}
-            <br>
-            {{ $item->square }} m2
-        @endforeach
 
         <section class="product">
             <div class="container ">
@@ -26,95 +15,107 @@
                         <div class="button__link">Назад</div>
                     </a>
                 </div>
-                <div class="breadcrumb__block">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Каталог</a></li>
-                        <li class="breadcrumb-item"><a href="#">Квартири</a></li>
-                        <li class="breadcrumb-item active">Чуднівська, 108б</li>
-                    </ul>
-                </div>
-                <div class="product__main">
-                    <div class="product__photo">
-                        <h3 class="title__product">Чуднівська, 108б (ID: 7777)</h3>
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="/custom/icons/комерція.jpeg" alt="" class="slide__image">
+
+                @foreach($obekt as $key => $item)
+
+                    <div class="breadcrumb__block">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Каталог</a></li>
+                            <li class="breadcrumb-item"><a href="#">{{ $item->category_id }}</a></li>
+                            <li class="breadcrumb-item active">{{ $item->name }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="product__main">
+                        <div class="product__photo">
+                            <h3 class="title__product">{{ $item->name }} (ID: {{ $item->id }})</h3>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="/custom/icons/комерція.jpeg" alt="" class="slide__image">
+                                    </div>
+                                    <div class="swiper-slide">Slide 2</div>
+                                    <div class="swiper-slide">Slide 3</div>
+                                    <div class="swiper-slide">Slide 4</div>
+                                    <div class="swiper-slide">Slide 5</div>
+                                    <div class="swiper-slide">Slide 6</div>
+                                    <div class="swiper-slide">Slide 7</div>
+                                    <div class="swiper-slide">Slide 8</div>
+                                    <div class="swiper-slide">Slide 9</div>
+                                    <div class="swiper-slide">Slide 10</div>
                                 </div>
-                                <div class="swiper-slide">Slide 2</div>
-                                <div class="swiper-slide">Slide 3</div>
-                                <div class="swiper-slide">Slide 4</div>
-                                <div class="swiper-slide">Slide 5</div>
-                                <div class="swiper-slide">Slide 6</div>
-                                <div class="swiper-slide">Slide 7</div>
-                                <div class="swiper-slide">Slide 8</div>
-                                <div class="swiper-slide">Slide 9</div>
-                                <div class="swiper-slide">Slide 10</div>
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination"></div>
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
                             </div>
-                            <!-- Add Pagination -->
-                            <div class="swiper-pagination"></div>
-                            <!-- Add Arrows -->
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
+                        </div>
+                        <div class="product__info">
+                            <p class="product__info--prace">Ціна: {{ $item->price }}$</p>
+                            <ul class="product-filter__list">
+                                <li class="product-filter__item">К-ть кімнат: {{ $item->count_room }}</li>
+                                <li class="product-filter__item">Поверх: {{ $item->level }} / {{ $item->count_level }}</li>
+                                <li class="product-filter__item">Площа:  {{ $item->square }} m2</li>
+                                <li class="product-filter__item">Опалення:
+                                    @if($item->isOpalenya == 1)
+                                        {{ $item->opalenyaName }}
+                                    @else
+                                        -
+                                    @endif
+
+                                </li>
+                                <li class="product-filter__item">Вулиця:
+                                    LocationID {{ $item->location_id }}
+                                </li>
+                            </ul>
+                            <div class="product__info--rieltor">
+                                <h4 class="rieltor__title">Наталя Мелай RieltorID {{ $item->rieltor_id }}</h4>
+                                <p class="product__info--text">
+                                    Експерт з нерухомості допоможе знайти вам найкращий варіант з нашої
+                                    бази нерухомості обєктів!
+                                    Отримайте безкоштовну консультацію за номером телефону:
+                                </p>
+                                <div class="rieltor__number">
+                                    <a href="tel:+3809700010000" class="rieltor__number--link-image">
+                                        <div class="phone">
+                                            <img src="/custom/icons/call.svg" alt="phone rieltor" class="phone--image">
+                                        </div>
+                                    </a>
+                                    <a href="tel:+3809700010000" class="rieltor__number--link-namber">+3809700010000
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product__info--social">
+                                <h5>Поділіться обьектом в соціальних мережах:</h5>
+                                <ul class="social__list">
+                                    <a href="" class="social__item--link">
+                                        <div class="social__item">
+                                            <img src="/custom/icons/social__viber.svg" alt="social viber" class="social__item--image">
+                                        </div>
+                                    </a>
+                                    <a href="" class="social__item--link">
+                                        <div class="social__item">
+                                            <img src="/custom/icons/social__fb.svg" alt="social facebook" class="social__item--image">
+                                        </div>
+                                    </a>
+                                    <a href="" class="social__item--link">
+                                        <div class="social__item">
+                                            <img src="/custom/icons/social__telegram.svg" alt="social telegram" class="social__item--image">
+                                        </div>
+                                    </a>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="product__info">
-                        <p class="product__info--prace">Ціна: 40 000$</p>
-                        <ul class="product-filter__list">
-                            <li class="product-filter__item">К-ть кімнат:</li>
-                            <li class="product-filter__item">Поверх:</li>
-                            <li class="product-filter__item">Площа:</li>
-                            <li class="product-filter__item">Опалення:</li>
-                            <li class="product-filter__item">Вулиця:</li>
-                        </ul>
-                        <div class="product__info--rieltor">
-                            <h4 class="rieltor__title">Наталя Мелай</h4>
-                            <p class="product__info--text">Експерт з нерухомості допоможе знайти вам найкращий варіант з нашої
-                                бази нерухомості обєктів!
-                                Отримайте безкоштовну консультацію за номером телефону:
-                            </p>
-                            <div class="rieltor__number">
-                                <a href="tel:+3809700010000" class="rieltor__number--link-image">
-                                    <div class="phone">
-                                        <img src="/custom/icons/call.svg" alt="phone rieltor" class="phone--image">
-                                    </div>
-                                </a>
-                                <a href="tel:+3809700010000" class="rieltor__number--link-namber">+3809700010000
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product__info--social">
-                            <h5>Поділіться обьектом в соціальних мережах:</h5>
-                            <ul class="social__list">
-                                <a href="" class="social__item--link">
-                                    <div class="social__item">
-                                        <img src="/custom/icons/social__viber.svg" alt="social viber" class="social__item--image">
-                                    </div>
-                                </a>
-                                <a href="" class="social__item--link">
-                                    <div class="social__item">
-                                        <img src="/custom/icons/social__fb.svg" alt="social facebook" class="social__item--image">
-                                    </div>
-                                </a>
-                                <a href="" class="social__item--link">
-                                    <div class="social__item">
-                                        <img src="/custom/icons/social__telegram.svg" alt="social telegram" class="social__item--image">
-                                    </div>
-                                </a>
-                            </ul>
-                        </div>
+                        <h4 class="product__info--title">Опис обьекта</h4>
+                        <p class="product__info--subtitle">
+                            {{ $item->description }}
+                        </p>
                     </div>
-                </div>
-                <div class="product__info">
-                    <h4 class="product__info--title">Опис обьекта</h4>
-                    <p class="product__info--subtitle">Продаєтся квартира по вулиці Рильского. Історичний центр міста
-                        Житомира! Можна розглядати квартиру як
-                        для життя так і під комерційну нерухомість! Вид з вікон - на будинок Правосуддя, сквер! Велика
-                        прохідність, поруч автопарковка, кафе, ресторани! Загальна площа квартири 100 кв.м, кухня - 10,
-                        житлова - 50.
-                        Посередників прошу не турбувати, дзвонити тільки після 18 години або пишіть на Viber у будь-який час!
-                    </p>
-                </div>
+
+                @endforeach
                 <div class="button__back">
                     <a href="" class="back__link">
                         <svg class="strelka-left-4" viewBox="0 0 100 85">

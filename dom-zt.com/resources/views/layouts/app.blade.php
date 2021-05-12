@@ -27,93 +27,92 @@
 </head>
 <body>
     <div id="app" class="wrapper">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
         <header class="header">
-            <div class="container container__header">
-                <div class="logo">
-                    <a href="./index.html" class="logo__link">
-                        <div class="logo__image">
-                            <img src="/custom/icons/logo-design.svg" alt="" class="logo__img">
+            <div class="container-fluid container__header">
+                <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                    <div class="container">
+
+                        <a class="navbar-brand align-items-center d-flex" href="{{ url('/') }}">
+                            <img src="https://static.tildacdn.com/tild3938-3435-4465-a433-303638313134/123.png" alt="" class="logo__img2 img-fluid" width="100">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <!-- Left Side Of Navbar -->
+                            <ul class="navbar-nav mr-auto">
+
+                            </ul>
+
+                            <!-- Right Side Of Navbar -->
+                            <ul class="navbar-nav pt-2 ml-auto">
+                                <li class="nav__item ">
+                                    <a href="index.html" class="nav__link">Каталог</a>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="about.html" class="nav__link">Про нас</a>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="index.html" class="nav__link">Послуги</a>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="index.html" class="nav__link">Відгуки</a>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="blog.html" class="nav__link">Блог</a>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="contacts.html" class="nav__link">Контакти</a>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="" class="nav__link nav__link--tel">0970010001</a>
+                                </li>
+                                <!-- Authentication Links -->
+                                @guest
+
+                                    <li class="nav__item">
+                                        <a href="" class="nav__link nav__link--tel">+380970010001</a>
+                                    </li>
+
+                                    @if (Route::has('login'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        </li>
+                                    @endif
+
+                                    @if (Route::has('register'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        </li>
+                                    @endif
+
+                                @else
+                                    <li class="nav__item1 nav-item dropdown" style="margin-top: -10px;">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                @endguest
+                            </ul>
                         </div>
-                    </a>
-                </div>
-                <nav class="header__nav">
-                    <ul class="nav__list">
-                        <li class="nav__item">
-                            <a href="index.html" class="nav__link">Каталог</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="about.html" class="nav__link">Про нас</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="index.html" class="nav__link">Послуги</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="index.html" class="nav__link">Відгуки</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="blog.html" class="nav__link">Блог</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="contacts.html" class="nav__link">Контакти</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="" class="nav__link nav__link--tel">+380970010001</a>
-                        </li>
-                    </ul>
+                    </div>
                 </nav>
+
         </header>
 
         <main class="py-4">
