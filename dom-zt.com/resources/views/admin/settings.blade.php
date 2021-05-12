@@ -118,7 +118,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                 </div>
-                <button type="submit" class="btn btn-block w-25 btn-success mt-5 p-2">Зберегти</button>
+{{--                <button type="submit" class="btn btn-block w-25 btn-success mt-5 p-2">Зберегти</button>--}}
             </form>
 
         </div>
