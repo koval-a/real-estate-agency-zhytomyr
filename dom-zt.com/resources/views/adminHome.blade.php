@@ -12,7 +12,7 @@
                 <h3>Адміністративна панель</h3>
             </div>
             <div class="page-content mb-5">
-
+                    <span>Пошук додати</span>
                 <div class="row">
                     <div class="col-6 col-lg-2 col-md-6">
                         <div class="card">
