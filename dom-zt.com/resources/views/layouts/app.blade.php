@@ -18,9 +18,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/custom/css/style.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="wrapper">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -45,7 +51,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -74,10 +80,98 @@
                 </div>
             </div>
         </nav>
+        <header class="header">
+            <div class="container container__header">
+                <div class="logo">
+                    <a href="./index.html" class="logo__link">
+                        <div class="logo__image">
+                            <img src="/custom/icons/logo-design.svg" alt="" class="logo__img">
+                        </div>
+                    </a>
+                </div>
+                <nav class="header__nav">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link">Каталог</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="about.html" class="nav__link">Про нас</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link">Послуги</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link">Відгуки</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="blog.html" class="nav__link">Блог</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="contacts.html" class="nav__link">Контакти</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="" class="nav__link nav__link--tel">+380970010001</a>
+                        </li>
+                    </ul>
+                </nav>
+        </header>
 
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__block">
+                    <div class="footer__logo">
+                        <div class="footer__image">
+                            <img src="/custom/icons/logo-design.svg" alt="агенство нерухомості Житомир" class="footer__img">
+                        </div>
+                    </div>
+                    <ul class="footer__contacts-list">
+                        <a class="footer__link--adress" href="https://goo.gl/maps/9SruKiYB3DcwT1YJ6" target="_blank">
+                            <li class="footer__item footer__item--adress">м. Житомир, вул. Леха Качинського, буд. 1, офіс 55
+                            </li>
+                        </a>
+                        <a class="footer__link--mail" href="mailto:zt@agensy.com" target="_blank">
+                            <li class="footer__item footer__item--mail">zt@agensy.com</li>
+                        </a>
+                        <a class="footer__link--tel" href="tel:+3809700010101">
+                            <li class="footer__item footer__item--nomber">+3809700010101</li;>
+                        </a>
+                        <a class="footer__link--tel" href="tel:+3809700010101">
+                            <li class="footer__item footer__item--nomber">+3809700010101</li;>
+                        </a>
+                        <li class="footer__item footer__item--social">
+                            <a class="footer__link--social"
+                               href="https://www.facebook.com/%D0%90%D0%9D-%D0%96%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80-597840607255306/"
+                               target="_blank">
+                        <li class="footer__item social__image">
+                            <img src="/custom/icons/svg__fb.svg" alt="" class="social__img">
+                        </li>
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="footer__catalog-list">
+                        <a href="./index.html" class="footer__link">Головна</a>
+                        <a href="./index.html" class="footer__link">Про нас</a>
+                        <a href="./index.html" class="footer__link">Наші послуги</a>
+                        <a href="./index.html" class="footer__link">Блог</a>
+                        <a href="./index.html" class="footer__link">Контакти</a>
+                    </ul>
+                    <ul class="footer__info-list">
+                        <a href="./index.html" class="footer__link">Каталог</a>
+                        <a href="./index.html" class="footer__link">Квартири</a>
+                        <a href="./index.html" class="footer__link">Приватний сектор</a>
+                        <a href="./index.html" class="footer__link">Земельні ділянки</a>
+                        <a href="./index.html" class="footer__link">Комерційна нерухомість</a>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/custom/js/script.js"></script>
 </body>
 </html>
