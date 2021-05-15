@@ -4,6 +4,8 @@
     <div class="container-fluid">
         <h1>{{$categoryName}}</h1>
         <hr>
+        <a href="" class="btn btn-success">Додати новий об'єкт</a>
+        <hr>
         <table class="table">
             <thead>
             <tr class="bg-secondary text-white">

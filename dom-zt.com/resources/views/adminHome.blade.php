@@ -12,8 +12,12 @@
                 <h3>Адміністративна панель</h3>
             </div>
             <div class="page-content mb-5">
-                <span>Пошук додати</span>
-                <span>Додати формування вибірки у Excel + Фільтр</span>
+
+                <code>Додати формування вибірки у Excel:
+                    <br>сторінка перегляду всіх обєктів де їх фільрують та формують ексель вибірку,
+                    <br>на стрінці результата пошуку також можливість ексель вибірки
+                </code>
+
                 <div class="row">
                     <div class="col-6 col-lg-2 col-md-6">
                         <div class="card">
@@ -108,6 +112,17 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="search-bar">
+
+                    <form action="" method="GET" class="d-flex justify-content-center">
+
+                        <input type="text" class="form-control" name="search-text" id="search-text" placeholder="Пошук об'єкта за ID, номером телефону власника, адресою">
+                        <button class="btn btn-primary w-25">Пошук</button>
+
+                    </form>
+
                 </div>
 
                 <div class="row">

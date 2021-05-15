@@ -28,14 +28,14 @@
 <body>
     <div id="app" class="wrapper">
 
-        <header class="header">
+        <header class="header fixed-top">
             <div class="container-fluid container__header">
-                <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm w-100">
                     <div class="container">
 
                         <a class="navbar-brand align-items-center d-flex" href="{{ url('/') }}">
                             <img src="https://static.tildacdn.com/tild3938-3435-4465-a433-303638313134/123.png" alt="" class="logo__img2 img-fluid" width="100">
-                            {{ config('app.name', 'Laravel') }}
+{{--                            {{ config('app.name', 'Laravel') }}--}}
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                             <span class="navbar-toggler-icon"></span>
@@ -53,7 +53,7 @@
                                     <a href="index.html" class="nav__link">Каталог</a>
                                 </li>
                                 <li class="nav__item">
-                                    <a href="about.html" class="nav__link">Про нас</a>
+                                    <a href="{{ url('/about-us') }}" class="nav__link">Про нас</a>
                                 </li>
                                 <li class="nav__item">
                                     <a href="index.html" class="nav__link">Послуги</a>
@@ -65,29 +65,17 @@
                                     <a href="blog.html" class="nav__link">Блог</a>
                                 </li>
                                 <li class="nav__item">
-                                    <a href="contacts.html" class="nav__link">Контакти</a>
+                                    <a href="{{ url('/contact') }}" class="nav__link">Контакти</a>
                                 </li>
-                                <li class="nav__item">
-                                    <a href="" class="nav__link nav__link--tel">0970010001</a>
-                                </li>
+{{--                                <li class="nav__item">--}}
+{{--                                    <a href="" class="nav__link nav__link--tel">0970010001</a>--}}
+{{--                                </li>--}}
                                 <!-- Authentication Links -->
                                 @guest
 
                                     <li class="nav__item">
                                         <a href="" class="nav__link nav__link--tel">+380970010001</a>
                                     </li>
-
-                                    @if (Route::has('login'))
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                        </li>
-                                    @endif
-
-                                    @if (Route::has('register'))
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                        </li>
-                                    @endif
 
                                 @else
                                     <li class="nav__item1 nav-item dropdown" style="margin-top: -10px;">
@@ -114,11 +102,11 @@
                 </nav>
 
         </header>
-
-        <main class="py-4">
+{{--        <hr>--}}
+        <main class="py-4_ mt-5 pt-5">
             @yield('content')
         </main>
-
+        <hr>
         <footer class="footer">
             <div class="container">
                 <div class="footer__block">
@@ -166,6 +154,26 @@
                         <a href="./index.html" class="footer__link">Комерційна нерухомість</a>
                     </ul>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <ul class="list-styke-none d-flex">
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+            <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                Developed on Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                <br>
+                Made with ❤️ by <a href="https://yarik.lukyanchuk.com" style="color: #e12;"> Lukyanchuk </a>
             </div>
         </footer>
     </div>

@@ -188,7 +188,4 @@
 
     </div>
 
-
-
-
 @endsection
