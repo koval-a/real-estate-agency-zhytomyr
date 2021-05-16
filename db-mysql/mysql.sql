@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Май 10 2021 г., 22:56
+-- Время создания: Май 15 2021 г., 23:30
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -84,9 +84,10 @@ CREATE TABLE `blog_article` (
 --
 
 INSERT INTO `blog_article` (`id`, `picture`, `title`, `text`, `slug`, `category_id`, `author_id`, `created_at`, `updated_at`) VALUES
-(1, 'blog.jpeg', 'Нові квартири в Житомирі', 'Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі Текст про Нові квартири в Житомирі', 'blog-flat-zhytomir', 1, 2, '2021-05-09 18:09:52', NULL),
-(2, 'blog.jpeg', 'delete', 'qweewqqewqweewq', 'test', 1, 2, '2021-05-10 18:36:24', NULL),
-(3, 'йуц.png', 'Test blog 2', 'jsdhf hskdjf dhsfkjsf lkshdf lskdfj slkdfjslkdfhl', '123-asd-das-ads-ads', 2, 1, '2021-05-10 16:36:26', '2021-05-10 16:36:26');
+(2, 'blog.jpeg', 'Blog Post 1', 'Text for test post in blog', 'test-blog', 1, 2, '2021-05-10 18:36:24', NULL),
+(7, '1620689497.png', '123', '123', '123', 2, 1, '2021-05-10 20:31:37', '2021-05-10 20:31:37'),
+(8, '1620690021.png', 'das', 'ads', 'asd', 2, 1, '2021-05-10 20:40:21', '2021-05-10 20:40:21'),
+(9, '1620807969.png', 'Коваль Артем Володимирович', 'yrryryyr', '34567890', 2, 1, '2021-05-12 05:26:09', '2021-05-12 05:26:09');
 
 -- --------------------------------------------------------
 
@@ -160,6 +161,8 @@ CREATE TABLE `location` (
                             `rayon_id` bigint(20) UNSIGNED NOT NULL,
                             `city_id` bigint(20) UNSIGNED NOT NULL,
                             `city_rayon_id` bigint(20) UNSIGNED NOT NULL,
+                            `street` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+                            `note` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
                             `created_at` timestamp NULL DEFAULT NULL,
                             `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -168,9 +171,9 @@ CREATE TABLE `location` (
 -- Дамп данных таблицы `location`
 --
 
-INSERT INTO `location` (`id`, `region_id`, `rayon_id`, `city_id`, `city_rayon_id`, `created_at`, `updated_at`) VALUES
-(5, 1, 75, 30, 34, NULL, NULL),
-(6, 1, 51, 93, 24, NULL, NULL);
+INSERT INTO `location` (`id`, `region_id`, `rayon_id`, `city_id`, `city_rayon_id`, `street`, `note`, `created_at`, `updated_at`) VALUES
+(5, 1, 75, 30, 34, 'Київсбка 89', '3 поверх', NULL, NULL),
+(6, 1, 51, 93, 24, 'Київська 89', '3 поверх', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -324,7 +327,7 @@ INSERT INTO `location_city_rayon` (`id`, `rayon_city`, `created_at`, `updated_at
 (31, 'Максютова', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
 (32, 'ДОС', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
 (33, 'Хінчанка', '2021-05-10 22:09:27', '2021-05-10 22:09:27'),
-(34, '-none-', '2021-05-10 22:38:48', '2021-05-10 22:38:48');
+(34, '-', '2021-05-10 22:38:48', '2021-05-10 22:38:48');
 
 -- --------------------------------------------------------
 
@@ -680,7 +683,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT для таблицы `blog_article`
 --
 ALTER TABLE `blog_article`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `blog_category`
@@ -698,7 +701,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT для таблицы `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `location`

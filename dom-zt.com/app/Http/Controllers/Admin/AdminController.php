@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Note;
 use App\Models\Obekts;
 use App\Users;
@@ -111,6 +112,8 @@ class AdminController extends AC
 
     // END - CLEINTS //
 
+    // START - OBEKT //
+
     public function viewObekt($category)
     {
         // 3 - land
@@ -122,31 +125,60 @@ class AdminController extends AC
         {
             case 'land':
             {
-                $categoryName = 'Земельні ділянки';
+                $category = Category::where('id', '=', 3)->first();
+                $categoryName = $category->name;
+                $categorySlug = $category->slug;
+                $category = [$categorySlug, $categoryName];
                 $obekts = Obekts::where('category_id', '=', 3)->get();
-                return view('admin.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'house' :
             {
-                $categoryName = 'Будинки';
+                $category = Category::where('id', '=', 2)->first();
+                $categoryName = $category->name;
+                $categorySlug = $category->slug;
+                $category = [$categorySlug, $categoryName];
                 $obekts = Obekts::where('category_id', '=', 2)->get();
-                return view('admin.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'flat' :
             {
-                $categoryName = 'Квартири';
+                $category = Category::where('id', '=', 1)->first();
+                $categoryName = $category->name;
+                $categorySlug = $category->slug;
+                $category = [$categorySlug, $categoryName];
                 $obekts = Obekts::where('category_id', '=', 1)->get();
-                return view('admin.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'commercial-real-estate' :
             {
-                $categoryName = 'Комерційна нерухомість';
+                $category = Category::where('id', '=', 4)->first();
+                $categoryName = $category->name;
+                $categorySlug = $category->slug;
+                $category = [$categorySlug, $categoryName];
                 $obekts = Obekts::where('category_id', '=', 4)->get();
-                return view('admin.obekt', compact('obekts', 'categoryName'));
+                return view('admin.obekt', compact('obekts', 'category'));
             }
         }
 
     }
+
+    public function newObekt($categorySlug, $categoryName)
+    {
+        $category = [$categorySlug, $categoryName];
+
+        return view('admin.obekt-new', compact('category'));
+    }
+
+    public function insertObekt(Request $request, $category)
+    {
+        // must be return to category page obekts
+        return back()->with("success", "успішно.");
+    }
+
+    // END - OBEKT //
+
+    // START - NOTE //
 
     public function note()
     {
@@ -159,6 +191,8 @@ class AdminController extends AC
 
         return view('admin.note', compact('notes', 'countNotes', 'obekts'));
     }
+
+    // END - NOTE //
 
     // START - BLOG //
 
@@ -226,7 +260,13 @@ class AdminController extends AC
         }
     }
 
-    // END - BLOG //
+    //
+    // END - BLOG
+    //
+
+    //
+    // START - SETTINGS
+    //
 
     public function settings()
     {
@@ -245,5 +285,9 @@ class AdminController extends AC
         return back()->with("failed", "Помилка!");
 
     }
+
+    //
+    // END - SETTINGS
+    //
 }
 

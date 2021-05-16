@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
 
         <section class="product">
@@ -16,19 +17,21 @@
                     </a>
                 </div>
 
-                @foreach($obekt as $key => $item)
-
                     <div class="breadcrumb__block">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Каталог</a></li>
-                            <li class="breadcrumb-item"><a href="#">{{ $item->category_id }}</a></li>
-                            <li class="breadcrumb-item active">{{ $item->name }}</li>
+                            <li class="breadcrumb-item">
+                                <a href="#">
+                                    {{ $category ->name }}
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">{{ $obekt->name }}</li>
                         </ul>
                     </div>
 
                     <div class="product__main">
                         <div class="product__photo">
-                            <h3 class="title__product">{{ $item->name }} (ID: {{ $item->id }})</h3>
+                            <h3 class="title__product">{{ $obekt->name }} (ID: {{ $obekt->id }})</h3>
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
@@ -52,25 +55,36 @@
                             </div>
                         </div>
                         <div class="product__info">
-                            <p class="product__info--prace">Ціна: {{ $item->price }}$</p>
+                            <p class="product__info--prace">Ціна: {{ $obekt->price }}$</p>
                             <ul class="product-filter__list">
-                                <li class="product-filter__item">К-ть кімнат: {{ $item->count_room }}</li>
-                                <li class="product-filter__item">Поверх: {{ $item->level }} / {{ $item->count_level }}</li>
-                                <li class="product-filter__item">Площа:  {{ $item->square }} m2</li>
+                                <li class="product-filter__item">К-ть кімнат: {{ $obekt->count_room }}</li>
+                                <li class="product-filter__item">Поверх: {{ $obekt->level }} / {{ $obekt->count_level }}</li>
+                                <li class="product-filter__item">Площа:  {{ $obekt->square }} m2</li>
                                 <li class="product-filter__item">Опалення:
-                                    @if($item->isOpalenya == 1)
-                                        {{ $item->opalenyaName }}
+                                    @if($obekt->isOpalenya == 1)
+                                        {{ $obekt->opalenyaName }}
                                     @else
                                         -
                                     @endif
 
                                 </li>
                                 <li class="product-filter__item">Вулиця:
-                                    LocationID {{ $item->location_id }}
+{{--                                    LocationID {{ $obekt->location_id }}--}}
+                                    {{ $dataLocation[4] }} <br>
+                                    ({{ $dataLocation[3] }}) <br>
+                                    note: {{ $dataLocation[5] }} <br>
+                                    {{ $dataLocation[0] }},
+                                    {{ $dataLocation[1] }},
+                                    {{ $dataLocation[2] }}
                                 </li>
                             </ul>
                             <div class="product__info--rieltor">
-                                <h4 class="rieltor__title">Наталя Мелай RieltorID {{ $item->rieltor_id }}</h4>
+                                <h4 class="rieltor__title"> {{ $rieltor->name }}</h4>
+                                <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">
+                                    {{ $rieltor->phone }}
+                                </a>
+                                <br>
+                                <br>
                                 <p class="product__info--text">
                                     Експерт з нерухомості допоможе знайти вам найкращий варіант з нашої
                                     бази нерухомості обєктів!
@@ -82,7 +96,8 @@
                                             <img src="/custom/icons/call.svg" alt="phone rieltor" class="phone--image">
                                         </div>
                                     </a>
-                                    <a href="tel:+3809700010000" class="rieltor__number--link-namber">+3809700010000
+                                    <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">
+                                       {{ $rieltor->phone }}
                                     </a>
                                 </div>
                             </div>
@@ -111,11 +126,10 @@
                     <div class="product__info">
                         <h4 class="product__info--title">Опис обьекта</h4>
                         <p class="product__info--subtitle">
-                            {{ $item->description }}
+                            {{ $obekt->description }}
                         </p>
                     </div>
 
-                @endforeach
                 <div class="button__back">
                     <a href="" class="back__link">
                         <svg class="strelka-left-4" viewBox="0 0 100 85">

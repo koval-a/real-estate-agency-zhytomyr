@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1>{{$categoryName}}</h1>
+        <h1>{{$category[1]}}</h1>
         <hr>
-        <a href="" class="btn btn-success">Додати новий об'єкт</a>
+        <a href="{{ route('admin.obekt.new', $category) }}" class="btn btn-success">Додати новий об'єкт</a>
         <hr>
         <table class="table">
             <thead>

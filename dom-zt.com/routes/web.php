@@ -61,9 +61,13 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
     Route::get('/clients', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
     Route::get('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
 
+    Route::group(['prefix'=>'/obekts', 'namespace' => 'Admin'], function(){
 
-    Route::get('/obekts/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
+        Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
+        Route::get('/{slug}/{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
+        Route::post('/{category}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
 
+    });
 
     Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
 
