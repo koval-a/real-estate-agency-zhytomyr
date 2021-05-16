@@ -14,6 +14,7 @@
                 <div class="obket-info col-md-4 border p-2">
                     <h4>Інформація про об'єкт</h4>
                     <input type="text" name="title" id="title" class="form-control" placeholder="Назва" required>
+                    <br>
                     <textarea name="desc" id="desc" class="form-control" rows="3" placeholder="Опис" required></textarea>
 
                     <hr>
@@ -76,16 +77,36 @@
                 </div>
                 <div class="location col-md-4 border p-2">
                     <h4>Фотографії</h4>
+                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" class="img-fluid rounded shadow" alt="main image">
+                    <hr>
+                    <span>Додаткові фото</span>
                 </div>
                 <div class="owner col-md-4 border p-2">
                     <h4>Власник</h4>
-                    <select class="form-control" id="owner_id">
-                        <option>-Оберіть власника-</option>
-                    </select>
+                    <div class="d-flex justify-content-between">
+                        <select class="form-control w-50" id="owner_id">
+                            <option>-Оберіть власника-</option>
+                            @foreach($owners as $key => $owner)
 
+                                <option value="$owner->id">{{$owner->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="newOwner" name="newOwner" onclick="newOwner()">
+                            <label class="form-check-label" for="newOwner">Новий власник</label>
+                        </div>
+                    </div>
+                    <div class="invisible" id="isNewOwner" name="isNewOwner">
+                        <h4>Новий власник</h4>
+                    </div>
+                    <hr>
                     <h4>Ріелтора</h4>
-                    <select class="form-control pt-5" id="rieltor_id">
-                        <option>-Оберіть ріельтора-</option>
+                    <select class="form-control" id="rieltor_id" required>
+                        <option>-Оберіть ріелтора-</option>
+                        @foreach($rieltors as $key => $rieltor)
+
+                            <option value="$rieltor->id">{{$rieltor->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -107,6 +128,22 @@
                 } else {
                     document.getElementById('type_opalenya').classList.remove('visible');
                     document.getElementById('type_opalenya').classList.add('invisible');
+                }
+            }
+
+            function newOwner(){
+                //owner_id newOwner
+
+                var isNewOwner = document.getElementById("newOwner");
+
+                if (isNewOwner.checked == true){
+                    isNewOwner.disabled = true;
+                    document.getElementById('isNewOwner').classList.remove('invisible');
+                    document.getElementById('isNewOwner').classList.add('visible');
+                } else {
+                    isNewOwner.disabled = false;
+                    document.getElementById('isNewOwner').classList.remove('visible');
+                    document.getElementById('isNewOwner').classList.add('invisible');
                 }
             }
 

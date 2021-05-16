@@ -166,8 +166,10 @@ class AdminController extends AC
     public function newObekt($categorySlug, $categoryName)
     {
         $category = [$categorySlug, $categoryName];
+        $rieltors = Rieltors::all();
+        $owners = Owner::all();
 
-        return view('admin.obekt-new', compact('category'));
+        return view('admin.obekt-new', compact('category', 'rieltors', 'owners'));
     }
 
     public static function transliterate ($string){
