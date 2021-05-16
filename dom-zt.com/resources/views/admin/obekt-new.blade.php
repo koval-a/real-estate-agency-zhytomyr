@@ -53,10 +53,10 @@
                     <hr>
                     <div class="d-flex justify-content-between pb-3">
                         <div class="form-check form-switch">
-{{--                            <input class="form-check-input" type="checkbox" id="isOpalenya" name="isOpalenya" required>--}}
+                            <input class="form-check-input" type="checkbox" id="isOpalenya" name="isOpalenya" onclick="myFunction()" required>
                             <label class="form-check-label" for="isOpalenya">Наявність опалення</label>
                         </div>
-                        <select class="form-control w-50 visible" id="type_opalenya" name="type_opalenya">
+                        <select class="form-control w-50 invisible" id="type_opalenya" name="type_opalenya">
                             <option disabled>-Оберіть тип опалення-</option>
                             <option value="Автономне">Автономне</option>
                             <option value="Централізоване">Централізоване</option>
@@ -95,20 +95,21 @@
             </div>
         </form>
         <script>
-            // invisible
-            // isOpalenya
 
-            const cb = document.getElementById('isOpalenya');
-            console.log(cb.value); // on
-            // if(document.getElementById("isOpalenya").checked == true){
-            //     alert('das');
-            //     document.getElementById('type_opalenya').classList.remove('invisible');
-            //     document.getElementById('type_opalenya').classList.add('visible');
-            // }else{
-            //
-            //     document.getElementById('type_opalenya').classList.remove('visible');
-            //     document.getElementById('type_opalenya').classList.add('invisible');
-            // }
+            function myFunction() {
+                // Get the checkbox
+                var checkBox = document.getElementById("isOpalenya");
+
+                // If the checkbox is checked, display the output text
+                if (checkBox.checked == true){
+                    document.getElementById('type_opalenya').classList.remove('invisible');
+                    document.getElementById('type_opalenya').classList.add('visible');
+                } else {
+                    document.getElementById('type_opalenya').classList.remove('visible');
+                    document.getElementById('type_opalenya').classList.add('invisible');
+                }
+            }
+
         </script>
 
         <hr>
