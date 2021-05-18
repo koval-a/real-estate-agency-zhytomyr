@@ -260,70 +260,43 @@
                 <h4 class="title">
                     Схожі обьекти
                 </h4>
-                <ul class="objects__list objects__list--cards__object">
-                    <li class="objects__item">
-                        <a href="" class="object__link">
-                            <div class="object__image">
-                                <img src="/custom/icons/квартира.jpeg" alt="" class="object__img">
+                <ul class="row">
+                    @foreach($lastAddedObekts as $key => $item)
+                        <div class="col-md-4">
+                            <div class="shadow rounded p-2">
+                                <a href="{{ route('obekt.view', $item->slug) }}" class="object__link">
+                                    <div class="object__image1 h-auto">
+                                        <img src="/custom/icons/flat.jpeg" alt="obekt-image" class="img-fluid">
+                                    </div>
+                                </a>
+                                <div class="object__text--promo p-3">
+                                    <ul class="object__list">
+                                        <li class="object__item object__item--title">{{ $item->name }}</li>
+                                        <li class="object__item object__item--prace">$ {{ $item->price }}</li>
+                                        <li class="object__item">Район:
+                                            @foreach($locationData as $key => $loc)
+                                                @if($loc->id == $item->location_id)
+                                                    @foreach($locationRayon as $key => $rayon)
+                                                        @if($rayon->id == $loc->city_rayon_id)
+                                                            {{$rayon->rayon_city}}
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+
+                                        </li>
+                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>
+                                        <li class="object__item">Опалення: {{ $item->opalenyaName }}</li>
+                                        <li class="object__item">Площа: {{ $item->square }}</li>
+                                        <li class="object__item">Поверх: {{ $item->level }}/{{ $item->count_level }}</li>
+                                    </ul>
+                                </div>
+                                <div class="link-open-obekt p-1">
+                                    <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
+                                </div>
                             </div>
-                        </a>
-                        <div class="object__text--promo">
-                            <ul class="object__list">
-                                <li class="object__item object__item--title">Чуднівська, 108б</li>
-                                <li class="object__item object__item--prace">40 000$</li>
-                                <li class="object__item">Район: Корбутівка</li>
-                                <li class="object__item">К-ть кімнат: 3</li>
-                                <li class="object__item">Опалення: автономне</li>
-                                <li class="object__item">Площа: 100/75/25</li>
-                                <li class="object__item">Поверх: 3/5</li>
-                            </ul>
                         </div>
-                        <div class="button">
-                            <a href="#" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
-                        </div>
-                    </li>
-                    <li class="objects__item">
-                        <a href="" class="object__link">
-                            <div class="object__image">
-                                <img src="/custom/icons/квартира.jpeg" alt="" class="object__img">
-                            </div>
-                        </a>
-                        <div class="object__text--promo">
-                            <ul class="object__list">
-                                <li class="object__item object__item--title">Чуднівська, 108б</li>
-                                <li class="object__item object__item--prace">40 000$</li>
-                                <li class="object__item">Район: Корбутівка</li>
-                                <li class="object__item">К-ть кімнат: 3</li>
-                                <li class="object__item">Опалення: автономне</li>
-                                <li class="object__item">Площа: 100/75/25</li>
-                                <li class="object__item">Поверх: 3/5</li>
-                            </ul>
-                        </div>
-                        <div class="button">
-                            <a href="#" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
-                        </div>
-                    </li>
-                    <li class="objects__item">
-                        <a href="" class="object__link">
-                            <div class="object__image">
-                                <img src="/custom/icons/квартира.jpeg" alt="" class="object__img">
-                            </div>
-                        </a>
-                        <div class="object__text--promo">
-                            <ul class="object__list">
-                                <li class="object__item object__item--title">Чуднівська, 108б</li>
-                                <li class="object__item object__item--prace">40 000$</li>
-                                <li class="object__item">Район: Корбутівка</li>
-                                <li class="object__item">К-ть кімнат: 3</li>
-                                <li class="object__item">Опалення: автономне</li>
-                                <li class="object__item">Площа: 100/75/25</li>
-                                <li class="object__item">Поверх: 3/5</li>
-                            </ul>
-                        </div>
-                        <div class="button">
-                            <a href="#" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </section>

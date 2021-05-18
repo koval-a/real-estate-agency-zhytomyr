@@ -7,39 +7,16 @@
             <section class="section__hero">
                 <div class="container">
                     <div class="hero__row">
-                        <div class="hero__block">
-                            <a href="house_3.html" class="hero__link">
-                                <div class="hero__image">
-                                    <img src="/custom/icons/будинок.jpeg" alt="" class="hero__img">
-                                    <div class="object__text">Приватний будинок</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hero__block">
-                            <a href="house_2.html" class="hero__link">
-                                <div class="hero__image">
-                                    <img src="/custom/icons/земельна ділянка.png" alt="" class="hero__img">
-                                    <div class="object__text">Земельна ділянка</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hero__block">
-                            <a href="house_1.html" class="hero__link">
-                                <div class="hero__image">
-                                    <img src="/custom/icons/квартира.jpeg" alt="" class="hero__img">
-                                    <div class="object__text">Квартири</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hero__block">
-                            <a href="house_4.html" class="hero__link">
-                                <div class="hero__image">
-                                    <img src="/custom/icons/комерція.jpeg" alt="" class="hero__img">
-                                    <div class="object__text">Комерційна нерухомість</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                        @foreach($category as $key => $item)
+                            <div class="hero__block">
+                                <a href="{{ route('category.view', $item->slug) }}" class="hero__link">
+                                    <div class="hero__image">
+                                        <img src="/custom/icons/{{$item->slug}}.jpeg" alt="" class="hero__img">
+                                        <div class="object__text">{{$item->name}}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
                 </div>
             </section>
             <section class="company">
@@ -68,7 +45,7 @@
                     </div>
                 </div>
             </section>
-            <section class="company__services">
+            <section id="services" class="company__services">
                 <div class="container">
                     <div class="company__block">
                         <div class="company__block-flex company__block-left company__block-left--services">
@@ -120,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <section class="google">
+                <section id="reviews" class="google">
                 </section>
             </section>
 

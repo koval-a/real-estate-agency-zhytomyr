@@ -18,6 +18,9 @@ class PublicController extends Controller
     public function obekt($slug)
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
+        $lastAddedObekts = Obekts::limit(2)->get();
+        $locationData = Location::all();
+        $locationRayon = LocationCityRayon::all();
 
         $category = Category::where('id', '=', $obekt->category_id)->first();
         $rieltor = Rieltors::where('id', '=', $obekt->rieltor_id)->first();
@@ -37,7 +40,7 @@ class PublicController extends Controller
 
         $dataLocation = [$locationRegion, $locatonRayon, $locationCity, $locationCityRayon, $locationStreet, $locationNote];
 
-        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation'));
+        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon'));
     }
 
     public function about()
@@ -50,18 +53,30 @@ class PublicController extends Controller
         return view('pages.contact');
     }
 
+    public function blogList()
+    {
+        $blog = Blog::all();
+
+        return view('pages.blog-list', compact('blog'));
+    }
+
     public function blog($slug)
     {
-        $blog = Blog::where('slug', '=', $slug)->get();
+        $blog = Blog::where('slug', '=', $slug)->first();
 
         return view('pages.blog', compact('blog'));
     }
 
-    public function category($category)
+    public function category($categorySlug)
     {
-        $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', 1)->get();
+        $category = Category::where('slug', '=', $categorySlug)->first();
 
-        return view('admin.all-obekt', compact('obekts'));
+        $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->get();
+        $location = Location::all();
+        $locationRayon = LocationCityRayon::all();
+
+
+        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon'));
 
     }
 

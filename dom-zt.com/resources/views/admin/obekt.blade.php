@@ -87,22 +87,22 @@
                             <span class="text-success">
                                 Опубліковано
                             </span>
-{{--                            <a href="{{route('admin.notPublic', $item->id)}}" class="btn btn-outline-secondary">--}}
-{{--                                Прииховати--}}
-{{--                            </a>--}}
-                            <a href="#" class="btn btn-outline-secondary">
+                            <a href="{{route('admin.notPublic', $item->id)}}" class="btn btn-outline-secondary">
                                 Прииховати
                             </a>
+{{--                            <a href="#" class="btn btn-outline-secondary">--}}
+{{--                                Прииховати--}}
+{{--                            </a>--}}
                         @else
                             <span class="text-secondary">
                                 Приховано
                             </span>
-{{--                            <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">--}}
-{{--                                Опублікувати--}}
-{{--                            </a>--}}
-                            <a href="#" class="btn btn-outline-success">
+                            <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">
                                 Опублікувати
                             </a>
+{{--                            <a href="#" class="btn btn-outline-success">--}}
+{{--                                Опублікувати--}}
+{{--                            </a>--}}
                         @endif
 
 {{--                        <span class={{ $item->isPublic?'text-success':'text-warning' }}>--}}

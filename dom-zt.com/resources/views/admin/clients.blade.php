@@ -51,9 +51,6 @@
                     #
                 </td>
                 <td>
-                    ID
-                </td>
-                <td>
                     Ім'я
                 </td>
                 <td>
@@ -61,6 +58,9 @@
                 </td>
                 <td>
                     Адреса
+                </td>
+                <td>
+                    ID
                 </td>
                 <td>
                     Дія
@@ -74,9 +74,6 @@
                         {{ $key + 1 }}
                     </td>
                     <td>
-                        {{ $owner->id }}
-                    </td>
-                    <td>
                         {{ $owner->name }}
                     </td>
                     <td>
@@ -84,6 +81,9 @@
                     </td>
                     <td>
                         {{ $owner->address }}
+                    </td>
+                    <td>
+                        {{ $owner->id }}
                     </td>
                     <td>
                         <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>

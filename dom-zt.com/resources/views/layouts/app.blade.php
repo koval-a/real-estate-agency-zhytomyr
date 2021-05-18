@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/custom/css/style.css">
+    <link rel="stylesheet" href="/custom/css/blog.css">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
@@ -50,22 +51,22 @@
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav pt-2 ml-auto">
                                 <li class="nav__item ">
-                                    <a href="index.html" class="nav__link">Каталог</a>
+                                    <a href="/" class="nav__link">Каталог</a>
                                 </li>
                                 <li class="nav__item">
-                                    <a href="{{ url('/about-us') }}" class="nav__link">Про нас</a>
+                                    <a href="{{ route('about') }}" class="nav__link">Про нас</a>
                                 </li>
                                 <li class="nav__item">
-                                    <a href="index.html" class="nav__link">Послуги</a>
+                                    <a href="/#services" class="nav__link">Послуги</a>
                                 </li>
                                 <li class="nav__item">
-                                    <a href="index.html" class="nav__link">Відгуки</a>
+                                    <a href="/#reviews" class="nav__link">Відгуки</a>
                                 </li>
                                 <li class="nav__item">
-                                    <a href="blog.html" class="nav__link">Блог</a>
+                                    <a href="{{ route('blog.list') }}" class="nav__link">Блог</a>
                                 </li>
                                 <li class="nav__item">
-                                    <a href="{{ url('/contact') }}" class="nav__link">Контакти</a>
+                                    <a href="{{ route('contact') }}" class="nav__link">Контакти</a>
                                 </li>
 {{--                                <li class="nav__item">--}}
 {{--                                    <a href="" class="nav__link nav__link--tel">0970010001</a>--}}
@@ -84,6 +85,17 @@
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                            @if(Auth::user()->is_admin == 1)
+                                                <a class="dropdown-item" href="{{ route('admin.home') }}">
+                                                    Dashboard
+                                                </a>
+                                            @else
+                                                <a class="dropdown-item" href="{{ route('home') }}">
+                                                    Dashboard
+                                                </a>
+                                            @endif
+
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -147,7 +159,7 @@
                         <a href="./index.html" class="footer__link">Контакти</a>
                     </ul>
                     <ul class="footer__info-list">
-                        <a href="./index.html" class="footer__link">Каталог</a>
+                        <a href="/" class="footer__link">Каталог</a>
                         <a href="./index.html" class="footer__link">Квартири</a>
                         <a href="./index.html" class="footer__link">Приватний сектор</a>
                         <a href="./index.html" class="footer__link">Земельні ділянки</a>

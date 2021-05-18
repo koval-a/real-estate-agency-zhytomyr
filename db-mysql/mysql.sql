@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Май 18 2021 г., 05:12
+-- Время создания: Май 18 2021 г., 20:06
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -489,9 +489,10 @@ CREATE TABLE `obekts` (
 INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `isPay`, `created_at`, `updated_at`) VALUES
 (8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 1, 'Автономне', 0, 0, 0, 43, 1, 'flat-on-kievska', 1, 0, '2021-05-10 22:43:16', '2021-05-10 22:43:16'),
 (9, 'Будинок', 'Будиок опис', '21132.00', 2, '1233.00', 6, 'obekt.png', 1, 2, 2, 2, 1, 'Автономне', 1, 0, 1, 42, 2, 'house-new-my', 1, 0, '2021-05-18 01:48:59', '2021-05-18 01:48:59'),
-(10, 'земля', 'Земля опис', '123.00', 3, '213.00', 6, 'obekt.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good', 2, 0, '2021-05-18 01:50:23', '2021-05-18 01:50:23'),
-(11, 'земля нова', 'Земля опис нва', '123.00', 3, '213.00', 6, 'obekt.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good-2', 2, 0, '2021-05-18 01:50:44', '2021-05-18 01:50:44'),
-(12, 'офіс', 'комерційна нерухрмість', '2134.00', 4, '45.00', 5, 'obekt.png', 1, 2, 5, 1, 1, 'no name', 0, 0, 0, 25, 2, 'office', 1, 0, '2021-05-18 01:52:01', '2021-05-18 01:52:01');
+(10, 'земля', 'Земля опис', '123.00', 3, '213.00', 6, 'obekt.png', 0, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good', 2, 0, '2021-05-18 01:50:23', '2021-05-18 01:50:23'),
+(11, 'земля нова', 'Земля опис нва', '123.00', 3, '213.00', 6, 'obekt.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good-2', 2, 1, '2021-05-18 01:50:44', '2021-05-18 01:50:44'),
+(12, 'офіс', 'комерційна нерухрмість', '2134.00', 4, '45.00', 5, 'obekt.png', 1, 2, 5, 1, 1, 'no name', 0, 0, 0, 25, 2, 'office', 1, 0, '2021-05-18 01:52:01', '2021-05-18 01:52:01'),
+(13, 'rerfdfs', 'fsdfsdsfsffd', '32132.00', 1, '45.00', 6, 'qewew.ewqe', 1, 12, 23, 4, 1, 'Fdnjyjvyt', 1, 1, 1, 43, 2, 'dadasd-ads-ad-da-da-da', 3, 0, '2021-05-18 20:06:22', '2021-05-18 20:06:22');
 
 -- --------------------------------------------------------
 
@@ -514,7 +515,8 @@ CREATE TABLE `owner` (
 
 INSERT INTO `owner` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at`) VALUES
 (1, 'Bob Jefri', 990010000, 'Житомир, вул.Київська 88', '2021-04-28 12:49:15', '2021-04-28 12:49:15'),
-(2, 'wqe', 990010011, 'qeqew', '2021-05-08 20:31:26', '2021-05-08 20:31:26');
+(2, 'wqe', 990010011, 'qeqew', '2021-05-08 20:31:26', '2021-05-08 20:31:26'),
+(3, 'werwer', 980751357, 'str.Voksalnaya 24, 30', '2021-05-18 14:17:03', '2021-05-18 14:17:03');
 
 -- --------------------------------------------------------
 
@@ -567,7 +569,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `is_admin`, `email_verified_at`, `password`, `avatar`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@dom-zt.com', 1, NULL, '$2y$10$seRtjZqJ1587f1Zvw5DmEeFS8o4lq8/JVSOUaIQAGhDrvtMxItzCK', 'avatar.png', '098-000-0001', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
-(2, 'Rieltor', 'rieltor@dom-zt.com', 0, NULL, '$2y$10$ho5KIuJxj.osCd2i/5DXZ.xx/GAXpb3V/tM2L76Ohr9UXV2trN11W', 'avatar.png', '098-000-0002', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07');
+(2, 'Rieltor', 'rieltor@dom-zt.com', 0, NULL, '$2y$10$ho5KIuJxj.osCd2i/5DXZ.xx/GAXpb3V/tM2L76Ohr9UXV2trN11W', 'avatar.png', '098-000-0002', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
+(3, '123213', 'org@mail.com', 0, NULL, '$2y$10$5RWQcVN2swgGsCJTgW.ZR.bzxYeea5eOGgnU3WZFlzxsvxMD.YLvi', '1621362307.png', '213-000-1234', NULL, '2021-05-18 15:25:07', '2021-05-18 15:25:07');
 
 --
 -- Индексы сохранённых таблиц
@@ -773,13 +776,13 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT для таблицы `obekts`
 --
 ALTER TABLE `obekts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `owner`
 --
 ALTER TABLE `owner`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `settings`
@@ -791,7 +794,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
