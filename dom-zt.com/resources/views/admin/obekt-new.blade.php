@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <hr>
-                
+
                     <div class="d-flex justify-content-between pb-3">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="isOpalenya" name="isOpalenya" onclick="myFunction()" required>

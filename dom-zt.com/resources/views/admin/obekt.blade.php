@@ -83,9 +83,31 @@
                         </div>
                     </td>
                     <td>
-                        <span class={{ $item->isPublic?'text-success':'text-warning' }}>
-                        {{ $item->isPublic?'Опубліковано':'Приховано' }}
-                        </span>
+                        @if($item->isPublic)
+                            <span class="text-success">
+                                Опубліковано
+                            </span>
+{{--                            <a href="{{route('admin.notPublic', $item->id)}}" class="btn btn-outline-secondary">--}}
+{{--                                Прииховати--}}
+{{--                            </a>--}}
+                            <a href="#" class="btn btn-outline-secondary">
+                                Прииховати
+                            </a>
+                        @else
+                            <span class="text-success">
+                                Приховано
+                            </span>
+{{--                            <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">--}}
+{{--                                Опублікувати--}}
+{{--                            </a>--}}
+                            <a href="#" class="btn btn-outline-success">
+                                Опублікувати
+                            </a>
+                        @endif
+
+{{--                        <span class={{ $item->isPublic?'text-success':'text-warning' }}>--}}
+{{--                        {{ $item->isPublic?'Опубліковано':'Приховано' }}--}}
+{{--                        </span>--}}
                     </td>
                     <td>
                         <span class={{ $item->isPay?'text-success':'text-warning' }}>

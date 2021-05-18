@@ -116,4 +116,22 @@ class RieltorController extends AC
 
     }
 
+    public function isPay($id)
+    {
+        $obekt = Obekts::find($id);
+        $obekt->isPay = 1;
+        $obekt->save();
+
+        return back();
+    }
+
+    public function notPay($id)
+    {
+        $obekt = Obekts::find($id);
+        $obekt->isPay = 0;
+        $obekt->save();
+
+        return back();
+    }
+
 }

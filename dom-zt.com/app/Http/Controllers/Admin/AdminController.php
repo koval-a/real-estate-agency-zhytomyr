@@ -236,6 +236,24 @@ class AdminController extends AC
         return back()->with("success", "успішно.");
     }
 
+    public function isPublic($id)
+    {
+        $obekt = Obekts::find($id);
+        $obekt->isPublic = 1;
+        $obekt->save();
+
+        return back();
+    }
+
+    public function notPublic($id)
+    {
+        $obekt = Obekts::find($id);
+        $obekt->isPublic = 0;
+        $obekt->save();
+
+        return back();
+    }
+
     // END - OBEKT //
 
     // START - NOTE //

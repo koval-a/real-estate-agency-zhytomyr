@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Май 15 2021 г., 23:30
+-- Время создания: Май 18 2021 г., 05:12
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -477,6 +477,7 @@ CREATE TABLE `obekts` (
   `rieltor_id` bigint(20) UNSIGNED NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `owner_id` bigint(20) UNSIGNED NOT NULL,
+  `isPay` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -485,8 +486,12 @@ CREATE TABLE `obekts` (
 -- Дамп данных таблицы `obekts`
 --
 
-INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `created_at`, `updated_at`) VALUES
-(8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 1, 'Автономне', 0, 0, 0, 43, 1, 'flat-on-kievska', 1, '2021-05-10 22:43:16', '2021-05-10 22:43:16');
+INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `isPay`, `created_at`, `updated_at`) VALUES
+(8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 1, 'Автономне', 0, 0, 0, 43, 1, 'flat-on-kievska', 1, 0, '2021-05-10 22:43:16', '2021-05-10 22:43:16'),
+(9, 'Будинок', 'Будиок опис', '21132.00', 2, '1233.00', 6, 'obekt.png', 1, 2, 2, 2, 1, 'Автономне', 1, 0, 1, 42, 2, 'house-new-my', 1, 0, '2021-05-18 01:48:59', '2021-05-18 01:48:59'),
+(10, 'земля', 'Земля опис', '123.00', 3, '213.00', 6, 'obekt.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good', 2, 0, '2021-05-18 01:50:23', '2021-05-18 01:50:23'),
+(11, 'земля нова', 'Земля опис нва', '123.00', 3, '213.00', 6, 'obekt.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good-2', 2, 0, '2021-05-18 01:50:44', '2021-05-18 01:50:44'),
+(12, 'офіс', 'комерційна нерухрмість', '2134.00', 4, '45.00', 5, 'obekt.png', 1, 2, 5, 1, 1, 'no name', 0, 0, 0, 25, 2, 'office', 1, 0, '2021-05-18 01:52:01', '2021-05-18 01:52:01');
 
 -- --------------------------------------------------------
 
@@ -522,6 +527,19 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint(20) NOT NULL,
+  `name` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatede_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -662,6 +680,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Индексы таблицы `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -749,13 +773,19 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT для таблицы `obekts`
 --
 ALTER TABLE `obekts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `owner`
 --
 ALTER TABLE `owner`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
