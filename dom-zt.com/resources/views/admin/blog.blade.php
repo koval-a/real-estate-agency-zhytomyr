@@ -25,49 +25,68 @@
             </div>
         </div>
         <hr>
-        <table class="table">
-            <thead>
-            <tr class="bg-secondary text-white">
-                <td>
-                    #
-                </td>
-                <td>
-                    Дата
-                </td>
-                <td>
-                    Назва
-                </td>
-                <td>
-                    Текст
-                </td>
-                <td>
-                    Дія
-                </td>
-            </tr>
-            </thead>
-            <tbody>
+{{--        <table class="table">--}}
+{{--            <thead>--}}
+{{--            <tr class="bg-secondary text-white">--}}
+{{--                <td>--}}
+{{--                    #--}}
+{{--                </td>--}}
+{{--                <td>--}}
+{{--                    Дата--}}
+{{--                </td>--}}
+{{--                <td>--}}
+{{--                    Назва--}}
+{{--                </td>--}}
+{{--                <td>--}}
+{{--                    Текст--}}
+{{--                </td>--}}
+{{--                <td>--}}
+{{--                    Дія--}}
+{{--                </td>--}}
+{{--            </tr>--}}
+{{--            </thead>--}}
+{{--            <tbody>--}}
+{{--            @foreach($blog as $key => $item)--}}
+{{--                <tr>--}}
+{{--                    <td>--}}
+{{--                        {{ $key + 1 }}--}}
+{{--                    </td>--}}
+{{--                    <td>--}}
+{{--                        {{ $item->created_at->format('Y-m-d') }}--}}
+{{--                    </td>--}}
+{{--                    <td>--}}
+{{--                        <img src="/files/images/blog/{{ $item->picture }}" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
+{{--                        <br> <span>  {{ $item->created_at->format('Y-m-d') }}</span>--}}
+{{--                        <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>--}}
+{{--                        <br> {{ Str::limit($item->text, 300) }}--}}
+{{--                        <br> <a href="{{ route('admin.blog.delete', $item->id) }}" class="btn btn-outline-danger mt-2"><i class="fab fa-trash"></i> Видалити</a>--}}
+
+{{--                    </td>--}}
+{{--                    <td class="col-md-4">--}}
+{{--                        {{ Str::limit($item->text, 300) }}--}}
+{{--                    </td>--}}
+{{--                    <td>--}}
+{{--                        <a href="{{ route('admin.blog.delete', $item->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
+{{--            @endforeach--}}
+{{--            </tbody>--}}
+{{--        </table>--}}
+
+        <div class="row">
             @foreach($blog as $key => $item)
-                <tr>
-                    <td>
-                        {{ $key + 1 }}
-                    </td>
-                    <td>
-                        {{ $item->created_at->format('Y-m-d') }}
-                    </td>
-                    <td>
+
+                    <div class="col-md-2 bg-light shadow p-2 shadow m-auto">
                         <img src="/files/images/blog/{{ $item->picture }}" alt="blog-image" class="rounded shadow m-auto" width="200px">
+                        <br> <span>  {{ $item->created_at->format('Y-m-d') }}</span>
                         <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>
-                    </td>
-                    <td class="col-md-4">
-                        {{ Str::limit($item->text, 300) }}
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.blog.delete', $item->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
-                    </td>
-                </tr>
+                        <br> {{ Str::limit($item->text, 300) }}
+                        <br> <a href="{{ route('admin.blog.delete', $item->id) }}" class="btn btn-outline-danger mt-2"><i class="fab fa-trash"></i> Видалити</a>
+                    </div>
+
             @endforeach
-            </tbody>
-        </table>
+        </div>
 {{--        {{ $blog->links() }}--}}
+        <br>
     </div>
 @endsection

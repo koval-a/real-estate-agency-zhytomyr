@@ -61,7 +61,6 @@
                             <option disabled>-Оберіть тип опалення-</option>
                             <option value="Автономне">Автономне</option>
                             <option value="Централізоване">Централізоване</option>
-                            <option value="Відсутнє">Відсутнє</option>
                         </select>
                     </div>
                     <div class="d-flex justify-content-between">

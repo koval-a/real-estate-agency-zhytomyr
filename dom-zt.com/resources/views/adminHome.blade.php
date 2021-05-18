@@ -118,7 +118,7 @@
 
                     <form action="" method="GET" class="d-flex justify-content-center">
 
-                        <input type="text" class="form-control" name="search-text" id="search-text" placeholder="Пошук об'єкта за ID, номером телефону власника, адресою">
+                        <input type="text" class="form-control" name="search-text" id="search-text" placeholder="Пошук об'єкта за ID, номером телефону власника">
                         <button class="btn btn-primary w-25">Пошук</button>
 
                     </form>
