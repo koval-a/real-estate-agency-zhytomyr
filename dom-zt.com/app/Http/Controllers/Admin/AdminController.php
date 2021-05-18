@@ -12,6 +12,7 @@ use App\Models\Rieltors;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 
@@ -53,7 +54,32 @@ class AdminController extends AC
 
     public function insertRieltor(Request $request)
     {
-        // new
+        // Image save on server
+        if ($request->hasFile('imgInp')) {
+            // check validate
+            $request->validate([
+                'imgInp' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            ]);
+            // generate new file name
+            $imageName = time().'.'.$request->imgInp->extension();
+            // move to folder image
+            $request->imgInp->move(public_path('files/images/users'), $imageName);
+            // save new name image to database
+
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->avatar = $imageName;
+            $user->phone = $request->phone;
+            $user->password = Hash::make($request->password);
+            $user->is_admin = 0;
+
+            if($user->save()){
+                return back()->with("success", "Ріелтора додано успішно.");
+            }
+
+        }
+
     }
 
     public function deleteRieltor($id)
@@ -61,20 +87,18 @@ class AdminController extends AC
         // remove
         $data = User::find($id);
 
-        if($data->delete()){
-            return redirect('/manage/admin/rieltors');
+        $image = $data->avatar;
+        $path = public_path('files/images/users');
+
+        if(file_exists($path.$image))
+        {
+            unlink($path.$image);
+
+            if($data->delete()){
+
+                return back()->with("success", "Ріелтора видалено успішно.");
+            }
         }
-
-    }
-
-    public function editRieltor(Request $request, $id)
-    {
-        // edit
-    }
-
-    public function viewRieltor($id)
-    {
-        // show detail page about rieltor
 
     }
 
@@ -97,7 +121,7 @@ class AdminController extends AC
         $newOwner->address = $request->input('address');
 
         if($newOwner->save()){
-            return redirect('/manage/admin/clients');
+            return back()->with("success", "Власника додано успішно.");
         }
     }
 

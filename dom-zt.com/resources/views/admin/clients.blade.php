@@ -25,15 +25,20 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form action="" method="POST">
-                                <span>input field</span>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-                            <button type="button" class="btn btn-primary">Додати</button>
-                        </div>
+                        <form action="{{ route('admin.clients.insert') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+
+                                    <input type="text" name="name"  id="name" class="form-control m-1" required placeholder="Ім'я">
+                                    <input type="tel" name="phone"  id="phone" class="form-control m-1" required placeholder="Формат: 0990123456">
+                                    <input type="text" name="address"  id="address" class="form-control m-1" required placeholder="Адреса">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                                <button type="submit" class="btn btn-primary">Додати</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -81,8 +86,7 @@
                         {{ $owner->address }}
                     </td>
                     <td>
-{{--                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>--}}
-                        <a href="#" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
                     </td>
                 </tr>
             @endforeach

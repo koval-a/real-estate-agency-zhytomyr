@@ -1,0 +1,39 @@
+
+.item-rieltor-obekt {
+
+    max-height: 50vh;
+    padding: 30px;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+.item-rieltor-obekt img {
+
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.item-rieltor-obekt h3 {
+
+    margin-bottom: -50px;
+    margin-left: -30px;
+    position: relative;
+    background: black;
+    opacity: 0.77;
+    border-radius: 30px;
+    padding: 20px;
+    width: 300px;
+    color: #fff;
+}
+
+.item-rieltor-obekt:hover {
+
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.img-rieltor-accaunt {
+    width: 100%;
+    height: 300px;
+}

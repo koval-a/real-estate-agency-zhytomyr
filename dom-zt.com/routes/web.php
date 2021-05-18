@@ -29,6 +29,7 @@ Route::get('/about-us', [PublicController::class, 'about'])->name('about');
 
 Route::get('/blog/{slug}', [PublicController::class, 'blog'])->name('blog.view');
 Route::get('/obekt/{slug}', [PublicController::class, 'obekt'])->name('obekt.view');
+Route::get('/obekts/{category}', [PublicController::class, 'category'])->name('category.view');
 
 Auth::routes();
 
@@ -57,12 +58,14 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [AdminController::class, 'indexAdmin'])->name('admin.home')->middleware('is_admin');
+    Route::any('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete');//->middleware('is_admin');
+    Route::any('/delete/rieltor/{id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
 
     Route::get('/rieltors', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
-    Route::get('/delete/rieltor/{id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
+    Route::post('/rieltors/insert', [AdminController::class, 'insertRieltor'])->name('admin.rieltor.insert')->middleware('is_admin');
 
     Route::get('/clients', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
-    Route::get('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+    Route::post('/clients/insert', [AdminController::class, 'insertClients'])->name('admin.clients.insert')->middleware('is_admin');
 
     Route::group(['prefix'=>'/obekts', 'namespace' => 'Admin'], function(){
 
