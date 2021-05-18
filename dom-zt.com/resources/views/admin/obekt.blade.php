@@ -94,7 +94,7 @@
                                 Прииховати
                             </a>
                         @else
-                            <span class="text-success">
+                            <span class="text-secondary">
                                 Приховано
                             </span>
 {{--                            <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">--}}

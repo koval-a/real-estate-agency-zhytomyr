@@ -38,6 +38,9 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
     Route::get('/dashboard', [RieltorController::class, 'index'])->name('home');
     Route::get('/my-note/delete/{id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
 
+    Route::get('/pay/true/{$id}', [RieltorController::class, 'isPay'])->name('rieltor.isPay');
+    Route::get('/pay/false/{$id}', [RieltorController::class, 'notPay'])->name('rieltor.notPay');
+
     Route::group(['prefix'=>'/my-note', 'namespace' => 'Admin'], function(){
         Route::get('/', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
         Route::post('/insert', [RieltorController::class, 'insertNote'])->name('rieltor.note.insert');

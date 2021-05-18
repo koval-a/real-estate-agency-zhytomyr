@@ -56,4 +56,12 @@ class PublicController extends Controller
 
         return view('pages.blog', compact('blog'));
     }
+
+    public function allViewObekts()
+    {
+        $obekts = Obekts::where('isPublic', '=', 1)->get();
+
+        return view('admin.all-obekt', compact('obekts'));
+
+    }
 }

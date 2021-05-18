@@ -28,6 +28,9 @@
                     <td>
                         Опис
                     </td>
+                    <td>
+                        Статус
+                    </td>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,6 +56,20 @@
                         </td>
                         <td>
                             {{ $item->description }}
+                        </td>
+                        <td>
+                            @if($item->isPay)
+                                <span class="text-success">
+                                    Продано
+                                </span>
+                                <a href="#" class="btn btn-outline-secondary">
+                                    Скасувати
+                                </a>
+                            @else
+                                <a href="#" class="btn btn-outline-success">
+                                    Продано
+                                </a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
