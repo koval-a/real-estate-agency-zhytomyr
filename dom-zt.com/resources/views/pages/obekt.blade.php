@@ -209,49 +209,122 @@
             </div>
         </section>
 
-        <section class="last-addedd">
-            <h2>Новинки</h2>
-            <div class="row">
-                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
-                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+{{--        <section class="last-addedd">--}}
+{{--            <h2>Новинки</h2>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
+{{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
 
-                    <div class="text-left">
-                        <h5 class="mt-2"><a href="#">Title</a></h5>
-                        <br> level: 1
-                        <br> $34 000
-                        <br> street: Kievska 88
-                    </div>
-                </div>
-                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
-                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+{{--                    <div class="text-left">--}}
+{{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
+{{--                        <br> level: 1--}}
+{{--                        <br> $34 000--}}
+{{--                        <br> street: Kievska 88--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
+{{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
 
-                    <div class="text-left">
-                        <h5 class="mt-2"><a href="#">Title</a></h5>
-                        <br> level: 1
-                        <br> $34 000
-                        <br> street: Kievska 88
-                    </div>
-                </div>
-                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
-                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+{{--                    <div class="text-left">--}}
+{{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
+{{--                        <br> level: 1--}}
+{{--                        <br> $34 000--}}
+{{--                        <br> street: Kievska 88--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
+{{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
 
-                    <div class="text-left">
-                        <h5 class="mt-2"><a href="#">Title</a></h5>
-                        <br> level: 1
-                        <br> $34 000
-                        <br> street: Kievska 88
-                    </div>
-                </div>
-                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
-                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+{{--                    <div class="text-left">--}}
+{{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
+{{--                        <br> level: 1--}}
+{{--                        <br> $34 000--}}
+{{--                        <br> street: Kievska 88--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
+{{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
 
-                    <div class="text-left">
-                        <h5 class="mt-2"><a href="#">Title</a></h5>
-                        <br> level: 1
-                        <br> $34 000
-                        <br> street: Kievska 88
-                    </div>
-                </div>
+{{--                    <div class="text-left">--}}
+{{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
+{{--                        <br> level: 1--}}
+{{--                        <br> $34 000--}}
+{{--                        <br> street: Kievska 88--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+
+        <section class="cards__object">
+            <div class="container">
+                <h4 class="title">
+                    Схожі обьекти
+                </h4>
+                <ul class="objects__list objects__list--cards__object">
+                    <li class="objects__item">
+                        <a href="" class="object__link">
+                            <div class="object__image">
+                                <img src="/custom/icons/квартира.jpeg" alt="" class="object__img">
+                            </div>
+                        </a>
+                        <div class="object__text--promo">
+                            <ul class="object__list">
+                                <li class="object__item object__item--title">Чуднівська, 108б</li>
+                                <li class="object__item object__item--prace">40 000$</li>
+                                <li class="object__item">Район: Корбутівка</li>
+                                <li class="object__item">К-ть кімнат: 3</li>
+                                <li class="object__item">Опалення: автономне</li>
+                                <li class="object__item">Площа: 100/75/25</li>
+                                <li class="object__item">Поверх: 3/5</li>
+                            </ul>
+                        </div>
+                        <div class="button">
+                            <a href="#" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
+                        </div>
+                    </li>
+                    <li class="objects__item">
+                        <a href="" class="object__link">
+                            <div class="object__image">
+                                <img src="/custom/icons/квартира.jpeg" alt="" class="object__img">
+                            </div>
+                        </a>
+                        <div class="object__text--promo">
+                            <ul class="object__list">
+                                <li class="object__item object__item--title">Чуднівська, 108б</li>
+                                <li class="object__item object__item--prace">40 000$</li>
+                                <li class="object__item">Район: Корбутівка</li>
+                                <li class="object__item">К-ть кімнат: 3</li>
+                                <li class="object__item">Опалення: автономне</li>
+                                <li class="object__item">Площа: 100/75/25</li>
+                                <li class="object__item">Поверх: 3/5</li>
+                            </ul>
+                        </div>
+                        <div class="button">
+                            <a href="#" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
+                        </div>
+                    </li>
+                    <li class="objects__item">
+                        <a href="" class="object__link">
+                            <div class="object__image">
+                                <img src="/custom/icons/квартира.jpeg" alt="" class="object__img">
+                            </div>
+                        </a>
+                        <div class="object__text--promo">
+                            <ul class="object__list">
+                                <li class="object__item object__item--title">Чуднівська, 108б</li>
+                                <li class="object__item object__item--prace">40 000$</li>
+                                <li class="object__item">Район: Корбутівка</li>
+                                <li class="object__item">К-ть кімнат: 3</li>
+                                <li class="object__item">Опалення: автономне</li>
+                                <li class="object__item">Площа: 100/75/25</li>
+                                <li class="object__item">Поверх: 3/5</li>
+                            </ul>
+                        </div>
+                        <div class="button">
+                            <a href="#" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
 

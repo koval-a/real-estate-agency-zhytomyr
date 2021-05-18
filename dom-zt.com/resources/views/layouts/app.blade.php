@@ -112,7 +112,7 @@
                 <div class="footer__block">
                     <div class="footer__logo">
                         <div class="footer__image">
-                            <img src="/custom/icons/logo-design.svg" alt="агенство нерухомості Житомир" class="footer__img">
+                            <img src="https://static.tildacdn.com/tild3938-3435-4465-a433-303638313134/123.png" alt="агенство нерухомості Житомир" class="footer__img">
                         </div>
                     </div>
                     <ul class="footer__contacts-list">
