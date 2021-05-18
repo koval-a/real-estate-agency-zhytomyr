@@ -29,7 +29,7 @@
                             <input type="number" class="form-control" min="1" step="1" max="99999999999" name="square" id="square" required>
                         </div>
                     </div>
-
+                    @if($category[0] != 'land')
                     <div class="d-flex">
                         <div class="col-md-6">
                             <span>К-ть кімнат</span>
@@ -52,6 +52,7 @@
                         </div>
                     </div>
                     <hr>
+                
                     <div class="d-flex justify-content-between pb-3">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="isOpalenya" name="isOpalenya" onclick="myFunction()" required>
@@ -63,22 +64,55 @@
                             <option value="Централізоване">Централізоване</option>
                         </select>
                     </div>
+                    @else
+                        Земля
+                    @endif
                     <div class="d-flex justify-content-between">
+                        @if($category[0] != 'land')
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="isNewBuild" name="isNewBuild" checked required>
                             <label class="form-check-label" for="isNewBuild">Нова будівля(Новостройка)</label>
                         </div>
+                        @endif
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="isPublic" name="isPublic" checked required>
                             <label class="form-check-label" for="isPublic">Публічність об'єкта</label>
                         </div>
                     </div>
                 </div>
+
                 <div class="location col-md-4 border p-2">
                     <h4>Фотографії</h4>
                     <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" class="img-fluid rounded shadow" alt="main image">
                     <hr>
                     <span>Додаткові фото</span>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
+                                <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
+                                <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
+                                <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
+                                <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
+                                <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="owner col-md-4 border p-2">
                     <h4>Власник</h4>
@@ -90,10 +124,10 @@
                                 <option value="$owner->id">{{$owner->name}}</option>
                             @endforeach
                         </select>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="newOwner" name="newOwner" onclick="newOwner()">
-                            <label class="form-check-label" for="newOwner">Новий власник</label>
-                        </div>
+{{--                        <div class="form-check form-switch">--}}
+{{--                            <input class="form-check-input" type="checkbox" id="newOwner" name="newOwner" onclick="newOwner()">--}}
+{{--                            <label class="form-check-label" for="newOwner">Новий власник</label>--}}
+{{--                        </div>--}}
                     </div>
                     <div class="invisible" id="isNewOwner" name="isNewOwner">
                         <h4>Новий власник</h4>

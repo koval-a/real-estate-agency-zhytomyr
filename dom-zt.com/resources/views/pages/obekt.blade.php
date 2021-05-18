@@ -35,17 +35,20 @@
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <img src="/custom/icons/комерція.jpeg" alt="" class="slide__image">
+                                        <img src="/custom/icons/комерція.jpeg" alt="image" class="slide__image">
                                     </div>
-                                    <div class="swiper-slide">Slide 2</div>
-                                    <div class="swiper-slide">Slide 3</div>
-                                    <div class="swiper-slide">Slide 4</div>
-                                    <div class="swiper-slide">Slide 5</div>
-                                    <div class="swiper-slide">Slide 6</div>
-                                    <div class="swiper-slide">Slide 7</div>
-                                    <div class="swiper-slide">Slide 8</div>
-                                    <div class="swiper-slide">Slide 9</div>
-                                    <div class="swiper-slide">Slide 10</div>
+                                    <div class="swiper-slide">
+                                        <img alt="image" class="slide__image" src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/custom/icons/комерція.jpeg" alt="image" class="slide__image">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img alt="image" class="slide__image" src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="/custom/icons/комерція.jpeg" alt="image" class="slide__image">
+                                    </div>
                                 </div>
                                 <!-- Add Pagination -->
                                 <div class="swiper-pagination"></div>
@@ -103,12 +106,14 @@
                             </div>
                             <div class="product__info--social">
                                 <h5>Поділіться обьектом в соціальних мережах:</h5>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=google.com&display=popup"> Подіитись </a>
                                 <ul class="social__list">
                                     <a href="" class="social__item--link">
                                         <div class="social__item">
                                             <img src="/custom/icons/social__viber.svg" alt="social viber" class="social__item--image">
                                         </div>
                                     </a>
+
                                     <a href="" class="social__item--link">
                                         <div class="social__item">
                                             <img src="/custom/icons/social__fb.svg" alt="social facebook" class="social__item--image">
@@ -152,8 +157,9 @@
                             <div class="plus__img">
                                 <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
                             </div>
-                            <h4 class="plus__subtitle">Досвід</h4>
+
                         </div>
+                        <h4 class="plus__subtitle">Досвід</h4>
                         <p class="plus__text">
                             За роки діяльності в сфері нерухомості ми отримали унікальний досвід роботи будь-якої складності,
                             що дає нам можливість задовольнити потреби найвибагливішого клієнта!
@@ -164,8 +170,9 @@
                             <div class="plus__img">
                                 <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
                             </div>
-                            <h4 class="plus__subtitle">Ексклюзивні об'єкти</h4>
+
                         </div>
+                        <h4 class="plus__subtitle">Ексклюзивні об'єкти</h4>
                         <p class="plus__text">
                             Наша компанія постійно нараховує сотні ексклюзивних об'єктів
                             як в місті Житомирі так і Житомирському районі, власники яких довірили продаж тільки нам.
@@ -176,8 +183,9 @@
                             <div class="plus__img">
                                 <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
                             </div>
-                            <h4 class="plus__subtitle">Швидкість</h4>
+
                         </div>
+                        <h4 class="plus__subtitle">Швидкість</h4>
                         <p class="plus__text">
                             Завдяки нашій роботі Ви зможете прискорити пошук нерухомості, покупців та швидко зареєструвати
                             угоду!
@@ -188,14 +196,61 @@
                             <div class="plus__img">
                                 <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
                             </div>
-                            <h4 class="plus__subtitle">Репутація</h4>
+
                         </div>
+                        <h4 class="plus__subtitle">Репутація</h4>
                         <p class="plus__text">
                             Подяки від клієнтів та очолення Житомирського регіонального відділення Асоціації фахівців з
                             нерухомості України - підтверджують нашу бездоганну репутацію.
                         </p>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <section class="last-addedd">
+            <h2>Новинки</h2>
+            <div class="row">
+                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
+                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+
+                    <div class="text-left">
+                        <h5 class="mt-2"><a href="#">Title</a></h5>
+                        <br> level: 1
+                        <br> $34 000
+                        <br> street: Kievska 88
+                    </div>
+                </div>
+                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
+                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+
+                    <div class="text-left">
+                        <h5 class="mt-2"><a href="#">Title</a></h5>
+                        <br> level: 1
+                        <br> $34 000
+                        <br> street: Kievska 88
+                    </div>
+                </div>
+                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
+                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+
+                    <div class="text-left">
+                        <h5 class="mt-2"><a href="#">Title</a></h5>
+                        <br> level: 1
+                        <br> $34 000
+                        <br> street: Kievska 88
+                    </div>
+                </div>
+                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">
+                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">
+
+                    <div class="text-left">
+                        <h5 class="mt-2"><a href="#">Title</a></h5>
+                        <br> level: 1
+                        <br> $34 000
+                        <br> street: Kievska 88
+                    </div>
                 </div>
             </div>
         </section>

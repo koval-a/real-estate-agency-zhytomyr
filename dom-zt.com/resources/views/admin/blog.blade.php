@@ -81,7 +81,8 @@
                         <br> <span>  {{ $item->created_at->format('Y-m-d') }}</span>
                         <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>
                         <br> {{ Str::limit($item->text, 300) }}
-                        <br> <a href="{{ route('admin.blog.delete', $item->id) }}" class="btn btn-outline-danger mt-2"><i class="fab fa-trash"></i> Видалити</a>
+                        <br> <a href="#" class="btn btn-outline-danger mt-2"><i class="fab fa-trash"></i> Видалити</a>
+{{--                        <a href="{{ route('admin.blog.delete', $item->id) }}" class="btn btn-outline-danger mt-2"><i class="fab fa-trash"></i> Видалити</a>--}}
                     </div>
 
             @endforeach

@@ -20,6 +20,13 @@
 
 
     <link rel="stylesheet" href="/custom/css/rieltor.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
 </head>
 
 <body>
@@ -78,16 +85,16 @@
                         <li class="sidebar-item  ">
                             <a href="{{ route('admin.clients') }}" class='sidebar-link'>
                                 <i class="bi bi-person"></i>
-                                <span>Клієнти</span>
+                                <span>Власники (Клієнти)</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('admin.note') }}" class='sidebar-link'>
-                                <i class="bi bi-sticky-fill"></i>
-                                <span>Нотатки</span>
-                            </a>
-                        </li>
+{{--                        <li class="sidebar-item  ">--}}
+{{--                            <a href="{{ route('admin.note') }}" class='sidebar-link'>--}}
+{{--                                <i class="bi bi-sticky-fill"></i>--}}
+{{--                                <span>Нотатки</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="sidebar-title">Блог</li>
 

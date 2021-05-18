@@ -3,11 +3,40 @@
 @section('content')
 
     <div class="reiltor mt-2 mb-5">
-        <h1>Клієнти</h1>
-        <hr>
-        <div class="container-fluid d-flex justify-content-between">
-            <p class="mt-5">Власники нерухомості</p>
-            <button class="btn btn-success m-3">Додати</button>
+
+        <div class="container-fluid">
+            <div class="info-header">
+                <h1>Власники (Клієнти)</h1>
+                <p class="">Власники нерухомості</p>
+                <hr>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#exampleModal">
+                Додати
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Новий клієнт</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="POST">
+                                <span>input field</span>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                            <button type="button" class="btn btn-primary">Додати</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <table class="table">
@@ -52,7 +81,8 @@
                         {{ $owner->address }}
                     </td>
                     <td>
-                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+{{--                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>--}}
+                        <a href="#" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
                     </td>
                 </tr>
             @endforeach
