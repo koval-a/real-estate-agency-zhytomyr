@@ -865,19 +865,7 @@ h6 {
    margin-bottom: 20px;
 }
 
-#slider-div {
-    display: flex;
-    flex-direction: row;
-    margin-top: 30px;
-}
+/*
+    Slider on Filter range price
+*/
 
-#slider-div>div {
-    margin: 8px;
-}
-
-.slider-label {
-    position: absolute;
-    background-color: #eee;
-    padding: 4px;
-    font-size: 0.75rem;
-}
