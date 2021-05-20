@@ -25,6 +25,10 @@
     <link rel="stylesheet" href="/custom/css/blog.css">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Link Slider Range CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.css" integrity="sha512-SZgE3m1he0aEF3tIxxnz/3mXu/u/wlMNxQSnE0Cni9j/O8Gs+TjM9tm1NX34nRQ7GiLwUEzwuE3Wv2FLz2667w==" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js" integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA==" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app" class="wrapper">
@@ -80,7 +84,7 @@
 
                                 @else
                                     <li class="nav__item1 nav-item dropdown" style="margin-top: -10px;">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
                                         </a>
 
@@ -88,18 +92,18 @@
 
                                             @if(Auth::user()->is_admin == 1)
                                                 <a class="dropdown-item" href="{{ route('admin.home') }}">
-                                                    Dashboard
+                                                    Дашбоард<span class="text-danger"> Адмін</span>
                                                 </a>
                                             @else
                                                 <a class="dropdown-item" href="{{ route('home') }}">
-                                                    Dashboard
+                                                    Дашбоард<span class="text-danger"> Ріелтор</span>
                                                 </a>
                                             @endif
 
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
+                                                {{ __('Вихід') }}
                                             </a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -129,17 +133,18 @@
                     </div>
                     <ul class="footer__contacts-list">
                         <a class="footer__link--adress" href="https://goo.gl/maps/9SruKiYB3DcwT1YJ6" target="_blank">
-                            <li class="footer__item footer__item--adress">м. Житомир, вул. Леха Качинського, буд. 1, офіс 55
+                            <li class="footer__item footer__item--adress">
+                                {{ Config::get('adminsettings.contact.address')}}
                             </li>
                         </a>
-                        <a class="footer__link--mail" href="mailto:zt@agensy.com" target="_blank">
-                            <li class="footer__item footer__item--mail">zt@agensy.com</li>
+                        <a class="footer__link--mail" href="mailto:{{ Config::get('adminsettings.contact.email')}}" target="_blank">
+                            <li class="footer__item footer__item--mail">{{ Config::get('adminsettings.contact.email')}}</li>
                         </a>
-                        <a class="footer__link--tel" href="tel:+3809700010101">
-                            <li class="footer__item footer__item--nomber">+3809700010101</li;>
+                        <a class="footer__link--tel" href="tel:{{ Config::get('adminsettings.contact.phone_1')}}">
+                            <li class="footer__item footer__item--nomber">{{ Config::get('adminsettings.contact.phone_1')}}</li>
                         </a>
-                        <a class="footer__link--tel" href="tel:+3809700010101">
-                            <li class="footer__item footer__item--nomber">+3809700010101</li;>
+                        <a class="footer__link--tel" href="tel:{{ Config::get('adminsettings.contact.phone_2')}}">
+                            <li class="footer__item footer__item--nomber">{{ Config::get('adminsettings.contact.phone_2')}}</li>
                         </a>
                         <li class="footer__item footer__item--social">
                             <a class="footer__link--social"

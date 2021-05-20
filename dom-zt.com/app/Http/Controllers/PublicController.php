@@ -76,10 +76,12 @@ class PublicController extends Controller
 
         $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->get();
         $location = Location::all();
-        $locationRayon = LocationCityRayon::all();
+        $locationRayon = LocationRayon::all();
+        $locationCity = LocationCity::all();
+        $locationCityRayon = LocationCityRayon::all();
 
 
-        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon'));
+        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon'));
 
     }
 

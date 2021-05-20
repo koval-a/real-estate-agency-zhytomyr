@@ -20,14 +20,15 @@ class RieltorController extends AC
 
     public function index()
     {
+        $authID = Auth::user()->id;
         // 1 - land
         // 2 - house
         // 3 - flat
         // 4 - commerce estate
-        $countLand = Obekts::where('category_id', 1)->count();
-        $countHouse = Obekts::where('category_id', 2)->count();
-        $countFlat = Obekts::where('category_id', 3)->count();
-        $countCommerceEstate = Obekts::where('category_id', 4)->count();
+        $countLand = Obekts::where('rieltor_id', $authID)->where('category_id', 3)->count();
+        $countHouse = Obekts::where('rieltor_id', $authID)->where('category_id', 2)->count();
+        $countFlat = Obekts::where('rieltor_id', $authID)->where('category_id', 1)->count();
+        $countCommerceEstate = Obekts::where('rieltor_id', $authID)->where('category_id', 4)->count();
 
         return view('rieltor.index', compact('countCommerceEstate', 'countFlat', 'countHouse', 'countLand'));
     }
@@ -132,6 +133,16 @@ class RieltorController extends AC
         $obekt->save();
 
         return back();
+    }
+
+    public function printPage()
+    {
+
+    }
+
+    public function search($query)
+    {
+
     }
 
 }

@@ -7,16 +7,93 @@
 
         <hr>
 
-        <div class="filter">
+        <div class="filter row">
             <form action="" method="GET" class="d-flex justify-content-between">
                 @csrf
-                <div class="parameters">
-                    <select class="form-control">
-                        <option value="1">1</option>
-                        <option value="1">1</option>
-                    </select>
+                <div class="parameters col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>Розташування</span>
+                            <select name="rayon_id" id="rayon_id" class="form-control">
+                                <option value="0" disabled>Оберіть район</option>
+                                @foreach($locationRayon as $key => $rayon)
+                                    <option value="{{$rayon->id}}">{{$rayon->rayon}}</option>
+                                @endforeach
+                            </select>
+                            <select name="city_id" id="city_id" class="form-control">
+                                <option value="0" disabled>Оберіть район</option>
+                                @foreach($locationCity as $key => $city)
+                                    <option value="{{$city->id}}">{{$city->city}}</option>
+                                @endforeach
+                            </select>
+                            <select name="rayon_city_id" id="rayon_city_id" class="form-control">
+                                <option value="0" disabled>Оберіть район</option>
+                                @foreach($locationCityRayon as $key => $rayon_city)
+                                    <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <span>Ціна ($)</span>
+                            <div id="slider-outer-div">
+                                <div id="slider-max-label" class="slider-label"></div>
+                                <div id="slider-min-label" class="slider-label"></div>
+                                <div id="slider-div">
+                                    <div>50 DH</div>
+                                    <div>
+                                        <input id="ex2" type="text" data-slider-min="50"
+                                               data-slider-max="2000" data-slider-value="[50,300]"
+                                               data-slider-tooltip="hide"/>
+                                    </div>
+                                    <div>2000 DH</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @switch($category->slug)
+                            @case('flat')
+                                <div class="col-md-3">
+                                    <span>Кількість кімнат</span>
+                                    <select name="count_room" id="count_room" class="form-control">
+                                        <option value="0" disabled>Оберіть к-ть кімнат</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4+</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <span>Тип опалення</span>
+                                    <select name="type_opalenya" id="type_opalenya" class="form-control">
+                                        <option value="Централізоване">Централізоване</option>
+                                        <option value="Автономне">Автономне</option>
+                                    </select>
+                                </div>
+                                @break
+                            @case('house')
+                                <div class="col-md-3">
+                                    {{$category->slug}}
+                                </div>
+                                @break
+                            @case('land')
+                                <div class="col-md-3">
+                                    {{$category->slug}}
+                                </div>
+                                @break
+                            @case('commercial-real-estate')
+                                <div class="col-md-3">
+                                    {{$category->slug}}
+                                </div>
+                                @break
+                            @default
+                                <div class="col-md-3">
+                                    <span>Даної категорії немає!</span>
+                                </div>
+
+                        @endswitch
+                    </div>
                 </div>
-                <div class="btn-set-filter">
+                <div class="btn-set-filter col-md-2">
                     <button type="submit" class="btn btn-primary">Застосувати</button>
                 </div>
             </form>
@@ -57,7 +134,8 @@
                             </ul>
                         </div>
                         <div class="link-open-obekt p-1">
-                            <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style" target="_blank">Дізнатися детальніше</a>
+                            <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style" target="_blank">Дізнатися
+                                детальніше</a>
                         </div>
                     </div>
                 </div>
@@ -70,4 +148,27 @@
         </div>
 
     </div>
+    <script>
+        const setLabel = (lbl, val) => {
+            const label = $(`#slider-${lbl}-label`);
+            label.text(val);
+            const slider = $(`#slider-div .${lbl}-slider-handle`);
+            const rect = slider[0].getBoundingClientRect();
+            label.offset({
+                top: rect.top - 30,
+                left: rect.left
+            });
+        }
+
+        const setLabels = (values) => {
+            setLabel("min", values[0]);
+            setLabel("max", values[1]);
+        }
+
+
+        $('#ex2').slider().on('slide', function (ev) {
+            setLabels(ev.value);
+        });
+        setLabels($('#ex2').attr("data-value").split(","));
+    </script>
 @endsection
