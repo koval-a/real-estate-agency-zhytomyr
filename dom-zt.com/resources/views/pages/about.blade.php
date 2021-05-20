@@ -24,6 +24,15 @@
         </div>
 
     </section>
+
+    @foreach($rieltors as $key => $rieltor)
+        {{ $rieltor->name }}
+        {{ $rieltor->avatar }}
+        {{ $rieltor->phone }}
+        {{ $rieltor->email }}
+    @endforeach
+
+
     <section class="team">
         <div class="container">
             <h4 class="team__title title">Наша команда</h4>

@@ -11,6 +11,7 @@ use App\Models\LocationRegion;
 use App\Models\Obekts;
 use App\Models\Blog;
 use App\Models\Rieltors;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -45,7 +46,9 @@ class PublicController extends Controller
 
     public function about()
     {
-        return view('pages.about');
+        $rieltors = User::where('is_admin', '=', 0)->get();
+
+        return view('pages.about', compact('rieltors'));
     }
 
     public function contact()
