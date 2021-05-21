@@ -129,7 +129,15 @@
                             <img src="/custom/icons/logo.png" alt="logo" class="img-fluid">
                         </div>
                         <div class="footer__copyright">
-                            АН "Житомир" &copy 2017- <?php echo date('Y'); ?>
+
+                                @if (Route::has('login'))
+
+                                        <a class="text-secondary mr-1" href="{{ route('login') }}">
+                                            &#127963;
+                                        </a>
+                                @endif
+
+                                АН "Житомир" &copy 2017- <?php echo date('Y'); ?>
                         </div>
                         <div class="footer__lav text-left">
                             Всі права захищені.
@@ -157,10 +165,11 @@
                             </a>
                         </li>
                         <li class="footer__contacts-item">
-                            <a class="footer__contacts__link footer__contacts__link--social__image"
+                            <a class="footer__contacts__link footer__contacts__link--social__image d-flex align-items-center justify-content-left"
                                href="https://www.facebook.com/%D0%90%D0%9D-%D0%96%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80-597840607255306/"
                                target="_blank">
-                                <img src="/custom/icons/svg__fb.svg" alt="social image facebook" class="social__img">
+                                <img src="/custom/icons/svg__fb.svg" alt="social image facebook" class="social__img1" width="30">
+                                <span class="ml-2">Facebook</span>
                             </a>
                         </li>
                     </ul>
@@ -201,11 +210,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="d-flex justify-content-center align-items-center">
-                <ul class="list-styke-none">
+            <div class="container d-flex justify-content-between align-items-center">
+                <ul class="list-styke-none m-0">
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Вхід') }}</a>
+                            <a class="nav-link p-0 text-secondary" href="{{ route('login') }}">
+                                &#127963;
+                            </a>
                         </li>
                     @endif
 

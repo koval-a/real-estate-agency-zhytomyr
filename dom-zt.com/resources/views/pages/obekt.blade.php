@@ -17,15 +17,30 @@
                     </a>
                 </div>
 
-                    <div class="breadcrumb__block">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Каталог</a></li>
-                            <li class="breadcrumb-item">
-                                <a href="#">
-                                    {{ $category ->name }}
-                                </a>
+{{--                    <div class="breadcrumb__block">--}}
+{{--                        <ul class="breadcrumb">--}}
+{{--                            <li class="breadcrumb-item"><a href="/">Каталог</a></li>--}}
+{{--                            <li class="breadcrumb-item">--}}
+{{--                                <a href="/obekts/ {{ $category ->slug }}">--}}
+{{--                                    {{ $category ->name }}--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li class="breadcrumb-item active">--}}
+{{--                                <a href="/obekt/{{ $obekt->slug }}">{{ $obekt->name }}</a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumb pl-2">
+                            <li class="p-2">&#127963;</li>
+                            <li class="bg-danger1 p-2 rounded mr-1"><a href="/" class="text-danger">Каталог</a></li>
+                            <li class="p-2">&#128073;</li>
+                            <li class="bg-danger1 p-2 rounded mr-1"><a href="/obekts/ {{ $category ->slug }}" class="text-danger">{{ $category ->name }}</a></li>
+                            <li class="p-2">&#128073;</li>
+                            <li class="bg-danger rounded p-2 active">
+                                <a href="/obekt/{{ $obekt->slug }}" class="text-white">{{ $obekt->name }}</a>
                             </li>
-                            <li class="breadcrumb-item active">{{ $obekt->name }}</li>
                         </ul>
                     </div>
 
