@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <h1>{{ $category->name }}</h1>
+        <h1 class="title">{{ $category->name }}</h1>
 
         <div class="filter row bg-white p-3 rounded">
             <form action="" method="GET" class="d-flex justify-content-between">

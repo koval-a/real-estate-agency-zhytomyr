@@ -47,7 +47,7 @@ class AdminController extends AC
 
     public function getRieltors()
     {
-        $dataRieltors = User::where('is_admin', 0)->get();
+        $dataRieltors = User::where('is_admin', 0)->orderBy('id', 'desc')->get();
 
         return view('admin.rieltor.index', compact("dataRieltors"));
     }
@@ -108,7 +108,7 @@ class AdminController extends AC
 
     public function getClients()
     {
-        $clients = Owner::all();
+        $clients = Owner::orderBy('id', 'desc')->get();
 
         return view('admin.clients', compact('clients'));
     }

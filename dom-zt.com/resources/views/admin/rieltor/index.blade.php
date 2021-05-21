@@ -34,9 +34,11 @@
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                         <span class="btn btn-primary btn-file">
-                                            Обрати… <input type="file" id="imgInp" name="imgInp" required>
+                                            Обрати…
+                                                <br><input type="file" id="imgInp" name="imgInp" required>
                                         </span>
                                     </span>
+
                                     <input type="text" class="form-control" readonly>
                                 </div>
 
@@ -77,7 +79,7 @@
                             {{ $key + 1 }}
                         </td>
                         <td>
-                            <img src="/files/images/users/{{ $rieltor->avatar }}" class="img-fluid" width="150" alt="avatar">
+                            <img src="/files/images/users/{{ $rieltor->avatar }}" class="img-fluid rounded-circle" width="75" alt="avatar">
                            {{ $rieltor->name }}
                         </td>
                         <td>

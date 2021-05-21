@@ -46,7 +46,7 @@ class PublicController extends Controller
 
     public function about()
     {
-        $rieltors = User::where('is_admin', '=', 0)->get();
+        $rieltors = User::where('is_admin', '=', 0)->orderBy('id', 'desc')->get();
 
         return view('pages.about', compact('rieltors'));
     }

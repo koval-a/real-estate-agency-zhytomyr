@@ -21,8 +21,10 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/custom/css/style.css">
     <link rel="stylesheet" href="/custom/css/blog.css">
+
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
@@ -35,7 +37,7 @@
                     <div class="container">
 
                         <a class="navbar-brand align-items-center d-flex" href="{{ url('/') }}">
-                            <img src="https://static.tildacdn.com/tild3938-3435-4465-a433-303638313134/123.png" alt="" class="logo__img2 img-fluid" width="100">
+                            <img src="/custom/icons/logo.png" alt="logo" class="logo__img2 img-fluid" width="100">
 {{--                            {{ config('app.name', 'Laravel') }}--}}
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -118,75 +120,106 @@
         <main class="py-4_ mt-5 pt-5">
             @yield('content')
         </main>
-        <hr>
-        <footer class="footer">
+        <hr class="border-danger">
+        <footer class="footer bg-light">
             <div class="container">
                 <div class="footer__block">
                     <div class="footer__logo">
                         <div class="footer__image">
-                            <img src="https://static.tildacdn.com/tild3938-3435-4465-a433-303638313134/123.png" alt="агенство нерухомості Житомир" class="footer__img">
+                            <img src="/custom/icons/logo.png" alt="logo" class="img-fluid">
+                        </div>
+                        <div class="footer__copyright">
+                            АН "Житомир" &copy 2017- <?php echo date('Y'); ?>
+                        </div>
+                        <div class="footer__lav text-left">
+                            Всі права захищені.
                         </div>
                     </div>
                     <ul class="footer__contacts-list">
-                        <a class="footer__link--adress" href="https://goo.gl/maps/9SruKiYB3DcwT1YJ6" target="_blank">
-                            <li class="footer__item footer__item--adress">
+                        <li class="footer__contacts-item">
+                            <a class="footer__contacts__link" href="https://goo.gl/maps/9SruKiYB3DcwT1YJ6" target="_blank">
                                 {{ Config::get('adminsettings.contact.address')}}
-                            </li>
-                        </a>
-                        <a class="footer__link--mail" href="mailto:{{ Config::get('adminsettings.contact.email')}}" target="_blank">
-                            <li class="footer__item footer__item--mail">{{ Config::get('adminsettings.contact.email')}}</li>
-                        </a>
-                        <a class="footer__link--tel" href="tel:{{ Config::get('adminsettings.contact.phone_1')}}">
-                            <li class="footer__item footer__item--nomber">{{ Config::get('adminsettings.contact.phone_1')}}</li>
-                        </a>
-                        <a class="footer__link--tel" href="tel:{{ Config::get('adminsettings.contact.phone_2')}}">
-                            <li class="footer__item footer__item--nomber">{{ Config::get('adminsettings.contact.phone_2')}}</li>
-                        </a>
-                        <li class="footer__item footer__item--social">
-                            <a class="footer__link--social"
+                            </a>
+                        </li>
+                        <li class="footer__contacts-item">
+                            <a class="footer__contacts__link" href="mailto:{{ Config::get('adminsettings.contact.email')}}" target="_blank">
+                                {{ Config::get('adminsettings.contact.email')}}
+                            </a>
+                        </li>
+                        <li class="footer__contacts-item">
+                            <a class="footer__contacts__link" href="tel:{{ Config::get('adminsettings.contact.phone_1')}}">
+                                {{ Config::get('adminsettings.contact.phone_1')}}
+                            </a>
+                        </li>
+                        <li class="footer__contacts-item">
+                            <a class="footer__contacts__link" href="tel:{{ Config::get('adminsettings.contact.phone_2')}}">
+                                {{ Config::get('adminsettings.contact.phone_2')}}
+                            </a>
+                        </li>
+                        <li class="footer__contacts-item">
+                            <a class="footer__contacts__link footer__contacts__link--social__image"
                                href="https://www.facebook.com/%D0%90%D0%9D-%D0%96%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80-597840607255306/"
                                target="_blank">
-                        <li class="footer__item social__image">
-                            <img src="/custom/icons/svg__fb.svg" alt="" class="social__img">
-                        </li>
-                        </a>
+                                <img src="/custom/icons/svg__fb.svg" alt="social image facebook" class="social__img">
+                            </a>
                         </li>
                     </ul>
+
                     <ul class="footer__catalog-list">
-                        <a href="./index.html" class="footer__link">Головна</a>
-                        <a href="./index.html" class="footer__link">Про нас</a>
-                        <a href="./index.html" class="footer__link">Наші послуги</a>
-                        <a href="./index.html" class="footer__link">Блог</a>
-                        <a href="./index.html" class="footer__link">Контакти</a>
+                        <li class="footer__catalog-item">
+                            <a href="/" class="footer__catalog__link">Головна</a>
+                        </li>
+                        <li class="footer__catalog-item">
+                            <a href="/about-us" class="footer__catalog__link">Про нас</a>
+                        </li>
+                        <li class="footer__catalog-item">
+                            <a href="./#services" class="footer__catalog__link">Наші послуги</a>
+                        </li>
+                        <li class="footer__catalog-item">
+                            <a href="/blog" class="footer__catalog__link">Блог</a>
+                        </li>
+                        <li class="footer__catalog-item">
+                            <a href="/contact" class="footer__catalog__link">Контакти</a>
+                        </li>
                     </ul>
                     <ul class="footer__info-list">
-                        <a href="/" class="footer__link">Каталог</a>
-                        <a href="./index.html" class="footer__link">Квартири</a>
-                        <a href="./index.html" class="footer__link">Приватний сектор</a>
-                        <a href="./index.html" class="footer__link">Земельні ділянки</a>
-                        <a href="./index.html" class="footer__link">Комерційна нерухомість</a>
+                        <li class="footer__info-item">
+                            <a href="/" class="footer__info__link">Каталог</a>
+                        </li>
+                        <li class="footer__info-item">
+                            <a href="/obekts/flat" class="footer__info__link">Квартири</a>
+                        </li>
+                        <li class="footer__info-item">
+                            <a href="/obekts/house" class="footer__info__link">Приватний сектор</a>
+                        </li>
+                        <li class="footer__info-item">
+                            <a href="/obekts/land" class="footer__info__link">Земельні ділянки</a>
+                        </li>
+                        <li class="footer__info-item">
+                            <a href="/obekts/commercial-real-estate" class="footer__info__link">Комерційна нерухомість</a>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
-                <ul class="list-styke-none d-flex">
+            <div class="d-flex justify-content-center align-items-center">
+                <ul class="list-styke-none">
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Вхід') }}</a>
                         </li>
                     @endif
 
                     @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
+                        {{--                        </li>--}}
                     @endif
                 </ul>
-            </div>
-            <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                Developed on Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                <br>
-                Made with ❤️ by <a href="https://yarik.lukyanchuk.com" style="color: #e12;"> Lukyanchuk </a>
+                <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                    {{--                    Developed on Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})--}}
+
+                    Made with ❤️ by <a href="https://yarik.lukyanchuk.com" style="color: #e12;"> Lukyanchuk </a>
+                </div>
             </div>
         </footer>
     </div>
