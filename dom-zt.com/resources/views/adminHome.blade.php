@@ -109,15 +109,21 @@
                     </div>
                 </div>
 
-                <div class="search-bar">
+                <div class="row">
+                    <div class="search-bar col-md-8">
 
-                    <form action="" method="GET" class="d-flex justify-content-center">
+                        <form action="" method="GET" class="d-flex justify-content-center">
 
-                        <input type="text" class="form-control" name="search-text" id="search-text" placeholder="Пошук об'єкта за ID, номером телефону власника">
-                        <button class="btn btn-primary w-25">Пошук</button>
+                            <input type="text" class="form-control" name="search-text" id="search-text" placeholder="Пошук об'єкта за ID, номером телефону власника">
+                            <button class="btn btn-primary w-25">Пошук</button>
 
-                    </form>
+                        </form>
 
+                    </div>
+
+                    <div class="link-all-obekt col-md-4">
+                        <a href="{{ route('admin.allView') }}" class="btn btn-danger">Всі об'єкти нерухомості</a>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -127,7 +133,7 @@
                             <h3 class="text-light1">
                                 <a href="{{ route('admin.view', 'flat') }}">Квартири</a>
                             </h3>
-                            <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="flat" class="shadow img-fluid rounded">
+                            <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="flat" class="shadow img-fluid rounded" width="600">
                         </div>
 
                     </div>
@@ -138,7 +144,7 @@
                             <h3 class="text-light">
                                 <a href="{{ route('admin.view', 'house') }}"> Будинки </a>
                             </h3>
-                            <img src="https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg" alt="house" class="shadow img-fluid rounded">
+                            <img src="https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg" alt="house" class="shadow img-fluid rounded" width="600">
                         </div>
 
                     </div>
@@ -149,7 +155,7 @@
                             <h3>
                                 <a href="{{ route('admin.view', 'land') }}">Земельні ділянки</a>
                             </h3>
-                            <img src="https://www.futurity.org/wp/wp-content/uploads/2020/01/land-use-biodiversity_1600.jpg" alt="land" class="shadow img-fluid rounded">
+                            <img src="https://www.futurity.org/wp/wp-content/uploads/2020/01/land-use-biodiversity_1600.jpg" alt="land" class="shadow img-fluid rounded" width="600">
                         </div>
 
                     </div>
@@ -160,7 +166,7 @@
                             <h3 class="text-light">
                                 <a href="{{ route('admin.view', 'commercial-real-estate') }}">Комерційна нерухомість</a>
                             </h3>
-                            <img src="https://officesnapshots.com/wp-content/uploads/2021/02/fca-eisner-amper-f.oudeman-med-05.jpg" alt="commere-estate" class="shadow img-fluid rounded">
+                            <img src="https://officesnapshots.com/wp-content/uploads/2021/02/fca-eisner-amper-f.oudeman-med-05.jpg" alt="commere-estate" class="shadow img-fluid rounded" width="600">
                         </div>
 
                     </div>

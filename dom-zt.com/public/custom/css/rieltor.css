@@ -15,15 +15,15 @@
 
 .item-rieltor-obekt h3 {
 
-    margin-bottom: -50px;
+    margin-bottom: -65px;
     margin-left: -30px;
     position: relative;
     background: black;
-    opacity: 0.77;
+    opacity: 0.8;
     border-radius: 30px;
     padding: 20px;
-    width: 300px;
-    color: #fff;
+    width: 25vw;
+    color: white;
 }
 
 .item-rieltor-obekt:hover {

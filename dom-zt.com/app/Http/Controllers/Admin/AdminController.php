@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Location;
+use App\Models\LocationCity;
+use App\Models\LocationCityRayon;
+use App\Models\LocationRayon;
+use App\Models\LocationRegion;
 use App\Models\Note;
 use App\Models\Obekts;
 use App\Users;
@@ -185,6 +190,35 @@ class AdminController extends AC
             }
         }
 
+    }
+
+    public function viewAllObekt()
+    {
+        $obekts = Obekts::orderBy('id', 'DESC')->paginate(4);
+
+        $locationRayon = LocationCityRayon::all();
+        $location = Location::all();
+
+        return view('admin.all-obekt', compact('obekts', 'location', 'locationRayon'));
+    }
+
+    public function searchObekt(Request $request)
+    {
+        $locationRayon = LocationCityRayon::all();
+        $location = Location::all();
+
+        $q = $request->input('q');
+        if($q != ""){
+            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%' )->orWhere('square', 'LIKE', '%' . $q . '%' )->paginate(5)->setPath('');
+            $pagination = $obekts->appends ( array (
+                'q' => $request->input('q')
+            ) );
+            if (count ( $obekts ) > 0)
+                return view ( 'admin.all-obekt', compact('obekts', 'location', 'locationRayon'));
+        }
+//        return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
+
+        return view('admin.blog');
     }
 
     public function newObekt($categorySlug, $categoryName)

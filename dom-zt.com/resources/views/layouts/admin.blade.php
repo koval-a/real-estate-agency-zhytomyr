@@ -71,6 +71,9 @@
                                 <li class="submenu-item ">
                                     <a href="{{ route('admin.view', 'land') }}">Земельні ділянки</a>
                                 </li>
+                                <li class="submenu-item ">
+                                    <a href="{{ route('admin.allView') }}">Всі об'єкти нерухомості</a>
+                                </li>
                             </ul>
                         </li>
 
@@ -157,12 +160,12 @@
             @yield('content')
 
             <footer>
-                <div class="footer clearfix mb-0 text-muted">
+                <div class="footer clearfix mb-0 text-muted pt-5">
                     <div class="float-start">
                         <p><?php echo date('Y');?> &copy; {{ config('app.name') }} - АГЕНТСТВО НЕРУХОМОСТІ ЖИТОМИР</p>
                     </div>
                     <div class="float-end">
-                        <p> Зроблено з <span class="text-danger"><i class="bi bi-heart"></i></span> від <a
+                        <p>Зроблено з <span class="text-danger"><i class="bi bi-heart"></i></span> від <a
                                 href="http://yarik.lukyanchuk.com">Я.Лук'янчук</a></p>
                     </div>
                 </div>

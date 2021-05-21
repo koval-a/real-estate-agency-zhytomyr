@@ -72,6 +72,8 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
     Route::group(['prefix'=>'/obekts', 'namespace' => 'Admin'], function(){
 
         Route::get('/all-obekts', [AdminController::class, 'viewAllObekt'])->name('admin.allView')->middleware('is_admin');
+        Route::any('/all-obekts/serach', [AdminController::class, 'searchObekt'])->name('admin.search')->middleware('is_admin');
+
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
         Route::get('/{slug}/{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
         Route::post('/{category}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
