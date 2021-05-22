@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Appointment;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Location;
@@ -196,25 +197,27 @@ class AdminController extends AC
     {
         $obekts = Obekts::orderBy('id', 'DESC')->paginate(4);
 
+        $appointment = Appointment::all();
         $locationRayon = LocationCityRayon::all();
         $location = Location::all();
 
-        return view('admin.all-obekt', compact('obekts', 'location', 'locationRayon'));
+        return view('admin.all-obekt', compact('obekts', 'location', 'locationRayon', 'appointment'));
     }
 
     public function searchObekt(Request $request)
     {
         $locationRayon = LocationCityRayon::all();
         $location = Location::all();
+        $appointment = Appointment::all();
 
         $q = $request->input('q');
         if($q != ""){
-            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%' )->orWhere('square', 'LIKE', '%' . $q . '%' )->paginate(5)->setPath('');
+            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%' )->orWhere('id', 'LIKE', '%' . $q . '%' )->paginate(5)->setPath('');
             $pagination = $obekts->appends ( array (
                 'q' => $request->input('q')
             ) );
             if (count ( $obekts ) > 0)
-                return view ( 'admin.all-obekt', compact('obekts', 'location', 'locationRayon'));
+                return view ( 'admin.all-obekt', compact('obekts', 'location', 'locationRayon', 'appointment'));
         }
 //        return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
 

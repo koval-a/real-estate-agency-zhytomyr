@@ -75,18 +75,20 @@
                         <div class="product__info">
                             <p class="product__info--prace">Ціна: {{ $obekt->price }}$</p>
                             <ul class="product-filter__list">
-                                <li class="product-filter__item">К-ть кімнат: {{ $obekt->count_room }}</li>
-                                <li class="product-filter__item">Поверх: {{ $obekt->level }} / {{ $obekt->count_level }}</li>
-                                <li class="product-filter__item">Площа:  {{ $obekt->square }} m2</li>
-                                <li class="product-filter__item">Опалення:
-                                    @if($obekt->isOpalenya == 1)
-                                        {{ $obekt->opalenyaName }}
-                                    @else
-                                        -
-                                    @endif
-
-                                </li>
-                                <li class="product-filter__item">Вулиця:
+                                <li class="product-filter__item">
+                                    <span class="text-secondary"> К-ть кімнат: </span>
+                                    {{ $obekt->count_room }}</li>
+                                <li class="product-filter__item">
+                                    <span class="text-secondary">Поверх:</span>
+                                     {{ $obekt->level }} / {{ $obekt->count_level }}</li>
+                                <li class="product-filter__item">
+                                    <span class="text-secondary">Площа: </span>
+                                      {{ $obekt->square }} m2</li>
+                                <li class="product-filter__item">
+                                    <span class="text-secondary">Опалення:  </span>
+                                    {{ $obekt->opalenyaName }} </li>
+                                <li class="product-filter__item">
+                                    <span class="text-secondary">Вулиця: </span>
 {{--                                    LocationID {{ $obekt->location_id }}--}}
                                     {{ $dataLocation[4] }} <br>
                                     ({{ $dataLocation[3] }}) <br>
@@ -94,6 +96,9 @@
                                     {{ $dataLocation[0] }},
                                     {{ $dataLocation[1] }},
                                     {{ $dataLocation[2] }}
+                                </li>
+                                <li>
+                                    <span class="text-secondary">Дата публікації: </span>{{ $obekt->created_at->format('Y-m-d') }}
                                 </li>
                             </ul>
                             <div class="product__info--rieltor">
@@ -104,24 +109,26 @@
                                 <br>
                                 <br>
                                 <p class="product__info--text">
-                                    Експерт з нерухомості допоможе знайти вам найкращий варіант з нашої
-                                    бази нерухомості обєктів!
+                                    Експерт з нерухомості допоможе знайти вам найкращий варіант!
                                     Отримайте безкоштовну консультацію за номером телефону:
-                                </p>
-                                <div class="rieltor__number">
-                                    <a href="tel:+3809700010000" class="rieltor__number--link-image">
-                                        <div class="phone">
-                                            <img src="/custom/icons/call.svg" alt="phone rieltor" class="phone--image">
-                                        </div>
-                                    </a>
                                     <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">
-                                       {{ $rieltor->phone }}
+                                        {{ $rieltor->phone }}
                                     </a>
-                                </div>
+                                </p>
+{{--                                <div class="rieltor__number">--}}
+{{--                                    <a href="tel:+3809700010000" class="rieltor__number--link-image">--}}
+{{--                                        <div class="phone">--}}
+{{--                                            <img src="/custom/icons/call.svg" alt="phone rieltor" class="phone--image">--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">--}}
+{{--                                       {{ $rieltor->phone }}--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
                             </div>
-                            <div class="product__info--social">
-                                <h5>Поділіться обьектом в соціальних мережах:</h5>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=google.com&display=popup"> Подіитись </a>
+                            <div class="product__info--social d-flex align-items-center ">
+{{--                                <h5>Поділіться обьектом в соціальних мережах:</h5>--}}
+                                <h5 class="mr-2">Поділитися:</h5>
                                 <ul class="social__list">
                                     <a href="" class="social__item--link">
                                         <div class="social__item">
@@ -129,7 +136,7 @@
                                         </div>
                                     </a>
 
-                                    <a href="" class="social__item--link">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=google.com&display=popup" class="social__item--link">
                                         <div class="social__item">
                                             <img src="/custom/icons/social__fb.svg" alt="social facebook" class="social__item--image">
                                         </div>
@@ -147,6 +154,12 @@
                         <h4 class="product__info--title">Опис обьекта</h4>
                         <p class="product__info--subtitle">
                             {{ $obekt->description }}
+                        </p>
+                        <p>
+                            <h4 class="rieltor__title"> {{ $rieltor->name }}</h4>
+                            <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">
+                                {{ $rieltor->phone }}
+                            </a>
                         </p>
                     </div>
 

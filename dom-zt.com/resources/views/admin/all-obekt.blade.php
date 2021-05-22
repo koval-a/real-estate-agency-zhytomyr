@@ -10,7 +10,8 @@
 
                 <form action="" method="GET" class="d-flex justify-content-center">
 
-                    <input type="text" class="form-control" name="search-text" id="search-text" placeholder="Пошук об'єкта за ID, номером телефону власника">
+                    <input type="text" class="form-control" name="search-text" id="search-text"
+                           placeholder="Пошук об'єкта за ID, номером телефону власника">
                     <button class="btn btn-primary w-25">Пошук</button>
 
                 </form>
@@ -43,14 +44,17 @@
                         #
                     </td>
                     <td>
-                        Дата
-                    </td>
-                    <td>
                         Назва
                     </td>
-                    {{--                    <td>--}}
-                    {{--                       Тип об'єкту--}}
-                    {{--                    </td>--}}
+{{--                    <td>--}}
+{{--                        Дата--}}
+{{--                    </td>--}}
+                    <td>
+                        ID
+                    </td>
+                    <td>
+                        Тип об'єкту
+                    </td>
                     <td>
                         Ціна ($)
                     </td>
@@ -77,15 +81,24 @@
                         <td>
                             {{ $key + 1 }}
                         </td>
-                        <td>
-                            {{ $item->created_at->format('Y-m-d') }}
-                        </td>
+
                         <td>
                             <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                         </td>
-                        {{--                        <td>--}}
-                        {{--                            {{ $item->type_house }}--}}
-                        {{--                        </td>--}}
+{{--                        <td>--}}
+{{--                            {{ $item->created_at->format('Y-m-d') }}--}}
+{{--                        </td>--}}
+                        <td>
+                            ID: # {{ $item->id }}
+                        </td>
+                        <td>
+                            @foreach($appointment as $key => $appoint)
+                               @if($appoint->id ==  $item->appointment_id)
+                                   <span class="text-danger">{{ $appoint->type }}</span>&#128073;
+                                    {{ $appoint->name }}
+                               @endif
+                            @endforeach
+                        </td>
                         <td>
                             {{ $item->price }}
                         </td>
@@ -95,28 +108,43 @@
                         <td>
                             {{ $item->description }}
                             <div class="d-flex">
-                                <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
+                                <a data-fancybox="gallery"
+                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
+                                    <img
+                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"
+                                        alt="picture" height="50" class="m-1">
                                 </a>
-                                <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
+                                <a data-fancybox="gallery"
+                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
+                                    <img
+                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"
+                                        alt="picture" height="50" class="m-1">
                                 </a>
-                                <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
-                                </a>
-                                <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
-                                </a>
-                                <a data-fancybox="gallery" href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
-                                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="picture" height="50" class="m-1">
-                                </a>
+{{--                                <a data-fancybox="gallery"--}}
+{{--                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">--}}
+{{--                                    <img--}}
+{{--                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"--}}
+{{--                                        alt="picture" height="50" class="m-1">--}}
+{{--                                </a>--}}
+{{--                                <a data-fancybox="gallery"--}}
+{{--                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">--}}
+{{--                                    <img--}}
+{{--                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"--}}
+{{--                                        alt="picture" height="50" class="m-1">--}}
+{{--                                </a>--}}
+{{--                                <a data-fancybox="gallery"--}}
+{{--                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">--}}
+{{--                                    <img--}}
+{{--                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"--}}
+{{--                                        alt="picture" height="50" class="m-1">--}}
+{{--                                </a>--}}
                             </div>
                         </td>
                         <td>
                             @if($item->isPublic)
                                 <span class="text-success">
                                 Опубліковано
-                            </span>
+                            </span> <br>
                                 <a href="{{route('admin.notPublic', $item->id)}}" class="btn btn-outline-secondary">
                                     Прииховати
                                 </a>
@@ -126,7 +154,7 @@
                             @else
                                 <span class="text-secondary">
                                 Приховано
-                            </span>
+                            </span> <br>
                                 <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">
                                     Опублікувати
                                 </a>

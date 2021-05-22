@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Май 18 2021 г., 20:06
+-- Время создания: Май 22 2021 г., 16:25
 -- Версия сервера: 5.7.30
 -- Версия PHP: 7.4.9
 
@@ -59,7 +59,24 @@ INSERT INTO `appointment` (`id`, `name`, `type`, `created_at`, `updated_at`) VAL
 (40, 'СТО (станція тех. обслуговування)', 'Комерційна нерухомість', NULL, NULL),
 (41, 'Фермерське господарство', 'Комерційна нерухомість', NULL, NULL),
 (42, 'Інше', 'Комерційна нерухомість', NULL, NULL),
-(43, '-none-', 'Квартира/Будинок', NULL, NULL);
+(43, '-none-', 'Квартира/Будинок', NULL, NULL),
+(44, 'Будинок', 'Будинок', NULL, NULL),
+(45, 'Частина будинку (власний двір)', 'Будинок', NULL, NULL),
+(46, 'Частина будинку (спільний двір)', 'Будинок', NULL, NULL),
+(47, 'Клубний будинок', 'Будинок', NULL, NULL),
+(48, 'Котедж', 'Будинок', NULL, NULL),
+(49, 'Дача', 'Будинок', NULL, NULL),
+(50, 'Таунхаус', 'Будинок', NULL, NULL),
+(51, 'Новобудова', 'Квартира', NULL, NULL),
+(52, 'Сталінка', 'Квартира', NULL, NULL),
+(53, 'Хрущовка', 'Квартира', NULL, NULL),
+(54, 'Чешка', 'Квартира', NULL, NULL),
+(55, 'Гуртожиток', 'Квартира', NULL, NULL),
+(56, 'Житловий фонд 80-90-і', 'Квартира', NULL, NULL),
+(57, 'Житловий фонд 91—2000-і', 'Квартира', NULL, NULL),
+(58, 'Житловий фонд 2001-2010-і', 'Квартира', NULL, NULL),
+(59, 'Житловий фонд від 2011 року', 'Квартира', NULL, NULL),
+(60, 'На етапі будівництва ', 'Квартира', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -447,7 +464,9 @@ CREATE TABLE `note` (
 
 INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `created_at`, `updated_at`) VALUES
 (5, '2021-05-10', 'Admin', 8, 1, NULL, NULL),
-(6, '2021-05-11', 'Rieltor', 8, 2, NULL, NULL);
+(7, '2021-05-18', 'uiyghjikl;\'', 10, 2, '2021-05-18 17:35:59', '2021-05-18 17:35:59'),
+(8, '2021-05-18', 'jljljjkjkljk', 9, 2, '2021-05-18 17:36:08', '2021-05-18 17:36:08'),
+(9, '2021-05-18', 'lkkkkklklkkkllkkl', 12, 2, '2021-05-18 17:36:29', '2021-05-18 17:36:29');
 
 -- --------------------------------------------------------
 
@@ -456,43 +475,39 @@ INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `c
 --
 
 CREATE TABLE `obekts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` decimal(12,2) NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
-  `square` decimal(12,2) NOT NULL,
-  `location_id` bigint(20) UNSIGNED NOT NULL,
-  `main_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isPublic` tinyint(1) NOT NULL,
-  `count_room` int(11) NOT NULL,
-  `count_level` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
-  `isOpalenya` int(11) NOT NULL,
-  `opalenyaName` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no name',
-  `isNewBuild` tinyint(1) NOT NULL,
-  `isPartHouse` tinyint(1) NOT NULL,
-  `isPartYard` tinyint(1) NOT NULL,
-  `appointment_id` bigint(20) UNSIGNED NOT NULL,
-  `rieltor_id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner_id` bigint(20) UNSIGNED NOT NULL,
-  `isPay` tinyint(4) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+                          `id` bigint(20) UNSIGNED NOT NULL,
+                          `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `price` decimal(12,2) NOT NULL,
+                          `category_id` bigint(20) UNSIGNED NOT NULL,
+                          `square` decimal(12,2) NOT NULL,
+                          `location_id` bigint(20) UNSIGNED NOT NULL,
+                          `main_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `isPublic` tinyint(1) NOT NULL,
+                          `count_room` int(11) NOT NULL,
+                          `count_level` int(11) NOT NULL,
+                          `level` int(11) NOT NULL,
+                          `opalenyaName` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no name',
+                          `appointment_id` bigint(20) UNSIGNED NOT NULL,
+                          `rieltor_id` bigint(20) UNSIGNED NOT NULL,
+                          `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `owner_id` bigint(20) UNSIGNED NOT NULL,
+                          `isPay` tinyint(4) NOT NULL,
+                          `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                          `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `obekts`
 --
 
-INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `isOpalenya`, `opalenyaName`, `isNewBuild`, `isPartHouse`, `isPartYard`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `isPay`, `created_at`, `updated_at`) VALUES
-(8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 1, 'Автономне', 0, 0, 0, 43, 1, 'flat-on-kievska', 1, 0, '2021-05-10 22:43:16', '2021-05-10 22:43:16'),
-(9, 'Будинок', 'Будиок опис', '21132.00', 2, '1233.00', 6, 'obekt.png', 1, 2, 2, 2, 1, 'Автономне', 1, 0, 1, 42, 2, 'house-new-my', 1, 0, '2021-05-18 01:48:59', '2021-05-18 01:48:59'),
-(10, 'земля', 'Земля опис', '123.00', 3, '213.00', 6, 'obekt.png', 0, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good', 2, 0, '2021-05-18 01:50:23', '2021-05-18 01:50:23'),
-(11, 'земля нова', 'Земля опис нва', '123.00', 3, '213.00', 6, 'obekt.png', 1, 0, 0, 0, 0, 'no name', 0, 0, 0, 24, 2, 'land-my-good-2', 2, 1, '2021-05-18 01:50:44', '2021-05-18 01:50:44'),
-(12, 'офіс', 'комерційна нерухрмість', '2134.00', 4, '45.00', 5, 'obekt.png', 1, 2, 5, 1, 1, 'no name', 0, 0, 0, 25, 2, 'office', 1, 0, '2021-05-18 01:52:01', '2021-05-18 01:52:01'),
-(13, 'rerfdfs', 'fsdfsdsfsffd', '32132.00', 1, '45.00', 6, 'qewew.ewqe', 1, 12, 23, 4, 1, 'Fdnjyjvyt', 1, 1, 1, 43, 2, 'dadasd-ads-ad-da-da-da', 3, 0, '2021-05-18 20:06:22', '2021-05-18 20:06:22');
+INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `opalenyaName`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `isPay`, `created_at`, `updated_at`) VALUES
+(8, 'Кваритира на Київській', 'Квартира трикімнатна на Київській, із автономним опаленням, 89м2.', '57000.00', 1, '89.00', 6, 'obekt.png', 1, 3, 5, 1, 'Автономне', 59, 1, 'flat-on-kievska', 1, 0, '2021-05-10 22:43:16', '2021-05-10 22:43:16'),
+(9, 'Будинок', 'Будиок опис', '21132.00', 2, '1233.00', 6, 'obekt.png', 1, 2, 2, 2, 'Автономне', 45, 2, 'house-new-my', 1, 0, '2021-05-18 01:48:59', '2021-05-18 01:48:59'),
+(10, 'земля', 'Земля опис', '123.00', 3, '213.00', 6, 'obekt.png', 0, 0, 0, 0, '-', 24, 2, 'land-my-good', 2, 0, '2021-05-18 01:50:23', '2021-05-18 01:50:23'),
+(11, 'земля нова', 'Земля опис нва', '123.00', 3, '213.00', 6, 'obekt.png', 1, 0, 0, 0, '-', 24, 2, 'land-my-good-2', 2, 1, '2021-05-18 01:50:44', '2021-05-18 01:50:44'),
+(12, 'офіс', 'комерційна нерухрмість', '2134.00', 4, '45.00', 5, 'obekt.png', 1, 2, 5, 1, 'Централізоване', 25, 2, 'office', 1, 0, '2021-05-18 01:52:01', '2021-05-18 01:52:01'),
+(13, 'rerfdfs', 'fsdfsdsfsffd', '32132.00', 1, '45.00', 6, 'qewew.ewqe', 1, 12, 23, 4, 'Централізоване', 54, 2, 'dadasd-ads-ad-da-da-da', 3, 0, '2021-05-18 20:06:22', '2021-05-18 20:06:22');
 
 -- --------------------------------------------------------
 
@@ -501,12 +516,12 @@ INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `squa
 --
 
 CREATE TABLE `owner` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) NOT NULL,
-  `phone` int(12) NOT NULL,
-  `address` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+                         `id` bigint(20) UNSIGNED NOT NULL,
+                         `name` varchar(191) NOT NULL,
+                         `phone` int(12) NOT NULL,
+                         `address` text NOT NULL,
+                         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                         `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -516,7 +531,7 @@ CREATE TABLE `owner` (
 INSERT INTO `owner` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at`) VALUES
 (1, 'Bob Jefri', 990010000, 'Житомир, вул.Київська 88', '2021-04-28 12:49:15', '2021-04-28 12:49:15'),
 (2, 'wqe', 990010011, 'qeqew', '2021-05-08 20:31:26', '2021-05-08 20:31:26'),
-(3, 'werwer', 980751357, 'str.Voksalnaya 24, 30', '2021-05-18 14:17:03', '2021-05-18 14:17:03');
+(3, 'werwer', 980751357, 'str.Voksa 30', '2021-05-18 14:17:03', '2021-05-18 14:17:03');
 
 -- --------------------------------------------------------
 
@@ -525,9 +540,9 @@ INSERT INTO `owner` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+                                   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -537,10 +552,10 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `settings` (
-  `id` bigint(20) NOT NULL,
-  `name` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatede_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+                            `id` bigint(20) NOT NULL,
+                            `name` text NOT NULL,
+                            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            `updatede_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -550,17 +565,17 @@ CREATE TABLE `settings` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` int(11) NOT NULL DEFAULT '0',
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
-  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                         `id` bigint(20) UNSIGNED NOT NULL,
+                         `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `is_admin` int(11) NOT NULL DEFAULT '0',
+                         `email_verified_at` timestamp NULL DEFAULT NULL,
+                         `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `avatar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
+                         `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                         `created_at` timestamp NULL DEFAULT NULL,
+                         `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -570,7 +585,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `is_admin`, `email_verified_at`, `password`, `avatar`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@dom-zt.com', 1, NULL, '$2y$10$seRtjZqJ1587f1Zvw5DmEeFS8o4lq8/JVSOUaIQAGhDrvtMxItzCK', 'avatar.png', '098-000-0001', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
 (2, 'Rieltor', 'rieltor@dom-zt.com', 0, NULL, '$2y$10$ho5KIuJxj.osCd2i/5DXZ.xx/GAXpb3V/tM2L76Ohr9UXV2trN11W', 'avatar.png', '098-000-0002', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
-(3, '123213', 'org@mail.com', 0, NULL, '$2y$10$5RWQcVN2swgGsCJTgW.ZR.bzxYeea5eOGgnU3WZFlzxsvxMD.YLvi', '1621362307.png', '213-000-1234', NULL, '2021-05-18 15:25:07', '2021-05-18 15:25:07');
+(3, 'Steve', 'steve@mail.com', 0, NULL, '$2y$10$5RWQcVN2swgGsCJTgW.ZR.bzxYeea5eOGgnU3WZFlzxsvxMD.YLvi', 'avatar.png', '213-000-1234', NULL, '2021-05-18 15:25:07', '2021-05-18 15:25:07'),
+(5, 'Артем Коваль', 'a.koval@dom-zt.com', 0, NULL, '$2y$10$ow.QH6GNqZ4Z2HBlqLwPCeZVABwIXpWNB3H.MBkrgpEeRZriIwSWK', '1621604759.png', '099-000-00-99', NULL, '2021-05-21 10:45:59', '2021-05-21 10:45:59'),
+(6, 'Анна', 'ann@dom-zt.com', 0, NULL, '$2y$10$gIpsYXyX6u/b8Zdb5UiTnusi8wlG.AbfQFkWErDO9KK7lQQRDxAdG', '1621606721.png', '098-122-2221', NULL, '2021-05-21 11:18:41', '2021-05-21 11:18:41'),
+(7, 'Ім\'я Прізвище', 'mail@dom-zt.com', 0, NULL, '$2y$10$3mZFMat.4WgkQ/n26jVuau5emNgtgATDBB8XmHA6vNLXZ2noe85w.', '1621607029.png', '098-1202-3011', NULL, '2021-05-21 11:23:49', '2021-05-21 11:23:49');
 
 --
 -- Индексы сохранённых таблиц
@@ -704,7 +722,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT для таблицы `blog_article`
@@ -770,7 +788,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `obekts`
@@ -794,7 +812,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
