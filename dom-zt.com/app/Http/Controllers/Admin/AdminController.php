@@ -229,8 +229,9 @@ class AdminController extends AC
         $category = [$categorySlug, $categoryName];
         $rieltors = Rieltors::all();
         $owners = Owner::all();
+        $typeBuild = Appointment::where('type', '=', $categorySlug)->get();
 
-        return view('admin.obekt-new', compact('category', 'rieltors', 'owners'));
+        return view('admin.obekt-new', compact('category', 'rieltors', 'owners', 'typeBuild'));
     }
 
     public static function transliterate ($string){
