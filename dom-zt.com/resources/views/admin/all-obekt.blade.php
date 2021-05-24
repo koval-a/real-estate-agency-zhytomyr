@@ -37,8 +37,8 @@
         <hr>
         <div class="all-obekt">
 
-            <table class="table">
-                <thead>
+            <table class="table table-striped">
+                <thead class="table-dark">
                 <tr class="bg-secondary text-white">
                     <td>
                         #
@@ -65,10 +65,10 @@
                         Опис
                     </td>
                     <td>
-                        Public
+                        Видимість
                     </td>
                     <td>
-                        isPay
+                        Статус
                     </td>
                     <td>
                         Дія
