@@ -230,8 +230,12 @@ class AdminController extends AC
         $rieltors = Rieltors::all();
         $owners = Owner::all();
         $typeBuild = Appointment::where('type', '=', $categorySlug)->get();
+        $rayon = LocationRayon::all();
+        $city = LocationCity::all();
+        $cityRayon = LocationCityRayon::all();
+        $location = [$rayon, $city, $cityRayon];
 
-        return view('admin.obekt-new', compact('category', 'rieltors', 'owners', 'typeBuild'));
+        return view('admin.obekt-new', compact('category', 'rieltors', 'owners', 'typeBuild', 'location'));
     }
 
     public static function transliterate ($string){
