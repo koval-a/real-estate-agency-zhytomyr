@@ -556,13 +556,14 @@ input[type="reset"] {
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 300;
-    border: 3px solid #cc4337;
+    /*font-weight: 300;*/
+    border: 2px solid #cc4337;
     color: #656366;
 }
 
 .btn--style:hover {
     color: white;
+    background: #cc4337;
 }
 
 /*section COMPANY*/

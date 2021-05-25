@@ -39,7 +39,7 @@ Auth::routes();
 Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [RieltorController::class, 'index'])->name('home');
-    Route::get('/my-note/delete/{id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
+    Route::get('/note/delete/{id}', [RieltorController::class, 'deleteNote'])->name('rieltor.note.delete');
 
     Route::get('/pay/true/{$id}', [RieltorController::class, 'isPay'])->name('rieltor.isPay');
     Route::get('/pay/false/{$id}', [RieltorController::class, 'notPay'])->name('rieltor.notPay');
@@ -60,8 +60,8 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [AdminController::class, 'indexAdmin'])->name('admin.home')->middleware('is_admin');
-    Route::any('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete');//->middleware('is_admin');
-    Route::any('/delete/rieltor/{id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
+    Route::get('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+    Route::get('/rieltors/delete/{$id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
 
     Route::get('/rieltors', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
     Route::post('/rieltors/insert', [AdminController::class, 'insertRieltor'])->name('admin.rieltor.insert')->middleware('is_admin');
@@ -82,7 +82,7 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::get('/public/false/{$id}', [AdminController::class, 'notPublic'])->name('admin.notPublic')->middleware('is_admin');
     });
 
-    Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
+//    Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
 
     Route::group(['prefix'=>'/blog', 'namespace' => 'Admin'], function(){
 
@@ -105,7 +105,6 @@ Route::get('/clear/cache', function() {
     dd("Clear Cache - Done");
 
 });
-
 Route::get('/clear/config', function() {
 
     Artisan::call('config:clear');
@@ -124,7 +123,6 @@ Route::get('/clear/route', function() {
     dd("Clear Cache Route - Done");
 
 });
-
 Route::get('/clear', function() {
 
     Artisan::call('cache:clear');  Artisan::call('config:clear');  Artisan::call('view:clear'); Artisan::call('route:clear');

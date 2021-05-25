@@ -6,7 +6,7 @@
 
         <h1>Новий об'єкт нерухомості - {{ $category[1] }}</h1>
         <hr>
-        <form action="{{ route('admin.obekt.insert', $category[0]) }}" method="POST">
+        <form action="{{ route('admin.obekt.insert', $category[0]) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="obket-info col-md-4 border p-2">
@@ -60,9 +60,10 @@
                     <hr>
                     @switch($category[0])
                         @case('land')
+                            land
                         @break
                         @case('flat')
-
+                            flat
                         @break
                         @case('house')
                         <div class="d-flex">
@@ -90,7 +91,7 @@
                         </div>
                         @break
                         @case('commercial-real-estate')
-
+                            comercial
                         @break
                         @default
                         <div class="col-md-3">
@@ -104,9 +105,17 @@
                     <h4>Фотографії</h4>
                     <hr>
 
-                    <img
-                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"
-                        class="img-fluid rounded shadow" alt="main image">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <span class="btn btn-light btn-file">
+                               <input type="file" id="imgInp" name="imgInp" required>
+                            </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                    <a data-fancybox="gallery" id='img-upload-a'>
+                        <img id='img-upload' alt="picture" class="m-1 img-fluid">
+                    </a>
                     <hr>
 
 
@@ -120,8 +129,7 @@
                     </style>
                     <div class="card">
                         <div class="card-body">
-                            <form name="images-upload-form" method="POST"  action="{{ url('upload-multiple-image-preview') }}" accept-charset="utf-8" enctype="multipart/form-data">
-                                @csrf
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -133,20 +141,22 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="mt-1 text-center">
-                                            <div class="images-preview-div"> </div>
+                                            <div class="images-preview-div">
+                                                <a id="img-upload-a-multi" data-fancybox="gallery">
+                                                    <img id="img-upload-multi" class="img-fluid">
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-                                    </div>
+
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
                     <script >
                         $(function() {
-// Multiple images preview with JavaScript
+                            // Multiple images preview with JavaScript
                             var previewImages = function(input, imgPreviewPlaceholder) {
                                 if (input.files) {
                                     var filesAmount = input.files.length;
@@ -165,17 +175,7 @@
                         });
                     </script>
                 </div>
-{{--                    <div class="row">--}}
-{{--                        <div class="col-md-3">--}}
-{{--                            <a data-fancybox="gallery"--}}
-{{--                               href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">--}}
-{{--                                <img--}}
-{{--                                    src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"--}}
-{{--                                    alt="picture" height="50" class="m-1">--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-               
+
                 <div class="owner col-md-4 border p-2">
                     <h4>Власник</h4>
                     <div class="d-flex justify-content-between">
@@ -257,6 +257,42 @@
                 }
             }
 
+            $(document).ready( function() {
+                $(document).on('change', '.btn-file :file', function() {
+                    var input = $(this),
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                    input.trigger('fileselect', [label]);
+                });
+
+                $('.btn-file :file').on('fileselect', function(event, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                        log = label;
+
+                    if( input.length ) {
+                        input.val(log);
+                    } else {
+                        if( log ) alert(log);
+                    }
+
+                });
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#img-upload').attr('src', e.target.result);
+                            $('#img-upload-a').attr('href', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#imgInp").change(function(){
+                    readURL(this);
+                });
+            });
         </script>
 
         <hr>

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container pt-5">
 
         <h1 class="title">{{ $category->name }}</h1>
 
-        <div class="filter row bg-white p-3 rounded">
+        <div class="filter row bg-white p-3 rounded shadow">
             <form action="" method="GET" class="d-flex justify-content-between">
                 @csrf
                 <div class="parameters col-md-10">
@@ -222,7 +222,7 @@
         <div class="row mt-2">
             @foreach($obekts as $key => $item)
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="shadow rounded p-2">
                         <a href="{{ route('obekt.view', $item->slug) }}" class="object__link">
                             <div class="object__image1 h-auto">
@@ -231,7 +231,7 @@
                         </a>
                         <div class="object__text--promo p-3">
                             <ul class="object__list">
-                                <li class="object__item object__item--title">{{ $item->name }}</li>
+                                <li class="object__item object__item--title title_">{{ $item->name }}</li>
                                 <li class="object__item object__item--prace">$ {{ $item->price }}</li>
                                 <li class="object__item">Район:
                                     @foreach($location as $key => $loc)
@@ -252,8 +252,7 @@
                             </ul>
                         </div>
                         <div class="link-open-obekt p-1">
-                            <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style" target="_blank">Дізнатися
-                                детальніше</a>
+                            <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style" target="_blank">Детальніше</a>
                         </div>
                     </div>
                 </div>

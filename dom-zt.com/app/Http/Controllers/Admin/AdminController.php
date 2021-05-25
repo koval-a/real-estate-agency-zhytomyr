@@ -308,7 +308,7 @@ class AdminController extends AC
         $obekt->isPublic = 1;
         $obekt->save();
 
-        return back();
+        return back()->with("success", "успішно.");
     }
 
     public function notPublic($id)

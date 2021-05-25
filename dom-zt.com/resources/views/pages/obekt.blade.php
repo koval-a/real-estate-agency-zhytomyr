@@ -36,7 +36,7 @@
                             <li class="p-2">&#127963;</li>
                             <li class="bg-danger1 p-2 rounded mr-1"><a href="/" class="text-danger">Каталог</a></li>
                             <li class="p-2">&#128073;</li>
-                            <li class="bg-danger1 p-2 rounded mr-1"><a href="/obekts/ {{ $category ->slug }}" class="text-danger">{{ $category ->name }}</a></li>
+                            <li class="bg-danger1 p-2 rounded mr-1"><a href="/obekts/{{ $category ->slug }}" class="text-danger">{{ $category ->name }}</a></li>
                             <li class="p-2">&#128073;</li>
                             <li class="bg-danger rounded p-2 active">
                                 <a href="/obekt/{{ $obekt->slug }}" class="text-white">{{ $obekt->name }}</a>
