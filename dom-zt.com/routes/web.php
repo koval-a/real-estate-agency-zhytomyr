@@ -60,8 +60,8 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [AdminController::class, 'indexAdmin'])->name('admin.home')->middleware('is_admin');
-    Route::get('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
-    Route::get('/rieltors/delete/{$id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
+    Route::get('clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+    Route::get('rieltors/delete/{$id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
 
     Route::get('/rieltors', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
     Route::post('/rieltors/insert', [AdminController::class, 'insertRieltor'])->name('admin.rieltor.insert')->middleware('is_admin');
@@ -78,8 +78,8 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::get('/{slug}/{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
         Route::post('/{category}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
 
-        Route::get('/public/true/{$id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
-        Route::get('/public/false/{$id}', [AdminController::class, 'notPublic'])->name('admin.notPublic')->middleware('is_admin');
+        Route::get('public/true/{$id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
+        Route::get('public/false/{$id}', [AdminController::class, 'notPublic'])->name('admin.notPublic')->middleware('is_admin');
     });
 
 //    Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
