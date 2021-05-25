@@ -7,7 +7,7 @@
 
             <div class="picture">
                 <img src="/files/images/blog/{{ $blog->picture }}" alt="blog-image"
-                     class="rounded shadow m-auto img-fluid">
+                     class="rounded shadow m-auto img-fluid w-100">
             </div>
 
             <div class="title pt-3">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\LocationCity;
@@ -53,12 +54,14 @@ class PublicController extends Controller
 
     public function contact()
     {
-        return view('pages.contact');
+        $rieltors = Rieltors::all();
+
+        return view('pages.contact', compact('rieltors'));
     }
 
     public function blogList()
     {
-        $blog = Blog::all();
+        $blog = Blog::orderBy('id', 'desc')->paginate(3);//->get();
 
         return view('pages.blog-list', compact('blog'));
     }
@@ -75,15 +78,41 @@ class PublicController extends Controller
         $category = Category::where('slug', '=', $categorySlug)->first();
 
         $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->get();
+        $appointments = Appointment::where('type', '=', $categorySlug)->get();
         $location = Location::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
         $locationCityRayon = LocationCityRayon::all();
 
-
-        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon'));
+        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
 
     }
 
+    public function filterForm(Request $request, $categorySlug, $categoryID)
+    {
 
+        // filters parameters basic
+        $locationRayon = $request->rayon;
+        $locationCity = $request->city;
+        $priceMin = $request->minPrice;
+        $priceMax = $request->maxPrice;
+        $square = $request->square;
+        $typeAppointment = $request->appointment_id;
+
+        // filters parameters from flat, house, commercial real estate
+        $countRoom = $request->countRoom;
+        $countLevel = $request->countLevel;
+        $level = $request->level;
+        $typeOpalenya = $request->typeOpalenya;
+
+        $data = Obekts::where('isPublic','=',1)
+            ->where('category_id','=', $categoryID)
+            ->where('level','=', $level)
+            ->where('typeOpalenya','=',$typeOpalenya)
+            ->where('','',)
+            ->pagination(10)
+            ->get();
+
+        return view('pages.all-obekts', compact('data'));
+    }
 }

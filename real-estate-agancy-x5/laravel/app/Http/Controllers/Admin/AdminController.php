@@ -16,7 +16,6 @@ use App\Users;
 use App\Models\User;
 use App\Models\Rieltors;
 use App\Models\Owner;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -239,8 +238,7 @@ class AdminController extends AC
         return view('admin.obekt-new', compact('category', 'rieltors', 'owners', 'typeBuild', 'location'));
     }
 
-    public function transliterate($string){
-
+    public static function transliterate ($string){
         $str = mb_strtolower($string, 'UTF-8');
 
         $leter_array = array(
@@ -279,72 +277,29 @@ class AdminController extends AC
         );
 
         foreach ($leter_array as $leter => $kyr){
-            $kyr = explode(',',$kyr);
+            $kyr = explode(',',$kyr); // кирилические строки разобьем в массив с разделителем запятая.
+            // в строке $str мы пытаемся отыскать символы кирилицы $kyr и все найденные совпадения заменяем на ключи $leter
             $str = str_replace($kyr, $leter, $str);
         }
 
+        // теперь необходимо учесть правильность формирования URL
+        // поиск и замена по регулярному выражению.
+        // перв. выраж. указываем рег выражение. втор.выраж. строка или массив строк для замены
+        //   //  регуляр выражение  ()+  может повторяться 1 и более раз.,   \s пробельный символ сразу же заменяется на '-'
+        // | Логическое или. либо то условие либо что указано справа от |  притом справа укажем диапазон [A-Za-z0-9-]
+        //  ^ Логическое отрицание. т.е. заменяем либо пробельный символ на тире, либо любой другой символ, что не входит в указанный диапазон.
         $str = preg_replace('/(\s|[^A-Za-z0-9-])+/', '-', $str);
-        $str = trim($str,'-');
+        $str = trim($str,'-'); // если в конце появится тире, то его удаляем.
 
         return $str;
     }
 
     public function insertObekt(Request $request, $category)
     {
+        // must be return to category page obekts
         $string = '';
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
-
-        // Basic arguments for all type real estate
-        $newObekt = new Obekts();
-        $newObekt->name = $request->name;
-        $newObekt->description = $request->description;
-        $newObekt->price = $request->price;
-        $newObekt->category_id = '';
-        $newObekt->square = $request->square;
-        $newObekt->location_id = '';
-        $newObekt->main_img = '';
-        $newObekt->isPublic = 1; // 1 - public 0 - hidden
-        $newObekt->appointment_id = $request->appointment_id;
-        $newObekt->rieltor_id = $request->rieltor_id;
-        $newObekt->slug = transliterate($request->name);
-        $newObekt->owner_id =  $request->owner_id;
-        $newObekt->isPay = 0; // 1 - sold 0 - sale
-
-        // check form type by category
-        switch($category){
-            case 'flat': {
-                $newObekt->count_room = 0;
-                $newObekt->count_level = 0;
-                $newObekt->level = 0;
-                $newObekt->opalenyaName = $request->opalenyaName;
-                break;
-            }
-            case 'house': {
-                $newObekt->count_room = 0;
-                $newObekt->count_level = 0;
-                $newObekt->level = 0;
-                $newObekt->opalenyaName = $request->opalenyaName;
-                break;
-            }
-            case 'land': {
-                break;
-            }
-            case 'commercial-real-estate': {
-                break;
-            }
-        }
-
-        // check if new owner
-
-        // save all image
-
-        if($newObekt->save())
-        {
-            return back()->with("success", "Новий об'єкт додатно успішно.");
-        }else{
-            return back()->with("error", "Виникла помилка при збережені.");
-        }
-
+        return back()->with("success", "успішно.");
     }
 
     public function isPublic($id)
@@ -353,7 +308,7 @@ class AdminController extends AC
         $obekt->isPublic = 1;
         $obekt->save();
 
-        return back()->with("success", "Успішно змінено статус.");
+        return back()->with("success", "успішно.");
     }
 
     public function notPublic($id)
@@ -362,7 +317,7 @@ class AdminController extends AC
         $obekt->isPublic = 0;
         $obekt->save();
 
-        return back()->with("success", "Успішно змінено статус.");
+        return back();
     }
 
     // END - OBEKT //

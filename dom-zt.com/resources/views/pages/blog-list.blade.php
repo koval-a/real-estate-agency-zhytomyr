@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <h1>Блог</h1>
+        <h1 class="title mt-5">Блог</h1>
 
         <div class="row">
             @foreach($blog as $key => $item)
@@ -32,6 +32,8 @@
 
             @endforeach
         </div>
+
+        {{ $blog->links() }}
 
     </div>
 @endsection

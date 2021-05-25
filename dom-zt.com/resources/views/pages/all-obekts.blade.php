@@ -36,7 +36,7 @@
 {{--                            </select>--}}
 
                         </div>
-                        <div class="col-md-3 p-0">
+                        <div class="col-md-4 p-0">
                             <span class="ml-0 pl-0">Ціна ($.тис)</span>
                             <div class="price-range p-3 row mt-1">
                                 <div class="min-price col-md-6 row">
@@ -57,24 +57,28 @@
 
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <span class="ml-0 pl-0">Площа <br>(m2)</span>
                             <div class="square mt-2">
                                 <input type="number" min="10" step="1" max="1000" class="form-control mt-2">
                             </div>
                         </div>
 
+                        <div class="col-md-3">
+                            <span>Тип <br> об'єкта</span>
+                            <select name="type_build" id="type_build" class="form-control mt-2">
+                                <option value="0">Оберіть тип</option>
+                                @foreach($appointments as $key => $appointment)
+                                    <option value="{{$appointment->id}}">{{$appointment->name}}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+
                         @switch($category->slug)
                             @case('flat')
                                 <div class="col-md-12 row">
 
-                                        <div class="type-build col-md-3">
-                                            <span>Тип будівлі</span>
-                                            <select name="type_build" id="type_build" class="form-control mt-2">
-                                                <option value="0" disabled>Оберіть тип будівлі</option>
-                                                <option value="">Значення</option>
-                                            </select>
-                                        </div>
                                         <div class="count-room col-md-2">
                                             <span>К-ть кімнат</span>
                                             <select name="count_room" id="count_room" class="form-control mt-2">
@@ -121,13 +125,6 @@
                             @case('house')
                                 <div class="col-md-12 row">
 
-                                    <div class="type-build col-md-3">
-                                        <span>Тип будівлі</span>
-                                        <select name="type_build" id="type_build" class="form-control mt-2">
-                                            <option value="0" disabled>Оберіть тип будівлі</option>
-                                            <option value="">Значення</option>
-                                        </select>
-                                    </div>
                                     <div class="count-room col-md-3">
                                         <span>Поверховість</span>
                                         <select name="count_room" id="count_room" class="form-control mt-2">
@@ -149,61 +146,77 @@
                                             <option value="4">4+</option>
                                         </select>
                                     </div>
-                                    <div class="count-room col-md-3 row">
-                                        <div class="new-build-check col-md-6">
-                                            <span>Нова будівля</span>
-                                            <div class="item-check row">
-                                                <div class="item col-md-6">
-                                                    <input type="radio" name="newBuild" value="1" class="form-control">
-                                                    <span>Так</span>
-                                                </div>
-                                                <div class="item col-md-6">
-                                                    <input type="radio" name="newBuild" value="0" checked class="form-control">
-                                                    <span>Ні</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="part-build-check col-md-6">
-                                            <span>Частина будівля</span>
-                                            <div class="item-check row">
-                                                <div class="item col-md-6">
-                                                    <input type="radio" name="partBuild" value="1" class="form-control">
-                                                    <span>Так</span>
-                                                </div>
-                                                <div class="item col-md-6">
-                                                    <input type="radio" name="partBuild" value="0" checked class="form-control">
-                                                    <span>Ні</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <span>Тип опалення</span>
+                                        <select name="type_opalenya" id="type_opalenya" class="form-control mt-2">
+                                            <option value="Централізоване">Централізоване</option>
+                                            <option value="Автономне">Автономне</option>
+                                        </select>
                                     </div>
+{{--                                    <div class="count-room col-md-6 row">--}}
+{{--                                        <div class="new-build-check col-md-6">--}}
+{{--                                            <span>Нова будівля</span>--}}
+{{--                                            <div class="item-check row">--}}
+{{--                                                <div class="item col-md-6">--}}
+{{--                                                    <input type="radio" name="newBuild" value="1" class="form-control">--}}
+{{--                                                    <span>Так</span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="item col-md-6">--}}
+{{--                                                    <input type="radio" name="newBuild" value="0" checked class="form-control">--}}
+{{--                                                    <span>Ні</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="part-build-check col-md-6">--}}
+{{--                                            <span>Частина будівля</span>--}}
+{{--                                            <div class="item-check row">--}}
+{{--                                                <div class="item col-md-6">--}}
+{{--                                                    <input type="radio" name="partBuild" value="1" class="form-control">--}}
+{{--                                                    <span>Так</span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="item col-md-6">--}}
+{{--                                                    <input type="radio" name="partBuild" value="0" checked class="form-control">--}}
+{{--                                                    <span>Ні</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                                 @break
                             @case('land')
 
                                     <div class="col-md-3 row">
 
-                                        <div class="type-build">
-                                            <span>Призначення <br> об'єкта</span>
-                                            <select name="type_build" id="type_build" class="form-control mt-2">
-                                                <option value="0" disabled>Оберіть тип призначення</option>
-                                                <option value="">Значення</option>
-                                            </select>
-                                        </div>
+{{--                                        <div class="type-build">--}}
+{{--                                            <span>Призначення <br> об'єкта</span>--}}
+{{--                                            <select name="type_build" id="type_build" class="form-control mt-2">--}}
+{{--                                                <option value="0" disabled>Оберіть тип призначення</option>--}}
+{{--                                                <option value="">Значення</option>--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
                                     </div>
 
                                 @break
                             @case('commercial-real-estate')
-                            <div class="col-md-3 row">
+                            <div class="col-md-12 row">
 
-                                <div class="type-build">
-                                    <span>Тип <br> нерухомості</span>
-                                    <select name="type_build" id="type_build" class="form-control mt-2">
-                                        <option value="0" disabled>Оберіть тип нерухомості</option>
-                                        <option value="">Значення</option>
+{{--                                <div class="type-build">--}}
+{{--                                    <span>Тип <br> нерухомості</span>--}}
+{{--                                    <select name="type_build" id="type_build" class="form-control mt-2">--}}
+{{--                                        <option value="0" disabled>Оберіть тип нерухомості</option>--}}
+{{--                                        <option value="">Значення</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+
+                                <div class="col-md-3">
+                                    <span>Тип опалення</span>
+                                    <select name="type_opalenya" id="type_opalenya" class="form-control mt-2">
+                                        <option value="Централізоване">Централізоване</option>
+                                        <option value="Автономне">Автономне</option>
                                     </select>
                                 </div>
                             </div>
+
                                 @break
                             @default
                                 <div class="col-md-3">

@@ -79,6 +79,10 @@
                 </div>
             @endif
 
+            @foreach($owner as $key => $client)
+                {{ $client->name }}
+                @endforeach
+
             <div class="content">
                 <div class="title m-b-md">
                     Laravel

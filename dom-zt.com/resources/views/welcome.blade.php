@@ -11,7 +11,7 @@
                             <div class="hero__block">
                                 <a href="{{ route('category.view', $item->slug) }}" class="hero__link">
                                     <div class="hero__image">
-                                        <img src="/custom/icons/{{$item->slug}}.jpeg" alt="" class="hero__img">
+                                        <img src="/custom/icons/{{$item->slug}}.jpeg" alt="" class="hero__img w-100 img-fluid">
                                         <div class="object__text">{{$item->name}}</div>
                                     </div>
                                 </a>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class="company__block-flex company__block-right">
-                            <h1 class="company__title">Агенство нерухомості Житомир</h1>
+                            <h1 class="company__title title">Агенство нерухомості Житомир</h1>
                             <p class="company__info">
                                 Компанія "Агенство нерухомості "Житомир" працює в місті Житомирі з 2017 року.
                             </p>
@@ -49,7 +49,7 @@
                 <div class="container">
                     <div class="company__block">
                         <div class="company__block-flex company__block-left company__block-left--services">
-                            <h2 class="company__title">Наші послуги</h2>
+                            <h2 class="company__title title">Наші послуги</h2>
                             <p class="company__info">
                                 Компанія "Агенство нерухомості "Житомир" працює в місті Житомирі з 2017 року.
                             </p>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="company__block-flex company__block-right">
-                            <h3 class="company__title company__title--cooperation">Переваги співпраці</h3>
+                            <h3 class="company__title company__title--cooperation title">Переваги співпраці</h3>
 
                             <p class="company__info">
                                 Компанія "Агенство нерухомості "Житомир" працює в місті Житомирі з 2017 року.
@@ -97,7 +97,8 @@
                         </div>
                     </div>
                 </div>
-                <section id="reviews" class="google">
+                <section id="reviews" class="h-100 p-2 bg-warning mt-2 text-center align-items-center d-flex justify-content-center" style="min-height: 400px">
+                        <code class="display-1">Google Reviews <br>integration by API</code>
                 </section>
             </section>
 

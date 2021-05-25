@@ -213,11 +213,11 @@
             <div class="container d-flex justify-content-between align-items-center">
                 <ul class="list-styke-none m-0">
                     @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link p-0 text-secondary" href="{{ route('login') }}">
-                                &#127963;
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link p-0 text-secondary" href="{{ route('login') }}">--}}
+{{--                                &#127963;--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     @endif
 
                     @if (Route::has('register'))
