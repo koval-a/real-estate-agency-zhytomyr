@@ -100,6 +100,7 @@
                 <section id="reviews" class="h-100 p-2 bg-warning mt-2 text-center align-items-center d-flex justify-content-center" style="min-height: 400px">
                         <code class="display-1">Google Reviews <br>integration by API</code>
                 </section>
+                <iframe src="https://yarik.lukyanchuk.com" frameborder="0" class="w-100" style="height: 400px"></iframe>
             </section>
 
         </div>
