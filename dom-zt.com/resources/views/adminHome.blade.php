@@ -109,20 +109,26 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="d-flex justify-content-between">
                     <div class="search-bar col-md-8">
 
-                        <form action="" method="GET" class="d-flex justify-content-center">
-
-                            <input type="text" class="form-control" name="search-text" id="search-text" placeholder="Пошук об'єкта за ID, номером телефону власника">
-                            <button class="btn btn-primary w-25">Пошук</button>
-
+                        <form action="{{ route('admin.search') }}" method="POST" role="search">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="q"
+                                       placeholder="Пошук за ID об'єкта або номером власника">
+                                <span class="input-group-btn">
+                            <button type="submit" class="btn btn-danger">
+                                Пошук
+                            </button>
+                        </span>
+                            </div>
                         </form>
 
                     </div>
 
-                    <div class="link-all-obekt col-md-4">
-                        <a href="{{ route('admin.allView') }}" class="btn btn-danger">Всі об'єкти нерухомості</a>
+                    <div class="link-all-obekt">
+                        <a href="{{ route('admin.allView') }}" class="btn btn-primary">Всі об'єкти нерухомості</a>
                     </div>
                 </div>
 

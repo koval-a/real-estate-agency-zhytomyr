@@ -162,7 +162,8 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted pt-5">
                     <div class="float-start">
-                        <p><?php echo date('Y');?> &copy; {{ config('app.name') }} - АГЕНТСТВО НЕРУХОМОСТІ ЖИТОМИР</p>
+                        <p><?php echo date('Y');?> &copy; АН "ЖИТОМИР"</p>
+{{--                        {{ config('app.name') }}--}}
                     </div>
                     <div class="float-end">
                         <p>Зроблено з <span class="text-danger"><i class="bi bi-heart"></i></span> від <a
