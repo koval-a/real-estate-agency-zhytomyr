@@ -8,32 +8,27 @@
         <div class="row">
             <div class="search-bar col-md-8">
 
-                <form action="" method="GET" class="d-flex justify-content-center">
-
-                    <input type="text" class="form-control" name="search-text" id="search-text"
-                           placeholder="Пошук об'єкта за ID, номером телефону власника">
-                    <button class="btn btn-primary w-25">Пошук</button>
-
+                <form action="{{ route('admin.search') }}" method="POST" role="search">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="q"
+                               placeholder="Пошук за ID об'єкта або номером власника">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-danger">
+                                Пошук
+                            </button>
+                        </span>
+                    </div>
                 </form>
 
             </div>
 
             <div class="link-all-obekt col-md-4">
-                <a href="{{ route('admin.allView') }}" class="btn btn-danger">Всі об'єкти нерухомості</a>
+                <a href="{{ route('admin.allView') }}" class="btn btn-primary">Очистити</a>
             </div>
         </div>
         <hr>
-        <form action="{{ route('admin.search') }}" method="POST" role="search">
-            @csrf
-            <div class="input-group">
-                <input type="text" class="form-control" name="q"
-                       placeholder="Search users"> <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div>
-        </form>
+
         <hr>
         <div class="all-obekt">
 
@@ -44,11 +39,14 @@
                         #
                     </td>
                     <td>
+                        Власник
+                    </td>
+                    <td>
                         Назва
                     </td>
-{{--                    <td>--}}
-{{--                        Дата--}}
-{{--                    </td>--}}
+                    {{--                    <td>--}}
+                    {{--                        Дата--}}
+                    {{--                    </td>--}}
                     <td>
                         ID
                     </td>
@@ -81,22 +79,30 @@
                         <td>
                             {{ $key + 1 }}
                         </td>
-
+                        <td>
+                            @foreach($owners as $key => $owner)
+                                @if( $item->owner_id == $owner->id)
+                                    {{ $owner->name }}
+                                    <br>
+                                    tel.:{{ $owner->phone }}
+                                @endif
+                            @endforeach
+                        </td>
                         <td>
                             <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                         </td>
-{{--                        <td>--}}
-{{--                            {{ $item->created_at->format('Y-m-d') }}--}}
-{{--                        </td>--}}
+                        {{--                        <td>--}}
+                        {{--                            {{ $item->created_at->format('Y-m-d') }}--}}
+                        {{--                        </td>--}}
                         <td>
                             ID: # {{ $item->id }}
                         </td>
                         <td>
                             @foreach($appointment as $key => $appoint)
-                               @if($appoint->id ==  $item->appointment_id)
-                                   <span class="text-danger">{{ $appoint->type }}</span>&#128073;
+                                @if($appoint->id ==  $item->appointment_id)
+                                    <span class="text-danger">{{ $appoint->type }}</span>&#128073;
                                     {{ $appoint->name }}
-                               @endif
+                                @endif
                             @endforeach
                         </td>
                         <td>
@@ -114,58 +120,12 @@
                                         src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"
                                         alt="picture" height="50" class="m-1">
                                 </a>
-                                <a data-fancybox="gallery"
-                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
-                                    <img
-                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"
-                                        alt="picture" height="50" class="m-1">
-                                </a>
-{{--                                <a data-fancybox="gallery"--}}
-{{--                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">--}}
-{{--                                    <img--}}
-{{--                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"--}}
-{{--                                        alt="picture" height="50" class="m-1">--}}
-{{--                                </a>--}}
-{{--                                <a data-fancybox="gallery"--}}
-{{--                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">--}}
-{{--                                    <img--}}
-{{--                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"--}}
-{{--                                        alt="picture" height="50" class="m-1">--}}
-{{--                                </a>--}}
-{{--                                <a data-fancybox="gallery"--}}
-{{--                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">--}}
-{{--                                    <img--}}
-{{--                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"--}}
-{{--                                        alt="picture" height="50" class="m-1">--}}
-{{--                                </a>--}}
                             </div>
                         </td>
                         <td>
-                            @if($item->isPublic)
-                                <span class="text-success">
-                                Опубліковано
-                            </span> <br>
-                                <a href="{{route('admin.notPublic', $item->id)}}" class="btn btn-outline-secondary">
-                                    Прииховати
-                                </a>
-                                {{--                            <a href="#" class="btn btn-outline-secondary">--}}
-                                {{--                                Прииховати--}}
-                                {{--                            </a>--}}
-                            @else
-                                <span class="text-secondary">
-                                Приховано
-                            </span> <br>
-                                <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">
-                                    Опублікувати
-                                </a>
-                                {{--                            <a href="#" class="btn btn-outline-success">--}}
-                                {{--                                Опублікувати--}}
-                                {{--                            </a>--}}
-                            @endif
-
-                            {{--                        <span class={{ $item->isPublic?'text-success':'text-warning' }}>--}}
-                            {{--                        {{ $item->isPublic?'Опубліковано':'Приховано' }}--}}
-                            {{--                        </span>--}}
+                            <span class={{ $item->isPublic?'text-success':'text-sexondary' }}>
+                                {{ $item->isPublic?'Опубліковано':'Приховано' }}
+                            </span>
                         </td>
                         <td>
                         <span class={{ $item->isPay?'text-success':'text-warning' }}>
@@ -173,7 +133,18 @@
                         </span>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+                            <div class="d-flex p-2">
+                                @if($item->isPublic)
+                                    <a href="{{route('admin.notPublic', $item->id)}}" class="btn btn-outline-secondary">
+                                        Прииховати
+                                    </a>
+                                @else
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">
+                                        Опублікувати
+                                    </a>
+                                @endif
+                                <a href="#" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

@@ -201,8 +201,9 @@ class AdminController extends AC
         $appointment = Appointment::all();
         $locationRayon = LocationCityRayon::all();
         $location = Location::all();
+        $owners = Owner::all();
 
-        return view('admin.all-obekt', compact('obekts', 'location', 'locationRayon', 'appointment'));
+        return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment'));
     }
 
     public function searchObekt(Request $request)
@@ -210,6 +211,7 @@ class AdminController extends AC
         $locationRayon = LocationCityRayon::all();
         $location = Location::all();
         $appointment = Appointment::all();
+        $owners = Owner::all();
 
         $q = $request->input('q');
         if($q != ""){
@@ -218,7 +220,7 @@ class AdminController extends AC
                 'q' => $request->input('q')
             ) );
             if (count ( $obekts ) > 0)
-                return view ( 'admin.all-obekt', compact('obekts', 'location', 'locationRayon', 'appointment'));
+                return view ( 'admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment'));
         }
 //        return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
 
