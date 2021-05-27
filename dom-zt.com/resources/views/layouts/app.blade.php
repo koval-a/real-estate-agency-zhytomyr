@@ -77,7 +77,7 @@
                                 @guest
 
                                     <li class="nav__item">
-                                        <a href="" class="nav__link nav__link--tel">+380970010001</a>
+                                        <a href="tel:+38 (096) 203 02 60" class="nav__link nav__link--tel">+38 (096) 203 02 60</a>
                                     </li>
 
                                 @else

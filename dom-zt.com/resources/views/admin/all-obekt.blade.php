@@ -28,7 +28,7 @@
             </div>
         </div>
         <hr>
-
+            Filter by type build, square, price, count room, location
         <hr>
         <div class="all-obekt">
 
@@ -135,7 +135,7 @@
                         <td>
                             <div class="d-flex p-2">
                                 @if($item->isPublic)
-                                    <a href="{{route('admin.notPublic', $item->id)}}" class="btn btn-outline-secondary">
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-secondary">
                                         Прииховати
                                     </a>
                                 @else

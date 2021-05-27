@@ -137,7 +137,9 @@ class AdminController extends AC
         $owner = Owner::find($id);
 
         if($owner->delete()){
-            return redirect('/manage/admin/clients');
+            return back()->with("success", "Власника видвлено успішно.");
+        }else{
+            return back()->with("error", "Виникла помилка видалення.");
         }
     }
 
@@ -352,38 +354,22 @@ class AdminController extends AC
     public function isPublic($id)
     {
         $obekt = Obekts::find($id);
-        $obekt->isPublic = 1;
-        $obekt->save();
 
-        return back()->with("success", "Успішно змінено статус.");
-    }
+        if($obekt->isPublic == 1){
+            $obekt->isPublic = 0;
+        }else{
+            $obekt->isPublic = 1;
+        }
 
-    public function notPublic($id)
-    {
-        $obekt = Obekts::find($id);
-        $obekt->isPublic = 0;
-        $obekt->save();
-
-        return back()->with("success", "Успішно змінено статус.");
+        if($obekt->save()){
+            return back()->with("success", "Успішно змінено статус.");
+        }else{
+            return back()->with("error", "Виникла помилка.");
+        }
     }
 
     // END - OBEKT //
 
-    // START - NOTE //
-
-    public function note()
-    {
-        $getUserID = Auth::user()->id;
-        $notes = Note::where('user_id', '=', $getUserID)->orderBy('id', 'desc')->paginate(10);
-
-        $countNotes = count($notes);
-
-        $obekts = Obekts::where('rieltor_id', '=', $getUserID)->get();
-
-        return view('admin.note', compact('notes', 'countNotes', 'obekts'));
-    }
-
-    // END - NOTE //
 
     // START - BLOG //
 

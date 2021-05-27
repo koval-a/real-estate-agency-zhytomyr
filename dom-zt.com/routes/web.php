@@ -60,29 +60,32 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [AdminController::class, 'indexAdmin'])->name('admin.home')->middleware('is_admin');
-    Route::get('clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
-    Route::get('rieltors/delete/{$id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
 
-    Route::get('/rieltors', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
-    Route::post('/rieltors/insert', [AdminController::class, 'insertRieltor'])->name('admin.rieltor.insert')->middleware('is_admin');
+    Route::group(['prefix'=>'/clients', 'namespace' => 'Admin'], function(){
 
-    Route::get('/clients', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
-    Route::post('/clients/insert', [AdminController::class, 'insertClients'])->name('admin.clients.insert')->middleware('is_admin');
+        Route::get('/', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
+        Route::post('/clients/insert', [AdminController::class, 'insertClients'])->name('admin.clients.insert')->middleware('is_admin');
+        Route::get('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+    });
+
+    Route::group(['prefix'=>'/rieltors', 'namespace' => 'Admin'], function(){
+
+        Route::get('/', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
+        Route::post('/rieltors/insert', [AdminController::class, 'insertRieltor'])->name('admin.rieltor.insert')->middleware('is_admin');
+        Route::get('/rieltors/delete/{$id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
+    });
 
     Route::group(['prefix'=>'/obekts', 'namespace' => 'Admin'], function(){
 
-        Route::get('/all-obekts', [AdminController::class, 'viewAllObekt'])->name('admin.allView')->middleware('is_admin');
-        Route::any('/all-obekts/serach', [AdminController::class, 'searchObekt'])->name('admin.search')->middleware('is_admin');
+        Route::get('/', [AdminController::class, 'viewAllObekt'])->name('admin.allView')->middleware('is_admin');
+        Route::any('/serach', [AdminController::class, 'searchObekt'])->name('admin.search')->middleware('is_admin');
 
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
         Route::get('/{slug}/{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
         Route::post('/{category}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
 
-        Route::get('public/true/{$id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
-        Route::get('public/false/{$id}', [AdminController::class, 'notPublic'])->name('admin.notPublic')->middleware('is_admin');
+        Route::get('/public/{$id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
     });
-
-//    Route::get('/note', [AdminController::class, 'note'])->name('admin.note')->middleware('is_admin');
 
     Route::group(['prefix'=>'/blog', 'namespace' => 'Admin'], function(){
 

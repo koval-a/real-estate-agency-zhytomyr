@@ -79,9 +79,19 @@
                 </div>
             @endif
 
-            @foreach($owner as $key => $client)
-                {{ $client->name }}
-                @endforeach
+                @if($owner->count() > 0)
+                    @foreach($owner as $key => $client)
+
+                        <div class="d-flex">
+                            <p>
+                                {{ $client->name }}
+                            </p>
+                            <a href="{{ route('delete', $client->id) }}">Delete</a>
+                        </div>
+                    @endforeach
+                @else
+                    don't have any
+                @endif
 
             <div class="content">
                 <div class="title m-b-md">

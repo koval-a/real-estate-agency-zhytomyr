@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/data', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/data', 'HomeController@data')->name('data');
+Route::get('/', 'HomeController@data')->name('data');
+Route::get('/delete/{$id}', 'HomeController@delete')->name('delete');
 
 Auth::routes();
 
