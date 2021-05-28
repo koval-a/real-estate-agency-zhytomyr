@@ -46,12 +46,12 @@
                     </div>
                     <hr>
                     <div class="d-flex">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <span>Ціна ($)</span>
                             <input type="number" class="form-control" min="1" step="1" max="99999999999" name="price"
                                    id="price" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <span>Площа (м2)</span>
                             <input type="number" class="form-control" min="1" step="1" max="99999999999" name="square"
                                    id="square" required>
@@ -63,11 +63,8 @@
                             land
                         @break
                         @case('flat')
-                            flat
-                        @break
-                        @case('house')
-                        <div class="d-flex">
-                            <div class="col-md-6">
+                              <div class="d-flex">
+                            <div class="col-md-5">
                                 <span>К-ть кімнат</span>
                                 <select class="form-control" id="count_room">
                                     <option>-Оберіть к-ть кімнат-</option>
@@ -82,9 +79,31 @@
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="level"
                                        id="level" required>
                             </div>
-
+                            <div class="col-md-1 d-flex justify-content-center">
+                                <span>/</span>
+                            </div>
                             <div class="col-md-3">
-                                <span>Всього</span>
+                                <span>Етажність</span>
+                                <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
+                                       id="count_level" required>
+                            </div>
+                        </div>
+                        @break
+                        @case('house')
+                        <div class="d-flex">
+                            <div class="col-md-6">
+                                <span>К-ть кімнат</span>
+                                <select class="form-control" id="count_room">
+                                    <option>-Оберіть к-ть кімнат-</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4+</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <span>К-ть поверхів</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
                                        id="count_level" required>
                             </div>

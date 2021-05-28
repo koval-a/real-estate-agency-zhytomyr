@@ -67,7 +67,7 @@
                         <div class="col-md-3">
                             <span>Тип <br> об'єкта</span>
                             <select name="type_build" id="type_build" class="form-control mt-2">
-                                <option value="0">Оберіть тип</option>
+                                <option selected disabled>Оберіть тип</option>
                                 @foreach($appointments as $key => $appointment)
                                     <option value="{{$appointment->id}}">{{$appointment->name}}</option>
                                 @endforeach
@@ -114,6 +114,7 @@
                                         <div class="col-md-3">
                                             <span>Тип опалення</span>
                                             <select name="type_opalenya" id="type_opalenya" class="form-control mt-2">
+                                                <option selected disabled="">Оберіть тип опалення</option>
                                                 <option value="Централізоване">Централізоване</option>
                                                 <option value="Автономне">Автономне</option>
                                             </select>
@@ -238,9 +239,19 @@
                 <div class="col-md-3">
                     <div class="shadow rounded p-2">
                         <a href="{{ route('obekt.view', $item->slug) }}" class="object__link">
-                            <div class="object__image1 h-auto">
-                                <img src="/custom/icons/flat.jpeg" alt="obekt-image" class="img-fluid">
+                            @if($item->isPay)
+                            <div class="is-pay m-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag text-danger" id="tag-pay" viewBox="0 0 16 16">
+                                      <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
+                                      <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
+                                </svg>
+                                <span class="text-danger">Продано</span>
                             </div>
+                            @endif
+                            <div class="object__image1 h-auto">
+                                <img src="/custom/icons/flat.jpeg" alt="obekt-image" class="img-fluid rounded">
+                            </div>
+
                         </a>
                         <div class="object__text--promo p-3">
                             <ul class="object__list">
@@ -258,10 +269,32 @@
                                     @endforeach
 
                                 </li>
-                                <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>
-                                <li class="object__item">Опалення: {{ $item->opalenyaName }}</li>
-                                <li class="object__item">Площа: {{ $item->square }}</li>
-                                <li class="object__item">Поверх: {{ $item->level }}/{{ $item->count_level }}</li>
+                                 <li class="object__item">Площа: {{ $item->square }} m2</li>
+                                
+                                   @switch($category->slug)
+                                    @case('land')
+                                        <li class="object__item">Призачення: {{ $item->appointment_id }}</li>
+                                    @break
+                                    @case('flat')div>
+                                        <li class="object__item">Тип: {{ $item->appointment_id }}</li>
+                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>
+                                        <li class="object__item">Опалення: {{ $item->opalenyaName }}</li>
+                                        <li class="object__item">Поверх: {{ $item->level }}/{{ $item->count_level }}</li>
+                                    @break
+                                    @case('house')
+                                        <li class="object__item">Тип: {{ $item->appointment_id }}</li>
+                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>
+                                    @break
+                                    @case('commercial-real-estate')
+                                        <li class="object__item">Призначення: {{ $item->appointment_id }}</li>
+                                    @break
+                                    @default
+                                    <div class="col-md-3">
+                                        <span>Даної категорії немає!</span>
+                                    </div>
+
+                                @endswitch
+                     
                             </ul>
                         </div>
                         <div class="link-open-obekt p-1">

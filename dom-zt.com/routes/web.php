@@ -40,8 +40,7 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [RieltorController::class, 'index'])->name('home');
 
-    Route::get('/pay/true/{id}', [RieltorController::class, 'isPay'])->name('rieltor.isPay');
-    Route::get('/pay/false/{id}', [RieltorController::class, 'notPay'])->name('rieltor.notPay');
+    Route::get('/pay/{id}', [RieltorController::class, 'isPay'])->name('rieltor.isPay');
 
     Route::group(['prefix'=>'/note', 'namespace' => 'Admin'], function(){
         Route::get('/', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
@@ -80,7 +79,7 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::any('/serach', [AdminController::class, 'searchObekt'])->name('admin.search')->middleware('is_admin');
 
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
-        Route::get('/{slug}/{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
+        Route::get('/{slug}-{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
         Route::post('/{category}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
 
         Route::get('/public/{id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');

@@ -52,7 +52,7 @@ class RieltorController extends AC
         $note = Note::find($id);
 
         if($note->delete()){
-            return redirect("/manage/rieltor/my-note/");
+            return back();
         }else{
             dd('Ont delete');
         }
@@ -68,7 +68,7 @@ class RieltorController extends AC
         $note->date_publish = date('Y-m-d');
 
         if($note->save()){
-            return redirect("/manage/rieltor/my-note");
+            return back();
         }
     }
 
@@ -92,7 +92,7 @@ class RieltorController extends AC
             case 'land':
             {
                 $categoryName = 'Земельні ділянки';
-                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 1)->get();
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 3)->get();
                 return view('rieltor.obekt', compact('obekts', 'categoryName'));
             }
             case 'house' :
@@ -104,7 +104,7 @@ class RieltorController extends AC
             case 'flat' :
             {
                 $categoryName = 'Квартири';
-                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 3)->get();
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 1)->get();
                 return view('rieltor.obekt', compact('obekts', 'categoryName'));
             }
             case 'commercial-real-estate' :
@@ -120,16 +120,14 @@ class RieltorController extends AC
     public function isPay($id)
     {
         $obekt = Obekts::find($id);
-        $obekt->isPay = 1;
-        $obekt->save();
 
-        return back();
-    }
+        if($obekt->isPay == 1)
+        {
+            $obekt->isPay = 0;
+        }else{
+            $obekt->isPay = 1;
+        }
 
-    public function notPay($id)
-    {
-        $obekt = Obekts::find($id);
-        $obekt->isPay = 0;
         $obekt->save();
 
         return back();

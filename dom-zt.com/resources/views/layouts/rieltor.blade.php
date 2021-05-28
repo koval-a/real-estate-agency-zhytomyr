@@ -69,7 +69,7 @@
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="/manage/rieltor/my-note" class='sidebar-link'>
+                        <a href="{{ route('rieltor.mynote') }}" class='sidebar-link'>
                             <i class="bi bi-sticky-fill"></i>
                             <span>Нотатки</span>
                         </a>

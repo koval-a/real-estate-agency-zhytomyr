@@ -7,7 +7,7 @@
         <div class="header-note d-flex justify-content-between">
             <h1 class="col-md-10">Нотатки ({{$countNotes}})</h1>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-success m-auto col-md-2" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary m-auto col-md-2" data-toggle="modal" data-target="#exampleModal">
                 Нова нотатка
             </button>
         </div>
@@ -42,7 +42,7 @@
                         {{ $note->date_publish }}
                     </td>
                     <td>
-                        <a href="/obekts/{$slug}">
+                       
                             @foreach($obekts as $key => $obk)
 
                                 @if($obk->id == $note->obekt_id)
@@ -50,13 +50,12 @@
                                 @endif
 
                             @endforeach
-                        </a>
                     </td>
                     <td>
                         {{ $note->note_text }}
                     </td>
                     <td>
-                        <a href="{{ route('rieltor.note.delete', $note->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+                        <a href="{{ route('rieltor.note.delete', $note->id) }}" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
                     </td>
                 </tr>
             @endforeach

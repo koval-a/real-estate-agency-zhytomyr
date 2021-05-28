@@ -31,6 +31,9 @@
                     <td>
                         Статус
                     </td>
+                    <td>
+                        Дія
+                    </td>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,15 +61,17 @@
                             {{ $item->description }}
                         </td>
                         <td>
+                             <span class={{ $item->isPay?'text-success':'text-warning' }}>
+                                {{ $item->isPay?'Продано':'В продажі' }}
+                            </span>
+                        </td>
+                        <td>
                             @if($item->isPay)
-                                <span class="text-success">
-                                    Продано
-                                </span>
-                                <a href="#" class="btn btn-outline-secondary">
+                                <a href="{{ route('rieltor.isPay', [$item->id]) }}" class="btn btn-secondary">
                                     Скасувати
                                 </a>
                             @else
-                                <a href="#" class="btn btn-outline-success">
+                                <a href="{{ route('rieltor.isPay', [$item->id]) }}" class="btn btn-success">
                                     Продано
                                 </a>
                             @endif
