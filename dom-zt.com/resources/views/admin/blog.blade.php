@@ -92,7 +92,7 @@
                                 {{ Str::limit($item->text, 300) }}
                             </p>
                             <div class="link-read-more d-flex">
-                                <a href="{{ route('admin.blog.delete', $item->id) }}"
+                                <a href="{{ route('admin.blog.delete', [$item->id]) }}"
                                    class="btn btn-outline-danger mt-2"><i class="fab fa-trash"></i> Видалити</a>
                             </div>
                         </div>

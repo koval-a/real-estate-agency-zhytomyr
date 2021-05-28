@@ -93,19 +93,23 @@ class AdminController extends AC
     {
         // remove
         $data = User::find($id);
-
-        $image = $data->avatar;
-        $path = public_path('files/images/users');
-
-        if(file_exists($path.$image))
-        {
-            unlink($path.$image);
-
             if($data->delete()){
 
                 return back()->with("success", "Ріелтора видалено успішно.");
             }
-        }
+
+        $image = $data->avatar;
+        $path = public_path('files/images/users');
+
+        // if(file_exists($path.$image))
+        // {
+        //     unlink($path.$image);
+
+        //     if($data->delete()){
+
+        //         return back()->with("success", "Ріелтора видалено успішно.");
+        //     }
+        // }
 
     }
 
@@ -385,19 +389,25 @@ class AdminController extends AC
     {
         $blog = Blog::find($id);
 
-        $image = $blog->picture;
-        $path = public_path('files/images/blog');
+         if($blog->delete()){
 
-        if(file_exists($path.$image))
-        {
-            unlink($path.$image);
-
-            if($blog->delete()){
-
-//                return redirect('/manage/admin/blog');
+               
                 return back()->with("success", "Пост видалено успішно.");
             }
-        }
+
+        // $image = $blog->picture;
+        // $path = public_path('files/images/blog');
+
+        // if(file_exists($path.$image))
+        // {
+        //     unlink($path.$image);
+
+        //     // if($blog->delete()){
+
+        //     //    return redirect('/manage/admin/blog');
+        //     //     // return back()->with("success", "Пост видалено успішно.");
+        //     // }
+        // }
 
     }
 

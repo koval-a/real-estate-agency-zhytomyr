@@ -40,8 +40,8 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [RieltorController::class, 'index'])->name('home');
 
-    Route::get('/pay/true/{$id}', [RieltorController::class, 'isPay'])->name('rieltor.isPay');
-    Route::get('/pay/false/{$id}', [RieltorController::class, 'notPay'])->name('rieltor.notPay');
+    Route::get('/pay/true/{id}', [RieltorController::class, 'isPay'])->name('rieltor.isPay');
+    Route::get('/pay/false/{id}', [RieltorController::class, 'notPay'])->name('rieltor.notPay');
 
     Route::group(['prefix'=>'/note', 'namespace' => 'Admin'], function(){
         Route::get('/', [RieltorController::class, 'getNote'])->name('rieltor.mynote');
@@ -64,14 +64,14 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
         Route::get('/', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
         Route::post('/clients/insert', [AdminController::class, 'insertClients'])->name('admin.clients.insert')->middleware('is_admin');
-        Route::get('/clients/delete/{$id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+        Route::get('/clients/delete/{id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
     });
 
     Route::group(['prefix'=>'/rieltors', 'namespace' => 'Admin'], function(){
 
         Route::get('/', [AdminController::class, 'getRieltors'])->name('admin.rieltors')->middleware('is_admin');
         Route::post('/rieltors/insert', [AdminController::class, 'insertRieltor'])->name('admin.rieltor.insert')->middleware('is_admin');
-        Route::get('/rieltors/delete/{$id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
+        Route::get('/rieltors/delete/{id}', [AdminController::class, 'deleteRieltor'])->name('admin.rieltor.delete')->middleware('is_admin');
     });
 
     Route::group(['prefix'=>'/obekts', 'namespace' => 'Admin'], function(){
@@ -83,13 +83,13 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::get('/{slug}/{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
         Route::post('/{category}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
 
-        Route::get('/public/{$id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
+        Route::get('/public/{id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
     });
 
     Route::group(['prefix'=>'/blog', 'namespace' => 'Admin'], function(){
 
         Route::get('/', [AdminController::class, 'getBlog'])->name('admin.blog')->middleware('is_admin');
-        Route::get('/delete/{$id}', [AdminController::class, 'deleteBlog'])->name('admin.blog.delete')->middleware('is_admin');
+        Route::get('/delete/{id}', [AdminController::class, 'deleteBlog'])->name('admin.blog.delete')->middleware('is_admin');
         Route::get('/new-post/', [AdminController::class, 'newBlog'])->name('admin.blog.new')->middleware('is_admin');
         Route::post('/insert/', [AdminController::class, 'insertBlog'])->name('admin.blog.insert')->middleware('is_admin');
 
