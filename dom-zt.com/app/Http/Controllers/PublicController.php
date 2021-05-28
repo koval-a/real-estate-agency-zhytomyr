@@ -14,6 +14,7 @@ use App\Models\Blog;
 use App\Models\Rieltors;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Jorenvh\Share\ShareFacade;
 
 class PublicController extends Controller
 {
@@ -42,7 +43,17 @@ class PublicController extends Controller
 
         $dataLocation = [$locationRegion, $locatonRayon, $locationCity, $locationCityRayon, $locationStreet, $locationNote];
 
-        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon'));
+        // https://packagist.org/packages/jorenvanhocht/laravel-share
+        // Share::currentPage()->facebook();
+
+        $linkFacebook = ShareFacade::currentPage()->facebook()->getRawLinks();
+        $linkTwitter = ShareFacade::currentPage()->twitter()->getRawLinks();
+        $linkTelegram = ShareFacade::currentPage()->telegram()->getRawLinks();
+        $linkWhatsapp = ShareFacade::currentPage()->whatsapp()->getRawLinks();
+
+        $shareButtonLink = [$linkFacebook, $linkTwitter, $linkTelegram, $linkWhatsapp];
+
+        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink'));
     }
 
     public function about()

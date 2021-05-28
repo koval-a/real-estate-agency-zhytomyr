@@ -13,7 +13,9 @@
                                 points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056">
                             </polygon>
                         </svg>
-                        <div class="button__link">Назад</div>
+                        <div class="button__link">
+                            <a href="/obekts/{{ $category ->slug }}">Назад</a>
+                        </div>
                     </a>
                 </div>
 
@@ -126,22 +128,31 @@
 {{--                                    </a>--}}
 {{--                                </div>--}}
                             </div>
-                            <div class="product__info--social d-flex align-items-center ">
+                            <div class="product__info--social">
 {{--                                <h5>Поділіться обьектом в соціальних мережах:</h5>--}}
                                 <h5 class="mr-2">Поділитися:</h5>
-                                <ul class="social__list">
-                                    <a href="" class="social__item--link">
+                                <ul class="social__list d-flex justify-content-between">
+                                    <a href="viber://forward?text=http://127.0.0.1:8000/obekt/{{$obekt->slug}}" class="social__item--link" target="_blank">
                                         <div class="social__item">
                                             <img src="/custom/icons/social__viber.svg" alt="social viber" class="social__item--image">
                                         </div>
                                     </a>
-
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=google.com&display=popup" class="social__item--link">
+                                    <a href="{{ $shareButtonLink[0] }}" class="social__item--link" target="_blank">
                                         <div class="social__item">
                                             <img src="/custom/icons/social__fb.svg" alt="social facebook" class="social__item--image">
                                         </div>
                                     </a>
-                                    <a href="" class="social__item--link">
+                                    <a href="{{ $shareButtonLink[1] }}" class="social__item--link" target="_blank">
+                                        <div class="social__item">
+                                            <img src="https://image.flaticon.com/icons/png/512/124/124021.png" alt="social twitter" class="social__item--image rounded">
+                                        </div>
+                                    </a>
+                                    <a href="{{ $shareButtonLink[3] }}" class="social__item--link" target="_blank">
+                                        <div class="social__item">
+                                            <img src="https://pics.freeicons.io/uploads/icons/png/19979306911530099344-512.png" alt="social whatsapp" class="social__item--image rounded">
+                                        </div>
+                                    </a>
+                                    <a href="{{ $shareButtonLink[2] }}" class="social__item--link" target="_blank">
                                         <div class="social__item">
                                             <img src="/custom/icons/social__telegram.svg" alt="social telegram" class="social__item--image">
                                         </div>
@@ -176,6 +187,7 @@
 
             </div>
         </section>
+
         <section class="plus">
             <div class="container">
                 <h3 class="plus__title">Чому нам довіряють?</h3>

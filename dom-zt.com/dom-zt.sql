@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 28, 2021 at 10:06 PM
+-- Generation Time: May 28, 2021 at 10:15 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -86,7 +86,7 @@ INSERT INTO `appointment` (`id`, `name`, `type`, `created_at`, `updated_at`) VAL
 
 CREATE TABLE `blog_article` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'blog.jpeg',
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,

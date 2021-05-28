@@ -391,14 +391,16 @@ class AdminController extends AC
     {
         $blog = Blog::find($id);
 
-         if($blog->delete()){
+        $image = $blog->picture;
+        $path = public_path('files/images/blog/');
+
+        unlink($path.$image);
+        
+        if($blog->delete()){
 
                
                 return back()->with("success", "Пост видалено успішно.");
-            }
-
-        // $image = $blog->picture;
-        // $path = public_path('files/images/blog');
+        }
 
         // if(file_exists($path.$image))
         // {
@@ -444,8 +446,8 @@ class AdminController extends AC
 
         // save data
         if($blog->save()){
-//            return redirect('/manage/admin/blog');
-            return back()->with("success", "Blog insert successfully.");
+           return redirect('/manage/admin/blog')->with("success", "Пост додано успішно.");
+            // return back()->with("success", "Blog insert successfully.");
         }
     }
 
