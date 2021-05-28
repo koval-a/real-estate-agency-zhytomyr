@@ -6,7 +6,7 @@
 
         <div class="container-fluid">
             <div class="info-header">
-                <h1>Власники (Клієнти)</h1>
+                <h1>Власники/Клієнти ({{ $count }})</h1>
                 <p class="">Власники нерухомості</p>
                 <hr>
             </div>
@@ -43,6 +43,8 @@
                 </div>
             </div>
         </div>
+
+        @if($clients->count() > 0)
 
         <table class="table">
             <thead>
@@ -86,13 +88,15 @@
                         {{ $owner->id }}
                     </td>
                     <td>
-                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-
+        @else
+            <span class="p-3">Записів немає.</span>
+        @endif
 
 
     </div>

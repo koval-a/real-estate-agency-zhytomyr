@@ -6,6 +6,7 @@
         <hr>
         <a href="{{ route('admin.obekt.new', $category) }}" class="btn btn-success">Додати новий об'єкт</a>
         <hr>
+         @if($obekts->count() > 0)
         <table class="table">
             <thead>
             <tr class="bg-secondary text-white">
@@ -121,5 +122,8 @@
             @endforeach
             </tbody>
         </table>
+         @else
+            <span class="p-3">Записів немає.</span>
+        @endif
     </div>
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
 
         <div class="reiltor mt-2 mb-5">
-            <h1>Ріелтори</h1>
+            <h1>Ріелтори ({{ $count }})</h1>
             <p class="">Список зареєстрованих реєлторів</p>
             <hr>
             <!-- Button trigger modal -->
@@ -88,7 +88,7 @@
                             Email: {{ $rieltor->email }}
                         </td>
                         <td>
-                            <a href="{{ route('admin.rieltor.delete', $rieltor->id) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
+                            <a href="{{ route('admin.rieltor.delete', $rieltor->id) }}" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
                         </td>
                     </tr>
                 @endforeach

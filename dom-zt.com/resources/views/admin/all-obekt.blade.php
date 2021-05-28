@@ -6,7 +6,10 @@
         <h1>Всі об'єкти нерухомості</h1>
         <hr>
         <div class="row">
-            <div class="search-bar col-md-8">
+            <div class="col-md-2">
+                <a href="#">Друк</a>
+            </div>
+            <div class="search-bar col-md-6">
 
                 <form action="{{ route('admin.search') }}" method="POST" role="search">
                     @csrf
