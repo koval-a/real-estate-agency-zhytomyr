@@ -12,6 +12,7 @@
             </button>
         </div>
         <hr>
+        @if($notes->count() > 0)
         <table class="table">
             <thead>
                 <tr class="bg-secondary text-white">
@@ -64,7 +65,7 @@
         <hr>
         {{ $notes->links() }}
         <hr>
-        @if($notes->isEmpty())
+        @else
             <span class="mt-5 p-2 rounded text-white bg-warning">У вас немає нотаток</span>
             <a href="#" class="btn btn-primary shadow">Додати нотатку</a>
         @endif
@@ -88,7 +89,7 @@
                                 <option value="0" selected>-Оберіть об'єкт-</option>
                                 @foreach($obekts as $key => $obk)
 
-                                    @if($obk->rieltor_id == $note->user_id)
+                                    @if($obk->rieltor_id == Auth::user()->id)
                                         <option value="{{$obk->id}}">{{$obk->name}}</option>
                                     @endif
 

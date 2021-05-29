@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 28, 2021 at 10:15 PM
+-- Generation Time: May 29, 2021 at 04:23 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -21,11 +21,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointment` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                               `id` bigint(20) UNSIGNED NOT NULL,
+                               `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                               `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                               `created_at` timestamp NULL DEFAULT NULL,
+                               `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -85,15 +85,15 @@ INSERT INTO `appointment` (`id`, `name`, `type`, `created_at`, `updated_at`) VAL
 --
 
 CREATE TABLE `blog_article` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'blog.jpeg',
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
-  `author_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+                                `id` bigint(20) UNSIGNED NOT NULL,
+                                `picture` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'blog.jpeg',
+                                `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                                `category_id` bigint(20) UNSIGNED NOT NULL,
+                                `author_id` bigint(20) UNSIGNED NOT NULL,
+                                `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -101,7 +101,9 @@ CREATE TABLE `blog_article` (
 --
 
 INSERT INTO `blog_article` (`id`, `picture`, `title`, `text`, `slug`, `category_id`, `author_id`, `created_at`, `updated_at`) VALUES
-(2, 'blog.jpeg', 'Blog Post 1', 'Text for test post in blog', 'test-blog', 1, 2, '2021-05-10 18:36:24', NULL);
+(10, 'blog.jpeg', 'Test blog ro delete', 'tebfjk gjksffsdf s;flksfijs df [sghbusgh asdhgs\'a f sdfnsdg\r\n sdhdfgk sfsdklf skf apfo iakdpasd\r\n jghsdkjf s fj[padfji ruthokauh f\'a\r\nf ghdkfsdfghsdk kffskdjgjksdljfsh fhsdklfjsldfh a\'ofh asfjseihjeo jdfnasklf basjfk sihf \r\njgb dlf a;jf argmsl ghsrighwopehgsd jijffjfj \'a. \' f\\f o', 'test-blog-article-2-for-delete', 2, 1, '2021-05-28 19:15:38', '2021-05-28 19:15:38'),
+(11, '1622304286.jpg', 'Test', 'asd', 'ads', 2, 1, '2021-05-29 13:04:46', '2021-05-29 13:04:46'),
+(13, 'blog.jpeg', 'ads', 'asdasda', 'asdasdasdasdasd', 2, 1, '2021-05-29 13:07:14', '2021-05-29 13:07:14');
 
 -- --------------------------------------------------------
 
@@ -350,10 +352,10 @@ INSERT INTO `location_city_rayon` (`id`, `rayon_city`, `created_at`, `updated_at
 --
 
 CREATE TABLE `location_rayon` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `rayon` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+                                  `id` bigint(20) UNSIGNED NOT NULL,
+                                  `rayon` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                                  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -394,10 +396,10 @@ INSERT INTO `location_rayon` (`id`, `rayon`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `location_region` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `region` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                                   `id` bigint(20) UNSIGNED NOT NULL,
+                                   `region` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                   `created_at` timestamp NULL DEFAULT NULL,
+                                   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -414,9 +416,9 @@ INSERT INTO `location_region` (`id`, `region`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+                              `id` int(10) UNSIGNED NOT NULL,
+                              `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                              `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -446,13 +448,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `note` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `date_publish` date NOT NULL,
-  `note_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `obekt_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                        `id` bigint(20) UNSIGNED NOT NULL,
+                        `date_publish` date NOT NULL,
+                        `note_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                        `obekt_id` bigint(20) UNSIGNED NOT NULL,
+                        `user_id` bigint(20) UNSIGNED NOT NULL,
+                        `created_at` timestamp NULL DEFAULT NULL,
+                        `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -460,7 +462,7 @@ CREATE TABLE `note` (
 --
 
 INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(13, '2021-05-28', 'Sale 15% after 1 week on website', 15, 2, '2021-05-28 19:06:01', '2021-05-28 19:06:01');
+(2, '2021-05-03', 'dsmbfnsmndf', 16, 7, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -469,26 +471,26 @@ INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `c
 --
 
 CREATE TABLE `obekts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` decimal(12,2) NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
-  `square` decimal(12,2) NOT NULL,
-  `location_id` bigint(20) UNSIGNED NOT NULL,
-  `main_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isPublic` tinyint(1) NOT NULL,
-  `count_room` int(11) NOT NULL,
-  `count_level` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
-  `opalenyaName` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no name',
-  `appointment_id` bigint(20) UNSIGNED NOT NULL,
-  `rieltor_id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner_id` bigint(20) UNSIGNED NOT NULL,
-  `isPay` tinyint(4) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+                          `id` bigint(20) UNSIGNED NOT NULL,
+                          `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `price` decimal(12,2) NOT NULL,
+                          `category_id` bigint(20) UNSIGNED NOT NULL,
+                          `square` decimal(12,2) NOT NULL,
+                          `location_id` bigint(20) UNSIGNED NOT NULL,
+                          `main_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `isPublic` tinyint(1) NOT NULL,
+                          `count_room` int(11) NOT NULL,
+                          `count_level` int(11) NOT NULL,
+                          `level` int(11) NOT NULL,
+                          `opalenyaName` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'no name',
+                          `appointment_id` bigint(20) UNSIGNED NOT NULL,
+                          `rieltor_id` bigint(20) UNSIGNED NOT NULL,
+                          `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                          `owner_id` bigint(20) UNSIGNED NOT NULL,
+                          `isPay` tinyint(4) NOT NULL,
+                          `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                          `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -497,7 +499,6 @@ CREATE TABLE `obekts` (
 
 INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `opalenyaName`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `isPay`, `created_at`, `updated_at`) VALUES
 (14, 'Office', 'Офіс для Житомира', '23000.00', 4, '45.00', 5, 'main.png', 1, 1, 3, 1, 'no name', 29, 5, 'office-zt', 5, 0, '2021-05-28 20:43:19', '2021-05-28 17:44:46'),
-(15, 'Земельна ділянка', 'Земельна ділянка Земельна ділянка Земельна ділянка', '23112.00', 3, '123321.00', 6, 'main.png', 1, 0, 0, 0, 'no name', 22, 2, 'land-for-water', 4, 1, '2021-05-28 21:19:06', '2021-05-28 18:59:09'),
 (16, 'Flat', 'Flat - Квартира', '56392.00', 1, '312.00', 6, 'main.png', 1, 4, 21, 3, 'no name', 51, 7, 'flat-premium-park', 4, 0, '2021-05-28 21:30:08', '2021-05-28 21:30:08');
 
 -- --------------------------------------------------------
@@ -507,12 +508,12 @@ INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `squa
 --
 
 CREATE TABLE `owner` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) NOT NULL,
-  `phone` int(12) NOT NULL,
-  `address` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+                         `id` bigint(20) UNSIGNED NOT NULL,
+                         `name` varchar(191) NOT NULL,
+                         `phone` int(12) NOT NULL,
+                         `address` text NOT NULL,
+                         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                         `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -530,9 +531,9 @@ INSERT INTO `owner` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+                                   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                                   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -542,10 +543,10 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `settings` (
-  `id` bigint(20) NOT NULL,
-  `name` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatede_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+                            `id` bigint(20) NOT NULL,
+                            `name` text NOT NULL,
+                            `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            `updatede_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -555,17 +556,17 @@ CREATE TABLE `settings` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_admin` int(11) NOT NULL DEFAULT '0',
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
-  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+                         `id` bigint(20) UNSIGNED NOT NULL,
+                         `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `is_admin` int(11) NOT NULL DEFAULT '0',
+                         `email_verified_at` timestamp NULL DEFAULT NULL,
+                         `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `avatar` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
+                         `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+                         `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                         `created_at` timestamp NULL DEFAULT NULL,
+                         `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -574,7 +575,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `is_admin`, `email_verified_at`, `password`, `avatar`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@dom-zt.com', 1, NULL, '$2y$10$seRtjZqJ1587f1Zvw5DmEeFS8o4lq8/JVSOUaIQAGhDrvtMxItzCK', 'avatar.png', '098-000-0001', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
-(2, 'Rieltor', 'rieltor@dom-zt.com', 0, NULL, '$2y$10$ho5KIuJxj.osCd2i/5DXZ.xx/GAXpb3V/tM2L76Ohr9UXV2trN11W', 'avatar.png', '098-000-0002', NULL, '2021-04-26 18:55:07', '2021-04-26 18:55:07'),
 (5, 'Артем Коваль', 'a.koval@dom-zt.com', 0, NULL, '$2y$10$ow.QH6GNqZ4Z2HBlqLwPCeZVABwIXpWNB3H.MBkrgpEeRZriIwSWK', '1621604759.png', '099-000-00-99', NULL, '2021-05-21 10:45:59', '2021-05-21 10:45:59'),
 (6, 'Анна', 'ann@dom-zt.com', 0, NULL, '$2y$10$gIpsYXyX6u/b8Zdb5UiTnusi8wlG.AbfQFkWErDO9KK7lQQRDxAdG', '1621606721.png', '098-122-2221', NULL, '2021-05-21 11:18:41', '2021-05-21 11:18:41'),
 (7, 'Ім\'я Прізвище', 'mail@dom-zt.com', 0, NULL, '$2y$10$3mZFMat.4WgkQ/n26jVuau5emNgtgATDBB8XmHA6vNLXZ2noe85w.', '1621607029.png', '098-1202-3011', NULL, '2021-05-21 11:23:49', '2021-05-21 11:23:49');
@@ -717,7 +717,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `blog_article`
 --
 ALTER TABLE `blog_article`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `blog_category`
@@ -777,7 +777,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `obekts`
@@ -789,7 +789,7 @@ ALTER TABLE `obekts`
 -- AUTO_INCREMENT for table `owner`
 --
 ALTER TABLE `owner`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `settings`

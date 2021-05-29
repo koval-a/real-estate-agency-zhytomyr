@@ -4,6 +4,7 @@
     <div class="container-fluid">
         <h1>{{$categoryName}}</h1>
         <hr>
+        @if($obekts->count() > 0)
         <table class="table">
                 <thead>
                 <tr class="bg-secondary text-white">
@@ -83,5 +84,8 @@
         <hr>
         {{ $obekts->links() }}
         <hr>
+        @else
+            <span class="mt-5 p-2 rounded text-white bg-warning">У вас немає об'єктів нерухомості.</span>
+        @endif
     </div>
 @endsection

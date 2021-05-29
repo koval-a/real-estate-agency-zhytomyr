@@ -37,8 +37,6 @@ class RieltorController extends AC
     {
         $getUserID = Auth::user()->id;
         $notes = Note::where('user_id', '=', $getUserID)->orderBy('id', 'desc')->paginate(10);
-//        $obekts = Obekts::where('rieltor_id', '=', $getUserID)->get();
-//        $notes = $obekts->note;
 
         $countNotes = count($notes);
 
