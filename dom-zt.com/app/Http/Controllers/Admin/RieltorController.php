@@ -74,7 +74,7 @@ class RieltorController extends AC
 
     public function showObekt($slug)
     {
-        $obekt = Obekts::where('slug', '=', $slug)->get();
+        $obekt = Obekts::where('slug', '=', $slug)->first();
 
         return view('pages.obekt', compact('obekt'));
     }
@@ -92,25 +92,25 @@ class RieltorController extends AC
             case 'land':
             {
                 $categoryName = 'Земельні ділянки';
-                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 3)->get();
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 3)->paginate(10);
                 return view('rieltor.obekt', compact('obekts', 'categoryName'));
             }
             case 'house' :
             {
                 $categoryName = 'Будинки';
-                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 2)->get();
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 2)->paginate(10);
                 return view('rieltor.obekt', compact('obekts', 'categoryName'));
             }
             case 'flat' :
             {
                 $categoryName = 'Квартири';
-                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 1)->get();
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 1)->paginate(10);
                 return view('rieltor.obekt', compact('obekts', 'categoryName'));
             }
             case 'commercial-real-estate' :
             {
                 $categoryName = 'Комерційна нерухомість';
-                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 4)->get();
+                $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 4)->paginate(10);
                 return view('rieltor.obekt', compact('obekts', 'categoryName'));
             }
         }

@@ -72,7 +72,7 @@ class PublicController extends Controller
 
     public function blogList()
     {
-        $blog = Blog::orderBy('id', 'desc')->paginate(3);//->get();
+        $blog = Blog::orderBy('id', 'desc')->paginate(10);//->get();
 
         return view('pages.blog-list', compact('blog'));
     }
@@ -88,7 +88,7 @@ class PublicController extends Controller
     {
         $category = Category::where('slug', '=', $categorySlug)->first();
 
-        $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->get();
+        $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->paginate(10);
         $appointments = Appointment::where('type', '=', $categorySlug)->get();
         $location = Location::all();
         $locationRayon = LocationRayon::all();

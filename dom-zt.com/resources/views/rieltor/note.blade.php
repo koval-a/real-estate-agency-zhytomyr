@@ -42,7 +42,7 @@
                         {{ $note->date_publish }}
                     </td>
                     <td>
-                       
+
                             @foreach($obekts as $key => $obk)
 
                                 @if($obk->id == $note->obekt_id)
@@ -61,7 +61,9 @@
             @endforeach
             </tbody>
         </table>
-{{--        {{ $notes->links() }}--}}
+        <hr>
+        {{ $notes->links() }}
+        <hr>
         @if($notes->isEmpty())
             <span class="mt-5 p-2 rounded text-white bg-warning">У вас немає нотаток</span>
             <a href="#" class="btn btn-primary shadow">Додати нотатку</a>

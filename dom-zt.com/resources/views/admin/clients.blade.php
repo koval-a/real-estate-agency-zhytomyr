@@ -94,6 +94,9 @@
             @endforeach
             </tbody>
         </table>
+            <hr>
+            {{ $clients->links() }}
+            <hr>
         @else
             <span class="p-3">Записів немає.</span>
         @endif

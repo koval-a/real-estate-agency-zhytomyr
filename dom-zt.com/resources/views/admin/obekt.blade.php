@@ -122,6 +122,9 @@
             @endforeach
             </tbody>
         </table>
+            <hr>
+            {{ $obekts->links() }}
+            <hr>
          @else
             <span class="p-3">Записів немає.</span>
         @endif

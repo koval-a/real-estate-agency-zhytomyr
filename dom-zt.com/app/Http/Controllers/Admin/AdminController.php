@@ -54,7 +54,7 @@ class AdminController extends AC
 
     public function getRieltors()
     {
-        $dataRieltors = User::where('is_admin', 0)->orderBy('id', 'desc')->get();
+        $dataRieltors = User::where('is_admin', 0)->orderBy('id', 'desc')->paginate(10);
         $count = User::where('is_admin', 0)->count();
 
         return view('admin.rieltor.index', compact('dataRieltors', 'count'));
@@ -120,7 +120,7 @@ class AdminController extends AC
 
     public function getClients()
     {
-        $clients = Owner::orderBy('id', 'desc')->get();
+        $clients = Owner::orderBy('id', 'desc')->paginate(10);
         $count = Owner::count();
 
         return view('admin.clients', compact('clients', 'count'));
@@ -168,7 +168,7 @@ class AdminController extends AC
                 $categoryName = $category->name;
                 $categorySlug = $category->slug;
                 $category = [$categorySlug, $categoryName];
-                $obekts = Obekts::where('category_id', '=', 3)->get();
+                $obekts = Obekts::where('category_id', '=', 3)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'house' :
@@ -177,7 +177,7 @@ class AdminController extends AC
                 $categoryName = $category->name;
                 $categorySlug = $category->slug;
                 $category = [$categorySlug, $categoryName];
-                $obekts = Obekts::where('category_id', '=', 2)->get();
+                $obekts = Obekts::where('category_id', '=', 2)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'flat' :
@@ -186,7 +186,7 @@ class AdminController extends AC
                 $categoryName = $category->name;
                 $categorySlug = $category->slug;
                 $category = [$categorySlug, $categoryName];
-                $obekts = Obekts::where('category_id', '=', 1)->get();
+                $obekts = Obekts::where('category_id', '=', 1)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'commercial-real-estate' :
@@ -195,7 +195,7 @@ class AdminController extends AC
                 $categoryName = $category->name;
                 $categorySlug = $category->slug;
                 $category = [$categorySlug, $categoryName];
-                $obekts = Obekts::where('category_id', '=', 4)->get();
+                $obekts = Obekts::where('category_id', '=', 4)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
         }
@@ -204,7 +204,7 @@ class AdminController extends AC
 
     public function viewAllObekt()
     {
-        $obekts = Obekts::orderBy('id', 'DESC')->paginate(4);
+        $obekts = Obekts::orderBy('id', 'DESC')->paginate(10);
 
         $appointment = Appointment::all();
         $locationRayon = LocationCityRayon::all();
@@ -223,7 +223,7 @@ class AdminController extends AC
 
         $q = $request->input('q');
         if($q != ""){
-            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%' )->orWhere('id', 'LIKE', '%' . $q . '%' )->paginate(5)->setPath('');
+            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%' )->orWhere('id', 'LIKE', '%' . $q . '%' )->paginate(10)->setPath('');
             $pagination = $obekts->appends ( array (
                 'q' => $request->input('q')
             ) );
@@ -381,7 +381,7 @@ class AdminController extends AC
 
     public function getBlog()
     {
-        $blog = Blog::orderBy('id', 'desc')->get();//paginate(2);
+        $blog = Blog::orderBy('id', 'desc')->paginate(2);
         $countBlogItem = Blog::count();
 
         return view('admin.blog', compact('blog', 'countBlogItem'));
@@ -395,10 +395,10 @@ class AdminController extends AC
         $path = public_path('files/images/blog/');
 
         unlink($path.$image);
-        
+
         if($blog->delete()){
 
-               
+
                 return back()->with("success", "Пост видалено успішно.");
         }
 
@@ -434,7 +434,7 @@ class AdminController extends AC
         if ($request->hasFile('imgInp')) {
             // check validate
             $request->validate([
-                'imgInp' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+                'imgInp' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
             ]);
             // generate new file name
             $imageName = time().'.'.$request->imgInp->extension();

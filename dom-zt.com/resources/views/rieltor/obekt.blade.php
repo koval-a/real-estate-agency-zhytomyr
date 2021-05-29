@@ -80,5 +80,8 @@
                 @endforeach
                 </tbody>
             </table>
+        <hr>
+        {{ $obekts->links() }}
+        <hr>
     </div>
 @endsection

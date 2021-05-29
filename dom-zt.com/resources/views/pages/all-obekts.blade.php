@@ -270,7 +270,7 @@
 
                                 </li>
                                  <li class="object__item">Площа: {{ $item->square }} m2</li>
-                                
+
                                    @switch($category->slug)
                                     @case('land')
                                         <li class="object__item">Призачення: {{ $item->appointment_id }}</li>
@@ -294,7 +294,7 @@
                                     </div>
 
                                 @endswitch
-                     
+
                             </ul>
                         </div>
                         <div class="link-open-obekt p-1">
@@ -309,7 +309,9 @@
 
             @endforeach
         </div>
-
+        <hr>
+        {{ $obekts->links() }}
+        <hr>
     </div>
     <script>
 
