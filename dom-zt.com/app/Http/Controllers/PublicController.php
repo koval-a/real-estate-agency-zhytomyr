@@ -65,7 +65,7 @@ class PublicController extends Controller
 
     public function contact()
     {
-        $rieltors = Rieltors::all();
+        $rieltors = Rieltors::where('is_admin', 0)->get();
 
         return view('pages.contact', compact('rieltors'));
     }

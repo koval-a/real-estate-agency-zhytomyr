@@ -481,6 +481,18 @@ class AdminController extends AC
     // END - SETTINGS
     //
 
+    //
+    // START - PRINT
+    //
+
+    public function getPrintData()
+    {
+
+    }
+
+    //
+    // END - PRINT
+    //
 
 }
 

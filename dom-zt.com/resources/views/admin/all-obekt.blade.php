@@ -7,7 +7,7 @@
         <hr>
         <div class="row">
             <div class="col-md-2">
-                <a href="#">Друк</a>
+                <button onclick="window.print()" class="btn btn-light">Друк</button>
             </div>
             <div class="search-bar col-md-6">
 
