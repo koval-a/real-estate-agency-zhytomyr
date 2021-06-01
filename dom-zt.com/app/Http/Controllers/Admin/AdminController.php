@@ -330,8 +330,42 @@ class AdminController extends AC
             $newObekt->opalenyaName = $request->opalenyaName;
         }
 
-        // location id
-        $newObekt->location_id = '';
+        // location
+        $newLocation = new Location();
+
+        $newLocation->regoin_id = 1; // Житомирська область
+
+        // check city or rayon
+        $newLocation->rayon_id = $request->location_rayon_id;
+        // 51 - Житомир
+        if($request->location_rayon_id == 51)
+        {
+            // 93 - none для міста якщо район м.Житомир
+            $newLocation->city_id = 93;
+            $newLocation->city_rayon_id = $request->location_rayon_city_id;
+            $newObekt->city_name = LocationCityRayon::where('id', $request->location_rayon_city_id)-pluck('rayon_city');
+        }else if($request->location_rayon_id == 75){
+            // 75 - Житомирський район
+            $newLocation->city_id = $request->location_city_id;
+            // 34 - -- для района міста якщо обрано Житомирський район
+            $newLocation->city_rayon_id = 34;
+            $newObekt->city_name = LocationCity::where('id', $request->location_city_id)-pluck('city');
+        }else{
+            // Якщо обрано з пункта район не м.Житомир або Житомирський район
+            $newLocation->city_id = 93;
+            $newLocation->city_rayon_id = 34;
+            $newObekt->city_name = '-';
+        }
+
+        $newLocation->street = $request->address;
+        $newLocation->note = $request->note_address;
+
+        $newLocation->save();
+
+        $lastID_Location = Location::latest()->first();
+        $newObekt->location_id = $lastID_Location->id;
+        $newObekt->rayon_name = LocationRayon::where('id', $request->location_rayon_id)-pluck('rayon');
+
 
         // check if new owner
         if($request->isNewOwner == true)
@@ -374,6 +408,10 @@ class AdminController extends AC
             // save all image main
             if($request->hasFile('images'))
             {
+                $request->validate([
+                    'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
+                ]);
+
                 foreach($request->file('images') as $key => $item_img)
                 {
                     $item_img_name = time() . '.' . $request->$item_img->extension();

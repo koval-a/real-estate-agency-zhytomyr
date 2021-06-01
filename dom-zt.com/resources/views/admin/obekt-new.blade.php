@@ -199,7 +199,7 @@
 
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="isNewOwner" name="isNewOwner"
-                                   onclick="newOwner()" required>
+                                   onclick="newOwner()">
                             <label class="form-check-label" for="isNewOwner">Додати власника</label>
                         </div>
                         <select class="form-control w-50" id="owner_list" name="owner_list">
@@ -234,14 +234,14 @@
                         @endforeach
                     </select>
                     <label>Місто</label>
-                    <select name="location_rayon_id" id="location_rayon_id" class="form-control">
+                    <select name="location_city_id" id="location_city_id" class="form-control">
                         <option disabled>Оберіть місто</option>
                         @foreach($location[1] as $key => $city)
                             <option value="{{$city->id}}">{{$city->city}}</option>
                         @endforeach
                     </select>
                     <label>Район місто</label>
-                    <select name="location_rayon_id" id="location_rayon_id" class="form-control">
+                    <select name="location_rayon_city_id" id="location_rayon_city_id" class="form-control">
                         <option disabled>Оберіть район міста</option>
                         @foreach($location[2] as $key => $rayon_city)
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
