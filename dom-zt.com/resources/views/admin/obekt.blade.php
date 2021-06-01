@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h1>{{$category[1]}}</h1>
         <hr>
-        <a href="{{ route('admin.obekt.new', $category) }}" class="btn btn-success">Додати новий об'єкт</a>
+        <a href="{{ route('admin.obekt.new', $category[0]) }}" class="btn btn-success">Додати новий об'єкт</a>
         <hr>
          @if($obekts->count() > 0)
         <table class="table">

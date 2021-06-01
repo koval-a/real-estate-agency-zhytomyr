@@ -79,8 +79,8 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::any('/serach', [AdminController::class, 'searchObekt'])->name('admin.search')->middleware('is_admin');
 
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
-        Route::get('/{slug}-{category}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
-        Route::post('/{category}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
+        Route::get('/{slug}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
+        Route::post('/{slug}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
 
         Route::get('/public/{id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
     });
@@ -97,6 +97,15 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
     Route::post('/settings/save', [AdminController::class, 'settingsSave'])->name('admin.settings.save')->middleware('is_admin');
 
+});
+//Dependent dropdown list in order form
+Route::get('order/get/{id}', 'OrderlistController@getMaster');
+Route::get('csrf-ajax', function()
+{
+    if (Session::token() != Request::header('x-csrf-token'))
+    {
+        throw new Illuminate\Session\TokenMismatchException;
+    }
 });
 
 Route::get('/clear/cache', function() {

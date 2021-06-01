@@ -69,7 +69,7 @@ class AdminController extends AC
                 'imgInp' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             ]);
             // generate new file name
-            $imageName = time().'.'.$request->imgInp->extension();
+            $imageName = time() . '.' . $request->imgInp->extension();
             // move to folder image
             $request->imgInp->move(public_path('files/images/users'), $imageName);
             // save new name image to database
@@ -82,7 +82,7 @@ class AdminController extends AC
             $user->password = Hash::make($request->password);
             $user->is_admin = 0;
 
-            if($user->save()){
+            if ($user->save()) {
                 return back()->with("success", "Ріелтора додано успішно.");
             }
 
@@ -94,10 +94,10 @@ class AdminController extends AC
     {
         // remove
         $data = User::find($id);
-            if($data->delete()){
+        if ($data->delete()) {
 
-                return back()->with("success", "Ріелтора видалено успішно.");
-            }
+            return back()->with("success", "Ріелтора видалено успішно.");
+        }
 
         $image = $data->avatar;
         $path = public_path('files/images/users');
@@ -133,7 +133,7 @@ class AdminController extends AC
         $newOwner->phone = $request->input('phone');
         $newOwner->address = $request->input('address');
 
-        if($newOwner->save()){
+        if ($newOwner->save()) {
             return back()->with("success", "Власника додано успішно.");
         }
     }
@@ -142,9 +142,9 @@ class AdminController extends AC
     {
         $owner = Owner::find($id);
 
-        if($owner->delete()){
+        if ($owner->delete()) {
             return back()->with("success", "Власника видвлено успішно.");
-        }else{
+        } else {
             return back()->with("error", "Виникла помилка видалення.");
         }
     }
@@ -160,41 +160,32 @@ class AdminController extends AC
         // 1 - flat
         // 4 - commerce estate
 
-        switch ($category)
-        {
+        switch ($category) {
             case 'land':
             {
                 $category = Category::where('id', '=', 3)->first();
-                $categoryName = $category->name;
-                $categorySlug = $category->slug;
-                $category = [$categorySlug, $categoryName];
+                $category = [$category->slug, $category->name, $category->id];
                 $obekts = Obekts::where('category_id', '=', 3)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'house' :
             {
                 $category = Category::where('id', '=', 2)->first();
-                $categoryName = $category->name;
-                $categorySlug = $category->slug;
-                $category = [$categorySlug, $categoryName];
+                $category = [$category->slug, $category->name, $category->id];
                 $obekts = Obekts::where('category_id', '=', 2)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'flat' :
             {
                 $category = Category::where('id', '=', 1)->first();
-                $categoryName = $category->name;
-                $categorySlug = $category->slug;
-                $category = [$categorySlug, $categoryName];
+                $category = [$category->slug, $category->name, $category->id];
                 $obekts = Obekts::where('category_id', '=', 1)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
             case 'commercial-real-estate' :
             {
                 $category = Category::where('id', '=', 4)->first();
-                $categoryName = $category->name;
-                $categorySlug = $category->slug;
-                $category = [$categorySlug, $categoryName];
+                $category = [$category->slug, $category->name, $category->id];
                 $obekts = Obekts::where('category_id', '=', 4)->paginate(10);
                 return view('admin.obekt', compact('obekts', 'category'));
             }
@@ -222,22 +213,22 @@ class AdminController extends AC
         $owners = Owner::all();
 
         $q = $request->input('q');
-        if($q != ""){
-            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%' )->orWhere('id', 'LIKE', '%' . $q . '%' )->paginate(10)->setPath('');
-            $pagination = $obekts->appends ( array (
+        if ($q != "") {
+            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
+            $pagination = $obekts->appends(array(
                 'q' => $request->input('q')
-            ) );
-            if (count ( $obekts ) > 0)
-                return view ( 'admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment'));
+            ));
+            if (count($obekts) > 0)
+                return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment'));
         }
 //        return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
 
         return view('admin.blog');
     }
 
-    public function newObekt($categorySlug, $categoryName)
+    public function newObekt($categorySlug)
     {
-        $category = [$categorySlug, $categoryName];
+        $categoryData = Category::where('slug', '=', $categorySlug)->first();
         $rieltors = Rieltors::all();
         $owners = Owner::all();
         $typeBuild = Appointment::where('type', '=', $categorySlug)->get();
@@ -246,10 +237,11 @@ class AdminController extends AC
         $cityRayon = LocationCityRayon::all();
         $location = [$rayon, $city, $cityRayon];
 
-        return view('admin.obekt-new', compact('category', 'rieltors', 'owners', 'typeBuild', 'location'));
+        return view('admin.obekt-new', compact('categoryData', 'rieltors', 'owners', 'typeBuild', 'location'));
     }
 
-    public function transliterate($string){
+    public function transliterate($string)
+    {
 
         $str = mb_strtolower($string, 'UTF-8');
 
@@ -288,88 +280,154 @@ class AdminController extends AC
             'ya' => 'я',
         );
 
-        foreach ($leter_array as $leter => $kyr){
-            $kyr = explode(',',$kyr);
+        foreach ($leter_array as $leter => $kyr) {
+            $kyr = explode(',', $kyr);
             $str = str_replace($kyr, $leter, $str);
         }
 
         $str = preg_replace('/(\s|[^A-Za-z0-9-])+/', '-', $str);
-        $str = trim($str,'-');
+        $str = trim($str, '-');
 
         return $str;
     }
 
-    public function insertObekt(Request $request, $category)
+    public function insertObekt(Request $request, $category_slug)
     {
-        $string = '';
-        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
+//        $string = '';
+//        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
 
         // Basic arguments for all type real estate
         $newObekt = new Obekts();
         $newObekt->name = $request->name;
         $newObekt->description = $request->description;
         $newObekt->price = $request->price;
-        $newObekt->category_id = '';
+
+        $newObekt->category_id = Category::where('slug', $category_slug)-pluck('id');
         $newObekt->square = $request->square;
-        $newObekt->location_id = '';
-        $newObekt->main_img = '';
+
+
         $newObekt->isPublic = 1; // 1 - public 0 - hidden
         $newObekt->appointment_id = $request->appointment_id;
         $newObekt->rieltor_id = $request->rieltor_id;
-        $newObekt->slug = transliterate($request->name);
-        $newObekt->owner_id =  $request->owner_id;
+
+        $slug = transliterate($request->name);
+        $newObekt->slug = $slug;
+
         $newObekt->isPay = 0; // 1 - sold 0 - sale
 
-        // check form type by category
-        switch($category){
-            case 'flat': {
-                $newObekt->count_room = 0;
-                $newObekt->count_level = 0;
-                $newObekt->level = 0;
-                $newObekt->opalenyaName = $request->opalenyaName;
-                break;
-            }
-            case 'house': {
-                $newObekt->count_room = 0;
-                $newObekt->count_level = 0;
-                $newObekt->level = 0;
-                $newObekt->opalenyaName = $request->opalenyaName;
-                break;
-            }
-            case 'land': {
-                break;
-            }
-            case 'commercial-real-estate': {
-                break;
-            }
+        if ($category_slug == 'flat') {
+
+            $newObekt->count_room = 0;
+            $newObekt->count_level = 0;
+            $newObekt->level = 0;
+            $newObekt->opalenyaName = $request->opalenyaName;
+
+        }
+        if ($category_slug == 'house') {
+            $newObekt->count_room = 0;
+            $newObekt->count_level = 0;
+            $newObekt->level = 0;
+            $newObekt->opalenyaName = $request->opalenyaName;
         }
 
+        // location id
+        $newObekt->location_id = '';
+
         // check if new owner
-
-        // save all image
-
-        if($newObekt->save())
+        if($request->isNewOwner == true)
         {
-            return back()->with("success", "Новий об'єкт додатно успішно.");
+            $newOwner = new Owner();
+            $newOwner->name = $request->name_owner;
+            $newOwner->phone = $request->phone_owner;
+            $newOwner->address = $request->address_owner;
+            $newOwner->save();
+            // get last added owner id
+            $lastID_Owner = Owner::latest()->first();
+            $newObekt->owner_id = $lastID_Owner->id;
         }else{
+            $newObekt->owner_id = $request->owner_id;
+        }
+
+        // Image save
+        $path = 'files/images/obekts/'.$category_slug .'/'. $slug;
+        // save image main
+        if ($request->hasFile('imgMain')) {
+            // check validate
+            $request->validate([
+                'imgMain' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
+            ]);
+            // generate new file name
+            $imageMainName = time() . '.' . $request->imgMain->extension();
+            // create folder for image
+            mkdir(public_path() . $path, 0777, false);
+            // move to folder image
+            $request->imgInp->move(public_path($path), $imageMainName);
+            // save new name image to database
+            $newObekt->main_img = $imageMainName;
+        }
+
+        if ($newObekt->save()) {
+
+            // get obekts id after insert
+            $getObektsID = Obekts::latest()->first();
+
+            // save all image main
+            if($request->hasFile('images'))
+            {
+                foreach($request->file('images') as $key => $item_img)
+                {
+                    $item_img_name = time() . '.' . $request->$item_img->extension();
+                    $item_img->move($path, $item_img_name);
+
+                    $Upload_model = new Files;
+                    $Upload_model->url_img = $path . $item_img_name;
+                    $Upload_model->obekt_id = $getObektsID->id;
+                    $Upload_model->save();
+
+                }
+            }
+
+            return back()->with("success", "Новий об'єкт додатно успішно.");
+        } else {
             return back()->with("error", "Виникла помилка при збережені.");
         }
 
+    }
+
+//    public function search_(Request $request)
+//    {
+//        $search = $request->get('search');
+//        $orderlists = DB::table('orderlists')->where('name', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%')->paginate(5);
+//
+//        $cities = DB::table('cities')->get();
+//        $masters = DB::table('masters')->get();
+//        $poslygus = DB::table('poslygus')->get();
+//
+//        //return view('orderAll', compact('orderlists'));
+//        return view('orderAll', ['orderlists' => $orderlists, 'masters' => $masters, 'poslygus' => $poslygus, 'cities' => $cities]);
+//    }
+
+    public function getMaster($id)
+    {
+
+        $masters = DB::table("masters")->where("city_id",$id)->pluck('name','id');
+
+        return json_encode($masters);
     }
 
     public function isPublic($id)
     {
         $obekt = Obekts::find($id);
 
-        if($obekt->isPublic == 1){
+        if ($obekt->isPublic == 1) {
             $obekt->isPublic = 0;
-        }else{
+        } else {
             $obekt->isPublic = 1;
         }
 
-        if($obekt->save()){
+        if ($obekt->save()) {
             return back()->with("success", "Успішно змінено статус.");
-        }else{
+        } else {
             return back()->with("error", "Виникла помилка.");
         }
     }
@@ -394,12 +452,12 @@ class AdminController extends AC
         $image = $blog->picture;
         $path = public_path('files/images/blog/');
 
-        unlink($path.$image);
+        unlink($path . $image);
 
-        if($blog->delete()){
+        if ($blog->delete()) {
 
 
-                return back()->with("success", "Пост видалено успішно.");
+            return back()->with("success", "Пост видалено успішно.");
         }
 
         // if(file_exists($path.$image))
@@ -437,7 +495,7 @@ class AdminController extends AC
                 'imgInp' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
             ]);
             // generate new file name
-            $imageName = time().'.'.$request->imgInp->extension();
+            $imageName = time() . '.' . $request->imgInp->extension();
             // move to folder image
             $request->imgInp->move(public_path('files/images/blog'), $imageName);
             // save new name image to database
@@ -445,8 +503,8 @@ class AdminController extends AC
         }
 
         // save data
-        if($blog->save()){
-           return redirect('/manage/admin/blog')->with("success", "Пост додано успішно.");
+        if ($blog->save()) {
+            return redirect('/manage/admin/blog')->with("success", "Пост додано успішно.");
             // return back()->with("success", "Blog insert successfully.");
         }
     }
@@ -469,7 +527,7 @@ class AdminController extends AC
         $about_text = $request->input('about_text');
 //        config()->set('adminsettings.about_text', $about_text);
 
-        if(Config::set('adminsettings.about_text', $about_text)){
+        if (Config::set('adminsettings.about_text', $about_text)) {
             return back()->with("success", "Налаштування збережено");
         }
 

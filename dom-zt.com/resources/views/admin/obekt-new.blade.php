@@ -4,9 +4,9 @@
 
     <div class="container-fluid pb-2">
 
-        <h1>Новий об'єкт нерухомості - {{ $category[1] }}</h1>
+        <h1>Новий об'єкт нерухомості - {{ $categoryData->name }}</h1>
         <hr>
-        <form action="{{ route('admin.obekt.insert', $category[0]) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+        <form action="{{ route('admin.obekt.insert', $categoryData->slug) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="obket-info col-md-4 border p-2">
@@ -27,7 +27,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        @if($category[0] != 'land')
+                        @if($categoryData->slug != 'land')
                         <div class="opalemya">
                             <label>Тип опалення</label>
                             <select class="form-control" id="type_opalenya" name="type_opalenya">--}}
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <hr>
-                    @switch($category[0])
+                    @switch($categoryData->slug)
                         @case('land')
                             land
                         @break
@@ -127,7 +127,7 @@
                     <div class="input-group">
                         <span class="input-group-btn">
                             <span class="btn btn-light btn-file">
-                               <input type="file" id="imgInp" name="imgInp" required>
+                               <input type="file" id="imgMain" name="imgMain" required>
                             </span>
                         </span>
                         <input type="text" class="form-control" readonly>
@@ -136,8 +136,6 @@
                         <img id='img-upload' alt="picture" class="m-1 img-fluid">
                     </a>
                     <hr>
-
-
                     <span>Додаткові фото</span>
                     <style>
                         .images-preview-div img
@@ -213,9 +211,9 @@
                     </div>
                     <div class="invisible" id="newOwnerForm" name="newOwnerForm">
                         <h4>Новий власник</h4>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Ім'я">
-                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="Телефон: 0990091910">
-                        <input type="text" name="address" id="address" class="form-control" placeholder="Адреса">
+                        <input type="text" name="name_owner" id="name_owner" class="form-control" placeholder="Ім'я">
+                        <input type="tel" name="phone_owner" id="phone_owner" class="form-control" placeholder="Телефон: 0990091910">
+                        <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">
                     </div>
                     <hr>
                     <h4>Ріелтора</h4>
@@ -251,6 +249,8 @@
                     </select>
                     <label>Адреса</label>
                     <input type="text" name="address" id="address" class="form-control" placeholder="Адреса">
+
+                    <input type="text" name="note_address" id="note_address" class="form-control" placeholder="Нотатка">
 
                 </div>
             </div>
