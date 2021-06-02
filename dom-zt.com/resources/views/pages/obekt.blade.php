@@ -56,12 +56,12 @@
                                     </div>
                                     @foreach($filesImages as $key => $image)
                                         @if($obekt->id == $image->obekt_id)
-{{--                                            <a data-fancybox="gallery" href="/{{ $image->url_img }}">--}}
-{{--                                                <img src="/{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">--}}
-{{--                                            </a>--}}
-                                            <div class="swiper-slide">
-                                                <img src=/{{ $image->url_img }}" alt="image-{{$image->id}}" class="slide__image img-fluid w-100 h-auto">
-                                            </div>
+                                            <a data-fancybox="gallery" href="{{ $image->url_img }}">
+                                                <img src="{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
+                                            </a>
+{{--                                            <div class="swiper-slide">--}}
+{{--                                                <img src="{{ $image->url_img }}" alt="image-{{$image->id}}" class="slide__image img-fluid w-100 h-auto">--}}
+{{--                                            </div>--}}
                                         @endif
                                     @endforeach
                                 </div>

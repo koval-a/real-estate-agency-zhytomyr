@@ -10,7 +10,7 @@
             <div class="all-obekt">
 
                 <table class="table table-striped">
-                    <thead class="table-dark">
+                    <thead class="table">
                     <tr class="bg-secondary text-white">
                         <td>
                             #
@@ -24,9 +24,9 @@
                         {{--                    <td>--}}
                         {{--                        Дата--}}
                         {{--                    </td>--}}
-                        <td>
-                            ID
-                        </td>
+{{--                        <td>--}}
+{{--                            ID--}}
+{{--                        </td>--}}
                         <td>
                             Тип об'єкту
                         </td>
@@ -37,13 +37,11 @@
                             Площа (m2)
                         </td>
                         <td>
-                            Опис
+{{--                            Опис та --}}
+                            Фото
                         </td>
                         <td>
                             Видимість
-                        </td>
-                        <td>
-                            Статус
                         </td>
                         <td>
                             Дія
@@ -66,18 +64,25 @@
                                 @endforeach
                             </td>
                             <td>
+                                <div class="bg-secondary p-2 rounded shadow">
+                                    <span class={{ $item->isPay?'text-success':'text-warning' }}>
+                                        {{ $item->isPay?'Продано':'В продажу' }}
+                                    </span>
+                                </div>
+                                <br>
+                                ID: # {{ $item->id }}
                                 <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                             </td>
                             {{--                        <td>--}}
                             {{--                            {{ $item->created_at->format('Y-m-d') }}--}}
                             {{--                        </td>--}}
-                            <td>
-                                ID: # {{ $item->id }}
-                            </td>
+{{--                            <td>--}}
+{{--                                ID: # {{ $item->id }}--}}
+{{--                            </td>--}}
                             <td>
                                 @foreach($appointment as $key => $appoint)
                                     @if($appoint->id ==  $item->appointment_id)
-                                        <span class="text-danger">{{ $appoint->type }}</span>&#128073;
+{{--                                        <span class="text-danger">{{ $appoint->type }}</span>&#128073;--}}
                                         {{ $appoint->name }}
                                     @endif
                                 @endforeach
@@ -89,13 +94,13 @@
                                 {{ $item->square }}
                             </td>
                             <td>
-                                {{ $item->description }}
+{{--                                {{ $item->description }}--}}
                                 <div class="d-flex">
 
                                     @foreach($filesImages as $key => $image)
                                         @if($item->id == $image->obekt_id)
-                                            <a data-fancybox="gallery" href="/{{ $image->url_img }}">
-                                                <img src="/{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
+                                            <a data-fancybox="gallery" href="{{ $image->url_img }}">
+                                                <img src="{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
                                             </a>
                                         @endif
                                     @endforeach
@@ -106,19 +111,14 @@
                                     {{ $item->isPublic?'Опубліковано':'Приховано' }}
                                 </span>
                                 @if($item->isPublic)
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-secondary">
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
                                         Прииховати
                                     </a>
                                 @else
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
                                         Опублікувати
                                     </a>
                                 @endif
-                            </td>
-                            <td>
-                                <span class={{ $item->isPay?'text-success':'text-warning' }}>
-                                {{ $item->isPay?'Продано':'В продажу' }}
-                                </span>
                             </td>
                             <td>
                                 <div class="d-flex p-2">

@@ -66,12 +66,12 @@
                               <div class="d-flex">
                             <div class="col-md-5">
                                 <span>К-ть кімнат</span>
-                                <select class="form-control" id="count_room">
+                                <select class="form-control" id="count_room" name="count_room">
                                     <option>-Оберіть к-ть кімнат-</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4+</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4+</option>
                                 </select>
                             </div>
                             <div class="col-md-3">

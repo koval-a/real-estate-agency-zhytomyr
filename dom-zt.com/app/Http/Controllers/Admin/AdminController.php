@@ -203,7 +203,7 @@ class AdminController extends AC
         }
 //        return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
 
-        return view('admin.blog');
+//        return view('admin.blog');
     }
 
     public function newObekt($categorySlug)
@@ -295,15 +295,19 @@ class AdminController extends AC
 
         if ($category_slug == 'flat') {
 
-            $newObekt->count_room = 0;
-            $newObekt->count_level = 0;
-            $newObekt->level = 0;
+            if($request->level > $request->count_level)
+            {
+                return back()->with("error", "Кількість поверхів не може бути менше за поверх.");
+            }
+            $newObekt->count_room = $request->couny_room;
+            $newObekt->count_level = $request->count_level;
+            $newObekt->level = $request->level;
             $newObekt->opalenyaName = $request->opalenyaName;
 
         }
         if ($category_slug == 'house') {
-            $newObekt->count_room = 0;
-            $newObekt->count_level = 0;
+            $newObekt->count_room = $request->couny_room;
+            $newObekt->count_level = $request->count_level;
             $newObekt->level = 0;
             $newObekt->opalenyaName = $request->opalenyaName;
         }
@@ -418,7 +422,21 @@ class AdminController extends AC
 
     public function deteleObekt(Obekts $obekt)
     {
-        $obekt->delete();
+         // Location delete
+         $location = Location::find($obekt->location_id);
+         $location->delete();
+
+         // Owner delete  - not delete
+
+         // Files delete
+        $category = Category::where('id', '=', $obekt->category_id)->first();
+        $path = 'files/images/obekts/'. $category->slug .'/'. $obekt->slug;
+        if (File::exists(public_path().$path)) {
+            File::deleteDirectory(public_path() . $path);
+        }
+
+         // Obekt delete
+         $obekt->delete();
 
          return back()->with("success", "Об'єкт видалено успішно.");
     }

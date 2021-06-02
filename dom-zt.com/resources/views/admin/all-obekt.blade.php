@@ -63,7 +63,7 @@
                         Площа (m2)
                     </td>
                     <td>
-                        Опис
+                        Опис та Фото
                     </td>
                     <td>
                         Видимість
@@ -140,11 +140,11 @@
                         <td>
                             <div class="d-flex p-2">
                                 @if($item->isPublic)
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-secondary">
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
                                         Прииховати
                                     </a>
                                 @else
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
                                         Опублікувати
                                     </a>
                                 @endif

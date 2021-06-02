@@ -255,6 +255,16 @@
                         </a>
                         <div class="object__text--promo p-3">
                             <ul class="object__list">
+                                <li>
+                                    <i class="bi bi-bricks"></i>
+                                    <i class="bi bi-stack"></i>
+                                    <i class="bi bi-pin-map"></i>
+                                    <i class="bi bi-house-fill"></i>
+                                    <i class="bi bi-front"></i>
+                                    <i class="bi bi-door-open"></i>
+                                    <i class="bi bi-cash-coin"></i>
+                                    <i class="bi bi-bounding-box-circles"></i>
+                                </li>
                                 <li class="object__item object__item--title title_">{{ $item->name }}</li>
                                 <li class="object__item object__item--prace">$ {{ $item->price }}</li>
                                 <li class="object__item">Район:
