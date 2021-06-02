@@ -97,10 +97,174 @@
                         </div>
                     </div>
                 </div>
-                <section id="reviews" class="h-100 p-2 bg-warning mt-2 text-center align-items-center d-flex justify-content-center" style="min-height: 400px">
-                        <code class="display-1">Google Reviews <br>integration by API</code>
+                <section id="reviews" class="container pt-5">
+                    <h3 class="title">Google Reviews</h3>
+                    <a href="#" class="btn btn-outline-danger w-25">Залишити відгук</a>
+                    <hr>
+                    <div class="reviews-data align-items-center d-flex justify-content-center">
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="google-reviews">
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="google-review d-flex">
+                            <div class="review-img">
+                                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="user" width="50">
+                            </div>
+                            <div class="review-data text-left p-2">
+                                <h4 class="font-weight-bold">Name Surname</h4>
+                                <span class="text-secondary">12-12-12</span>
+                                <ul class="d-flex mt-1">
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star"></i></li>
+                                </ul>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at, beatae commodi consectetur consequuntur distinctio dolore eius enim, esse id magnam maxime numquam perspiciatis? Ab cum hic id itaque quasi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="btn-link-google-reviews d-flex justify-content-center">
+                        <a href="#" class="btn btn-primary w-25" target="_blank">Більше відгуків</a>
+                    </div>
+
                 </section>
-                <iframe src="https://yarik.lukyanchuk.com" frameborder="0" class="w-100" style="height: 400px"></iframe>
+
             </section>
 
         </div>

@@ -147,21 +147,25 @@
                     </div>
                     <ul class="footer__contacts-list">
                         <li class="footer__contacts-item">
+                            <i class="bi bi-house-fill"></i>
                             <a class="footer__contacts__link" href="https://goo.gl/maps/9SruKiYB3DcwT1YJ6" target="_blank">
                                 {{ Config::get('adminsettings.contact.address')}}
                             </a>
                         </li>
                         <li class="footer__contacts-item">
+                            <i class="bi bi-envelope"></i>
                             <a class="footer__contacts__link" href="mailto:{{ Config::get('adminsettings.contact.email')}}" target="_blank">
                                 {{ Config::get('adminsettings.contact.email')}}
                             </a>
                         </li>
                         <li class="footer__contacts-item">
+                            <i class="bi bi-phone"></i>
                             <a class="footer__contacts__link" href="tel:{{ Config::get('adminsettings.contact.phone_1')}}">
                                 {{ Config::get('adminsettings.contact.phone_1')}}
                             </a>
                         </li>
                         <li class="footer__contacts-item">
+                            <i class="bi bi-phone"></i>
                             <a class="footer__contacts__link" href="tel:{{ Config::get('adminsettings.contact.phone_2')}}">
                                 {{ Config::get('adminsettings.contact.phone_2')}}
                             </a>

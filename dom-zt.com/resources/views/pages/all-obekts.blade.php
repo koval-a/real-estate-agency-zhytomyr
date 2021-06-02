@@ -255,55 +255,61 @@
                         </a>
                         <div class="object__text--promo p-3">
                             <ul class="object__list">
-                                <li>
-                                    <i class="bi bi-bricks"></i>
-                                    <i class="bi bi-stack"></i>
-                                    <i class="bi bi-pin-map"></i>
-                                    <i class="bi bi-house-fill"></i>
-                                    <i class="bi bi-front"></i>
-                                    <i class="bi bi-door-open"></i>
-                                    <i class="bi bi-cash-coin"></i>
-                                    <i class="bi bi-bounding-box-circles"></i>
-                                </li>
                                 <li class="object__item object__item--title title_">{{ $item->name }}</li>
                                 <li class="object__item object__item--prace">$ {{ $item->price }}</li>
-                                <li class="object__item">Район:
-                                    @foreach($location as $key => $loc)
-                                        @if($loc->id == $item->location_id)
-                                            @foreach($locationRayon as $key => $rayon)
-                                                @if($rayon->id == $loc->city_rayon_id)
-                                                    {{$rayon->rayon_city}}
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    @endforeach
-
+                                <li class="object__item">
+                                    <i class="bi bi-pin-map"></i>
+                                    {{ $item->rayon_name }},
+                                    {{ $item->city_name }}
                                 </li>
-                                 <li class="object__item">Площа: {{ $item->square }} m2</li>
+                                 <li class="object__item">
+                                     <i class="bi bi-bounding-box-circles"></i>
+                                     {{ $item->square }} m2
+                                 </li>
 
-                                   @switch($category->slug)
-                                    @case('land')
-                                        <li class="object__item">Призачення: {{ $item->appointment_id }}</li>
-                                    @break
-                                    @case('flat')div>
-                                        <li class="object__item">Тип: {{ $item->appointment_id }}</li>
-                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>
-                                        <li class="object__item">Опалення: {{ $item->opalenyaName }}</li>
-                                        <li class="object__item">Поверх: {{ $item->level }}/{{ $item->count_level }}</li>
-                                    @break
-                                    @case('house')
-                                        <li class="object__item">Тип: {{ $item->appointment_id }}</li>
-                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>
-                                    @break
-                                    @case('commercial-real-estate')
-                                        <li class="object__item">Призначення: {{ $item->appointment_id }}</li>
-                                    @break
-                                    @default
-                                    <div class="col-md-3">
-                                        <span>Даної категорії немає!</span>
-                                    </div>
+                                @foreach($appointments as $key => $type)
+                                    @if($item->appointment_id == $type->id)
+                                        <li class="object__item">
+                                            @switch($category->slug)
+                                                @case('land')
+                                                    <i class="bi bi-front"></i>
+                                                @break
+                                                @case('flat')
+                                                    <i class="bi bi-bricks"></i>
+                                                @break
+                                                @case('house')
+                                                    <i class="bi bi-bricks"></i>
+                                                @break
+                                                @case('commercial-real-estate')
+                                                    <i class="bi bi-front"></i>
+                                                @break
+                                                @default
+                                                <div class="col-md-3">
+                                                    <span>Даної категорії немає!</span>
+                                                </div>
+                                            @endswitch
+                                        {{ $type->name }}
+                                        </li>
+                                    @endif
+                                @endforeach
 
-                                @endswitch
+                                @if($category->slug == 'flat' or $category->slug == 'house')
+                                    <li class="object__item">
+                                        <i class="bi bi-door-open"></i>
+                                        {{ $item->count_room }}
+                                    </li>
+                                @endif
+
+                                @if($category->slug == 'flat')
+                                    <li class="object__item">
+                                        <i class="bi bi-thermometer-sun"></i>
+                                        {{ $item->opalenyaName }}
+                                    </li>
+                                    <li class="object__item">
+                                        <i class="bi bi-stack"></i>
+                                        {{ $item->level }}/{{ $item->count_level }} поверх
+                                    </li>
+                                @endif
 
                             </ul>
                         </div>
@@ -312,11 +318,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{--                <span class={{ $item->isPay?'text-success':'text-warning' }}>--}}
-                {{--                        {{ $item->isPay?'Продано':'В продажу' }}--}}
-                {{--                        </span>--}}
-
             @endforeach
         </div>
         <hr>

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h1>{{$category[1]}}</h1>
         <hr>
-        <a href="{{ route('admin.obekt.new', $category[0]) }}" class="btn btn-success">Додати новий об'єкт</a>
+        <a href="{{ route('admin.obekt.new', $category[0]) }}" class="btn btn-primary">Додати новий об'єкт</a>
         <hr>
          @if($obekts->count() > 0)
             <div class="all-obekt">
@@ -64,14 +64,19 @@
                                 @endforeach
                             </td>
                             <td>
-                                <div class="bg-secondary p-2 rounded shadow">
-                                    <span class={{ $item->isPay?'text-success':'text-warning' }}>
-                                        {{ $item->isPay?'Продано':'В продажу' }}
-                                    </span>
+                                    @if($item->isPay)
+                                        <span class="bg-success text-light p-2 m-2 rounded">
+                                            Продано
+                                        </span>
+                                    @else
+                                        <span class="bg-warning text-light p-2 m-2 rounded">
+                                            В продажу
+                                        </span>
+                                    @endif
+                                <div class="d-flex p-2">
+                                    ID: # {{ $item->id }}
+                                    <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                                 </div>
-                                <br>
-                                ID: # {{ $item->id }}
-                                <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                             </td>
                             {{--                        <td>--}}
                             {{--                            {{ $item->created_at->format('Y-m-d') }}--}}
@@ -132,106 +137,6 @@
                 </table>
 
             </div>
-            <hr>
-            {{ $obekts->links() }}
-            <hr>
-        <table class="table">
-            <thead>
-            <tr class="bg-secondary text-white">
-                <td>
-                    #
-                </td>
-                <td>
-                    Дата
-                </td>
-                <td>
-                    Назва
-                </td>
-                {{--                    <td>--}}
-                {{--                       Тип об'єкту--}}
-                {{--                    </td>--}}
-                <td>
-                    Ціна ($)
-                </td>
-                <td>
-                    Площа (m2)
-                </td>
-                <td>
-                    Опис
-                </td>
-                <td>
-                    Public
-                </td>
-                <td>
-                    isPay
-                </td>
-                <td>
-                    Дія
-                </td>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($obekts as $key => $item)
-                <tr>
-                    <td>
-                        {{ $key + 1 }}
-                    </td>
-                    <td>
-                        {{ $item->created_at->format('Y-m-d') }}
-                    </td>
-                    <td>
-                        <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
-                    </td>
-                    {{--                        <td>--}}
-                    {{--                            {{ $item->type_house }}--}}
-                    {{--                        </td>--}}
-                    <td>
-                        {{ $item->price }}
-                    </td>
-                    <td>
-                        {{ $item->square }}
-                    </td>
-                    <td>
-                        {{ $item->description }}
-                        <div class="d-flex">
-                            @foreach($filesImages as $key => $image)
-                                @if($item->id == $image->obekt_id)
-                                    <a data-fancybox="gallery" href="/{{ $image->url_img }}">
-                                        <img src="/{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
-                                    </a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </td>
-                    <td>
-                        @if($item->isPublic)
-                            <span class="text-success">
-                                Опубліковано
-                            </span>
-                            <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-secondary">
-                                Прииховати
-                            </a>
-                        @else
-                            <span class="text-secondary">
-                                Приховано
-                            </span>
-                            <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-outline-success">
-                                Опублікувати
-                            </a>
-                        @endif
-                    </td>
-                    <td>
-                        <span class={{ $item->isPay?'text-success':'text-warning' }}>
-                        {{ $item->isPay?'Продано':'В продажу' }}
-                        </span>
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-outline-danger"><i class="fab fa-trash"></i> Видалити</a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
             <hr>
             {{ $obekts->links() }}
             <hr>
