@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Category;
+use App\Models\Files;
 use App\Models\Location;
 use App\Models\LocationCity;
 use App\Models\LocationCityRayon;
@@ -53,7 +54,9 @@ class PublicController extends Controller
 
         $shareButtonLink = [$linkFacebook, $linkTwitter, $linkTelegram, $linkWhatsapp];
 
-        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink'));
+        $filesImages = Files::all();
+
+        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages'));
     }
 
     public function about()

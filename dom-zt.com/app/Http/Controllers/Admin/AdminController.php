@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Appointment;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Files;
 use App\Models\Location;
 use App\Models\LocationCity;
 use App\Models\LocationCityRayon;
@@ -161,42 +162,14 @@ class AdminController extends AC
         // 1 - flat
         // 4 - commerce estate
 
-//        switch ($category) {
-//            case 'land':
-//            {
-//                $category = Category::where('id', '=', 3)->first();
-//                $category = [$category->slug, $category->name, $category->id];
-//                $obekts = Obekts::where('category_id', '=', 3)->orderBy('id', 'DESC')->paginate(10);
-//                return view('admin.obekt', compact('obekts', 'category'));
-//            }
-//            case 'house' :
-//            {
-//                $category = Category::where('id', '=', 2)->first();
-//                $category = [$category->slug, $category->name, $category->id];
-//                $obekts = Obekts::where('category_id', '=', 2)->orderBy('id', 'DESC')->paginate(10);
-//                return view('admin.obekt', compact('obekts', 'category'));
-//            }
-//            case 'flat' :
-//            {
-//                $category = Category::where('id', '=', 1)->first();
-//                $category = [$category->slug, $category->name, $category->id];
-//                $obekts = Obekts::where('category_id', '=', 1)->orderBy('id', 'DESC')->paginate(10);
-//                return view('admin.obekt', compact('obekts', 'category'));
-//            }
-//            case 'commercial-real-estate' :
-//            {
-//                $category = Category::where('id', '=', 4)->first();
-//                $category = [$category->slug, $category->name, $category->id];
-//                $obekts = Obekts::where('category_id', '=', 4)->orderBy('id', 'DESC')->paginate(10);
-//                return view('admin.obekt', compact('obekts', 'category'));
-//            }
-//        }
-
-
         $category = Category::where('slug', '=', $category)->first();
         $category = [$category->slug, $category->name, $category->id];
         $obekts = Obekts::where('category_id', '=', $category[2])->orderBy('id', 'DESC')->paginate(10);
-        return view('admin.obekt', compact('obekts', 'category'));
+        $filesImages = Files::all();
+        $owners = Owner::all();
+        $appointment = Appointment::all();
+
+        return view('admin.obekt', compact('obekts', 'category', 'filesImages', 'owners', 'appointment'));
     }
 
     public function viewAllObekt()
@@ -207,8 +180,9 @@ class AdminController extends AC
         $locationRayon = LocationCityRayon::all();
         $location = Location::all();
         $owners = Owner::all();
+        $filesImages = Files::all();
 
-        return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment'));
+        return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
     }
 
     public function searchObekt(Request $request)
@@ -299,9 +273,6 @@ class AdminController extends AC
 
     public function insertObekt(Request $request, $category_slug)
     {
-//        $string = '';
-//        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
-
         // Basic arguments for all type real estate
         $newObekt = new Obekts();
         $newObekt->name = $request->name;
@@ -421,16 +392,17 @@ class AdminController extends AC
             if($request->hasFile('images'))
             {
                 $request->validate([
-                    'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
+                    'images' => 'array',
+                    'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:100000',
                 ]);
 
                 foreach($request->file('images') as $key => $item_img)
                 {
-                    $item_img_name = time() . '.' . $request->$item_img->extension();
+                    $item_img_name = time() . '-' . $item_img->getClientOriginalName();
                     $item_img->move(public_path($path), $item_img_name);
 
                     $Upload_model = new Files;
-                    $Upload_model->url_img = $path . '/' . $item_img_name;
+                    $Upload_model->url_img = '/' . $path . '/' . $item_img_name;
                     $Upload_model->obekt_id = $getObektsID->id;
                     $Upload_model->save();
 

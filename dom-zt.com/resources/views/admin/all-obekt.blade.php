@@ -117,12 +117,14 @@
                         <td>
                             {{ $item->description }}
                             <div class="d-flex">
-                                <a data-fancybox="gallery"
-                                   href="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4">
-                                    <img
-                                        src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4"
-                                        alt="picture" height="50" class="m-1">
-                                </a>
+
+                                @foreach($filesImages as $key => $image)
+                                    @if($item->id == $image->obekt_id)
+                                        <a data-fancybox="gallery" href="/{{ $image->url_img }}">
+                                            <img src="/{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
+                                        </a>
+                                    @endif
+                                @endforeach
                             </div>
                         </td>
                         <td>

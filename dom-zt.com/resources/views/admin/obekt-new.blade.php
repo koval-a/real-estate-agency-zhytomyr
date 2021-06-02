@@ -150,7 +150,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="file" name="images[]" id="images" placeholder="Choose images" multiple >
+                                            <input type="file" name="images[]" id="images" placeholder="Choose images" multiple>
                                         </div>
                                         @error('images')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>

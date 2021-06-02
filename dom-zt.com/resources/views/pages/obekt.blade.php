@@ -54,6 +54,16 @@
                                     <div class="swiper-slide">
                                         <img src="/files/images/obekts/{{ $category ->slug }}/{{ $obekt->slug }}/{{ $obekt->main_img }}" alt="main image" class="slide__image img-fluid w-100 h-auto">
                                     </div>
+                                    @foreach($filesImages as $key => $image)
+                                        @if($obekt->id == $image->obekt_id)
+{{--                                            <a data-fancybox="gallery" href="/{{ $image->url_img }}">--}}
+{{--                                                <img src="/{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">--}}
+{{--                                            </a>--}}
+                                            <div class="swiper-slide">
+                                                <img src=/{{ $image->url_img }}" alt="image-{{$image->id}}" class="slide__image img-fluid w-100 h-auto">
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <!-- Add Pagination -->
                                 <div class="swiper-pagination"></div>
@@ -72,6 +82,7 @@
                                     <span class="text-secondary">Поверх:</span>
                                      {{ $obekt->level }} / {{ $obekt->count_level }}</li>
                                 <li class="product-filter__item">
+                                    <i class="bi bi-bricks"></i>
                                     <span class="text-secondary">Площа: </span>
                                       {{ $obekt->square }} m2</li>
                                 <li class="product-filter__item">
@@ -178,29 +189,31 @@
 
         <section class="plus">
             <div class="container">
-                <h3 class="plus__title">Чому нам довіряють?</h3>
+                <h3 class="plus__title title">Чому нам довіряють?</h3>
                 <div class="pluses__block--flex">
                     <div class="pluses__block">
                         <div class="plus__block-title">
-                            <div class="plus__img">
+                            <div class="plus__img m-auto">
                                 <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
                             </div>
 
                         </div>
-                        <h4 class="plus__subtitle">Досвід</h4>
+                        <div class="plus__subtitle">
+                            <h4 class="title">Досвід</h4>
+                        </div>
                         <p class="plus__text">
                             За роки діяльності в сфері нерухомості ми отримали унікальний досвід роботи будь-якої складності,
                             що дає нам можливість задовольнити потреби найвибагливішого клієнта!
                         </p>
                     </div>
-                    <div class="pluses__block">
+                    <div class="pluses__block align-center">
                         <div class="plus__block-title">
-                            <div class="plus__img">
+                            <div class="plus__img m-auto">
                                 <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
                             </div>
 
                         </div>
-                        <h4 class="plus__subtitle">Ексклюзивні об'єкти</h4>
+                        <h4 class="plus__subtitle text-center">Ексклюзивні об'єкти</h4>
                         <p class="plus__text">
                             Наша компанія постійно нараховує сотні ексклюзивних об'єктів
                             як в місті Житомирі так і Житомирському районі, власники яких довірили продаж тільки нам.
