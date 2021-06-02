@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends AC
 {
@@ -160,37 +161,42 @@ class AdminController extends AC
         // 1 - flat
         // 4 - commerce estate
 
-        switch ($category) {
-            case 'land':
-            {
-                $category = Category::where('id', '=', 3)->first();
-                $category = [$category->slug, $category->name, $category->id];
-                $obekts = Obekts::where('category_id', '=', 3)->paginate(10);
-                return view('admin.obekt', compact('obekts', 'category'));
-            }
-            case 'house' :
-            {
-                $category = Category::where('id', '=', 2)->first();
-                $category = [$category->slug, $category->name, $category->id];
-                $obekts = Obekts::where('category_id', '=', 2)->paginate(10);
-                return view('admin.obekt', compact('obekts', 'category'));
-            }
-            case 'flat' :
-            {
-                $category = Category::where('id', '=', 1)->first();
-                $category = [$category->slug, $category->name, $category->id];
-                $obekts = Obekts::where('category_id', '=', 1)->paginate(10);
-                return view('admin.obekt', compact('obekts', 'category'));
-            }
-            case 'commercial-real-estate' :
-            {
-                $category = Category::where('id', '=', 4)->first();
-                $category = [$category->slug, $category->name, $category->id];
-                $obekts = Obekts::where('category_id', '=', 4)->paginate(10);
-                return view('admin.obekt', compact('obekts', 'category'));
-            }
-        }
+//        switch ($category) {
+//            case 'land':
+//            {
+//                $category = Category::where('id', '=', 3)->first();
+//                $category = [$category->slug, $category->name, $category->id];
+//                $obekts = Obekts::where('category_id', '=', 3)->orderBy('id', 'DESC')->paginate(10);
+//                return view('admin.obekt', compact('obekts', 'category'));
+//            }
+//            case 'house' :
+//            {
+//                $category = Category::where('id', '=', 2)->first();
+//                $category = [$category->slug, $category->name, $category->id];
+//                $obekts = Obekts::where('category_id', '=', 2)->orderBy('id', 'DESC')->paginate(10);
+//                return view('admin.obekt', compact('obekts', 'category'));
+//            }
+//            case 'flat' :
+//            {
+//                $category = Category::where('id', '=', 1)->first();
+//                $category = [$category->slug, $category->name, $category->id];
+//                $obekts = Obekts::where('category_id', '=', 1)->orderBy('id', 'DESC')->paginate(10);
+//                return view('admin.obekt', compact('obekts', 'category'));
+//            }
+//            case 'commercial-real-estate' :
+//            {
+//                $category = Category::where('id', '=', 4)->first();
+//                $category = [$category->slug, $category->name, $category->id];
+//                $obekts = Obekts::where('category_id', '=', 4)->orderBy('id', 'DESC')->paginate(10);
+//                return view('admin.obekt', compact('obekts', 'category'));
+//            }
+//        }
 
+
+        $category = Category::where('slug', '=', $category)->first();
+        $category = [$category->slug, $category->name, $category->id];
+        $obekts = Obekts::where('category_id', '=', $category[2])->orderBy('id', 'DESC')->paginate(10);
+        return view('admin.obekt', compact('obekts', 'category'));
     }
 
     public function viewAllObekt()
@@ -302,7 +308,8 @@ class AdminController extends AC
         $newObekt->description = $request->description;
         $newObekt->price = $request->price;
 
-        $newObekt->category_id = Category::where('slug', $category_slug)-pluck('id');
+        $id_category = Category::where('slug', '=', $category_slug)->first();
+        $newObekt->category_id = $id_category->id;
         $newObekt->square = $request->square;
 
 
@@ -310,7 +317,7 @@ class AdminController extends AC
         $newObekt->appointment_id = $request->appointment_id;
         $newObekt->rieltor_id = $request->rieltor_id;
 
-        $slug = transliterate($request->name);
+        $slug = $this->transliterate($request->name);
         $newObekt->slug = $slug;
 
         $newObekt->isPay = 0; // 1 - sold 0 - sale
@@ -333,7 +340,7 @@ class AdminController extends AC
         // location
         $newLocation = new Location();
 
-        $newLocation->regoin_id = 1; // Житомирська область
+        $newLocation->region_id = 1; // Житомирська область
 
         // check city or rayon
         $newLocation->rayon_id = $request->location_rayon_id;
@@ -343,13 +350,15 @@ class AdminController extends AC
             // 93 - none для міста якщо район м.Житомир
             $newLocation->city_id = 93;
             $newLocation->city_rayon_id = $request->location_rayon_city_id;
-            $newObekt->city_name = LocationCityRayon::where('id', $request->location_rayon_city_id)-pluck('rayon_city');
+            $rayon_city = LocationCityRayon::where('id', $request->location_rayon_city_id)->first();
+            $newObekt->city_name = $rayon_city->rayon_city;
         }else if($request->location_rayon_id == 75){
             // 75 - Житомирський район
             $newLocation->city_id = $request->location_city_id;
             // 34 - -- для района міста якщо обрано Житомирський район
             $newLocation->city_rayon_id = 34;
-            $newObekt->city_name = LocationCity::where('id', $request->location_city_id)-pluck('city');
+            $city = LocationCity::where('id', $request->location_city_id)->first();
+            $newObekt->city_name = $city->city;
         }else{
             // Якщо обрано з пункта район не м.Житомир або Житомирський район
             $newLocation->city_id = 93;
@@ -364,7 +373,8 @@ class AdminController extends AC
 
         $lastID_Location = Location::latest()->first();
         $newObekt->location_id = $lastID_Location->id;
-        $newObekt->rayon_name = LocationRayon::where('id', $request->location_rayon_id)-pluck('rayon');
+        $rayon = LocationRayon::where('id', $request->location_rayon_id)->first();
+        $newObekt->rayon_name = $rayon->rayon;
 
 
         // check if new owner
@@ -393,9 +403,11 @@ class AdminController extends AC
             // generate new file name
             $imageMainName = time() . '.' . $request->imgMain->extension();
             // create folder for image
-            mkdir(public_path() . $path, 0777, false);
+            if (! File::exists(public_path().$path)) {
+                File::makeDirectory(public_path().$path);
+            }
             // move to folder image
-            $request->imgInp->move(public_path($path), $imageMainName);
+            $request->imgMain->move(public_path($path), $imageMainName);
             // save new name image to database
             $newObekt->main_img = $imageMainName;
         }
@@ -415,10 +427,10 @@ class AdminController extends AC
                 foreach($request->file('images') as $key => $item_img)
                 {
                     $item_img_name = time() . '.' . $request->$item_img->extension();
-                    $item_img->move($path, $item_img_name);
+                    $item_img->move(public_path($path), $item_img_name);
 
                     $Upload_model = new Files;
-                    $Upload_model->url_img = $path . $item_img_name;
+                    $Upload_model->url_img = $path . '/' . $item_img_name;
                     $Upload_model->obekt_id = $getObektsID->id;
                     $Upload_model->save();
 
@@ -430,6 +442,13 @@ class AdminController extends AC
             return back()->with("error", "Виникла помилка при збережені.");
         }
 
+    }
+
+    public function deteleObekt(Obekts $obekt)
+    {
+        $obekt->delete();
+
+         return back()->with("success", "Об'єкт видалено успішно.");
     }
 
 //    public function search_(Request $request)

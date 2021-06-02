@@ -12,9 +12,9 @@
                 <div class="obket-info col-md-4 border p-2">
                     <h4>Інформація про об'єкт</h4>
                     <label>Назва нерухомості</label>
-                    <input type="text" name="title" id="title" class="form-control" placeholder="Назва" required>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Назва" required>
                     <label>Опис нерухомості</label>
-                    <textarea name="desc" id="desc" class="form-control" rows="3" placeholder="Опис"
+                    <textarea name="description" id="description" class="form-control" rows="3" placeholder="Опис"
                               required></textarea>
                     <hr>
                     <div class="d-flex justify-content-between">
@@ -30,7 +30,7 @@
                         @if($categoryData->slug != 'land')
                         <div class="opalemya">
                             <label>Тип опалення</label>
-                            <select class="form-control" id="type_opalenya" name="type_opalenya">--}}
+                            <select class="form-control" id="opalenyaName" name="opalenyaName">
                                 <option disabled>-Оберіть тип опалення-</option>
                                 <option value="Автономне">Автономне</option>
                                 <option value="Централізоване">Централізоване</option>
@@ -202,7 +202,7 @@
                                    onclick="newOwner()">
                             <label class="form-check-label" for="isNewOwner">Додати власника</label>
                         </div>
-                        <select class="form-control w-50" id="owner_list" name="owner_list">
+                        <select class="form-control w-50" id="owner_id" name="owner_id">
                             <option disabled>-Оберіть власника-</option>
                             @foreach($owners as $key => $owner)
                                 <option value="{{$owner->id}}">{{$owner->name}}</option>
@@ -217,11 +217,11 @@
                     </div>
                     <hr>
                     <h4>Ріелтора</h4>
-                    <select class="form-control" id="rieltor_id" required>
+                    <select class="form-control" id="rieltor_id" name="rieltor_id" required>
                         <option>-Оберіть ріелтора-</option>
                         @foreach($rieltors as $key => $rieltor)
 
-                            <option value="$rieltor->id">{{$rieltor->name}}</option>
+                            <option value="{{$rieltor->id}}">{{$rieltor->name}}</option>
                         @endforeach
                     </select>
                     <hr>
@@ -263,7 +263,7 @@
             function newOwner() {
 
                 var isNewOwner = document.getElementById("isNewOwner");
-                var ownerList = document.getElementById("owner_list");
+                var ownerList = document.getElementById("owner_id");
 
                 if (isNewOwner.checked == true) {
                     ownerList.disabled = true;
@@ -308,7 +308,7 @@
                     }
                 }
 
-                $("#imgInp").change(function(){
+                $("#imgMain").change(function(){
                     readURL(this);
                 });
             });

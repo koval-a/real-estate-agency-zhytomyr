@@ -81,7 +81,7 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
         Route::get('/{slug}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
         Route::post('/{slug}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
-
+        Route::get('/delete/{obekt}', [AdminController::class, 'deteleObekt'])->name('admin.obekt.delete')->middleware('is_admin');
         Route::get('/public/{id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
     });
 

@@ -52,19 +52,7 @@
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <img src="/custom/icons/комерція.jpeg" alt="image" class="slide__image">
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img alt="image" class="slide__image" src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="">
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/custom/icons/комерція.jpeg" alt="image" class="slide__image">
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img alt="image" class="slide__image" src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="">
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="/custom/icons/комерція.jpeg" alt="image" class="slide__image">
+                                        <img src="/files/images/obekts/{{ $category ->slug }}/{{ $obekt->slug }}/{{ $obekt->main_img }}" alt="main image" class="slide__image img-fluid w-100 h-auto">
                                     </div>
                                 </div>
                                 <!-- Add Pagination -->
