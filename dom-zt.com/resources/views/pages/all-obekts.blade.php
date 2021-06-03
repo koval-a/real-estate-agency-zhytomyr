@@ -249,7 +249,7 @@
                             </div>
                             @endif
                             <div class="object__image1 h-auto">
-                                <img src="/custom/icons/flat.jpeg" alt="obekt-image" class="img-fluid rounded">
+                                <img src="{{$item->main_img}}" alt="obekt-image" class="img-fluid rounded">
                             </div>
 
                         </a>

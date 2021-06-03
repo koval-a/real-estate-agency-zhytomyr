@@ -298,18 +298,29 @@ class AdminController extends AC
             {
                 return back()->with("error", "Кількість поверхів не може бути менше за поверх.");
             }
-            $newObekt->count_room = $request->couny_room;
+            $newObekt->count_room = $request->count_room;
             $newObekt->count_level = $request->count_level;
             $newObekt->level = $request->level;
-            $newObekt->opalenyaName = $request->opalenyaName;
-
         }
         if ($category_slug == 'house') {
-            $newObekt->count_room = $request->couny_room;
+            $newObekt->count_room = $request->count_room;
             $newObekt->count_level = $request->count_level;
             $newObekt->level = 0;
+        }
+
+        if($category_slug == 'commercial-real-estate' or $category_slug == 'land')
+        {
+            $newObekt->count_room = 0;
+            $newObekt->count_level = 0;
+            $newObekt->level = 0;
+        }
+
+        if($category_slug == 'land'){
+            $newObekt->opalenyaName = 'none';
+        }else{
             $newObekt->opalenyaName = $request->opalenyaName;
         }
+
 
         // location
         $newLocation = new Location();
@@ -367,7 +378,7 @@ class AdminController extends AC
         }
 
         // Image save
-        $path = 'files/images/obekts/'.$category_slug .'/'. $slug;
+        $path = 'files/images/obekts/' . $category_slug . '/' . $slug;
         // save image main
         if ($request->hasFile('imgMain')) {
             // check validate
@@ -378,12 +389,12 @@ class AdminController extends AC
             $imageMainName = time() . '.' . $request->imgMain->extension();
             // create folder for image
             if (! File::exists(public_path().$path)) {
-                File::makeDirectory(public_path().$path);
+                File::makeDirectory(public_path().$path, 0777, true, true);
             }
             // move to folder image
             $request->imgMain->move(public_path($path), $imageMainName);
             // save new name image to database
-            $newObekt->main_img = $imageMainName;
+            $newObekt->main_img = '/' . $path . '/' . $imageMainName;
         }
 
         if ($newObekt->save()) {

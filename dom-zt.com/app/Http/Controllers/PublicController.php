@@ -91,7 +91,7 @@ class PublicController extends Controller
     {
         $category = Category::where('slug', '=', $categorySlug)->first();
 
-        $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->paginate(10);
+        $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->orderBy('created_at', 'DESC')->paginate(10);
         $appointments = Appointment::where('type', '=', $categorySlug)->get();
         $location = Location::all();
         $locationRayon = LocationRayon::all();
