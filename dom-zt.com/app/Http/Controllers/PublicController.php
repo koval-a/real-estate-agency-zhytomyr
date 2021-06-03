@@ -132,7 +132,7 @@ class PublicController extends Controller
             ->where('category_id','=', $categoryID)
 //            ->orWhere('count_room','=', $countRoom)
 //            ->orWhere('count_level','=', $countLevel)
-//            ->orWhere('level','=', $level)
+            ->where('appointment_id','=', $typeAppointment)
             ->where('opalenyaName','=',$typeOpalenya)
             ->orderBy('created_at', 'DESC')
             ->paginate(10);

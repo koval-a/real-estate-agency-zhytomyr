@@ -68,7 +68,7 @@
 
                         <div class="col-md-3">
                             <span>Тип <br> об'єкта</span>
-                            <select name="type_build" id="type_build" class="form-control mt-2">
+                            <select name="appointment_id" id="appointment_id" class="form-control mt-2" required>
                                 <option selected disabled>Оберіть тип</option>
                                 @foreach($appointments as $key => $appointment)
                                     <option value="{{$appointment->id}}">{{$appointment->name}}</option>
@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <span>Тип опалення</span>
-                                        <select name="type_opalenya" id="type_opalenya" class="form-control mt-2">
+                                        <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                             <option value="Централізоване">Централізоване</option>
                                             <option value="Автономне">Автономне</option>
                                         </select>
@@ -213,7 +213,7 @@
 
                                 <div class="col-md-3">
                                     <span>Тип опалення</span>
-                                    <select name="type_opalenya" id="type_opalenya" class="form-control mt-2">
+                                    <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                         <option value="Централізоване">Централізоване</option>
                                         <option value="Автономне">Автономне</option>
                                     </select>
@@ -229,8 +229,10 @@
                         @endswitch
                     </div>
                 </div>
-                <div class="btn-set-filter col-md-2 justify-content-center d-flex align-items-center">
+                <div class="btn-set-filter col-md-2 align-items-center">
                     <button type="submit" class="btn btn-danger pt-3 pb-3">Застосувати</button>
+                    <br>
+                    <a href="/obekts/{{$category->slug}}" class="btn btn-secondary pt-3 pb-3">Скинути</a>
                 </div>
             </form>
         </div>
