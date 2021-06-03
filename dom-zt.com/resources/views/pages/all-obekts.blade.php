@@ -71,7 +71,6 @@
                                     <option value="{{$appointment->id}}">{{$appointment->name}}</option>
                                 @endforeach
                             </select>
-
                         </div>
 
                         @switch($category->slug)
