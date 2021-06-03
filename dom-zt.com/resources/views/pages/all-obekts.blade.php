@@ -15,28 +15,24 @@
                     <div class="row">
                         <div class="col-md-3">
                             <span>Розташування <br> об'єкта</span>
-                            <select name="rayon_id" id="rayon_id" class="form-control mt-2">
-                                <option value="0" disabled>Оберіть район</option>
+                            <select onchange="showSubList(this)" name="rayon_id" id="rayon_id" class="form-control mt-2">
+                                <option value="0" disabled selected>Оберіть район</option>
                                 @foreach($locationRayon as $key => $rayon)
                                     <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>
                                 @endforeach
                             </select>
-{{--                            <code>--}}
-{{--                                Показувати додаткову вибірку розташування взалежності від <br>--}}
-{{--                                того чи це м.Житомир чи район області--}}
-{{--                            </code>--}}
-{{--                            <select name="city_id" id="city_id" class="form-control">--}}
-{{--                                <option value="0" disabled>Оберіть район</option>--}}
-{{--                                @foreach($locationCity as $key => $city)--}}
-{{--                                    <option value="{{$city->id}}">{{$city->city}}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
-{{--                            <select name="rayon_city_id" id="rayon_city_id" class="form-control mt-2">--}}
-{{--                                <option value="0" disabled>Оберіть район</option>--}}
-{{--                                @foreach($locationCityRayon as $key => $rayon_city)--}}
-{{--                                    <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
+                            <select name="city_name" id="city_name" class="form-control invisible">
+                                <option value="0" disabled>Оберіть місто</option>
+                                @foreach($locationCity as $key => $city)
+                                    <option value="{{$city->city}}">{{$city->city}}</option>
+                                @endforeach
+                            </select>
+                            <select name="rayon_city" id="rayon_city" class="form-control invisible">
+                                <option value="0" disabled>Оберіть район міста</option>
+                                @foreach($locationCityRayon as $key => $rayon_city)
+                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
+                                @endforeach
+                            </select>
 
                         </div>
                         <div class="col-md-4 p-0">
@@ -46,14 +42,14 @@
                                    <div class="d-flex">
                                        <span>від </span> <input type="text" id="rangePrimary" class="text-danger ml-1" />
                                    </div>
-                                    <input type="range" name="range" class="w-100" step="100" min="1000" max="10000" value="" onchange="rangePrimary.value=value">
+                                    <input type="range" name="minPrice" id="minPrice" class="w-100" step="100" min="1" max="10000" value="" onchange="rangePrimary.value=value">
 
                                 </div>
                                 <div class="max-price col-md-6 row">
                                     <div class="d-flex">
                                         <span>до </span><input type="text" id="rangePrimary2" class="text-danger ml-1" />
                                     </div>
-                                    <input type="range" name="range" class="w-100" step="100" min="1000" max="10000" value="" onchange="rangePrimary2.value=value">
+                                    <input type="range" name="maxPrice" id="maxPrice" class="w-100" step="100" min="1" max="10000" value="" onchange="rangePrimary2.value=value">
 
                                 </div>
                             </div>
@@ -63,14 +59,14 @@
                         <div class="col-md-2">
                             <span class="ml-0 pl-0">Площа <br>(m2)</span>
                             <div class="square mt-2">
-                                <input type="number" min="10" step="1" max="1000" class="form-control mt-2">
+                                <input type="number" name="square" id="square" min="10" step="1" max="1000" class="form-control mt-2">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <span>Тип <br> об'єкта</span>
                             <select name="appointment_id" id="appointment_id" class="form-control mt-2" required>
-                                <option disabled>Оберіть тип</option>
+                                <option disabled selected>Оберіть тип</option>
                                 @foreach($appointments as $key => $appointment)
                                     <option value="{{$appointment->id}}">{{$appointment->name}}</option>
                                 @endforeach
@@ -85,7 +81,7 @@
                                         <div class="count-room col-md-2">
                                             <span>К-ть кімнат</span>
                                             <select name="count_room" id="count_room" class="form-control mt-2">
-                                                <option value="0" disabled>Оберіть к-ть кімнат</option>
+                                                <option value="0" disabled selected>Оберіть к-ть кімнат</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -95,7 +91,7 @@
                                         <div class="count-room col-md-2">
                                             <span>Поверх</span>
                                             <select name="count_room" id="count_room" class="form-control mt-2">
-                                                <option value="0" disabled>Оберіть поверх</option>
+                                                <option value="0" disabled selected>Оберіть поверх</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -106,7 +102,7 @@
                                         <div class="count-room col-md-2">
                                             <span>Поверховість</span>
                                             <select name="count_room" id="count_room" class="form-control mt-2">
-                                                <option value="0" disabled>Оберіть поверховість</option>
+                                                <option value="0" disabled selected>Оберіть поверховість</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -132,7 +128,7 @@
                                     <div class="count-room col-md-3">
                                         <span>Поверховість</span>
                                         <select name="count_room" id="count_room" class="form-control mt-2">
-                                            <option value="0" disabled>Оберіть поверховість</option>
+                                            <option value="0" disabled selected>Оберіть поверховість</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -143,7 +139,7 @@
                                     <div class="count-room col-md-3">
                                         <span>Кількість кімнат</span>
                                         <select name="count_room" id="count_room" class="form-control mt-2">
-                                            <option value="0" disabled>Оберіть к-ть кімнат</option>
+                                            <option value="0" disabled selected>Оберіть к-ть кімнат</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -157,61 +153,16 @@
                                             <option value="Автономне">Автономне</option>
                                         </select>
                                     </div>
-{{--                                    <div class="count-room col-md-6 row">--}}
-{{--                                        <div class="new-build-check col-md-6">--}}
-{{--                                            <span>Нова будівля</span>--}}
-{{--                                            <div class="item-check row">--}}
-{{--                                                <div class="item col-md-6">--}}
-{{--                                                    <input type="radio" name="newBuild" value="1" class="form-control">--}}
-{{--                                                    <span>Так</span>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="item col-md-6">--}}
-{{--                                                    <input type="radio" name="newBuild" value="0" checked class="form-control">--}}
-{{--                                                    <span>Ні</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="part-build-check col-md-6">--}}
-{{--                                            <span>Частина будівля</span>--}}
-{{--                                            <div class="item-check row">--}}
-{{--                                                <div class="item col-md-6">--}}
-{{--                                                    <input type="radio" name="partBuild" value="1" class="form-control">--}}
-{{--                                                    <span>Так</span>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="item col-md-6">--}}
-{{--                                                    <input type="radio" name="partBuild" value="0" checked class="form-control">--}}
-{{--                                                    <span>Ні</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
                                 </div>
                                 @break
                             @case('land')
 
                                     <div class="col-md-3 row">
-
-{{--                                        <div class="type-build">--}}
-{{--                                            <span>Призначення <br> об'єкта</span>--}}
-{{--                                            <select name="type_build" id="type_build" class="form-control mt-2">--}}
-{{--                                                <option value="0" disabled>Оберіть тип призначення</option>--}}
-{{--                                                <option value="">Значення</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
                                     </div>
 
                                 @break
                             @case('commercial-real-estate')
                             <div class="col-md-12 row">
-
-{{--                                <div class="type-build">--}}
-{{--                                    <span>Тип <br> нерухомості</span>--}}
-{{--                                    <select name="type_build" id="type_build" class="form-control mt-2">--}}
-{{--                                        <option value="0" disabled>Оберіть тип нерухомості</option>--}}
-{{--                                        <option value="">Значення</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-
                                 <div class="col-md-3">
                                     <span>Тип опалення</span>
                                     <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
@@ -330,6 +281,29 @@
         <hr>
     </div>
     <script>
+        function showSubList(a)
+        {
+            var x = (a.value || a.options[a.selectedIndex].value);
+            var rayon_city = document.getElementById('rayon_city');
+            var city_name = document.getElementById('city_name');
 
+            if(x == 'м.Житомир')
+            {
+                rayon_city.classList.remove('invisible');
+                rayon_city.classList.add('visible');
+
+                city_name.classList.remove('visible');
+                city_name.classList.add('invisible');
+            }
+
+            if(x == 'Житомирський')
+            {
+                city_name.classList.remove('invisible');
+                city_name.classList.add('visible');
+
+                rayon_city.classList.remove('visible');
+                rayon_city.classList.add('invisible');
+            }
+        }
     </script>
 @endsection

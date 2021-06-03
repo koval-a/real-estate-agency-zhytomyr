@@ -120,7 +120,7 @@ class PublicController extends Controller
         $priceMin = $request->minPrice;
         $priceMax = $request->maxPrice;
         $square = $request->square;
-        $typeAppointment = $request->appointment_id;
+
 
         // filters parameters from flat, house, commercial real estate
         $countRoom = $request->countRoom;
@@ -128,14 +128,43 @@ class PublicController extends Controller
         $level = $request->level;
         $typeOpalenya = $request->typeOpalenya;
 
-        $obekts = Obekts::where('isPublic','=',1)
-            ->where('category_id','=', $categoryID)
-//            ->orWhere('count_room','=', $countRoom)
-            ->where('rayon_name','=', $rayon_id)
-            ->where('appointment_id','=', $typeAppointment)
-            ->where('opalenyaName','=',$typeOpalenya)
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+        $query = Obekts::where('isPublic','=',1);
+
+        if($request->appointment_id){
+            $typeAppointment = $request->appointment_id;
+            $query->where('appointment_id','=', $typeAppointment);
+        }
+
+        if($request->typeOpalenya){
+            $typeOpalenya = $request->typeOpalenya;
+            $query->where('opalenyaName','=', $typeOpalenya);
+        }
+
+        $obekts = $query->paginate(10);
+
+        switch($categorySlug)
+        {
+            case 'flat': {
+
+                break;
+            }
+            case 'house': {
+
+                break;
+            }
+            case 'land': {
+
+                break;
+            }
+            case 'commercial-real-estate': {
+
+                break;
+            }
+            default:  $obekts = Obekts::where('isPublic','=',1)
+                ->orderBy('created_at', 'DESC')
+                ->paginate(10);
+
+        }
 
         return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
     }
