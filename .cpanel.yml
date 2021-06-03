@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/ikoeytoa/dom-zt.lukyanchuk.com/
-    - /bin/cp -r ./dom-zt.com/ $DEPLOYPATH
+    - /bin/cp -r /dom-zt.com/* $DEPLOYPATH
