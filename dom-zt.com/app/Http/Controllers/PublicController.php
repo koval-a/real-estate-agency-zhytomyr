@@ -115,7 +115,7 @@ class PublicController extends Controller
         $locationCityRayon = LocationCityRayon::all();
 
         // filters parameters basic
-        $locRayon = $request->rayon;
+        $rayon_id = $request->rayon_id;
         $locCity = $request->city;
         $priceMin = $request->minPrice;
         $priceMax = $request->maxPrice;
@@ -131,7 +131,7 @@ class PublicController extends Controller
         $obekts = Obekts::where('isPublic','=',1)
             ->where('category_id','=', $categoryID)
 //            ->orWhere('count_room','=', $countRoom)
-//            ->orWhere('count_level','=', $countLevel)
+            ->where('rayon_name','=', $rayon_id)
             ->where('appointment_id','=', $typeAppointment)
             ->where('opalenyaName','=',$typeOpalenya)
             ->orderBy('created_at', 'DESC')

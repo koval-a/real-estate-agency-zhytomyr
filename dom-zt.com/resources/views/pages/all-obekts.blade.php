@@ -10,6 +10,7 @@
                 @csrf
                 <input type="text" value="{{$category->slug}}" name="slug" id="slug" class="hidden">
                 <input type="text" value="{{$category->id}}" name="id" id="id" class="hidden">
+
                 <div class="parameters col-md-10">
                     <div class="row">
                         <div class="col-md-3">
@@ -17,7 +18,7 @@
                             <select name="rayon_id" id="rayon_id" class="form-control mt-2">
                                 <option value="0" disabled>Оберіть район</option>
                                 @foreach($locationRayon as $key => $rayon)
-                                    <option value="{{$rayon->id}}">{{$rayon->rayon}}</option>
+                                    <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>
                                 @endforeach
                             </select>
 {{--                            <code>--}}
