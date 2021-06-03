@@ -69,7 +69,7 @@
                         <div class="col-md-3">
                             <span>Тип <br> об'єкта</span>
                             <select name="appointment_id" id="appointment_id" class="form-control mt-2" required>
-                                <option selected disabled>Оберіть тип</option>
+                                <option disabled>Оберіть тип</option>
                                 @foreach($appointments as $key => $appointment)
                                     <option value="{{$appointment->id}}">{{$appointment->name}}</option>
                                 @endforeach
