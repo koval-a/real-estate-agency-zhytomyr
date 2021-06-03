@@ -128,7 +128,7 @@ class PublicController extends Controller
         $level = $request->level;
         $typeOpalenya = $request->typeOpalenya;
 
-        $query = Obekts::where('isPublic','=',1);
+        $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID);
 
         if($request->appointment_id){
             $typeAppointment = $request->appointment_id;

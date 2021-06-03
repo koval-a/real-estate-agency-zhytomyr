@@ -149,6 +149,7 @@
                                     <div class="col-md-3">
                                         <span>Тип опалення</span>
                                         <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
+                                            <option selected disabled="">Оберіть тип опалення</option>
                                             <option value="Централізоване">Централізоване</option>
                                             <option value="Автономне">Автономне</option>
                                         </select>
@@ -166,6 +167,7 @@
                                 <div class="col-md-3">
                                     <span>Тип опалення</span>
                                     <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
+                                        <option selected disabled="">Оберіть тип опалення</option>
                                         <option value="Централізоване">Централізоване</option>
                                         <option value="Автономне">Автономне</option>
                                     </select>
