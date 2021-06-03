@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ikoeytoa/dom-zt.lukyanchuk.com/
+    - /bin/cp -R dom-zt.com $DEPLOYPATH
