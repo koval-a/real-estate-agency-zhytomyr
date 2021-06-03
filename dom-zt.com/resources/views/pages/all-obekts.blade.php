@@ -6,8 +6,10 @@
         <h1 class="title">{{ $category->name }}</h1>
 
         <div class="filter row bg-white p-3 rounded shadow">
-            <form action="" method="GET" class="d-flex justify-content-between">
+            <form action="{{ route('filter.data') }}" method="GET" class="d-flex justify-content-between">
                 @csrf
+                <input type="text" value="{{$category->slug}}" name="slug" id="slug" class="hidden">
+                <input type="text" value="{{$category->id}}" name="id" id="id" class="hidden">
                 <div class="parameters col-md-10">
                     <div class="row">
                         <div class="col-md-3">
@@ -113,7 +115,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <span>Тип опалення</span>
-                                            <select name="type_opalenya" id="type_opalenya" class="form-control mt-2">
+                                            <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
                                                 <option value="Централізоване">Централізоване</option>
                                                 <option value="Автономне">Автономне</option>

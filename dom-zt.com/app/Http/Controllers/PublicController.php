@@ -102,12 +102,21 @@ class PublicController extends Controller
 
     }
 
-    public function filterForm(Request $request, $categorySlug, $categoryID)
+    public function filterForm(Request $request)
     {
+        $categorySlug = $request->slug;
+        $categoryID = $request->id;
+
+        $category = Category::where('slug', '=', $categorySlug)->first();
+        $appointments = Appointment::where('type', '=', $categorySlug)->get();
+        $location = Location::all();
+        $locationRayon = LocationRayon::all();
+        $locationCity = LocationCity::all();
+        $locationCityRayon = LocationCityRayon::all();
 
         // filters parameters basic
-        $locationRayon = $request->rayon;
-        $locationCity = $request->city;
+        $locRayon = $request->rayon;
+        $locCity = $request->city;
         $priceMin = $request->minPrice;
         $priceMax = $request->maxPrice;
         $square = $request->square;
@@ -119,14 +128,15 @@ class PublicController extends Controller
         $level = $request->level;
         $typeOpalenya = $request->typeOpalenya;
 
-        $data = Obekts::where('isPublic','=',1)
+        $obekts = Obekts::where('isPublic','=',1)
             ->where('category_id','=', $categoryID)
-            ->where('level','=', $level)
-            ->where('typeOpalenya','=',$typeOpalenya)
-            ->where('','',)
-            ->pagination(10)
-            ->get();
+//            ->orWhere('count_room','=', $countRoom)
+//            ->orWhere('count_level','=', $countLevel)
+//            ->orWhere('level','=', $level)
+            ->where('opalenyaName','=',$typeOpalenya)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
 
-        return view('pages.all-obekts', compact('data'));
+        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
     }
 }
