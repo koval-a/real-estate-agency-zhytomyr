@@ -191,6 +191,7 @@ class AdminController extends AC
         $location = Location::all();
         $appointment = Appointment::all();
         $owners = Owner::all();
+        $filesImages = Files::all();
 
         $q = $request->input('q');
         if ($q != "") {
@@ -199,11 +200,9 @@ class AdminController extends AC
                 'q' => $request->input('q')
             ));
             if (count($obekts) > 0)
-                return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment'));
+                return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
         }
-//        return view ( 'welcome' )->withMessage ( 'No Details found. Try to search again !' );
-
-//        return view('admin.blog');
+        return back()->with ('error', 'Нічого не знайдено!' );
     }
 
     public function newObekt($categorySlug)

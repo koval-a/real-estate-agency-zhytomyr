@@ -149,10 +149,13 @@
                         <div class="alert alert-success alert-dismissible">
                             <button type="button" class="close btn btn-light m-2" data-dismiss="alert">&times;</button>{{Session::get('success')}}
                         </div>
-
                     @elseif(Session::get('failed'))
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close btn btn-light m-2" data-dismiss="alert">&times;</button>{{Session::get('failed')}}
+                        </div>
+                    @elseif(Session::get('error'))
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close btn btn-light m-2" data-dismiss="alert">&times;</button>{{Session::get('error')}}
                         </div>
                     @endif
                 </div>

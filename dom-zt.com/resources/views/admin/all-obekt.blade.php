@@ -47,12 +47,6 @@
                     <td>
                         Назва
                     </td>
-                    {{--                    <td>--}}
-                    {{--                        Дата--}}
-                    {{--                    </td>--}}
-                    <td>
-                        ID
-                    </td>
                     <td>
                         Тип об'єкту
                     </td>
@@ -63,13 +57,11 @@
                         Площа (m2)
                     </td>
                     <td>
-                        Опис та Фото
+{{--                        Опис та --}}
+                        Фото
                     </td>
                     <td>
                         Видимість
-                    </td>
-                    <td>
-                        Статус
                     </td>
                     <td>
                         Дія
@@ -92,14 +84,24 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
+                            @if($item->isPay)
+                                <span class="bg-success text-light p-2 m-2 rounded">
+                                            Продано
+                                        </span>
+                            @else
+                                <span class="bg-warning text-light p-2 m-2 rounded">
+                                            В продажу
+                                        </span>
+                            @endif
+                            <div class="d-flex p-2">
+                                ID: # {{ $item->id }}
+                                <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
+                            </div>
+
                         </td>
                         {{--                        <td>--}}
                         {{--                            {{ $item->created_at->format('Y-m-d') }}--}}
                         {{--                        </td>--}}
-                        <td>
-                            ID: # {{ $item->id }}
-                        </td>
                         <td>
                             @foreach($appointment as $key => $appoint)
                                 @if($appoint->id ==  $item->appointment_id)
@@ -115,14 +117,17 @@
                             {{ $item->square }}
                         </td>
                         <td>
-                            {{ $item->description }}
+{{--                            {{ $item->description }}--}}
                             <div class="d-flex">
 
                                 @foreach($filesImages as $key => $image)
                                     @if($item->id == $image->obekt_id)
-                                        <a data-fancybox="gallery" href="/{{ $image->url_img }}">
-                                            <img src="/{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
+                                        <a data-fancybox="gallery" href="{{ $image->url_img }}">
+                                            <img src="{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
                                         </a>
+                                    @else
+                                        <span>Немає фото.</span>
+                                        @break
                                     @endif
                                 @endforeach
                             </div>
@@ -131,23 +136,19 @@
                             <span class={{ $item->isPublic?'text-success':'text-sexondary' }}>
                                 {{ $item->isPublic?'Опубліковано':'Приховано' }}
                             </span>
-                        </td>
-                        <td>
-                        <span class={{ $item->isPay?'text-success':'text-warning' }}>
-                        {{ $item->isPay?'Продано':'В продажу' }}
-                        </span>
+                            @if($item->isPublic)
+                                <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
+                                    Прииховати
+                                </a>
+                            @else
+                                <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
+                                    Опублікувати
+                                </a>
+                            @endif
                         </td>
                         <td>
                             <div class="d-flex p-2">
-                                @if($item->isPublic)
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
-                                        Прииховати
-                                    </a>
-                                @else
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
-                                        Опублікувати
-                                    </a>
-                                @endif
+
                                 <a href="#" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
                             </div>
                         </td>
