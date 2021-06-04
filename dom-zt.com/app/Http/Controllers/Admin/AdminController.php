@@ -208,7 +208,7 @@ class AdminController extends AC
     public function newObekt($categorySlug)
     {
         $categoryData = Category::where('slug', '=', $categorySlug)->first();
-        $rieltors = Rieltors::all();
+        $rieltors = Rieltors::where('is_admin', '=', 0)->get();
         $owners = Owner::all();
         $typeBuild = Appointment::where('type', '=', $categorySlug)->get();
         $rayon = LocationRayon::all();
@@ -432,8 +432,10 @@ class AdminController extends AC
 
     public function deteleObekt(Obekts $obekt)
     {
+         $nameObekt = $obekt->name;
+         $msg = "Об'єкт " . $nameObekt . " видалено успішно.";
          // Location delete
-         $location = Location::find($obekt->location_id);
+         $location = Location::where('id', '=', $obekt->location_id);
          $location->delete();
 
          // Owner delete  - not delete
@@ -442,13 +444,17 @@ class AdminController extends AC
         $category = Category::where('id', '=', $obekt->category_id)->first();
         $path = 'files/images/obekts/'. $category->slug .'/'. $obekt->slug;
         if (File::exists(public_path().$path)) {
-            File::deleteDirectory(public_path() . $path);
+            File::deleteDirectory(public_path($path));
         }
+
+        // Files delete
+        $files = Files::where('obekt_id', '=', $obekt->id);
+        $files->delete();
 
          // Obekt delete
          $obekt->delete();
 
-         return back()->with("success", "Об'єкт видалено успішно.");
+         return back()->with("success", $msg);
     }
 
 //    public function search_(Request $request)

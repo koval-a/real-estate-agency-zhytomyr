@@ -149,7 +149,7 @@
                         <td>
                             <div class="d-flex p-2">
 
-                                <a href="#" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
+                                <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
                             </div>
                         </td>
                     </tr>
