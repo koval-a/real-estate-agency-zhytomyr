@@ -100,7 +100,11 @@ class PublicController extends Controller
         $locationCity = LocationCity::all();
         $locationCityRayon = LocationCityRayon::all();
 
-        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
+        $max = Obekts::max('price');
+        $min = Obekts::min('price');
+        $price = [$max, $min];
+
+        return view('pages.all-obekts', compact('price', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
 
     }
 
@@ -111,63 +115,130 @@ class PublicController extends Controller
 
         $category = Category::where('slug', '=', $categorySlug)->first();
         $appointments = Appointment::where('type', '=', $categorySlug)->get();
+
         $location = Location::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
         $locationCityRayon = LocationCityRayon::all();
 
-        // filters parameters basic
-        $rayon_id = $request->rayon_id;
-        $locCity = $request->city;
-        $priceMin = $request->minPrice;
-        $priceMax = $request->maxPrice;
-        $square = $request->square;
-
-
-        // filters parameters from flat, house, commercial real estate
-        $countRoom = $request->countRoom;
-        $countLevel = $request->countLevel;
-        $level = $request->level;
-        $typeOpalenya = $request->typeOpalenya;
-
         $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID);
 
+        // Basic parameters filters
+
+        // Appointment
         if($request->appointment_id){
             $typeAppointment = $request->appointment_id;
             $query->where('appointment_id','=', $typeAppointment);
         }
+        // Location
+        if($request->rayon_id)
+        {
+            $rayon_name = $request->rayon_id; // Райони + м.Житомир
 
-        if($request->typeOpalenya){
-            $typeOpalenya = $request->typeOpalenya;
-            $query->where('opalenyaName','=', $typeOpalenya);
+            if($rayon_name == 'м.Житомир') // 51 - Житомир
+            {
+                if($request->rayon_city)
+                {
+                    $rayon_city = $request->rayon_city; // Райони м.Житомир
+                    $query
+                        ->where('rayon_name', '=', $rayon_name)
+                        ->where('city_name', '=', $rayon_city);
+                }
+
+            }else if($rayon_name == 'Житомирський'){ // 75 - Житомирський район
+
+                $city_name = $request->city_name; // Селища р-н Житомирьский
+                $query
+                    ->where('rayon_name', '=', $rayon_name)
+                    ->where('city_name', '=', $city_name);
+
+            }else{
+                $query->where('rayon_name', '=', $rayon_name);
+            }
         }
+
+        // Price
+        if($request->rangePrimary and $request->rangePrimary2){
+
+            if($request->rangePrimary < $request->rangePrimary2)
+            {
+                $min_price = $request->rangePrimary;
+                $max_price = $request->rangePrimary2;
+                $query->whereBetween('price', [$min_price, $max_price]);
+
+            }else{
+                return back()->with('error', 'Початкова ціна має бути меншою за кінцеву!');
+            }
+        }
+
+        // Square
+        if($request->square){
+            $square = $request->square;
+            $query->where('square', '=', $square);
+        }
+
+
+        // Custom parameters filter by category
+
+        if( $categorySlug == 'flat' or
+            $categorySlug == 'house'or
+            $categorySlug == 'commercial-real-estate'
+        ) {
+            if($request->typeOpalenya){
+                $typeOpalenya = $request->typeOpalenya;
+                $query->where('opalenyaName','=', $typeOpalenya);
+            }
+        }
+
+        if($categorySlug == 'house' or $categorySlug == 'flat') {
+
+            if($request->count_room){
+
+                $count_room = $request->count_room;
+
+                if($count_room >= 4){
+                    $query->where('count_room','>=', $count_room);
+                }else{
+                    $query->where('count_room','=', $count_room);
+                }
+            }
+
+            if($request->count_level){
+
+                $count_level = $request->count_level;
+
+                if($count_level >=5)
+                {
+                    $query->where('count_level','>=', $count_level);
+                }else{
+                    $query->where('count_level','=', $count_level);
+                }
+            }
+
+        }
+
+        if($categorySlug == 'flat') {
+
+            if($request->level)
+            {
+                $level = $request->level;
+
+                if($level >=5)
+                {
+                    $query->where('level','>=', $level);
+                }else{
+                    $query->where('level','=', $level);
+                }
+
+            }
+        }
+
+        $max = Obekts::max('price');
+        $min = Obekts::min('price');
+        $price = [$max, $min];
 
         $obekts = $query->paginate(10);
 
-        switch($categorySlug)
-        {
-            case 'flat': {
-
-                break;
-            }
-            case 'house': {
-
-                break;
-            }
-            case 'land': {
-
-                break;
-            }
-            case 'commercial-real-estate': {
-
-                break;
-            }
-            default:  $obekts = Obekts::where('isPublic','=',1)
-                ->orderBy('created_at', 'DESC')
-                ->paginate(10);
-
-        }
-
-        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
+        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
     }
 }

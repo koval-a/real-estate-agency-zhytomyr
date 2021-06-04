@@ -40,16 +40,16 @@
                             <div class="price-range p-3 row mt-1">
                                 <div class="min-price col-md-6 row">
                                    <div class="d-flex">
-                                       <span>від </span> <input type="text" id="rangePrimary" class="text-danger ml-1" />
+                                       <span>від </span> <input type="text" id="rangePrimary" name="rangePrimary" class="text-danger ml-1" />
                                    </div>
-                                    <input type="range" name="minPrice" id="minPrice" class="w-100" step="100" min="1" max="10000" value="" onchange="rangePrimary.value=value">
+                                    <input type="range" name="minPrice" id="minPrice" class="w-100" step="1" min="{{ $price[1] }}" max="10000" value="" onchange="rangePrimary.value=value">
 
                                 </div>
                                 <div class="max-price col-md-6 row">
                                     <div class="d-flex">
-                                        <span>до </span><input type="text" id="rangePrimary2" class="text-danger ml-1" />
+                                        <span>до </span><input type="text" id="rangePrimary2" name="rangePrimary2" class="text-danger ml-1" />
                                     </div>
-                                    <input type="range" name="maxPrice" id="maxPrice" class="w-100" step="100" min="1" max="10000" value="" onchange="rangePrimary2.value=value">
+                                    <input type="range" name="maxPrice" id="maxPrice" class="w-100" step="1" min="{{ $price[1] }}" max="{{ $price[0] }}" value="" onchange="rangePrimary2.value=value">
 
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="count-room col-md-2">
                                             <span>Поверх</span>
-                                            <select name="count_room" id="count_room" class="form-control mt-2">
+                                            <select name="level" id="level" class="form-control mt-2">
                                                 <option value="0" disabled selected>Оберіть поверх</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -100,7 +100,7 @@
                                         </div>
                                         <div class="count-room col-md-2">
                                             <span>Поверховість</span>
-                                            <select name="count_room" id="count_room" class="form-control mt-2">
+                                            <select name="count_level" id="count_level" class="form-control mt-2">
                                                 <option value="0" disabled selected>Оберіть поверховість</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -126,7 +126,7 @@
 
                                     <div class="count-room col-md-3">
                                         <span>Поверховість</span>
-                                        <select name="count_room" id="count_room" class="form-control mt-2">
+                                        <select name="count_level" id="count_room" class="form-control mt-2">
                                             <option value="0" disabled selected>Оберіть поверховість</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -257,11 +257,14 @@
                                     </li>
                                 @endif
 
-                                @if($category->slug == 'flat')
+                                @if($category->slug == 'flat' or $category->slug == 'commercial-real-estate')
                                     <li class="object__item">
                                         <i class="bi bi-thermometer-sun"></i>
                                         {{ $item->opalenyaName }}
                                     </li>
+                                @endif
+
+                                @if($category->slug == 'flat')
                                     <li class="object__item">
                                         <i class="bi bi-stack"></i>
                                         {{ $item->level }}/{{ $item->count_level }} поверх
