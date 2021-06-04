@@ -227,30 +227,30 @@
                     <hr>
                     <h4>Розміщення</h4>
                     <label>Район</label>
-                    <select name="location_rayon_id" id="location_rayon_id" class="form-control">
-                        <option disabled>Оберіть район</option>
+                    <select onchange="showList(this)" name="location_rayon_id" id="location_rayon_id" class="form-control">
+                        <option disabled selected>Оберіть район</option>
                         @foreach($location[0] as $key => $rayon)
                             <option value="{{$rayon->id}}">{{$rayon->rayon}}</option>
                         @endforeach
                     </select>
-                    <label>Місто</label>
-                    <select name="location_city_id" id="location_city_id" class="form-control">
-                        <option disabled>Оберіть місто</option>
+{{--                    <label>Місто</label>--}}
+                    <select name="location_city_id" id="location_city_id" class="form-control invisible">
+                        <option disabled selected>Оберіть місто</option>
                         @foreach($location[1] as $key => $city)
                             <option value="{{$city->id}}">{{$city->city}}</option>
                         @endforeach
                     </select>
-                    <label>Район місто</label>
-                    <select name="location_rayon_city_id" id="location_rayon_city_id" class="form-control">
-                        <option disabled>Оберіть район міста</option>
+{{--                    <label>Район місто</label>--}}
+                    <select name="location_rayon_city_id" id="location_rayon_city_id" class="form-control invisible">
+                        <option disabled selected>Оберіть район міста</option>
                         @foreach($location[2] as $key => $rayon_city)
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
                         @endforeach
                     </select>
                     <label>Адреса</label>
-                    <input type="text" name="address" id="address" class="form-control" placeholder="Адреса">
+                    <input type="text" name="address" id="address" class="form-control" placeholder="Адреса" required>
 
-                    <input type="text" name="note_address" id="note_address" class="form-control" placeholder="Нотатка">
+                    <input type="text" name="note_address" id="note_address" class="form-control" placeholder="Нотатка" required>
 
                 </div>
             </div>
@@ -273,6 +273,37 @@
                     ownerList.disabled = false;
                     document.getElementById('newOwnerForm').classList.remove('visible');
                     document.getElementById('newOwnerForm').classList.add('invisible');
+                }
+            }
+
+            function showList(a)
+            {
+                var x = (a.value || a.options[a.selectedIndex].value);
+                var city_name = document.getElementById('location_city_id');
+                var rayon_city = document.getElementById('location_rayon_city_id');
+
+                if(x == 51)
+                {
+                    rayon_city.classList.remove('invisible');
+                    rayon_city.classList.add('visible');
+
+                    city_name.classList.remove('visible');
+                    city_name.classList.add('invisible');
+                }
+                else if(x == 75)
+                {
+                    city_name.classList.remove('invisible');
+                    city_name.classList.add('visible');
+
+                    rayon_city.classList.remove('visible');
+                    rayon_city.classList.add('invisible');
+
+                } else {
+                    city_name.classList.remove('visible');
+                    city_name.classList.add('invisible');
+
+                    rayon_city.classList.remove('visible');
+                    rayon_city.classList.add('invisible');
                 }
             }
 

@@ -292,20 +292,26 @@
             var x = (a.value || a.options[a.selectedIndex].value);
             var rayon_city = document.getElementById('rayon_city');
             var city_name = document.getElementById('city_name');
+            var label_city = document.getElementById('label-city');
 
-            if(x == 'м.Житомир')
+            if(x == 'м.Житомир') //51
             {
                 rayon_city.classList.remove('invisible');
                 rayon_city.classList.add('visible');
 
                 city_name.classList.remove('visible');
                 city_name.classList.add('invisible');
-            }
-
-            if(x == 'Житомирський')
+            }else if(x == 'Житомирський') //75
             {
                 city_name.classList.remove('invisible');
                 city_name.classList.add('visible');
+
+                rayon_city.classList.remove('visible');
+                rayon_city.classList.add('invisible');
+            }
+            else {
+                city_name.classList.remove('visible');
+                city_name.classList.add('invisible');
 
                 rayon_city.classList.remove('visible');
                 rayon_city.classList.add('invisible');
