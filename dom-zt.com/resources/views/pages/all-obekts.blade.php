@@ -189,7 +189,7 @@
                 </div>
             </form>
         </div>
-
+        @if($obekts->count() > 0)
         <div class="row mt-2">
             @foreach($obekts as $key => $item)
 
@@ -280,6 +280,11 @@
         <hr>
         {{ $obekts->links() }}
         <hr>
+        @else
+            <div class="empty-data p-3">
+                <span class="title">Об'єктів нерухомості в розділі {{ $category->name }} немає.</span>
+            </div>
+        @endif
     </div>
     <script>
         function showSubList(a)

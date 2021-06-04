@@ -53,9 +53,7 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img
-                                        src="/files/images/obekts/{{ $category ->slug }}/{{ $obekt->slug }}/{{ $obekt->main_img }}"
-                                        alt="main image" class="slide__image img-fluid w-100 h-auto">
+                                    <img src="{{ $obekt->main_img }}" alt="main image" class="slide__image img-fluid w-100 h-auto">
                                 </div>
                                 @foreach($filesImages as $key => $image)
                                     @if($obekt->id == $image->obekt_id)

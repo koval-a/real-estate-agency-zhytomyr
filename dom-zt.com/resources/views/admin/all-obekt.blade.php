@@ -31,8 +31,7 @@
             </div>
         </div>
         <hr>
-            Filter by type build, square, price, count room, location
-        <hr>
+        @if($obekts->count() > 0)
         <div class="all-obekt">
 
             <table class="table table-striped">
@@ -161,6 +160,9 @@
         <hr>
         {{ $obekts->links() }}
         <hr>
+        @else
+            <span class="p-3">Записів немає.</span>
+        @endif
     </div>
 
 @endsection
