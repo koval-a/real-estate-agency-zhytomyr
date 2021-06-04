@@ -15,6 +15,7 @@ use App\Models\Blog;
 use App\Models\Rieltors;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Jorenvh\Share\ShareFacade;
 
 class PublicController extends Controller
@@ -22,7 +23,7 @@ class PublicController extends Controller
     public function obekt($slug)
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
-        $lastAddedObekts = Obekts::limit(2)->get();
+        $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(2)->get();
         $locationData = Location::all();
         $locationRayon = LocationCityRayon::all();
 
@@ -55,8 +56,9 @@ class PublicController extends Controller
         $shareButtonLink = [$linkFacebook, $linkTwitter, $linkTelegram, $linkWhatsapp];
 
         $filesImages = Files::all();
+        $appointment = Appointment::find($obekt->appointment_id);
 
-        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages'));
+        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages', 'appointment'));
     }
 
     public function about()

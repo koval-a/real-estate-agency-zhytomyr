@@ -53,7 +53,8 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ $obekt->main_img }}" alt="main image" class="slide__image img-fluid w-100 h-auto">
+                                    <img src="{{ $obekt->main_img }}" alt="main image"
+                                         class="slide__image img-fluid w-100 h-auto">
                                 </div>
                                 @foreach($filesImages as $key => $image)
                                     @if($obekt->id == $image->obekt_id)
@@ -61,9 +62,9 @@
                                         <div class="swiper-slide">
                                             <img src="{{ $image->url_img }}" alt="image-{{$image->id}}"
                                                  class="slide__image img-fluid w-100 h-auto">
-{{--                                            <a data-fancybox="gallery" href="{{ $image->url_img }}">--}}
-{{--                                                <img src="{{ $image->url_img }}" alt="image-{{$image->id}}" class="slide__image img-fluid w-100 h-auto">--}}
-{{--                                            </a>--}}
+                                            {{--                                            <a data-fancybox="gallery" href="{{ $image->url_img }}">--}}
+                                            {{--                                                <img src="{{ $image->url_img }}" alt="image-{{$image->id}}" class="slide__image img-fluid w-100 h-auto">--}}
+                                            {{--                                            </a>--}}
                                         </div>
 
                                     @endif
@@ -79,28 +80,57 @@
                     <div class="product__info">
                         <p class="product__info--prace">Ціна: {{ $obekt->price }}$</p>
                         <ul class="product-filter__list">
+
+                            @if( $category ->slug  != 'land')
+                                @if( $category ->slug != 'commercial-real-estate')
+                                    <li class="product-filter__item">
+                                        <span class="text-secondary"> К-ть кімнат: </span>
+                                        {{ $obekt->count_room }}
+                                    </li>
+                                @endif
+
+                                <li class="product-filter__item">
+                                    <span class="text-secondary">Опалення:  </span>
+                                    {{ $obekt->opalenyaName }} </li>
+                            @endif
+
+                            @if( $category ->slug  == 'flat' )
+                                <li class="product-filter__item">
+                                    <span class="text-secondary">Поверх:</span>
+                                    {{ $obekt->level }} / {{ $obekt->count_level }}
+                                </li>
+                            @elseif( $category ->slug  == 'house' )
+                                <li class="product-filter__item">
+                                    <span class="text-secondary">Поверхів:</span>
+                                    {{ $obekt->count_level }}
+                                </li>
+                            @else
+
+                            @endif
                             <li class="product-filter__item">
-                                <span class="text-secondary"> К-ть кімнат: </span>
-                                {{ $obekt->count_room }}</li>
+                                @if( $category ->slug  == 'flat' or $category ->slug  == 'house')
+
+                                    <span class="text-secondary">Тип: </span>
+                                @else
+                                    <span class="text-secondary">Призначення: </span>
+                                @endif
+                                <br>
+                                {{$appointment->name}}
+                            </li>
+
                             <li class="product-filter__item">
-                                <span class="text-secondary">Поверх:</span>
-                                {{ $obekt->level }} / {{ $obekt->count_level }}</li>
-                            <li class="product-filter__item">
-                                <i class="bi bi-bricks"></i>
                                 <span class="text-secondary">Площа: </span>
                                 {{ $obekt->square }} m2
                             </li>
-                            <li class="product-filter__item">
-                                <span class="text-secondary">Опалення:  </span>
-                                {{ $obekt->opalenyaName }} </li>
+
                             <li class="product-filter__item">
                                 <span class="text-secondary">Вулиця: </span>
                                 {{--                                    LocationID {{ $obekt->location_id }}--}}
                                 {{ $dataLocation[4] }} <br>
                                 ({{ $dataLocation[3] }}) <br>
-                                note: {{ $dataLocation[5] }} <br>
-                                {{ $dataLocation[0] }},
-                                {{ $dataLocation[1] }},
+                                Нотатка: {{ $dataLocation[5] }} <br>
+                                {{ $dataLocation[0] }}, <br>
+                                р-н: {{ $dataLocation[1] }}, <br>
                                 {{ $dataLocation[2] }}
                             </li>
                             <li>
