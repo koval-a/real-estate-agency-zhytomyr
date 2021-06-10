@@ -147,7 +147,7 @@
                                        <i class="bi bi-eye"></i>
                                     </a>
                                 @endif
-                                <a href="#" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                                <a href="{{ route('admin.obekt.edit', $item) }}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
                                 <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger p-1"><i class="bi bi-trash"></i></a>
                             </div>
                         </td>

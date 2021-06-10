@@ -459,6 +459,38 @@ class AdminController extends AC
          return back()->with("success", $msg);
     }
 
+    public function editObekt(Obekts $obekt)
+    {
+        if ($obekt) {
+
+            $rieltors = Rieltors::where('is_admin', '=', 0)->get();
+
+            $owners = Owner::all();
+            $typeBuild = Appointment::all();
+
+            $rayon = LocationRayon::all();
+            $city = LocationCity::all();
+            $cityRayon = LocationCityRayon::all();
+
+            $location = [$rayon, $city, $cityRayon];
+
+            return view('admin.obekt-edit', compact('obekt', 'typeBuild', 'owners', 'rieltors', 'location'));
+        } else {
+            return back()->with('error', 'Не знайдено для редагуання');
+        }
+    }
+
+    public function updateObekt(Obekts $obekt)
+    {
+
+
+            //TODO: Updated obekt
+
+
+
+        return view('admin.obekt');
+    }
+
 //    public function search_(Request $request)
 //    {
 //        $search = $request->get('search');
