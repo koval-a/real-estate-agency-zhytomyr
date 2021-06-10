@@ -395,6 +395,8 @@ class AdminController extends AC
             $request->imgMain->move(public_path($path), $imageMainName);
             // save new name image to database
             $newObekt->main_img = '/' . $path . '/' . $imageMainName;
+        }else{
+            $newObekt->main_img = '/files/images/default/obekt.jpeg';
         }
 
         if ($newObekt->save()) {
@@ -563,6 +565,8 @@ class AdminController extends AC
             $request->imgInp->move(public_path('files/images/blog'), $imageName);
             // save new name image to database
             $blog->picture = $imageName;
+        }else{
+            $blog->picture = '/files/images/default/blog.jpeg';
         }
 
         // save data

@@ -127,7 +127,7 @@
                     <div class="input-group">
                         <span class="input-group-btn">
                             <span class="btn btn-light btn-file">
-                               <input type="file" id="imgMain" name="imgMain" required>
+                               <input type="file" id="imgMain" name="imgMain">
                             </span>
                         </span>
                         <input type="text" class="form-control" readonly>
