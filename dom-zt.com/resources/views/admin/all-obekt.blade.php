@@ -55,10 +55,10 @@
                     <td>
                         Площа (m2)
                     </td>
-                    <td>
+{{--                    <td>--}}
 {{--                        Опис та --}}
-                        Фото
-                    </td>
+{{--                        Фото--}}
+{{--                    </td>--}}
                     <td>
                         Видимість
                     </td>
@@ -92,8 +92,8 @@
                                             В продажу
                                         </span>
                             @endif
-                            <div class="d-flex p-2">
-                                ID: # {{ $item->id }}
+                            <div class="d-flex1 p-2">
+                                ID: # {{ $item->id }}<br>
                                 <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                             </div>
 
@@ -104,7 +104,7 @@
                         <td>
                             @foreach($appointment as $key => $appoint)
                                 @if($appoint->id ==  $item->appointment_id)
-                                    <span class="text-danger">{{ $appoint->type }}</span>&#128073;
+{{--                                    <span class="text-danger">{{ $appoint->type }}</span>&#128073; <br>--}}
                                     {{ $appoint->name }}
                                 @endif
                             @endforeach
@@ -115,40 +115,40 @@
                         <td>
                             {{ $item->square }}
                         </td>
-                        <td>
+{{--                        <td>--}}
 {{--                            {{ $item->description }}--}}
-                            <div class="d-flex">
+{{--                            <div class="d-flex">--}}
 
-                                @foreach($filesImages as $key => $image)
-                                    @if($item->id == $image->obekt_id)
-                                        <a data-fancybox="gallery" href="{{ $image->url_img }}">
-                                            <img src="{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">
-                                        </a>
-                                    @else
-                                        <span>Немає фото.</span>
-                                        @break
-                                    @endif
-                                @endforeach
-                            </div>
-                        </td>
+{{--                                @foreach($filesImages as $key => $image)--}}
+{{--                                    @if($item->id == $image->obekt_id)--}}
+{{--                                        <a data-fancybox="gallery" href="{{ $image->url_img }}">--}}
+{{--                                            <img src="{{ $image->url_img }}" alt="picture-{{ $image->id }}" height="50" class="m-1">--}}
+{{--                                        </a>--}}
+{{--                                    @else--}}
+{{--                                        <span>Немає фото.</span>--}}
+{{--                                        @break--}}
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
                         <td>
                             <span class={{ $item->isPublic?'text-success':'text-sexondary' }}>
-                                {{ $item->isPublic?'Опубліковано':'Приховано' }}
+                                <i class="bi bi-{{ $item->isPublic?'eye':'eye-slash' }}"></i>
                             </span>
-                            @if($item->isPublic)
-                                <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
-                                    Прииховати
-                                </a>
-                            @else
-                                <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
-                                    Опублікувати
-                                </a>
-                            @endif
                         </td>
                         <td>
                             <div class="d-flex p-2">
-
-                                <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
+                                @if($item->isPublic)
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </a>
+                                @else
+                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
+                                       <i class="bi bi-eye"></i>
+                                    </a>
+                                @endif
+                                <a href="#" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                                <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger p-1"><i class="bi bi-trash"></i></a>
                             </div>
                         </td>
                     </tr>
