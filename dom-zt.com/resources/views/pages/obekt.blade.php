@@ -6,7 +6,7 @@
 
         <section class="product">
             <div class="container ">
-                <div class="button__back">
+                <div class="button__back row align-items-center">
                     <a href="" class="back__link">
                         <svg class="strelka-left-4" viewBox="0 0 100 85">
                             <polygon
@@ -49,7 +49,8 @@
 
                 <div class="product__main">
                     <div class="product__photo">
-                        <h3 class="title__product">{{ $obekt->name }} (ID: {{ $obekt->id }})</h3>
+                        <h3 class="title__product">{{ $obekt->name }}</h3>
+{{--                        <h3 class="title__product">{{ $obekt->name }} (ID: {{ $obekt->id }})</h3>--}}
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
@@ -124,14 +125,17 @@
                             </li>
 
                             <li class="product-filter__item">
-                                <span class="text-secondary">Вулиця: </span>
+                                <span class="text-secondary">Розташування: </span>
+{{--                                <span class="text-secondary">Вулиця: </span>--}}
                                 {{--                                    LocationID {{ $obekt->location_id }}--}}
-                                {{ $dataLocation[4] }} <br>
-                                ({{ $dataLocation[3] }}) <br>
-                                Нотатка: {{ $dataLocation[5] }} <br>
-                                {{ $dataLocation[0] }}, <br>
-                                р-н: {{ $dataLocation[1] }}, <br>
-                                {{ $dataLocation[2] }}
+{{--                                {{ $dataLocation[4] }} <br>--}}
+{{--                                ({{ $dataLocation[3] }}) <br>--}}
+{{--                                Нотатка: {{ $dataLocation[5] }} <br>--}}
+                                {{ $dataLocation[0] }},
+{{--                                р-н: {{ $dataLocation[1] }},--}}
+
+                                {{ $obekt->rayon_name }},
+                                {{ $obekt->city_name }}
                             </li>
                             <li>
                                 <span
