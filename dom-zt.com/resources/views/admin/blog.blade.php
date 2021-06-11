@@ -27,6 +27,9 @@
                             Текст
                         </td>
                         <td>
+                            Дата
+                        </td>
+                        <td>
                             Дія
                         </td>
                     </tr>
@@ -38,15 +41,16 @@
                                 {{ $key + 1 }}
                             </td>
                             <td>
-                                <img src="/files/images/blog/{{ $item->picture }}" alt="blog-image" class="rounded shadow m-auto" width="200px">
+                                <img src="/files/images/blog/{{ $item->picture }}" alt="blog-image" class="rounded shadow m-auto" width="100px">
                             </td>
                             <td>
-                                {{ $item->created_at->format('Y-m-d') }} <br>
                                 <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>
-
                             </td>
                             <td class="col-md-4">
                                 {{ Str::limit($item->text, 300) }}
+                            </td>
+                            <td>
+                                {{ $item->created_at->format('Y-m-d') }} <br>
                             </td>
                             <td>
                                 <a href="{{ route('admin.blog.delete', $item->id) }}" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
@@ -86,7 +90,9 @@
 {{--            @endforeach--}}
 
 {{--        </div>--}}
+        <hr>
                 {{ $blog->links() }}
+        <hr>
         <br>
     </div>
 @endsection

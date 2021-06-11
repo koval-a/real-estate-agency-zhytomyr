@@ -25,7 +25,11 @@
                             <select name="appointment_id" id="appointment_id" class="form-control" required>
                                 <option disabled>Оберіть тип нерухомості</option>
                                 @foreach($typeBuild as $key => $type)
-                                    <option value="{{$type->id}}"> {{$type->name}}</option>
+                                    @if($setCurrentSelected[0] == $type->id)
+                                        <option value="{{$type->id}}" selected>{{$type->name}}</option>
+                                    @else
+                                        <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -114,10 +118,6 @@
                         @case('commercial-real-estate')
                         comercial
                         @break
-                        @default
-                        <div class="col-md-3">
-                            <span>Даної категорії немає!</span>
-                        </div>
 
                     @endswitch
                 </div>
@@ -198,41 +198,38 @@
                 <div class="owner col-md-4 border p-2">
                     <h4>Власник</h4>
                     <div class="d-flex justify-content-between">
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="isNewOwner" name="isNewOwner"
-                                   onclick="newOwner()">
-                            <label class="form-check-label" for="isNewOwner">Додати власника</label>
-                        </div>
-                        <select class="form-control w-50" id="owner_id" name="owner_id">
+                        <select class="form-control" id="owner_id" name="owner_id">
                             <option disabled>-Оберіть власника-</option>
                             @foreach($owners as $key => $owner)
-                                <option value="{{$owner->id}}">{{$owner->name}}</option>
+                                @if($setCurrentSelected[1] == $owner->id)
+                                    <option value="{{$owner->id}}" selected>{{$owner->name}}</option>
+                                @else
+                                    <option value="{{$owner->id}}">{{$owner->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
-                    <div class="invisible" id="newOwnerForm" name="newOwnerForm">
-                        <h4>Новий власник</h4>
-                        <input type="text" name="name_owner" id="name_owner" class="form-control" placeholder="Ім'я">
-                        <input type="tel" name="phone_owner" id="phone_owner" class="form-control" placeholder="Телефон: 0990091910">
-                        <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">
-                    </div>
                     <hr>
-                    <h4>Ріелтора</h4>
+                    <h4>Ріелтор</h4>
                     <select class="form-control" id="rieltor_id" name="rieltor_id" required>
                         <option>-Оберіть ріелтора-</option>
                         @foreach($rieltors as $key => $rieltor)
-
-                            <option value="{{$rieltor->id}}">{{$rieltor->name}}</option>
+                            @if($setCurrentSelected[2] == $rieltor->id)
+                                <option value="{{$rieltor->id}}" selected>{{$rieltor->name}}</option>
+                            @else
+                                <option value="{{$rieltor->id}}">{{$rieltor->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                     <hr>
-                    <h4>Розміщення</h4>
+                    <h4>Розміщення: <span class="text-danger">{{$setCurrentSelected[3]}}, {{$setCurrentSelected[4]}}</span></h4>
+                    <span>Оберіть нове або залишіть поле без змін</span>
+                    <br>
                     <label>Район</label>
                     <select onchange="showList(this)" name="location_rayon_id" id="location_rayon_id" class="form-control">
                         <option disabled selected>Оберіть район</option>
                         @foreach($location[0] as $key => $rayon)
-                            <option value="{{$rayon->id}}">{{$rayon->rayon}}</option>
+                           <option value="{{$rayon->id}}">{{$rayon->rayon}}</option>
                         @endforeach
                     </select>
                     {{--                    <label>Місто</label>--}}
@@ -262,22 +259,6 @@
             </div>
         </form>
         <script>
-            function newOwner() {
-
-                var isNewOwner = document.getElementById("isNewOwner");
-                var ownerList = document.getElementById("owner_id");
-
-                if (isNewOwner.checked == true) {
-                    ownerList.disabled = true;
-                    document.getElementById('newOwnerForm').classList.remove('invisible');
-                    document.getElementById('newOwnerForm').classList.add('visible');
-                } else {
-                    ownerList.disabled = false;
-                    document.getElementById('newOwnerForm').classList.remove('visible');
-                    document.getElementById('newOwnerForm').classList.add('invisible');
-                }
-            }
-
             function showList(a)
             {
                 var x = (a.value || a.options[a.selectedIndex].value);

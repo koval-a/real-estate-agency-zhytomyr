@@ -463,6 +463,14 @@ class AdminController extends AC
     {
         if ($obekt) {
 
+            $appointment = $obekt->appointment_id;
+            $owner = $obekt->owner_id;
+            $rieltor = $obekt->rieltor_id;
+            $rayon = $obekt->rayon_name;
+            $city = $obekt->city_name;
+
+            $setCurrentSelected = [$appointment, $owner, $rieltor, $rayon, $city];
+
             $rieltors = Rieltors::where('is_admin', '=', 0)->get();
 
             $owners = Owner::all();
@@ -474,7 +482,7 @@ class AdminController extends AC
 
             $location = [$rayon, $city, $cityRayon];
 
-            return view('admin.obekt-edit', compact('obekt', 'typeBuild', 'owners', 'rieltors', 'location'));
+            return view('admin.obekt-edit', compact('obekt', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
         } else {
             return back()->with('error', 'Не знайдено для редагуання');
         }

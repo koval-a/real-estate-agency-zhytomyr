@@ -17,6 +17,9 @@
                     <td>
                         Назва
                     </td>
+                    <td>
+                        Розміщення
+                    </td>
 {{--                    <td>--}}
 {{--                       Тип об'єкту--}}
 {{--                    </td>--}}
@@ -49,9 +52,9 @@
                         <td>
                             <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
                         </td>
-{{--                        <td>--}}
-{{--                            {{ $item->type_house }}--}}
-{{--                        </td>--}}
+                        <td>
+                            {{ $item->rayon_name }}, {{ $item->city_name }}
+                        </td>
                         <td>
                             {{ $item->price }}
                         </td>

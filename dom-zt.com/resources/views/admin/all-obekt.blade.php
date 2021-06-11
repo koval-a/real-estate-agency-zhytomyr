@@ -43,8 +43,12 @@
                     <td>
                         Власник
                     </td>
+                    <td>Статус</td>
                     <td>
                         Назва
+                    </td>
+                    <td>
+                        Розміщення
                     </td>
                     <td>
                         Тип об'єкту
@@ -59,9 +63,9 @@
 {{--                        Опис та --}}
 {{--                        Фото--}}
 {{--                    </td>--}}
-                    <td>
-                        Видимість
-                    </td>
+{{--                    <td>--}}
+{{--                        Видимість--}}
+{{--                    </td>--}}
                     <td>
                         Дія
                     </td>
@@ -76,27 +80,45 @@
                         <td>
                             @foreach($owners as $key => $owner)
                                 @if( $item->owner_id == $owner->id)
-                                    {{ $owner->name }}
+                                    <i class="bi bi-person"></i>{{ $owner->name }}
                                     <br>
-                                    tel.:{{ $owner->phone }}
+                                    <i class="bi bi-phone"></i>{{ $owner->phone }}
                                 @endif
                             @endforeach
                         </td>
                         <td>
-                            @if($item->isPay)
-                                <span class="bg-success text-light p-2 m-2 rounded">
+                            @if($item->isPublic)
+                                @if($item->isPay)
+                                    <span class="bg-light-danger text-light p-2 m-2 rounded">
                                             Продано
                                         </span>
-                            @else
-                                <span class="bg-warning text-light p-2 m-2 rounded">
+                                @else
+                                    <span class="bg-success text-light p-2 m-2 rounded">
                                             В продажу
                                         </span>
+                                @endif
+                            @else
+                                <span class="text-secondary">Не опубліковано</span>
                             @endif
+
+                        </td>
+                        <td>
                             <div class="d-flex1 p-2">
-                                ID: # {{ $item->id }}<br>
                                 <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
+                                <br>
+                                ID: # {{ $item->id }}
                             </div>
 
+                        </td>
+                        <td><i class="bi bi-map"></i>
+                            @if($item->rayon_name != 'м.Житомир')
+                                <span>р-н </span>
+                            @endif
+                                {{ $item->rayon_name }}
+                            @if($item->city_name != '-')
+                                <br>
+                                <i class="bi bi-map-fill"></i> {{ $item->city_name }}
+                            @endif
                         </td>
                         {{--                        <td>--}}
                         {{--                            {{ $item->created_at->format('Y-m-d') }}--}}
@@ -104,16 +126,32 @@
                         <td>
                             @foreach($appointment as $key => $appoint)
                                 @if($appoint->id ==  $item->appointment_id)
-{{--                                    <span class="text-danger">{{ $appoint->type }}</span>&#128073; <br>--}}
+                                    <span class="text-danger">#
+                                    @switch($appoint->type)
+                                            @case('land')
+                                            Земля
+                                            @break
+                                            @case('house')
+                                            Будинок
+                                            @break
+                                            @case('flat')
+                                            Квартира
+                                            @break
+                                            @case('commercial-real-estate')
+                                            Комерційна нерухомість
+                                            @break
+                                    @endswitch
+                                    </span>
+                                    <br>
                                     {{ $appoint->name }}
                                 @endif
                             @endforeach
                         </td>
                         <td>
-                            {{ $item->price }}
+                            $ {{ $item->price }}
                         </td>
                         <td>
-                            {{ $item->square }}
+                            {{ $item->square }} m2
                         </td>
 {{--                        <td>--}}
 {{--                            {{ $item->description }}--}}
@@ -131,11 +169,11 @@
 {{--                                @endforeach--}}
 {{--                            </div>--}}
 {{--                        </td>--}}
-                        <td>
-                            <span class={{ $item->isPublic?'text-success':'text-sexondary' }}>
-                                <i class="bi bi-{{ $item->isPublic?'eye':'eye-slash' }}"></i>
-                            </span>
-                        </td>
+{{--                        <td>--}}
+{{--                            <span class={{ $item->isPublic?'text-success':'text-sexondary' }}>--}}
+{{--                                <i class="bi bi-{{ $item->isPublic?'eye':'eye-slash' }}"></i>--}}
+{{--                            </span>--}}
+{{--                        </td>--}}
                         <td>
                             <div class="d-flex p-2">
                                 @if($item->isPublic)
