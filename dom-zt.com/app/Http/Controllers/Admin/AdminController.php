@@ -167,7 +167,7 @@ class AdminController extends AC
         $obekts = Obekts::where('category_id', '=', $category[2])->orderBy('id', 'DESC')->paginate(10);
         $filesImages = Files::all();
         $owners = Owner::all();
-        $appointment = Appointment::all();
+        $appointment = Appointment::where('type', '=', $category)->get();
 
         return view('admin.obekt', compact('obekts', 'category', 'filesImages', 'owners', 'appointment'));
     }
@@ -499,27 +499,6 @@ class AdminController extends AC
         return view('admin.obekt');
     }
 
-//    public function search_(Request $request)
-//    {
-//        $search = $request->get('search');
-//        $orderlists = DB::table('orderlists')->where('name', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%')->paginate(5);
-//
-//        $cities = DB::table('cities')->get();
-//        $masters = DB::table('masters')->get();
-//        $poslygus = DB::table('poslygus')->get();
-//
-//        //return view('orderAll', compact('orderlists'));
-//        return view('orderAll', ['orderlists' => $orderlists, 'masters' => $masters, 'poslygus' => $poslygus, 'cities' => $cities]);
-//    }
-
-    public function getMaster($id)
-    {
-
-        $masters = DB::table("masters")->where("city_id",$id)->pluck('name','id');
-
-        return json_encode($masters);
-    }
-
     public function isPublic($id)
     {
         $obekt = Obekts::find($id);
@@ -650,9 +629,16 @@ class AdminController extends AC
     // START - PRINT
     //
 
-    public function getPrintData()
+    public function getPrintData($category)
     {
+        $category = Category::where('slug', '=', $category)->first();
+        $category = [$category->slug, $category->name, $category->id];
+        $obekts = Obekts::where('category_id', '=', $category[2])->orderBy('id', 'DESC')->paginate(10);
+        $filesImages = Files::all();
+        $owners = Owner::all();
+        $appointment = Appointment::where('type', '=', $category)->get();
 
+        return view('admin.print', compact('obekts', 'category', 'filesImages', 'owners', 'appointment'));
     }
 
     //

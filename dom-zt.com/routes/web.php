@@ -80,6 +80,7 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
         Route::get('/', [AdminController::class, 'viewAllObekt'])->name('admin.allView')->middleware('is_admin');
         Route::any('/serach', [AdminController::class, 'searchObekt'])->name('admin.search')->middleware('is_admin');
+        Route::get('/print/{category}', [AdminController::class, 'getPrintData'])->name('admin.print')->middleware('is_admin');
 
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
         Route::get('/{slug}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');

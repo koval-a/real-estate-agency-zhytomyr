@@ -1,0 +1,13 @@
+
+.first {
+    text-align: left;
+}
+
+.first, .mid, .end {
+    text-align: left;
+    padding: 10px!important;
+}
+
+.end {
+
+}
