@@ -38,6 +38,17 @@
             </div>
             <div class="sidebar-menu">
                 <ul class="menu">
+
+                    <li class="sidebar-title">
+                        <div class="d-flex justify-content-between">
+                            <img src="/files/images/users/{{ Auth::user()->avatar }}" alt="avatar" class="img-fluid w-25 avatar avatar-xl border">
+                            <div>
+                                <span>{{ Auth::user()->name }}</span> <br>
+                                <span class="text-secondary">{{ Auth::user()->email }}</span>
+                            </div>
+                        </div>
+                    </li>
+
                     <li class="sidebar-title">Меню</li>
 
                     <li class="sidebar-item">
@@ -68,11 +79,27 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-item  ">
+                    <li class="sidebar-item">
                         <a href="{{ route('rieltor.mynote') }}" class='sidebar-link'>
                             <i class="bi bi-sticky-fill"></i>
                             <span>Нотатки</span>
                         </a>
+                    </li>
+
+                    <li class="sidebar-title">
+                        Аккаунт
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="text-danger sidebar-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            <i class="bi bi-door-open text-danger"></i> <span>Вихід</span>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </li>
 
                 </ul>
