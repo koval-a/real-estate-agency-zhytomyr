@@ -19,54 +19,55 @@
     <link rel="stylesheet" href="/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
 </head>
-<body onload="window.print()">
-    <div class="print-page container">
-        <header class="bg-white p-2">
+<body onload="//window.print()">
+    <div class="print-page container-fluid">
+        <header class="bg-white p-2 mb-5 rounded shadow">
             <div class="d-flex justify-content-between">
                 <div class="logo">
                     <img src="/custom/icons/logo.png" alt="logo" class="logo__img2 img-fluid" width="100">
                 </div>
+                <h1 class="p-2">
+                    Об'єкти нерухомості - Друк
+                </h1>
                 <div class="date-info pt-3">
-                    <span class="text-danger">
-                        <?php echo date('Y.m.d'); ?>
-                    </span>
+                    <input name="b_print" type="button" class="ipt btn btn-danger"  onClick="printdiv('div_print');" value=" Друк">
                 </div>
             </div>
         </header>
-        <script language="javascript">
-            function printdiv(printpage)
-            {
-                var headstr = "<html><head><title></title></head><body>";
-                var footstr = "</body>";
-                var newstr = document.all.item(printpage).innerHTML;
-                var oldstr = document.body.innerHTML;
-                document.body.innerHTML = headstr+newstr+footstr;
-                window.print();
-                document.body.innerHTML = oldstr;
-                return false;
-            }
-        </script>
 
-        <input name="b_print" type="button" class="ipt"   onClick="printdiv('div_print');" value=" Print ">
-
-        <main class="bg-white p-2">
-            <section class="print-area text-center">
-                <h3>Об'єкти нерухомості</h3>
+        <main class="bg-white container rounded shadow p-2">
+            <section class="print-area">
                 <div class="print-content">
                     @yield('content')
                 </div>
             </section>
         </main>
-        <footer class="bg-white p-2">
-            <div class="d-flex justify-content-between">
+
+        <footer class="bg-white mt-5 rounded shadow">
+            <div class="d-flex justify-content-between p-3">
                 <p>
                     <?php echo date('Y'); ?> &copy АН "Житомир".
                 </p>
                 <p>
-                    by Lukyanchk
+                    Developer by <a href="yarik.lukyanchuk.com">Lukyanchk</a>
                 </p>
             </div>
         </footer>
     </div>
+
+    <script language="javascript">
+        function printdiv(printpage)
+        {
+            var headstr = "<html><head><title></title></head><body>";
+            var footstr = "</body>";
+            var newstr = document.all.item(printpage).innerHTML;
+            var oldstr = document.body.innerHTML;
+            document.body.innerHTML = headstr+newstr+footstr;
+            window.print();
+            document.body.innerHTML = oldstr;
+            return false;
+        }
+    </script>
+
 </body>
 </html>

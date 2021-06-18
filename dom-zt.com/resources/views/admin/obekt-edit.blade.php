@@ -8,7 +8,7 @@
         <hr>
         <form action="#" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
             @csrf
-            <div class="row">
+            <div class="row p-3">
                 <div class="obket-info col-md-4 border p-2">
                     <h4>Інформація про об'єкт</h4>
                     <label>Назва нерухомості</label>
@@ -125,7 +125,27 @@
                 <div class="location col-md-4 border p-2">
                     <h4>Фотографії</h4>
                     <hr>
+                    <span>Поточні фотографії</span> <hr>
+                    <div class="row">
+                        <div class="main-photo col-md-4">
+                            <img src="{{$obekt->main_img}}" alt="current photo" width="100">
+                            <span>Головна</span>
+                        </div>
+                        <div class="more-photo col-md-8">
+                            <div class="row">
+                                @foreach($filesImages as $key => $image)
+                                    @if($obekt->id == $image->obekt_id)
+                                        <img src="{{ $image->url_img }}" alt="image-{{$image->id}}" class="img-thumbnail w-25">
+                                    @endif
+                                @endforeach
+                            </div>
+                            <span>Додаткові</span>
+                        </div>
+                    </div>
 
+                    <hr>
+                    <span>Нові фотографії</span>
+                    <hr>
                     <div class="input-group">
                         <span class="input-group-btn">
                             <span class="btn btn-light btn-file">
@@ -135,7 +155,7 @@
                         <input type="text" class="form-control" readonly>
                     </div>
                     <a data-fancybox="gallery" id='img-upload-a'>
-                        <img id='img-upload' alt="picture" class="m-1 img-fluid">
+                        <img id='img-upload' alt="Головна фотографія" class="m-1 img-fluid">
                     </a>
                     <hr>
                     <span>Додаткові фото</span>
@@ -255,7 +275,7 @@
             </div>
             <div class="insert-button">
                 <hr>
-                <button type="submit" class="btn btn-success btn-block w-25">Зберегти</button>
+                <button type="submit" class="btn btn-primary btn-block w-25">Оновити дані</button>
             </div>
         </form>
         <script>

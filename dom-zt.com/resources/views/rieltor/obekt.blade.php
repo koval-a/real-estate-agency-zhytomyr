@@ -2,7 +2,40 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1>{{$categoryName}}</h1>
+        <div class="d-flex justify-content-between">
+            <h1>{{$categoryName ?? 'Пошук' }}</h1>
+            {{--        <h1>{{$category}}</h1>--}}
+            <a href="{{ route('rieltor.print', $category) }}">
+                <i class="bi bi-printer text-primary"></i>
+            </a>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+{{--                <button onclick="window.print()" class="btn btn-light">Друк</button>--}}
+
+            </div>
+            <div class="search-bar col-md-6 row">
+
+                <form action="{{ route('rieltor.search', $category) }}" method="POST" role="search" class="col-md-10">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="q"
+                               placeholder="Пошук за ID об'єкта">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-danger">
+                                Пошук
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <a href="{{ route('rieltor.view', $category) }}" class="btn btn-primary col-md-2">Очистити</a>
+            </div>
+
+            <div class="col-md-3 text-right">
+
+            </div>
+        </div>
         <hr>
         @if($obekts->count() > 0)
         <table class="table">
@@ -11,11 +44,14 @@
                     <td>
                         #
                     </td>
-                    <td>
-                        Дата
-                    </td>
+{{--                    <td>--}}
+{{--                        Дата--}}
+{{--                    </td>--}}
                     <td>
                         Назва
+                    </td>
+                    <td>
+                        Статус
                     </td>
                     <td>
                         Розміщення
@@ -33,7 +69,7 @@
                         Опис
                     </td>
                     <td>
-                        Статус
+                        Власник
                     </td>
                     <td>
                         Дія
@@ -46,11 +82,16 @@
                         <td>
                             {{ $key + 1 }}
                         </td>
+{{--                        <td>--}}
+{{--                            {{ $item->created_at->format('Y-m-d') }}--}}
+{{--                        </td>--}}
                         <td>
-                            {{ $item->created_at->format('Y-m-d') }}
+                            <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }} (ID:  {{ $item->id }})</a>
                         </td>
                         <td>
-                            <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
+                             <span class="btn btn-{{ $item->isPay?'success':'warning' }}">
+                                {{ $item->isPay?'Продано':'В продажі' }}
+                            </span>
                         </td>
                         <td>
                             {{ $item->rayon_name }}, {{ $item->city_name }}
@@ -65,9 +106,14 @@
                             {{ $item->description }}
                         </td>
                         <td>
-                             <span class={{ $item->isPay?'text-success':'text-warning' }}>
-                                {{ $item->isPay?'Продано':'В продажі' }}
-                            </span>
+                            @foreach($owners as $kwy => $owner)
+                                @if($owner->id == $item->owner_id)
+                                    <span>
+                                        {{ $owner->name }} <br>
+                                        {{ $owner->phone }}
+                                    </span>
+                                @endif
+                            @endforeach
                         </td>
                         <td>
                             @if($item->isPay)

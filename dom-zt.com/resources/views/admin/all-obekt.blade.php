@@ -6,16 +6,13 @@
         <h1>Всі об'єкти нерухомості</h1>
         <hr>
         <div class="row">
-            <div class="col-md-2">
-                <button onclick="window.print()" class="btn btn-light">Друк</button>
-            </div>
             <div class="search-bar col-md-6">
 
                 <form action="{{ route('admin.search') }}" method="POST" role="search">
                     @csrf
                     <div class="input-group">
                         <input type="text" class="form-control" name="q"
-                               placeholder="Пошук за ID об'єкта">
+                               placeholder="Пошук за ID та назвою об'єкта">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-danger">
                                 Пошук

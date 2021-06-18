@@ -43,6 +43,9 @@ Route::group(['prefix'=>'manage/rieltor', 'namespace' => 'Admin'], function(){
 
     Route::get('/dashboard', [RieltorController::class, 'index'])->name('home');
 
+    Route::any('/my-real-estate/{category}/serach', [RieltorController::class, 'search'])->name('rieltor.search');
+    Route::get('/my-real-estate/{category}/print/', [RieltorController::class, 'printPage'])->name('rieltor.print');
+
     Route::get('/pay/{id}', [RieltorController::class, 'isPay'])->name('rieltor.isPay');
 
     Route::group(['prefix'=>'/note', 'namespace' => 'Admin'], function(){
@@ -80,6 +83,8 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
         Route::get('/', [AdminController::class, 'viewAllObekt'])->name('admin.allView')->middleware('is_admin');
         Route::any('/serach', [AdminController::class, 'searchObekt'])->name('admin.search')->middleware('is_admin');
+        Route::get('/{category}/filter', [AdminController::class, 'filterObektByCategoryView'])->name('admin.filter')->middleware('is_admin');
+
         Route::get('/print/{category}', [AdminController::class, 'getPrintData'])->name('admin.print')->middleware('is_admin');
 
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');

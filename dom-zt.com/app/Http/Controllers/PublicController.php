@@ -123,60 +123,81 @@ class PublicController extends Controller
 
         $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID);
 
+        $filterData = [];
+
         // Basic parameters filters
-
-        // Appointment
-        if($request->appointment_id){
-            $typeAppointment = $request->appointment_id;
-            $query->where('appointment_id','=', $typeAppointment);
-        }
-        // Location
-        if($request->rayon_id)
-        {
-            $rayon_name = $request->rayon_id; // Райони + м.Житомир
-
-            if($rayon_name == 'м.Житомир') // 51 - Житомир
+        if(
+            $request->appointment_id or
+            $request->rayon_id or
+            $request->rangePrimary or
+            $request->rangePrimary2 or
+            $request->square
+        ){
+            // Appointment
+            if($request->appointment_id){
+                $typeAppointment = $request->appointment_id;
+                $query->where('appointment_id','=', $typeAppointment);
+                $filterData[0] = $typeAppointment;
+            }
+            // Location
+            if($request->rayon_id)
             {
-                if($request->rayon_city)
+                $rayon_name = $request->rayon_id; // Райони + м.Житомир
+                $filterData[1] = $rayon_name;
+
+                if($rayon_name == 'м.Житомир') // 51 - Житомир
                 {
-                    $rayon_city = $request->rayon_city; // Райони м.Житомир
+                    if($request->rayon_city)
+                    {
+                        $rayon_city = $request->rayon_city; // Райони м.Житомир
+                        $filterData[2] = $rayon_city;
+                        $query
+                            ->where('rayon_name', '=', $rayon_name)
+                            ->where('city_name', '=', $rayon_city);
+                    }
+
+                }else if($rayon_name == 'Житомирський'){ // 75 - Житомирський район
+
+                    $city_name = $request->city_name; // Селища р-н Житомирьский
+                    $filterData[3] = $city_name;
                     $query
                         ->where('rayon_name', '=', $rayon_name)
-                        ->where('city_name', '=', $rayon_city);
+                        ->where('city_name', '=', $city_name);
+
+                }else{
+                    $query->where('rayon_name', '=', $rayon_name);
                 }
-
-            }else if($rayon_name == 'Житомирський'){ // 75 - Житомирський район
-
-                $city_name = $request->city_name; // Селища р-н Житомирьский
-                $query
-                    ->where('rayon_name', '=', $rayon_name)
-                    ->where('city_name', '=', $city_name);
-
-            }else{
-                $query->where('rayon_name', '=', $rayon_name);
             }
-        }
 
-        // Price
-        if($request->rangePrimary and $request->rangePrimary2){
+            // Price
+            if($request->rangePrimary and $request->rangePrimary2){
 
-            if($request->rangePrimary < $request->rangePrimary2)
-            {
-                $min_price = $request->rangePrimary;
-                $max_price = $request->rangePrimary2;
-                $query->whereBetween('price', [$min_price, $max_price]);
+                if($request->rangePrimary < $request->rangePrimary2)
+                {
+                    $min_price = $request->rangePrimary;
+                    $max_price = $request->rangePrimary2;
+                    $filterData[4] = $min_price;
+                    $filterData[5] = $max_price;
+                    $query->whereBetween('price', [$min_price, $max_price]);
 
-            }else{
-                return back()->with('error', 'Початкова ціна має бути меншою за кінцеву!');
+                }else{
+                    return back()->with('error', 'Початкова ціна має бути меншою за кінцеву!');
+                }
             }
-        }
+//            else{
+//                return back()->with('error', 'Введіть початкову/кінцеву ціну!');
+//            }
 
-        // Square
-        if($request->square){
-            $square = $request->square;
-            $query->where('square', '=', $square);
-        }
+            // Square
+            if($request->square){
+                $square = $request->square;
+                $query->where('square', '=', $square);
+                $filterData[6] = $square;
+            }
 
+        }else{
+            return back()->with('error', 'Введіть/Оберіть параметр фільтру!');
+        }
 
         // Custom parameters filter by category
 
@@ -207,7 +228,7 @@ class PublicController extends Controller
 
                 $count_level = $request->count_level;
 
-                if($count_level >=5)
+                if($count_level >=21)
                 {
                     $query->where('count_level','>=', $count_level);
                 }else{
@@ -226,7 +247,23 @@ class PublicController extends Controller
                 if($level >=5)
                 {
                     $query->where('level','>=', $level);
-                }else{
+
+                }else if($level == 'no-first'){
+
+                    $query->where('level','>', 2);
+
+                }else if($level == 'no-last') {
+
+                    if($request->count_level){
+
+                        $lastLavel = $request->count_level;//Obekts::max('level');
+                        $query->where('level','<=', $lastLavel-1);
+
+                    }else{
+                        return back()->with('error', 'Оберіть поверховість!');
+                    }
+
+                } else{
                     $query->where('level','=', $level);
                 }
 
@@ -237,8 +274,8 @@ class PublicController extends Controller
         $min = Obekts::min('price');
         $price = [$max, $min];
 
-        $obekts = $query->paginate(10);
+        $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
-        return view('pages.all-obekts', compact('obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
+        return view('pages.all-obekts', compact('obekts', 'filterData', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
     }
 }

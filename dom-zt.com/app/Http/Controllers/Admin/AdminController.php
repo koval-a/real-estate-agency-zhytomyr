@@ -168,8 +168,72 @@ class AdminController extends AC
         $filesImages = Files::all();
         $owners = Owner::all();
         $appointment = Appointment::where('type', '=', $category)->get();
+        $locationCityRayon = LocationCityRayon::all();
+        $locationRayon = LocationRayon::all();
+        $locationCity = LocationCity::all();
 
-        return view('admin.obekt', compact('obekts', 'category', 'filesImages', 'owners', 'appointment'));
+        return view('admin.obekt', compact('obekts', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+    }
+
+    public function filterObektByCategoryView(Request $request, $category){
+
+        $category = Category::where('slug', '=', $category)->first();
+        $category = [$category->slug, $category->name, $category->id];
+
+        $filesImages = Files::all();
+        $owners = Owner::all();
+        $appointment = Appointment::where('type', '=', $category)->get();
+        $locationCityRayon = LocationCityRayon::all();
+        $locationRayon = LocationRayon::all();
+        $locationCity = LocationCity::all();
+
+        $query = Obekts::where('category_id','=',$category[2]);
+
+        $filterData = [];
+
+        if(
+            $request->appointment_id or
+            $request->price or
+            $request->square or
+            $request->rayon_id or
+            $request->rayon_city_id or
+            $request->city_id
+        ){
+            if($request->appointment_id){
+                $query->where('appointment_id','=', $request->appointment_id);
+                $filterData[0] = $request->appointment_id;
+            }
+
+            if($request->price){
+                $query->where('price','<=', $request->price);
+                $filterData[1] = $request->price;
+            }
+
+            if($request->square){
+                $query->where('square','=', $request->square);
+                $filterData[2] = $request->square;
+            }
+
+            //            if(
+//                $request->rayon_id or
+//                $request->rayon_city_id or
+//                $request->city_id
+//            ){
+//                $rayon = LocationRayon::where('id', $request->rayon_id)->first();
+//                $rayon_city = LocationCityRayon::where('id', $request->rayon_city_id)->first();
+//                $city = LocationCity::where('id', $request->city_id)->first();
+//
+//
+//            }
+
+            $obekts = $query->orderBy('id', 'DESC')->paginate(10);
+
+            return view('admin.obekt', compact('obekts', 'filterData', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+
+        }else{
+            return back()->with('error', 'Для фільтрування введіть значення!');
+        }
+
     }
 
     public function viewAllObekt()
@@ -202,7 +266,7 @@ class AdminController extends AC
             if (count($obekts) > 0)
                 return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
         }
-        return back()->with ('error', 'Нічого не знайдено!' );
+        return back()->with('error', 'Нічого не знайдено!');
     }
 
     public function newObekt($categorySlug)
@@ -294,8 +358,7 @@ class AdminController extends AC
 
         if ($category_slug == 'flat') {
 
-            if($request->level > $request->count_level)
-            {
+            if ($request->level > $request->count_level) {
                 return back()->with("error", "Кількість поверхів не може бути менше за поверх.");
             }
             $newObekt->count_room = $request->count_room;
@@ -308,16 +371,15 @@ class AdminController extends AC
             $newObekt->level = 0;
         }
 
-        if($category_slug == 'commercial-real-estate' or $category_slug == 'land')
-        {
+        if ($category_slug == 'commercial-real-estate' or $category_slug == 'land') {
             $newObekt->count_room = 0;
             $newObekt->count_level = 0;
             $newObekt->level = 0;
         }
 
-        if($category_slug == 'land'){
+        if ($category_slug == 'land') {
             $newObekt->opalenyaName = 'none';
-        }else{
+        } else {
             $newObekt->opalenyaName = $request->opalenyaName;
         }
 
@@ -330,21 +392,20 @@ class AdminController extends AC
         // check city or rayon
         $newLocation->rayon_id = $request->location_rayon_id;
         // 51 - Житомир
-        if($request->location_rayon_id == 51)
-        {
+        if ($request->location_rayon_id == 51) {
             // 93 - none для міста якщо район м.Житомир
             $newLocation->city_id = 93;
             $newLocation->city_rayon_id = $request->location_rayon_city_id;
             $rayon_city = LocationCityRayon::where('id', $request->location_rayon_city_id)->first();
             $newObekt->city_name = $rayon_city->rayon_city;
-        }else if($request->location_rayon_id == 75){
+        } else if ($request->location_rayon_id == 75) {
             // 75 - Житомирський район
             $newLocation->city_id = $request->location_city_id;
             // 34 - -- для района міста якщо обрано Житомирський район
             $newLocation->city_rayon_id = 34;
             $city = LocationCity::where('id', $request->location_city_id)->first();
             $newObekt->city_name = $city->city;
-        }else{
+        } else {
             // Якщо обрано з пункта район не м.Житомир або Житомирський район
             $newLocation->city_id = 93;
             $newLocation->city_rayon_id = 34;
@@ -363,8 +424,7 @@ class AdminController extends AC
 
 
         // check if new owner
-        if($request->isNewOwner == true)
-        {
+        if ($request->isNewOwner == true) {
             $newOwner = new Owner();
             $newOwner->name = $request->name_owner;
             $newOwner->phone = $request->phone_owner;
@@ -373,7 +433,7 @@ class AdminController extends AC
             // get last added owner id
             $lastID_Owner = Owner::latest()->first();
             $newObekt->owner_id = $lastID_Owner->id;
-        }else{
+        } else {
             $newObekt->owner_id = $request->owner_id;
         }
 
@@ -388,14 +448,14 @@ class AdminController extends AC
             // generate new file name
             $imageMainName = time() . '.' . $request->imgMain->extension();
             // create folder for image
-            if (! File::exists(public_path().$path)) {
-                File::makeDirectory(public_path().$path, 0777, true, true);
+            if (!File::exists(public_path() . $path)) {
+                File::makeDirectory(public_path() . $path, 0777, true, true);
             }
             // move to folder image
             $request->imgMain->move(public_path($path), $imageMainName);
             // save new name image to database
             $newObekt->main_img = '/' . $path . '/' . $imageMainName;
-        }else{
+        } else {
             $newObekt->main_img = '/files/images/default/obekt.jpeg';
         }
 
@@ -405,15 +465,13 @@ class AdminController extends AC
             $getObektsID = Obekts::latest()->first();
 
             // save all image main
-            if($request->hasFile('images'))
-            {
+            if ($request->hasFile('images')) {
                 $request->validate([
                     'images' => 'array',
                     'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:100000',
                 ]);
 
-                foreach($request->file('images') as $key => $item_img)
-                {
+                foreach ($request->file('images') as $key => $item_img) {
                     $item_img_name = time() . '-' . $item_img->getClientOriginalName();
                     $item_img->move(public_path($path), $item_img_name);
 
@@ -434,18 +492,18 @@ class AdminController extends AC
 
     public function deteleObekt(Obekts $obekt)
     {
-         $nameObekt = $obekt->name;
-         $msg = "Об'єкт " . $nameObekt . " видалено успішно.";
-         // Location delete
-         $location = Location::where('id', '=', $obekt->location_id);
-         $location->delete();
+        $nameObekt = $obekt->name;
+        $msg = "Об'єкт " . $nameObekt . " видалено успішно.";
+        // Location delete
+        $location = Location::where('id', '=', $obekt->location_id);
+        $location->delete();
 
-         // Owner delete  - not delete
+        // Owner delete  - not delete
 
-         // Files delete
+        // Files delete
         $category = Category::where('id', '=', $obekt->category_id)->first();
-        $path = 'files/images/obekts/'. $category->slug .'/'. $obekt->slug;
-        if (File::exists(public_path().$path)) {
+        $path = 'files/images/obekts/' . $category->slug . '/' . $obekt->slug;
+        if (File::exists(public_path() . $path)) {
             File::deleteDirectory(public_path($path));
         }
 
@@ -453,10 +511,10 @@ class AdminController extends AC
         $files = Files::where('obekt_id', '=', $obekt->id);
         $files->delete();
 
-         // Obekt delete
-         $obekt->delete();
+        // Obekt delete
+        $obekt->delete();
 
-         return back()->with("success", $msg);
+        return back()->with("success", $msg);
     }
 
     public function editObekt(Obekts $obekt)
@@ -476,27 +534,81 @@ class AdminController extends AC
             $owners = Owner::all();
             $typeBuild = Appointment::all();
 
+            $filesImages = Files::all();
             $rayon = LocationRayon::all();
             $city = LocationCity::all();
             $cityRayon = LocationCityRayon::all();
 
             $location = [$rayon, $city, $cityRayon];
 
-            return view('admin.obekt-edit', compact('obekt', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
+            return view('admin.obekt-edit', compact('obekt', 'filesImages', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
         } else {
             return back()->with('error', 'Не знайдено для редагуання');
         }
     }
 
-    public function updateObekt(Obekts $obekt)
+    public function updateObekt(Request $request, $id, $category_slug)
     {
 
+        $updateObekt = Obekts::find($id);
 
-            //TODO: Updated obekt
+        if($updateObekt->name != $request->name){
+            $updateObekt->name = $request->name;
+        }
+
+        // create check for all field on change value
+        $updateObekt->description = $request->description;
+        $updateObekt->price = $request->price;
+        $updateObekt->square = $request->square;
+        $updateObekt->appointment_id = $request->appointment_id;
+        $updateObekt->owner_id = $request->owner_id;
+        $updateObekt->rieltor_id = $request->rieltor_id;
+        $updateObekt->opalenyaName = $request->opalenyaName;
+
+        // Photo update
+        $path = 'files/images/obekts/' . $category_slug . '/' . $updateObekt->slug;
+        // save image main
+        if ($request->hasFile('imgMain')) {
+            // check validate
+            $request->validate([
+                'imgMain' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
+            ]);
+            // generate new file name
+            $imageMainName = time() . '.' . $request->imgMain->extension();
+            // create folder for image
+            if (!File::exists(public_path() . $path)) {
+                File::makeDirectory(public_path() . $path, 0777, true, true);
+            }
+            // move to folder image
+            $request->imgMain->move(public_path($path), $imageMainName);
+            // save new name image to database
+            $updateObekt->main_img = '/' . $path . '/' . $imageMainName;
+        }
 
 
+        // Location update
+        $updateLocation = Location::find($updateObekt->locaton_id);
 
-        return view('admin.obekt');
+        if($request->location_rayon_id != $updateLocation->rayon_id){
+            $updateLocation->rayon_id = $request->location_rayon_id;
+        }
+        if($request->location_rayon_city_id != $updateLocation->rayon_id){
+            $updateLocation->rayon_id = $request->location_rayon_city_id;
+        }
+        if($request->location_city_id != $updateLocation->rayon_id){
+            $updateLocation->rayon_id = $request->location_city_id;
+        }
+
+        $updateLocation->save();
+
+        // Obekt update
+        if ($updateObekt->save()) {
+
+            return view('admin.obekt');
+
+        } else {
+            return back()->with('error', 'Помилка оновлення даних!');
+        }
     }
 
     public function isPublic($id)
@@ -584,7 +696,7 @@ class AdminController extends AC
             $request->imgInp->move(public_path('files/images/blog'), $imageName);
             // save new name image to database
             $blog->picture = $imageName;
-        }else{
+        } else {
             $blog->picture = '/files/images/default/blog.jpeg';
         }
 
@@ -631,6 +743,7 @@ class AdminController extends AC
 
     public function getPrintData($category)
     {
+
         $category = Category::where('slug', '=', $category)->first();
         $category = [$category->slug, $category->name, $category->id];
         $obekts = Obekts::where('category_id', '=', $category[2])->orderBy('id', 'DESC')->paginate(10);

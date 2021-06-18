@@ -363,23 +363,23 @@
                                     <ul class="object__list">
                                         <li class="object__item object__item--title">{{ $item->name }}</li>
                                         <li class="object__item object__item--prace">$ {{ $item->price }}</li>
-                                        <li class="object__item">Район:
-                                            @foreach($locationData as $key => $loc)
-                                                @if($loc->id == $item->location_id)
-                                                    @foreach($locationRayon as $key => $rayon)
-                                                        @if($rayon->id == $loc->city_rayon_id)
-                                                            {{$rayon->rayon_city}}
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            @endforeach
+{{--                                        <li class="object__item">Район:--}}
+{{--                                            @foreach($locationData as $key => $loc)--}}
+{{--                                                @if($loc->id == $item->location_id)--}}
+{{--                                                    @foreach($locationRayon as $key => $rayon)--}}
+{{--                                                        @if($rayon->id == $loc->city_rayon_id)--}}
+{{--                                                            {{$rayon->rayon_city}}--}}
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
+{{--                                            @endforeach--}}
 
-                                        </li>
-                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>
-                                        <li class="object__item">Опалення: {{ $item->opalenyaName }}</li>
-                                        <li class="object__item">Площа: {{ $item->square }}</li>
-                                        <li class="object__item">Поверх: {{ $item->level }}
-                                            /{{ $item->count_level }}</li>
+{{--                                        </li>--}}
+{{--                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>--}}
+{{--                                        <li class="object__item">Опалення: {{ $item->opalenyaName }}</li>--}}
+{{--                                        <li class="object__item">Площа: {{ $item->square }}</li>--}}
+{{--                                        <li class="object__item">Поверх: {{ $item->level }}--}}
+{{--                                            /{{ $item->count_level }}</li>--}}
                                     </ul>
                                 </div>
                                 <div class="link-open-obekt p-1">

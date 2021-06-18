@@ -4,17 +4,78 @@
     <div class="container-fluid">
         <h1>{{$category[1]}}</h1>
         <hr>
-        <a href="{{ route('admin.obekt.new', $category[0]) }}" class="btn btn-primary">Додати новий об'єкт</a>
-        <a href="{{ route('admin.print', $category[0]) }}" class="btn btn-primary">Друк</a>
-        <hr>
-        <div class="filters d-flex justify-content-between">
-            <select name="appointment_id" id="appointment_id" class="form-control">
-                <option value="0" selected disabled>Оберіть значення</option>
-                @foreach($appointment as $key => $appoint)
-                    <option value="{{ $appoint->id }}">{{ $appoint->name }}</option>
-                @endforeach
-            </select>
+        <div class="button-section d-flex justify-content-between">
+            <a href="{{ route('admin.obekt.new', $category[0]) }}" class="btn btn-primary">Додати новий об'єкт</a>
+            <a href="{{ route('admin.print', $category[0]) }}" class="btn btn-info">Друк</a>
         </div>
+        <hr>
+        <form action="{{ route('admin.filter', $category[0]) }}" method="GET">
+            <div class="filters d-flex justify-content-between">
+
+                @csrf
+
+                <div class="appointment">
+                    <sapn>Оберіть тип:</sapn>
+                    <select name="appointment_id" id="appointment_id" class="form-control">
+                        <option value="0" selected disabled>Оберіть значення</option>
+
+                        @foreach($appointment as $key => $appoint)
+
+                            @if($filterData[0] ?? '')
+                                @if($filterData[0] == $appoint->id)
+                                    <option value="{{ $appoint->id }}" selected disabled> {{ $appoint->name }} </option>
+                                @endif
+                            @endif
+                            <option value="{{ $appoint->id }}">
+                                {{ $appoint->name }}
+                            </option>
+
+                        @endforeach
+                    </select>
+                </div>
+                <div class="price">
+                    <span>Ціна</span>
+                    <input type="number" class="form-control" name="price" id="price" value="{{ $filterData[1] ?? '' }}">
+                </div>
+                <div class="square">
+                    <span>Площа</span>
+                    <input type="number" class="form-control" name="square" id="square" value="{{ $filterData[2] ?? '' }}">
+                </div>
+                <div class="location-rayon">
+                    <span>Розміщення</span>
+                    <select name="rayon_id" id="rayon_id" class="form-control">
+                        <option value="0" selected disabled>Оберіть значення</option>
+                        @foreach($locationRayon as $key => $rayon)
+                            <option value="{{ $rayon->id }}">{{ $rayon->rayon }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="location-city-rayon">
+                    <span>Район міста</span>
+                    <select name="rayon_city_id" id="rayon_city_id" class="form-control">
+                        <option value="0" selected disabled>Оберіть значення</option>
+                        @foreach($locationCityRayon as $key => $rayon_city)
+                            <option value="{{ $rayon_city->id }}">{{ $rayon_city->rayon_city }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="location-city">
+                    <span>Місто/Селище</span>
+                    <select name="city_id" id="city_id" class="form-control">
+                        <option value="0" selected disabled>Оберіть значення</option>
+                        @foreach($locationCity as $key => $city)
+                            <option value="{{ $city->id }}">{{ $city->city }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="button-apply text-center">
+                    <button type="submit" class="btn btn-danger">Застосувати</button>
+                    <br>
+                    <a href="{{ route('admin.view', $category[0]) }}" class="text-secondary">Скинути</a>
+                </div>
+
+            </div>
+        </form>
         <hr>
         @if($obekts->count() > 0)
             <div class="all-obekt">
@@ -45,7 +106,7 @@
                             Площа (m2)
                         </td>
                         <td>
-{{--                            Опис та--}}
+                            {{--                            Опис та--}}
                             Фото
                         </td>
                         <td>
@@ -86,7 +147,8 @@
                             </td>
                             <td>
                                 <div class="d-flex1 p-2">
-                                    <a href="{{ route('obekt.view', $item->slug) }}" target="_blank">{{ $item->name }}</a>
+                                    <a href="{{ route('obekt.view', $item->slug) }}"
+                                       target="_blank">{{ $item->name }}</a>
                                     <br>
                                     ID: # {{ $item->id }}
                                 </div>
@@ -153,9 +215,9 @@
                                         <span>Немає фото.</span>
                                     @endif
                                 </div>
-{{--                                <p>--}}
-{{--                                    {{ Str::limit($item->description, 30) }}--}}
-{{--                                </p>--}}
+                                {{--                                <p>--}}
+                                {{--                                    {{ Str::limit($item->description, 30) }}--}}
+                                {{--                                </p>--}}
                             </td>
                             <td>
                                 <div class="d-flex p-2">
@@ -168,8 +230,10 @@
                                             <i class="bi bi-eye"></i>
                                         </a>
                                     @endif
-                                    <a href="{{ route('admin.obekt.edit', $item) }}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
-                                    <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger p-1"><i class="bi bi-trash"></i></a>
+                                    <a href="{{ route('admin.obekt.edit', $item) }}" class="btn btn-primary"><i
+                                            class="bi bi-pencil"></i></a>
+                                    <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger p-1"><i
+                                            class="bi bi-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

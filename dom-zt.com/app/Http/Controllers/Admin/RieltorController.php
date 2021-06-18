@@ -1,6 +1,12 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Appointment;
+use App\Models\Category;
+use App\Models\Files;
+use App\Models\Location;
+use App\Models\LocationCityRayon;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -84,6 +90,7 @@ class RieltorController extends AC
         // 2 - house
         // 3 - flat
         // 4 - commerce estate
+        $owners = Owner::all();
 
         switch ($category)
         {
@@ -91,25 +98,25 @@ class RieltorController extends AC
             {
                 $categoryName = 'Земельні ділянки';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 3)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
             }
             case 'house' :
             {
                 $categoryName = 'Будинки';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 2)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
             }
             case 'flat' :
             {
                 $categoryName = 'Квартири';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 1)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
             }
             case 'commercial-real-estate' :
             {
                 $categoryName = 'Комерційна нерухомість';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 4)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName'));
+                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
             }
         }
 
@@ -131,14 +138,38 @@ class RieltorController extends AC
         return back();
     }
 
-    public function printPage()
+    public function printPage($category)
     {
+        $category = Category::where('slug', '=', $category)->first();
+        $category = [$category->slug, $category->name, $category->id];
+        $obekts = Obekts::where('category_id', '=', $category[2])->where('rieltor_id', '=', Auth::user()->id)->orderBy('id', 'DESC')->paginate(10);
+        $filesImages = Files::all();
+        $owners = Owner::all();
+        $appointment = Appointment::where('type', '=', $category)->get();
+
+        return view('admin.print', compact('obekts', 'category', 'filesImages', 'owners', 'appointment'));
 
     }
 
-    public function search($query)
+    public function search(Request $request, $category)
     {
+        $locationRayon = LocationCityRayon::all();
+        $location = Location::all();
+        $appointment = Appointment::all();
+        $owners = Owner::all();
+        $filesImages = Files::all();
 
+        $q = $request->input('q');
+        if ($q != "") {
+            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
+            $pagination = $obekts->appends(array(
+                'q' => $request->input('q')
+            ));
+            if (count($obekts) > 0)
+                return view('rieltor.obekt', compact('obekts','category', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
+        }
+
+        return back()->with('error', 'Нічого не знайдено!');
     }
 
 }

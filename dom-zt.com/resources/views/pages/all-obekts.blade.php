@@ -42,13 +42,12 @@
                                 <span class="ml-0 pl-0">Ціна ($.тис)</span>
                                 <div class="price-range d-flex justify-content-between mt-1">
                                     <div class="min-price p-1">
-
-                                            <span>від </span> <input type="text" id="rangePrimary" name="rangePrimary" class="text-danger form-control" />
+                                            <span>від </span> <input type="text" id="rangePrimary" name="rangePrimary" class="text-danger form-control" value="{{ $filterData[4] ?? '' }}" />
 
                                     </div>
                                     <div class="max-price p-1">
 
-                                            <span>до </span><input type="text" id="rangePrimary2" name="rangePrimary2" class="text-danger form-control" />
+                                            <span>до </span><input type="text" id="rangePrimary2" name="rangePrimary2" class="text-danger form-control" value="{{ $filterData[5] ?? '' }}" />
 
 
 
@@ -90,6 +89,11 @@
                                     <select name="appointment_id" id="appointment_id" class="form-control mt-2" required>
                                         <option disabled selected>Оберіть тип</option>
                                         @foreach($appointments as $key => $appointment)
+                                            @if($filterData[0] ?? '')
+                                                @if($filterData[0] == $appointment->id)
+                                                    <option value="{{ $appointment->id }}" selected disabled> {{ $appointment->name }} </option>
+                                                @endif
+                                            @endif
                                             <option value="{{$appointment->id}}">{{$appointment->name}}</option>
                                         @endforeach
                                     </select>
@@ -113,7 +117,7 @@
                                             <span>Поверх</span>
                                             <select name="level" id="level" class="form-control mt-2">
                                                 <option value="0" disabled selected>Оберіть поверх</option>
-                                                <option value="no-fitst">Не перший поврех</option>
+                                                <option value="no-first">Не перший поврех</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -130,7 +134,10 @@
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
-                                                <option value="5">5+</option>
+                                                <option value="5">5</option>
+                                                <option value="9">9</option>
+                                                <option value="12">12</option>
+                                                <option value="21">21+</option>
                                             </select>
                                         </div>
                                         <div class="opalenya-type pt-2">
@@ -245,6 +252,7 @@
                                             <ul class="object__list">
                                                 <li class="object__item object__item--title title_">{{ $item->name }}</li>
                                                 <li class="object__item object__item--prace">$ {{ $item->price }}</li>
+                                                lavel: {{ $item->level }}
                                                 {{--                                <li class="object__item">--}}
                                                 {{--                                    <i class="bi bi-pin-map"></i>--}}
                                                 {{--                                    {{ $item->rayon_name }},--}}
