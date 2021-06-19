@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obekts;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

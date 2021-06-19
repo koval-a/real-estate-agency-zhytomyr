@@ -27,7 +27,7 @@
                     <div class="col-md-4">
                         <h4><i class="bi bi-envelope"></i> Контакти</h4>
                         <label for="contact-address">Адреса</label>
-                        <input type="text" class="form-control" id="address" value=" {{ Config::get('adminsettings.contact.address')}}" required>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ Config::get('adminsettings.contact.address')}}" required>
                         <label for="contact-address">Телефон #1</label>
                         <input type="tel" class="form-control" id="phoneKyivstar"  value=" {{ Config::get('adminsettings.contact.phone_1')}}" required>
                         <label for="contact-address">Телефон #2</label>
@@ -118,7 +118,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                 </div>
-{{--                <button type="submit" class="btn btn-block w-25 btn-success mt-5 p-2">Зберегти</button>--}}
+                <button type="submit" class="btn btn-block w-25 btn-success mt-5 p-2">Зберегти</button>
             </form>
 
         </div>

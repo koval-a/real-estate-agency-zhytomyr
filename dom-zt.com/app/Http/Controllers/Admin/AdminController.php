@@ -722,14 +722,14 @@ class AdminController extends AC
 
     public function settingsSave(Request $request)
     {
-        $about_text = $request->input('about_text');
-//        config()->set('adminsettings.about_text', $about_text);
+        $address = $request->input('address');
+        config()->set('adminsettings.contact.address', $address);
 
-        if (Config::set('adminsettings.about_text', $about_text)) {
+        if (Config::set('adminsettings.contact.address', $address)) {
             return back()->with("success", "Налаштування збережено");
+        }else{
+            return back()->with("failed", "Помилка збереження!");
         }
-
-        return back()->with("failed", "Помилка!");
 
     }
 
