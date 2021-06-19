@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Земельні ділянки</h6>
+                                        <h6 class="text-muted font-semibold">Земля</h6>
                                         <h6 class="font-extrabold mb-0">{{ $countLand ?? 0}}</h6>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8">
-                                        <h6 class="text-muted font-semibold">Комерційна нерухомість</h6>
+                                        <h6 class="text-muted font-semibold">Комр. нерх.</h6>
                                         <h6 class="font-extrabold mb-0">{{ $countCommerceEstate ?? 0}}</h6>
                                     </div>
                                 </div>

@@ -18,12 +18,11 @@
                         <div class="blog__info p-2">
                             <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>
                             <span class="text-secondary">{{ $item->created_at->format('Y-m-d') }}</span>
-                            <p class="pt-2">
-                                {{ Str::limit($item->text, 300) }}
-                            </p>
-                            <div class="link-read-more d-flex">
-                                <i class="fas fa-arrow-circle-right"></i>
-                                <a href="{{ route('blog.view', $item->slug) }}" class="blog__link text-secondary">Читати детальніше</a>
+{{--                            <p class="pt-2">--}}
+{{--                                {{ Str::limit($item->text, 300) }}--}}
+{{--                            </p>--}}
+                            <div class="link-read-more d-flex mt-2">
+                                <a href="{{ route('blog.view', $item->slug) }}" class="blog__link text-danger">Читати детальніше</a>
                             </div>
                         </div>
 

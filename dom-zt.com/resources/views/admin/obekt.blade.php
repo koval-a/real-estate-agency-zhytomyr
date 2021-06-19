@@ -105,10 +105,10 @@
                         <td>
                             Площа (m2)
                         </td>
-                        <td>
-                            {{--                            Опис та--}}
-                            Фото
-                        </td>
+{{--                        <td>--}}
+{{--                            --}}{{--                            Опис та--}}
+{{--                            Фото--}}
+{{--                        </td>--}}
                         <td>
                             Дія
                         </td>
@@ -197,28 +197,28 @@
                             <td>
                                 {{ $item->square }} m2
                             </td>
-                            <td>
+{{--                            <td>--}}
 
-                                <div class="d-flex">
-                                    @if($filesImages->count() > 0)
+{{--                                <div class="d-flex">--}}
+{{--                                    @if($filesImages->count() > 0)--}}
 
-                                        @foreach($filesImages as $key => $image)
-                                            @if($item->id == $image->obekt_id)
-                                                <a data-fancybox="gallery" href="{{ $image->url_img }}">
-                                                    <img src="{{ $image->url_img }}" alt="picture-{{ $image->id }}"
-                                                         height="30" class="m-1">
-                                                </a>
-                                            @endif
-                                        @endforeach
+{{--                                        @foreach($filesImages as $key => $image)--}}
+{{--                                            @if($item->id == $image->obekt_id)--}}
+{{--                                                <a data-fancybox="gallery" href="{{ $image->url_img }}">--}}
+{{--                                                    <img src="{{ $image->url_img }}" alt="picture-{{ $image->id }}"--}}
+{{--                                                         height="30" class="m-1">--}}
+{{--                                                </a>--}}
+{{--                                            @endif--}}
+{{--                                        @endforeach--}}
 
-                                    @else
-                                        <span>Немає фото.</span>
-                                    @endif
-                                </div>
-                                {{--                                <p>--}}
-                                {{--                                    {{ Str::limit($item->description, 30) }}--}}
-                                {{--                                </p>--}}
-                            </td>
+{{--                                    @else--}}
+{{--                                        <span>Немає фото.</span>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                                --}}{{--                                <p>--}}
+{{--                                --}}{{--                                    {{ Str::limit($item->description, 30) }}--}}
+{{--                                --}}{{--                                </p>--}}
+{{--                            </td>--}}
                             <td>
                                 <div class="d-flex p-2">
                                     @if($item->isPublic)
