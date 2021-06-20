@@ -98,8 +98,12 @@
                     </div>
                 </div>
                 <section id="reviews" class="container pt-5">
-                    <h3 class="title">Google Reviews</h3>
-                    <a href="#" class="btn btn-outline-danger w-25">Залишити відгук</a>
+                    <div class="review-top text-center">
+                        <h3 class="title">Google Reviews</h3>
+                        <div class="link-new-review m-auto">
+                            <a href="#" class="btn btn-outline-danger w-25">Залишити відгук</a>
+                        </div>
+                    </div>
                     <hr>
 {{--                    <div class="reviews-data align-items-center d-flex justify-content-center">--}}
 {{--                        <div class="google-review d-flex">--}}

@@ -92,6 +92,7 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::post('/{slug}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
         Route::get('/delete/{obekt}', [AdminController::class, 'deteleObekt'])->name('admin.obekt.delete')->middleware('is_admin');
         Route::get('/edit/{obekt}', [AdminController::class, 'editObekt'])->name('admin.obekt.edit')->middleware('is_admin');
+        Route::post('/edit/updated/{id}', [AdminController::class, 'updateObekt'])->name('admin.obekt.updated')->middleware('is_admin');
 
         Route::get('/public/{id}', [AdminController::class, 'isPublic'])->name('admin.isPublic')->middleware('is_admin');
     });
@@ -105,12 +106,12 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     });
 
-    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
+    Route::get('/settings/info', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
     Route::post('/settings/save', [AdminController::class, 'settingsSave'])->name('admin.settings.save')->middleware('is_admin');
 
 });
 //Dependent dropdown list in order form
-Route::get('order/get/{id}', 'OrderlistController@getMaster');
+//Route::get('order/get/{id}', 'OrderlistController@getMaster');
 Route::get('csrf-ajax', function()
 {
     if (Session::token() != Request::header('x-csrf-token'))

@@ -38,9 +38,11 @@
                         <li class="p-2">&#127963;</li>
                         <li class="bg-danger1 p-2 rounded mr-1"><a href="/" class="text-danger">Каталог</a></li>
 {{--                        <li class="p-2">&#128073;</li>--}}
+                        <i class="bi bi-chevron-right text-danger m-2"></i>
                         <li class="bg-danger1 p-2 rounded mr-1"><a href="/obekts/{{ $category ->slug }}"
                                                                    class="text-danger">{{ $category ->name }}</a></li>
 {{--                        <li class="p-2">&#128073;</li>--}}
+                        <i class="bi bi-chevron-right text-danger m-2"></i>
                         <li class="bg-danger rounded p-2 active">
                             <a href="/obekt/{{ $obekt->slug }}" class="text-white">{{ $obekt->name }}</a>
                         </li>
@@ -49,7 +51,7 @@
 
                 <div class="product__main">
                     <div class="product__photo">
-                        <h3 class="title__product">{{ $obekt->name }}</h3>
+                        <h1 class="title__product mt-2">{{ $obekt->name }}</h1>
 {{--                        <h3 class="title__product">{{ $obekt->name }} (ID: {{ $obekt->id }})</h3>--}}
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
@@ -120,6 +122,11 @@
                             </li>
 
                             <li class="product-filter__item">
+                                <span class="text-secondary"> Тип стін: </span>
+                                {{ $obekt->typeWall }}
+                            </li>
+
+                            <li class="product-filter__item">
                                 <span class="text-secondary">Площа: </span>
                                 {{ $obekt->square }} m2
                             </li>
@@ -149,13 +156,13 @@
                             </a>
                             <br>
                             <br>
-                            <p class="product__info--text">
-                                Експерт з нерухомості допоможе знайти вам найкращий варіант!
-                                Отримайте безкоштовну консультацію за номером телефону:
-                                <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">
-                                    {{ $rieltor->phone }}
-                                </a>
-                            </p>
+{{--                            <p class="product__info--text">--}}
+{{--                                Експерт з нерухомості допоможе знайти вам найкращий варіант!--}}
+{{--                                Отримайте безкоштовну консультацію за номером телефону:--}}
+{{--                                <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">--}}
+{{--                                    {{ $rieltor->phone }}--}}
+{{--                                </a>--}}
+{{--                            </p>--}}
                             {{--                                <div class="rieltor__number">--}}
                             {{--                                    <a href="tel:+3809700010000" class="rieltor__number--link-image">--}}
                             {{--                                        <div class="phone">--}}
@@ -175,7 +182,7 @@
                                    class="social__item--link" target="_blank">
                                     <div class="social__item">
                                         <img src="/custom/icons/social__viber.svg" alt="social viber"
-                                             class="social__item--image">
+                                             class="social__item--image rounded-circle">
                                     </div>
                                 </a>
                                 <a href="{{ $shareButtonLink[0] }}" class="social__item--link" target="_blank">
@@ -200,7 +207,7 @@
                                 <a href="{{ $shareButtonLink[2] }}" class="social__item--link" target="_blank">
                                     <div class="social__item">
                                         <img src="/custom/icons/social__telegram.svg" alt="social telegram"
-                                             class="social__item--image">
+                                             class="social__item--image rounded-circle">
                                     </div>
                                 </a>
                             </ul>
@@ -238,63 +245,51 @@
             <div class="container">
                 <h3 class="plus__title title">Чому нам довіряють?</h3>
                 <div class="pluses__block--flex">
-                    <div class="pluses__block">
-                        <div class="plus__block-title">
-                            <div class="plus__img m-auto">
-                                <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
-                            </div>
-
+                    <div class="pluses__block text-center">
+                        <div class="p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+                            </svg>
                         </div>
-                        <div class="plus__subtitle">
-                            <h4 class="title">Досвід</h4>
-                        </div>
-                        <p class="plus__text">
-                            За роки діяльності в сфері нерухомості ми отримали унікальний досвід роботи будь-якої
-                            складності,
-                            що дає нам можливість задовольнити потреби найвибагливішого клієнта!
+                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                         </p>
                     </div>
-                    <div class="pluses__block align-center">
-                        <div class="plus__block-title">
-                            <div class="plus__img m-auto">
-                                <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
-                            </div>
-
+                    <div class="pluses__block text-center">
+                        <div class="p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                            </svg>
                         </div>
-                        <h4 class="plus__subtitle text-center">Ексклюзивні об'єкти</h4>
-                        <p class="plus__text">
-                            Наша компанія постійно нараховує сотні ексклюзивних об'єктів
-                            як в місті Житомирі так і Житомирському районі, власники яких довірили продаж тільки нам.
+                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                         </p>
                     </div>
-                    <div class="pluses__block">
-                        <div class="plus__block-title">
-                            <div class="plus__img">
-                                <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
-                            </div>
-
+                    <div class="pluses__block text-center">
+                        <div class="p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                            </svg>
                         </div>
-                        <h4 class="plus__subtitle">Швидкість</h4>
-                        <p class="plus__text">
-                            Завдяки нашій роботі Ви зможете прискорити пошук нерухомості, покупців та швидко
-                            зареєструвати
-                            угоду!
+                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                         </p>
                     </div>
-                    <div class="pluses__block">
-                        <div class="plus__block-title">
-                            <div class="plus__img">
-                                <img src="/custom/icons/free-icon-layers.svg" alt="" class="plus__image">
-                            </div>
-
+                    <div class="pluses__block text-center">
+                        <div class="p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                                <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
                         </div>
-                        <h4 class="plus__subtitle">Репутація</h4>
-                        <p class="plus__text">
-                            Подяки від клієнтів та очолення Житомирського регіонального відділення Асоціації фахівців з
-                            нерухомості України - підтверджують нашу бездоганну репутацію.
+                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                         </p>
                     </div>
-
                 </div>
             </div>
         </section>

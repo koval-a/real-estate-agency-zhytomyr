@@ -28,14 +28,23 @@
                             </select>
                         </div>
                         @if($categoryData->slug != 'land')
-                        <div class="opalemya">
-                            <label>Тип опалення</label>
-                            <select class="form-control" id="opalenyaName" name="opalenyaName">
-                                <option disabled>-Оберіть тип опалення-</option>
-                                <option value="Автономне">Автономне</option>
-                                <option value="Централізоване">Централізоване</option>
-                            </select>
-                        </div>
+                            <div class="opalemya">
+                                <label>Тип опалення</label>
+                                <select class="form-control" id="opalenyaName" name="opalenyaName">
+                                    <option disabled>-Оберіть тип опалення-</option>
+                                    <option value="Автономне">Автономне</option>
+                                    <option value="Централізоване">Централізоване</option>
+                                </select>
+                            </div>
+                            <div class="typeWall">
+                                <span class="ml-0 pl-0">Тип стін</span>
+                                <select name="typeWall" id="typeWall" class="form-control">
+                                    <option value="0" disabled selected>Оберіть</option>
+                                    @foreach($typeWall as $key => $wall)
+                                        <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         @endif
                     </div>
                     <hr>
@@ -247,11 +256,6 @@
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
                         @endforeach
                     </select>
-                    <label>Адреса</label>
-                    <input type="text" name="address" id="address" class="form-control" placeholder="Адреса" required>
-
-                    <input type="text" name="note_address" id="note_address" class="form-control" placeholder="Нотатка" required>
-
                 </div>
             </div>
             <div class="insert-button">

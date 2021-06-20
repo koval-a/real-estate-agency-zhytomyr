@@ -1,28 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <style>
-        .btn-file {
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-file input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            outline: none;
-            background: white;
-            cursor: inherit;
-            display: block;
-        }
-    </style>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <div class="container-fluid">
     <div class="top-bar mb-5">
 
@@ -38,10 +16,8 @@
                         <br>
                         <h4>Текст</h4>
                         <textarea name="text" id="text" cols="30" rows="10" class="form-control" required></textarea>
+                        <span>min: 200 символів</span>
                         <br>
-                        <h4>Slug</h4>
-                        <span><b>Slug</b> - Посилання для відображення посту на сайті, на анг.мові вводить, пробіли заміняти на "-".</span>
-                        <input type="text" class="form-control" name="slug" id="slug" required>
                         <button type="submit" class="btn btn-success mt-5 p-3">Опублікувати</button>
 
                 </div>
@@ -51,7 +27,7 @@
                     <div class="input-group">
                         <span class="input-group-btn">
                             <span class="btn btn-primary btn-file">
-                                Обрати… <input type="file" id="imgInp" name="imgInp" required>
+                                Обрати… <input type="file" id="imgInp" name="imgInp">
                             </span>
                         </span>
                         <input type="text" class="form-control" readonly>

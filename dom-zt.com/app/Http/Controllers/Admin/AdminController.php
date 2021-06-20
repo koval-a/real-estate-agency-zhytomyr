@@ -13,6 +13,7 @@ use App\Models\LocationRayon;
 use App\Models\LocationRegion;
 use App\Models\Note;
 use App\Models\Obekts;
+use App\Models\TypeWall;
 use App\Users;
 use App\Models\User;
 use App\Models\Rieltors;
@@ -279,8 +280,9 @@ class AdminController extends AC
         $city = LocationCity::all();
         $cityRayon = LocationCityRayon::all();
         $location = [$rayon, $city, $cityRayon];
+        $typeWall = TypeWall::all();
 
-        return view('admin.obekt-new', compact('categoryData', 'rieltors', 'owners', 'typeBuild', 'location'));
+        return view('admin.obekt-new', compact('categoryData', 'typeWall', 'rieltors', 'owners', 'typeBuild', 'location'));
     }
 
     public function transliterate($string)
@@ -345,7 +347,7 @@ class AdminController extends AC
         $id_category = Category::where('slug', '=', $category_slug)->first();
         $newObekt->category_id = $id_category->id;
         $newObekt->square = $request->square;
-
+        $newObekt->typeWall = $request->typeWall;
 
         $newObekt->isPublic = 1; // 1 - public 0 - hidden
         $newObekt->appointment_id = $request->appointment_id;
@@ -541,13 +543,15 @@ class AdminController extends AC
 
             $location = [$rayon, $city, $cityRayon];
 
-            return view('admin.obekt-edit', compact('obekt', 'filesImages', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
+            $typeWall = TypeWall::all();
+
+            return view('admin.obekt-edit', compact('obekt', 'typeWall', 'filesImages', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
         } else {
             return back()->with('error', 'Не знайдено для редагуання');
         }
     }
 
-    public function updateObekt(Request $request, $id, $category_slug)
+    public function updateObekt(Request $request, $id)
     {
 
         $updateObekt = Obekts::find($id);
@@ -564,42 +568,43 @@ class AdminController extends AC
         $updateObekt->owner_id = $request->owner_id;
         $updateObekt->rieltor_id = $request->rieltor_id;
         $updateObekt->opalenyaName = $request->opalenyaName;
+        $updateObekt->typeWall = $request->typeWall;
 
         // Photo update
-        $path = 'files/images/obekts/' . $category_slug . '/' . $updateObekt->slug;
-        // save image main
-        if ($request->hasFile('imgMain')) {
-            // check validate
-            $request->validate([
-                'imgMain' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
-            ]);
-            // generate new file name
-            $imageMainName = time() . '.' . $request->imgMain->extension();
-            // create folder for image
-            if (!File::exists(public_path() . $path)) {
-                File::makeDirectory(public_path() . $path, 0777, true, true);
-            }
-            // move to folder image
-            $request->imgMain->move(public_path($path), $imageMainName);
-            // save new name image to database
-            $updateObekt->main_img = '/' . $path . '/' . $imageMainName;
-        }
+//        $path = 'files/images/obekts/' . $category_slug . '/' . $updateObekt->slug;
+//        // save image main
+//        if ($request->hasFile('imgMain')) {
+//            // check validate
+//            $request->validate([
+//                'imgMain' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
+//            ]);
+//            // generate new file name
+//            $imageMainName = time() . '.' . $request->imgMain->extension();
+//            // create folder for image
+//            if (!File::exists(public_path() . $path)) {
+//                File::makeDirectory(public_path() . $path, 0777, true, true);
+//            }
+//            // move to folder image
+//            $request->imgMain->move(public_path($path), $imageMainName);
+//            // save new name image to database
+//            $updateObekt->main_img = '/' . $path . '/' . $imageMainName;
+//        }
 
 
         // Location update
-        $updateLocation = Location::find($updateObekt->locaton_id);
+//        $updateLocation = Location::find($updateObekt->locaton_id);
+//
+//        if($request->location_rayon_id != $updateLocation->rayon_id){
+//            $updateLocation->rayon_id = $request->location_rayon_id;
+//        }
+//        if($request->location_rayon_city_id != $updateLocation->rayon_id){
+//            $updateLocation->rayon_id = $request->location_rayon_city_id;
+//        }
+//        if($request->location_city_id != $updateLocation->rayon_id){
+//            $updateLocation->rayon_id = $request->location_city_id;
+//        }
 
-        if($request->location_rayon_id != $updateLocation->rayon_id){
-            $updateLocation->rayon_id = $request->location_rayon_id;
-        }
-        if($request->location_rayon_city_id != $updateLocation->rayon_id){
-            $updateLocation->rayon_id = $request->location_rayon_city_id;
-        }
-        if($request->location_city_id != $updateLocation->rayon_id){
-            $updateLocation->rayon_id = $request->location_city_id;
-        }
-
-        $updateLocation->save();
+//        $updateLocation->save();
 
         // Obekt update
         if ($updateObekt->save()) {
@@ -635,7 +640,7 @@ class AdminController extends AC
 
     public function getBlog()
     {
-        $blog = Blog::orderBy('id', 'desc')->paginate(2);
+        $blog = Blog::orderBy('id', 'desc')->paginate(10);
         $countBlogItem = Blog::count();
 
         return view('admin.blog', compact('blog', 'countBlogItem'));
@@ -646,26 +651,18 @@ class AdminController extends AC
         $blog = Blog::find($id);
 
         $image = $blog->picture;
-        $path = public_path('files/images/blog/');
+        $path = public_path('files/images/blog');
 
-        unlink($path . $image);
+        if($image != 'blog.jpeg'){
+            unlink($path . '/' . $image);
+        }
 
         if ($blog->delete()) {
 
-
             return back()->with("success", "Пост видалено успішно.");
+        }else{
+            return back()->with("error", "Пост не видалено.");
         }
-
-        // if(file_exists($path.$image))
-        // {
-        //     unlink($path.$image);
-
-        //     // if($blog->delete()){
-
-        //     //    return redirect('/manage/admin/blog');
-        //     //     // return back()->with("success", "Пост видалено успішно.");
-        //     // }
-        // }
 
     }
 
@@ -678,8 +675,15 @@ class AdminController extends AC
     {
         $blog = new Blog();
         $blog->title = $request->input('title');
-        $blog->slug = $request->input('slug');
-        $blog->text = $request->input('text');
+        $blog->slug = $this->transliterate($request->input('title'));
+
+        if(strlen($request->input('text')) >= 200){
+
+            $blog->text = $request->input('text');
+
+        }else{
+            return back()->with("error", "Текст посту має бути мінімум 200 символів.");
+        }
 
         $blog->author_id = 1;// Адміністратор
         $blog->category_id = 2;//Статті
@@ -697,13 +701,15 @@ class AdminController extends AC
             // save new name image to database
             $blog->picture = $imageName;
         } else {
-            $blog->picture = '/files/images/default/blog.jpeg';
+            //default image
+            $blog->picture = 'blog.jpeg';
         }
 
         // save data
         if ($blog->save()) {
             return redirect('/manage/admin/blog')->with("success", "Пост додано успішно.");
-            // return back()->with("success", "Blog insert successfully.");
+        }else{
+             return back()->with("error", "Сталась помилка, перевірте введені дані.");
         }
     }
 
@@ -723,9 +729,9 @@ class AdminController extends AC
     public function settingsSave(Request $request)
     {
         $address = $request->input('address');
-        config()->set('adminsettings.contact.address', $address);
 
-        if (Config::set('adminsettings.contact.address', $address)) {
+        if ($address) {
+            Config::set('adminsettings.social.youtube', $address);
             return back()->with("success", "Налаштування збережено");
         }else{
             return back()->with("failed", "Помилка збереження!");

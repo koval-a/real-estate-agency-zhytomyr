@@ -17,11 +17,11 @@
 
             <form action="{{ route('admin.settings.save') }}" method="POST">
                 @csrf
-                <h4><i class="bi bi-textarea"></i> Опис про нас</h4>
-                <label for="about-us">Про нас</label>
-                <textarea name="about_text" id="about_text" cols="30" rows="10" class="form-control" required>
-                        {{ Config::get('adminsettings.about_text')}}
-                </textarea>
+{{--                <h4><i class="bi bi-textarea"></i> Опис про нас</h4>--}}
+{{--                <label for="about-us">Про нас</label>--}}
+{{--                <textarea name="about_text" id="about_text" cols="30" rows="10" class="form-control" required>--}}
+{{--                        {{ Config::get('adminsettings.about_text')}}--}}
+{{--                </textarea>--}}
 
                 <div class="row mt-5">
                     <div class="col-md-4">
@@ -43,12 +43,12 @@
 {{--                        <input type="text" class="form-control" id="soicalInstagram" required>--}}
                         <label for="contact-social"><i class="bi bi-facebook"></i> Facebook</label>
                         <input type="text" class="form-control" id="soicalFacebook"  value=" {{ Config::get('adminsettings.social.facebook')}}" required>
-{{--                        <label for="contact-social"><i class="bi bi-youtube"></i> YouTube</label>--}}
-{{--                        <input type="text" class="form-control" id="soicalYouTube" required>--}}
-{{--                        <label for="contact-social"><i class="bi bi-twitter"></i> Twitter</label>--}}
-{{--                        <input type="text" class="form-control" id="soicalTwitter" required>--}}
-{{--                        <label for="contact-social"><i class="bi bi-telegram"></i> Telegram</label>--}}
-{{--                        <input type="text" class="form-control" id="soicalTelegram" required>--}}
+                        <label for="contact-social"><i class="bi bi-youtube"></i> YouTube</label>
+                        <input type="text" class="form-control" id="soicalYouTube" value="{{ Config::get('adminsettings.social.youtube') }}">
+                        <label for="contact-social"><i class="bi bi-instagram"></i> Instagram</label>
+                        <input type="text" class="form-control" id="soicalInstagram" value="{{ Config::get('adminsettings.social.instagram') }}">
+                        <label for="contact-social"><i class="bi bi-telegram"></i> Telegram</label>
+                        <input type="text" class="form-control" id="soicalTelegram" value="{{ Config::get('adminsettings.social.telegram') }}">
 {{--                        <label for="contact-social">Viber</label>--}}
 {{--                        <input type="text" class="form-control" id="soicalViber" required>--}}
                     </div>
@@ -118,7 +118,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                 </div>
-                <button type="submit" class="btn btn-block w-25 btn-success mt-5 p-2">Зберегти</button>
+{{--                <button type="submit" class="btn btn-block w-25 btn-success mt-5 p-2">Зберегти</button>--}}
             </form>
 
         </div>

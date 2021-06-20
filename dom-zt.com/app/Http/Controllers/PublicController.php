@@ -13,6 +13,7 @@ use App\Models\LocationRegion;
 use App\Models\Obekts;
 use App\Models\Blog;
 use App\Models\Rieltors;
+use App\Models\TypeWall;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -23,7 +24,7 @@ class PublicController extends Controller
     public function obekt($slug)
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
-        $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(2)->get();
+        $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(4)->get();
         $locationData = Location::all();
         $locationRayon = LocationCityRayon::all();
 
@@ -104,7 +105,9 @@ class PublicController extends Controller
         $min = Obekts::min('price');
         $price = [$max, $min];
 
-        return view('pages.all-obekts', compact('price', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
+        $typeWall = TypeWall::all();
+
+        return view('pages.all-obekts', compact('price', 'typeWall', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
 
     }
 
@@ -115,7 +118,7 @@ class PublicController extends Controller
 
         $category = Category::where('slug', '=', $categorySlug)->first();
         $appointments = Appointment::where('type', '=', $categorySlug)->get();
-
+        $typeWall = TypeWall::all();
         $location = Location::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
@@ -195,9 +198,10 @@ class PublicController extends Controller
                 $filterData[6] = $square;
             }
 
-        }else{
-            return back()->with('error', 'Введіть/Оберіть параметр фільтру!');
         }
+//        else{
+//            return back()->with('error', 'Введіть/Оберіть параметр фільтру!');
+//        }
 
         // Custom parameters filter by category
 
@@ -208,6 +212,12 @@ class PublicController extends Controller
             if($request->typeOpalenya){
                 $typeOpalenya = $request->typeOpalenya;
                 $query->where('opalenyaName','=', $typeOpalenya);
+            }
+
+            if($request->typeWall){
+                $typeWallName = $request->typeWall;
+                $query->where('typeWall', '=', $typeWallName);
+                $filterData[7] = $typeWallName;
             }
         }
 
@@ -276,6 +286,6 @@ class PublicController extends Controller
 
         $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
-        return view('pages.all-obekts', compact('obekts', 'filterData', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
+        return view('pages.all-obekts', compact('obekts',  'typeWall','filterData', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
     }
 }

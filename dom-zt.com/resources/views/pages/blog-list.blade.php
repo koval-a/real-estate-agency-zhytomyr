@@ -8,7 +8,7 @@
         <div class="row">
             @foreach($blog as $key => $item)
 
-                <div class="col-md-4 p-2">
+                <div class="col-md-4 p-2 blog-card">
                     <div class="shadow bg-white rounded">
                         <a href="{{ route('blog.view', $item->slug) }}" class="blog__link">
                             <div class="blog__image">
@@ -16,13 +16,17 @@
                             </div>
                         </a>
                         <div class="blog__info p-2">
-                            <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>
-                            <span class="text-secondary">{{ $item->created_at->format('Y-m-d') }}</span>
-{{--                            <p class="pt-2">--}}
-{{--                                {{ Str::limit($item->text, 300) }}--}}
-{{--                            </p>--}}
+                            <a href="{{ route('blog.view', $item->slug) }}">
+                                <h2 class="mt-2 text-danger blog-title">
+                                    {{ Str::limit($item->title, 50) }}
+                                </h2>
+                            </a>
+                            <span class="text-secondary"> <i class="bi bi-calendar-date"></i> {{ $item->created_at->format('Y-m-d') }}</span>
+                            <p class="pt-2 text-justify blog-short-text-card">
+                                {{ Str::limit($item->text, 200) }}
+                            </p>
                             <div class="link-read-more d-flex mt-2">
-                                <a href="{{ route('blog.view', $item->slug) }}" class="blog__link text-danger">Читати детальніше</a>
+                                <a href="{{ route('blog.view', $item->slug) }}" class="blog__link btn btn-outline-danger">Читати детальніше</a>
                             </div>
                         </div>
 

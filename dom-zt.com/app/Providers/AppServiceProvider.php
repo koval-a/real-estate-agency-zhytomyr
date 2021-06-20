@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +30,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Paginator::useBootstrap();
         Schema::defaultstringLength(191);
+
+//        Config::set('adminsettings.social.youtube', 'Mundo Hurlingham');
     }
 }

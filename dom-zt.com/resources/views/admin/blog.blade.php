@@ -47,7 +47,7 @@
                                 <h5 class="mt-2"><a href="{{ route('blog.view', $item->slug) }}">{{ $item->title }}</a></h5>
                             </td>
                             <td class="col-md-4">
-                                {{ Str::limit($item->text, 300) }}
+                                {{ Str::limit($item->text, 200) }}
                             </td>
                             <td>
                                 {{ $item->created_at->format('Y-m-d') }} <br>

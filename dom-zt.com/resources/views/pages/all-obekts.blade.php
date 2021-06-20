@@ -24,14 +24,14 @@
                                             <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>
                                         @endforeach
                                     </select>
-                                    <select name="city_name" id="city_name" class="form-control invisible">
-                                        <option value="0" disabled selected>Оберіть місто</option>
+                                    <select name="city_name" id="city_name" class="form-control invisible city_name">
+                                        <option value="0" disabled selected>Оберіть</option>
                                         @foreach($locationCity as $key => $city)
                                             <option value="{{$city->city}}">{{$city->city}}</option>
                                         @endforeach
                                     </select>
-                                    <select name="rayon_city" id="rayon_city" class="form-control invisible">
-                                        <option value="0" disabled selected>Оберіть район міста</option>
+                                    <select name="rayon_city" id="rayon_city" class="form-control invisible rayon_city">
+                                        <option value="0" disabled selected>Оберіть</option>
                                         @foreach($locationCityRayon as $key => $rayon_city)
                                             <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
                                         @endforeach
@@ -43,17 +43,24 @@
                                 <div class="price-range d-flex justify-content-between mt-1">
                                     <div class="min-price p-1">
                                             <span>від </span> <input type="text" id="rangePrimary" name="rangePrimary" class="text-danger form-control" value="{{ $filterData[4] ?? '' }}" />
-
                                     </div>
                                     <div class="max-price p-1">
-
                                             <span>до </span><input type="text" id="rangePrimary2" name="rangePrimary2" class="text-danger form-control" value="{{ $filterData[5] ?? '' }}" />
-
-
-
                                     </div>
                                 </div>
 
+                            </div>
+
+                            <div class="type-wall">
+                                @if($category->slug != 'land')
+                                    <span class="ml-0 pl-0">Тип стін</span>
+                                    <select name="typeWall" id="typeWall" class="form-control">
+                                        <option value="0" disabled selected>Оберіть</option>
+                                        @foreach($typeWall as $key => $wall)
+                                            <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
                             </div>
 
 {{--                                <div class="parameters-basic__price p-0">--}}
@@ -86,7 +93,7 @@
 
                                 <div class="parameters-basic__type-obekt pt-2">
                                     <span>Тип об'єкта</span>
-                                    <select name="appointment_id" id="appointment_id" class="form-control mt-2" required>
+                                    <select name="appointment_id" id="appointment_id" class="form-control mt-2">
                                         <option disabled selected>Оберіть тип</option>
                                         @foreach($appointments as $key => $appointment)
                                             @if($filterData[0] ?? '')
@@ -252,7 +259,7 @@
                                             <ul class="object__list">
                                                 <li class="object__item object__item--title title_">{{ $item->name }}</li>
                                                 <li class="object__item object__item--prace">$ {{ $item->price }}</li>
-                                                lavel: {{ $item->level }}
+
                                                 {{--                                <li class="object__item">--}}
                                                 {{--                                    <i class="bi bi-pin-map"></i>--}}
                                                 {{--                                    {{ $item->rayon_name }},--}}
@@ -324,7 +331,7 @@
                         <hr>
                     @else
                         <div class="empty-data p-3">
-                            <span class="title">Об'єктів нерухомості в розділі {{ $category->name }} немає.</span>
+                            <h2 class="display-4 text-danger"> <i class="bi bi-info-circle-fill"></i> Об'єкти нерухомості відсутні.</h2>
                         </div>
                     @endif
                 </div>

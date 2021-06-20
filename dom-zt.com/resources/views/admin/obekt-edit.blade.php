@@ -6,7 +6,7 @@
 
         <h1>Редарування об'єкту нерухомості - {{ $obekt->name }}</h1>
         <hr>
-        <form action="#" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+        <form action="{{ route('admin.obekt.updated', $obekt->id) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
             @csrf
             <div class="row p-3">
                 <div class="obket-info col-md-4 border p-2">
@@ -40,6 +40,15 @@
                                     <option disabled>-Оберіть тип опалення-</option>
                                     <option value="Автономне">Автономне</option>
                                     <option value="Централізоване">Централізоване</option>
+                                </select>
+                            </div>
+                            <div class="typeWall">
+                                <span class="ml-0 pl-0">Тип стін</span>
+                                <select name="typeWall" id="typeWall" class="form-control">
+                                    <option value="0" disabled selected>Оберіть</option>
+                                    @foreach($typeWall as $key => $wall)
+                                        <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         @endif
@@ -89,7 +98,7 @@
                                 <span>/</span>
                             </div>
                             <div class="col-md-3">
-                                <span>Етажність</span>
+                                <span>Поверховість</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
                                        id="count_level" required>
                             </div>
@@ -266,11 +275,6 @@
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
                         @endforeach
                     </select>
-                    <label>Адреса</label>
-                    <input type="text" name="address" id="address" class="form-control" placeholder="Адреса" required>
-
-                    <input type="text" name="note_address" id="note_address" class="form-control" placeholder="Нотатка" required>
-
                 </div>
             </div>
             <div class="insert-button">
