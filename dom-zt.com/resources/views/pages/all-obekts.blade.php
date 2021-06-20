@@ -39,7 +39,7 @@
 
                                 </div>
                             <div class="parameters-basic__price p-0">
-                                <span class="ml-0 pl-0">Ціна ($.тис)</span>
+                                <span class="ml-0 pl-0">Ціна ($)</span>
                                 <div class="price-range d-flex justify-content-between mt-1">
                                     <div class="min-price p-1">
                                             <span>від </span> <input type="text" id="rangePrimary" name="rangePrimary" class="text-danger form-control" value="{{ $filterData[4] ?? '' }}" />
@@ -217,7 +217,7 @@
                             <button type="submit" class="btn btn-danger pt-2 pb-2">Застосувати</button>
 
                             <div class="clear-filter text-center pt-2">
-                                <a href="/obekts/{{$category->slug}}" class="text-secondary">Скинути</a>
+                                <a href="/obekts/{{$category->slug}}" class="text-secondary">Видалити</a>
                             </div>
                         </div>
                     </form>

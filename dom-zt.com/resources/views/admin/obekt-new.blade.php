@@ -83,7 +83,7 @@
                                 <span>/</span>
                             </div>
                             <div class="col-md-3">
-                                <span>Етажність</span>
+                                <span>Поверховість</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
                                        id="count_level" required>
                             </div>

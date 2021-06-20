@@ -26,11 +26,9 @@
     color: white;
 }
 
-.item-rieltor-obekt:hover {
+.item-rieltor-obekt img:hover {
 
-    -webkit-transform: scale(0.9);
-    -ms-transform: scale(0.9);
-    transform: scale(0.9);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .img-rieltor-accaunt {
