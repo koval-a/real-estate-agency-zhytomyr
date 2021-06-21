@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 20, 2021 at 11:02 PM
+-- Generation Time: Jun 21, 2021 at 03:30 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -490,7 +490,8 @@ CREATE TABLE `note` (
 --
 
 INSERT INTO `note` (`id`, `date_publish`, `note_text`, `obekt_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, '2021-06-19', 'sdgfh ghnvk hghlk jyghj/liuytdhgfjghioiulytydrhfjghj jhfgyuiuoyuytdyrhdtyuuyfyuiujghjn ;uffuh', 33, 7, '2021-06-19 14:22:22', '2021-06-19 14:22:22');
+(3, '2021-06-21', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis deleniti distinctio mollitia nihil perspiciatis.', 30, 7, '2021-06-20 21:02:26', '2021-06-20 21:02:26'),
+(4, '2021-06-21', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis deleniti distinctio mollitia nihil perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis deleniti distinctio mollitia nihil perspiciatis.', 33, 7, '2021-06-20 21:02:34', '2021-06-20 21:02:34');
 
 -- --------------------------------------------------------
 
@@ -531,9 +532,9 @@ CREATE TABLE `obekts` (
 INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `square`, `location_id`, `rayon_name`, `city_name`, `main_img`, `isPublic`, `count_room`, `count_level`, `level`, `opalenyaName`, `appointment_id`, `rieltor_id`, `slug`, `owner_id`, `isPay`, `typeWall`, `created_at`, `updated_at`) VALUES
 (30, 'Квартира на Глобалі', 'Квартира на Глобалі в новостройці біля арки.', '76400.00', 1, '65.00', 66, 'м.Житомир', 'Центр', '/files/images/obekts/flat/kvartira-na-global/1622811214.png', 1, 3, 12, 5, 'Автономне', 51, 7, 'kvartira-na-global', 6, 1, NULL, '2021-06-04 09:53:34', '2021-06-11 19:54:51'),
 (31, 'Квартира на Київський', 'Квартира на Київський Квартира на Київський', '34777.00', 1, '45.00', 67, 'м.Житомир', 'Мальованка', '/files/images/obekts/flat/kvartira-na-ki-vskij/1622812457.png', 1, 1, 5, 1, 'Централізоване', 53, 7, 'kvartira-na-ki-vskij', 5, 0, NULL, '2021-06-04 10:14:17', '2021-06-04 10:14:17'),
-(32, 'ЖК \"ПАРК\" Квартира', 'квартира в парку від забудовника, власник, текст і тд.', '45222.00', 1, '34.00', 68, 'Черняхівський', '-', '/files/images/obekts/flat/zhk-park-kvartira/1622812567.png', 0, 3, 21, 5, 'Автономне', 60, 6, 'zhk-park-kvartira', 4, 0, NULL, '2021-06-04 10:16:07', '2021-06-20 16:19:53'),
+(32, 'ЖК \"ПАРК\" Квартира', 'квартира в парку від забудовника, власник, текст і тд.', '45222.00', 1, '34.00', 68, 'м.Житомир', 'Східний', '/files/images/obekts/flat/zhk-park-kvartira/1622812567.png', 0, 3, 21, 5, 'Автономне', 60, 6, 'zhk-park-kvartira', 4, 0, 'силікатна цегла', '2021-06-04 10:16:07', '2021-06-20 20:53:09'),
 (33, 'Будинок Власний', 'Будинок для життя за містом', '45.00', 2, '123.00', 70, 'Житомирський', 'c. Вершина', '/files/images/obekts/house/budinok-vlasnij/1622812741.png', 1, 3, 2, 0, 'Централізоване', 48, 7, 'budinok-vlasnij', 7, 0, NULL, '2021-06-04 10:19:01', '2021-06-04 10:19:01'),
-(34, 'Будинок 34 дорога', 'Будинок класний, сусіди прекрасні, купуйте скоріше.', '189564.00', 2, '230.00', 71, 'Андрушівський', '-', '/files/images/obekts/house/budinok-34-doroga/1622813203.png', 1, 4, 2, 0, 'Автономне', 44, 6, 'budinok-34-doroga', 4, 0, NULL, '2021-06-04 10:26:43', '2021-06-04 10:26:43'),
+(34, 'Будинок 34 дорога', 'Будинок класний, сусіди прекрасні, купуйте скоріше.', '189564.00', 2, '230.00', 71, 'Андрушівський', '-', '/files/images/obekts/house/budinok-34-doroga/1622813203.png', 1, 4, 2, 0, 'Автономне', 44, 6, 'budinok-34-doroga', 4, 0, 'цегла', '2021-06-04 10:26:43', '2021-06-04 10:26:43'),
 (35, 'Земля для картошки', 'Земельна ділянки вирощування картоплі', '340900.00', 3, '234.00', 72, 'Житомирський', 'c. Лісівщина', '/files/images/obekts/land/zemlya-dlya-kartoshki/1622813329.png', 1, 0, 0, 0, 'none', 17, 7, 'zemlya-dlya-kartoshki', 8, 0, NULL, '2021-06-04 10:28:49', '2021-06-04 10:28:49'),
 (36, 'Земля для озера', 'Для будівництва озера із прибрежною інфраструктурою.', '56000.00', 3, '500.00', 73, 'Житомирський', 'c. Вигода', '/files/images/obekts/land/zemlya-dlya-ozera/1622813903.png', 1, 0, 0, 0, 'none', 22, 7, 'zemlya-dlya-ozera', 9, 0, NULL, '2021-06-04 10:38:23', '2021-06-04 10:38:23'),
 (37, 'Офіс', 'Офіс з ремонтом, меблями, гарні сусіди.', '390111.00', 4, '300.00', 75, 'м.Житомир', 'Глобал', '/files/images/obekts/commercial-real-estate/of-s/1622814163.png', 1, 0, 0, 0, 'Централізоване', 29, 7, 'of-s', 10, 0, NULL, '2021-06-04 10:42:43', '2021-06-04 10:42:43'),
@@ -549,8 +550,8 @@ INSERT INTO `obekts` (`id`, `name`, `description`, `price`, `category_id`, `squa
 CREATE TABLE `owner` (
                          `id` bigint(20) UNSIGNED NOT NULL,
                          `name` varchar(191) NOT NULL,
-                         `phone` int(12) NOT NULL,
-                         `address` text NOT NULL,
+                         `phone` text NOT NULL,
+                         `address` text,
                          `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                          `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -560,13 +561,13 @@ CREATE TABLE `owner` (
 --
 
 INSERT INTO `owner` (`id`, `name`, `phone`, `address`, `created_at`, `updated_at`) VALUES
-(4, 'Alen Delon', 980091202, 'Київська 77', '2021-05-28 17:37:34', '2021-05-28 17:37:34'),
-(5, 'John Doe', 675785994, 'Щорса 12', '2021-05-28 17:38:20', '2021-05-28 17:38:20'),
-(6, 'Імя Прізвище', 980091209, 'Київська 67', '2021-06-04 09:53:34', '2021-06-04 09:53:34'),
-(7, 'Мойша Ротенберг', 990019910, 'Одеса, пр.Буьвар 4', '2021-06-04 10:19:01', '2021-06-04 10:19:01'),
-(8, 'Іван Житомирський', 990023030, 'Житомир Щорса 12', '2021-06-04 10:28:49', '2021-06-04 10:28:49'),
-(9, 'Bob Dreqk', 980042020, 'USA, CA. 58420', '2021-06-04 10:38:23', '2021-06-04 10:38:23'),
-(10, 'Жорж Центральний', 990019911, 'вул. Київська 89', '2021-06-04 10:42:43', '2021-06-04 10:42:43');
+(4, 'Alen Delon', '980091202', 'Київська 77', '2021-05-28 17:37:34', '2021-05-28 17:37:34'),
+(5, 'John Doe', '675785994', 'Щорса 12', '2021-05-28 17:38:20', '2021-05-28 17:38:20'),
+(6, 'Імя Прізвище', '980091209', 'Київська 67', '2021-06-04 09:53:34', '2021-06-04 09:53:34'),
+(7, 'Мойша Ротенберг', '990019910', 'Одеса, пр.Буьвар 4', '2021-06-04 10:19:01', '2021-06-04 10:19:01'),
+(8, 'Іван Житомирський', '990023030', 'Житомир Щорса 12', '2021-06-04 10:28:49', '2021-06-04 10:28:49'),
+(9, 'Bob Dreqk', '980042020', 'USA, CA. 58420', '2021-06-04 10:38:23', '2021-06-04 10:38:23'),
+(10, 'Жорж Центральний', '990019911', 'вул. Київська 89', '2021-06-04 10:42:43', '2021-06-21 12:14:32');
 
 -- --------------------------------------------------------
 
@@ -870,7 +871,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `obekts`
@@ -882,7 +883,7 @@ ALTER TABLE `obekts`
 -- AUTO_INCREMENT for table `owner`
 --
 ALTER TABLE `owner`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `settings`

@@ -139,6 +139,8 @@ class AdminController extends AC
 
         if ($newOwner->save()) {
             return back()->with("success", "Власника додано успішно.");
+        }else{
+            return back()->with("error", "Власника не додано.");
         }
     }
 
@@ -153,7 +155,7 @@ class AdminController extends AC
                 $count = Owner::count();
                 $clients = Owner::orderBy('id', 'desc')->paginate(10);
 
-                return view('admin.clients', compact('count', 'clients'))->with("success", "Власника видалено успішно.");
+                return view('admin.clients', compact('count', 'clients'))->with('success', 'Власника видалено успішно.');
             } else {
                 return back()->with("error", "Виникла помилка видалення.");
             }
@@ -179,18 +181,22 @@ class AdminController extends AC
     public function updatedClients(Request $request, $id)
     {
         $owner = Owner::find($id);
+        $count = Owner::count();
+        $clients = Owner::orderBy('id', 'desc')->paginate(10);
 
         if($request->name){
             $owner->name = $request->name;
         }
+
         if($request->phone){
             $owner->name = $request->phone;
         }
 
-        if($owner->save){
-            return view('admin.clients')->with('success', 'Дані оновлено.');
+        if($owner->save()){
+            return view('admin.clients', compact('count', 'clients'))->with('success', 'Дані оновлено.');
+        }else{
+            return back()->with('error', 'Дані не оновлено.');
         }
-        return back()->with('error', 'Дані не оновлено.');
     }
 
     // END - CLEINTS //

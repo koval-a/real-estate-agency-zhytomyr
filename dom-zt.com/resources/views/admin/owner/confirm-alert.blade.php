@@ -12,7 +12,7 @@
             <hr>
 
             <div class="col-md-8 m-auto">
-                <form action="{{ route('admin.clients.delete', $owner->id) }}" method="GET">
+                <form action="{{ route('admin.clients.delete', $owner->id) }}" method="POST">
                     @csrf
                     <div class="confirm">
                         <div class="text-information">
@@ -38,11 +38,11 @@
                     <hr>
                     <div class="btn-update">
                         <button type="submit" class="btn btn-danger">Видалити</button>
-                        <a href="{{ route('admin.clients') }}" class="btn btn-secondary">Відмінити</a>
+
                     </div>
                 </form>
             </div>
-
+            <a href="{{ route('admin.clients') }}" class="btn btn-secondary">Відмінити</a>
         </div>
 
     </div>
