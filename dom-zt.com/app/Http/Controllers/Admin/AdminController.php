@@ -528,8 +528,9 @@ class AdminController extends AC
             $rieltor = $obekt->rieltor_id;
             $rayon = $obekt->rayon_name;
             $city = $obekt->city_name;
+            $wall = $obekt->typeWall;
 
-            $setCurrentSelected = [$appointment, $owner, $rieltor, $rayon, $city];
+            $setCurrentSelected = [$appointment, $owner, $rieltor, $rayon, $city, $wall];
 
             $rieltors = Rieltors::where('is_admin', '=', 0)->get();
 
@@ -570,46 +571,70 @@ class AdminController extends AC
         $updateObekt->opalenyaName = $request->opalenyaName;
         $updateObekt->typeWall = $request->typeWall;
 
-        // Photo update
-//        $path = 'files/images/obekts/' . $category_slug . '/' . $updateObekt->slug;
-//        // save image main
-//        if ($request->hasFile('imgMain')) {
-//            // check validate
-//            $request->validate([
-//                'imgMain' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
-//            ]);
-//            // generate new file name
-//            $imageMainName = time() . '.' . $request->imgMain->extension();
-//            // create folder for image
-//            if (!File::exists(public_path() . $path)) {
-//                File::makeDirectory(public_path() . $path, 0777, true, true);
-//            }
-//            // move to folder image
-//            $request->imgMain->move(public_path($path), $imageMainName);
-//            // save new name image to database
-//            $updateObekt->main_img = '/' . $path . '/' . $imageMainName;
-//        }
+        $category_slug = Category::find($updateObekt->category_id);
+        $category_slug_name = $category_slug->slug;
+        $path = 'files/images/obekts/' . $category_slug_name . '/' . $updateObekt->slug;
 
+        if($updateObekt->main_img == '/files/images/default/obekt.jpeg'){
+
+            // If main image is default then create folder for upload image
+
+            if ($request->hasFile('imgMain')) {
+                // check validate
+                $request->validate([
+                    'imgMain' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
+                ]);
+                // generate new file name
+                $imageMainName = time() . '.' . $request->imgMain->extension();
+                // create folder for image
+                if (!File::exists(public_path() . $path)) {
+                    File::makeDirectory(public_path() . $path, 0777, true, true);
+                }
+                // move to folder image
+                $request->imgMain->move(public_path($path), $imageMainName);
+                // save new name image to database
+                $updateObekt->main_img = '/' . $path . '/' . $imageMainName;
+            }
+        }else{
+            if ($request->hasFile('imgMain')) {
+                $currentImage = $updateObekt->main_img;
+                File::delete(public_path($path), $currentImage);
+                $request->validate([
+                    'imgMain' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
+                ]);
+                $newImage = time() . '.' . $request->imgMain->extension();
+                $request->imgMain->move(public_path($path), $newImage);
+                $updateObekt->main_img = '/' . $path . '/' . $newImage;
+            }
+        }
 
         // Location update
 //        $updateLocation = Location::find($updateObekt->locaton_id);
-//
-//        if($request->location_rayon_id != $updateLocation->rayon_id){
+
+        if($request->location_rayon_id){
 //            $updateLocation->rayon_id = $request->location_rayon_id;
-//        }
-//        if($request->location_rayon_city_id != $updateLocation->rayon_id){
+            $locationRayon = LocationRayon::find($request->location_rayon_id);
+            $updateObekt->rayon_name = $locationRayon->rayon;
+        }
+
+        if($request->location_rayon_city_id){
 //            $updateLocation->rayon_id = $request->location_rayon_city_id;
-//        }
-//        if($request->location_city_id != $updateLocation->rayon_id){
+            $locationCityRayon = LocationCityRayon::find($request->location_rayon_city_id);
+            $updateObekt->city_name = $locationCityRayon->rayon_city;
+        }
+
+        if($request->location_city_id){
 //            $updateLocation->rayon_id = $request->location_city_id;
-//        }
+            $locationCity = LocationCity::find($request->location_city_id);
+            $updateObekt->city_name = $locationCity->city;
+        }
 
 //        $updateLocation->save();
 
         // Obekt update
         if ($updateObekt->save()) {
 
-            return view('admin.obekt');
+            return back()->with('success', 'Дані оновлено.');
 
         } else {
             return back()->with('error', 'Помилка оновлення даних!');

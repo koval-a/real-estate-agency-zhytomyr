@@ -45,9 +45,14 @@
                             <div class="typeWall">
                                 <span class="ml-0 pl-0">Тип стін</span>
                                 <select name="typeWall" id="typeWall" class="form-control">
-                                    <option value="0" disabled selected>Оберіть</option>
                                     @foreach($typeWall as $key => $wall)
-                                        <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+
+                                        @if($setCurrentSelected[5] == $wall->name)
+                                            <option value="{{$wall->name}}" selected>{{$wall->name}}</option>
+                                        @else
+                                            <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+                                        @endif
+
                                     @endforeach
                                 </select>
                             </div>
@@ -134,94 +139,26 @@
                 <div class="location col-md-4 border p-2">
                     <h4>Фотографії</h4>
                     <hr>
-                    <span>Поточні фотографії</span> <hr>
+                    <span>Поточна головна фотографія</span> <hr>
                     <div class="row">
                         <div class="main-photo col-md-4">
-                            <img src="{{$obekt->main_img}}" alt="current photo" width="100">
-                            <span>Головна</span>
-                        </div>
-                        <div class="more-photo col-md-8">
-                            <div class="row">
-                                @foreach($filesImages as $key => $image)
-                                    @if($obekt->id == $image->obekt_id)
-                                        <img src="{{ $image->url_img }}" alt="image-{{$image->id}}" class="img-thumbnail w-25">
-                                    @endif
-                                @endforeach
-                            </div>
-                            <span>Додаткові</span>
+                            <img src="{{$obekt->main_img}}" alt="current photo" width="300">
                         </div>
                     </div>
-
                     <hr>
-                    <span>Нові фотографії</span>
+                    <span>Нова фотографія</span>
                     <hr>
+                    <a data-fancybox="gallery" id='img-upload-a'>
+                        <img id='img-upload' src="/files/images/default/obekt.jpeg" alt="picture" class="m-1 img-fluid" width="300">
+                    </a>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <span class="btn btn-light btn-file">
+                            <span class="btn btn-primary btn-file">Оберіть зображення
                                <input type="file" id="imgMain" name="imgMain">
                             </span>
                         </span>
                         <input type="text" class="form-control" readonly>
                     </div>
-                    <a data-fancybox="gallery" id='img-upload-a'>
-                        <img id='img-upload' alt="Головна фотографія" class="m-1 img-fluid">
-                    </a>
-                    <hr>
-                    <span>Додаткові фото</span>
-                    <style>
-                        .images-preview-div img
-                        {
-                            padding: 10px;
-                            max-width: 100px;
-                        }
-                    </style>
-                    <div class="card">
-                        <div class="card-body">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="file" name="images[]" id="images" placeholder="Choose images" multiple>
-                                    </div>
-                                    @error('images')
-                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="mt-1 text-center">
-                                        <div class="images-preview-div">
-                                            <a id="img-upload-a-multi" data-fancybox="gallery">
-                                                <img id="img-upload-multi" class="img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-                    <script >
-                        $(function() {
-                            // Multiple images preview with JavaScript
-                            var previewImages = function(input, imgPreviewPlaceholder) {
-                                if (input.files) {
-                                    var filesAmount = input.files.length;
-                                    for (i = 0; i < filesAmount; i++) {
-                                        var reader = new FileReader();
-                                        reader.onload = function(event) {
-                                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
-                                        }
-                                        reader.readAsDataURL(input.files[i]);
-                                    }
-                                }
-                            };
-                            $('#images').on('change', function() {
-                                previewImages(this, 'div.images-preview-div');
-                            });
-                        });
-                    </script>
                 </div>
 
                 <div class="owner col-md-4 border p-2">
@@ -251,9 +188,8 @@
                         @endforeach
                     </select>
                     <hr>
-                    <h4>Розміщення: <span class="text-danger">{{$setCurrentSelected[3]}}, {{$setCurrentSelected[4]}}</span></h4>
-                    <span>Оберіть нове або залишіть поле без змін</span>
-                    <br>
+                    <h4>Розміщення <br>поточне: <span class="text-danger">{{$setCurrentSelected[3]}}, {{$setCurrentSelected[4]}}</span>
+                        <br> нове:</h4>
                     <label>Район</label>
                     <select onchange="showList(this)" name="location_rayon_id" id="location_rayon_id" class="form-control">
                         <option disabled selected>Оберіть район</option>
