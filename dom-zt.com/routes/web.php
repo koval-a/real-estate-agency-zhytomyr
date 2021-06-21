@@ -68,8 +68,11 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
     Route::group(['prefix'=>'/clients', 'namespace' => 'Admin'], function(){
 
         Route::get('/', [AdminController::class, 'getClients'])->name('admin.clients')->middleware('is_admin');
-        Route::post('/clients/insert', [AdminController::class, 'insertClients'])->name('admin.clients.insert')->middleware('is_admin');
-        Route::get('/clients/delete/{id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+        Route::post('/insert', [AdminController::class, 'insertClients'])->name('admin.clients.insert')->middleware('is_admin');
+        Route::get('/edit/{id}', [AdminController::class, 'editClients'])->name('admin.clients.edit')->middleware('is_admin');
+        Route::post('/updated/{$id}', [AdminController::class, 'updatedClients'])->name('admin.clients.updated')->middleware('is_admin');
+        Route::get('/delete/confirm/{id}', [AdminController::class, 'deleteConformClients'])->name('admin.clients.delete.confirm')->middleware('is_admin');
+        Route::get('/delete/accept/{id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
     });
 
     Route::group(['prefix'=>'/rieltors', 'namespace' => 'Admin'], function(){

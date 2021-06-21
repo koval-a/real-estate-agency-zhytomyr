@@ -133,16 +133,15 @@
 
                             <li class="product-filter__item">
                                 <span class="text-secondary">Розташування: </span>
-{{--                                <span class="text-secondary">Вулиця: </span>--}}
-                                {{--                                    LocationID {{ $obekt->location_id }}--}}
-{{--                                {{ $dataLocation[4] }} <br>--}}
-{{--                                ({{ $dataLocation[3] }}) <br>--}}
-{{--                                Нотатка: {{ $dataLocation[5] }} <br>--}}
                                 {{ $dataLocation[0] }},
-{{--                                р-н: {{ $dataLocation[1] }},--}}
-
                                 {{ $obekt->rayon_name }},
                                 {{ $obekt->city_name }}
+                                @if(Auth::user())
+                                    <br>
+                                    <span class="text-secondary">Вулиця: </span>
+                                    {{ $dataLocation[4] }} <br>
+                                    <span class="text-secondary">Нотатка:</span> {{ $dataLocation[5] }}
+                                @endif
                             </li>
                             <li>
                                 <span

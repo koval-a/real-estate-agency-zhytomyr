@@ -246,7 +246,7 @@
             {{ $obekts->links() }}
             <hr>
         @else
-            <span class="p-3">Записів немає.</span>
+            <span class="p-3">Записів не знайдено.</span>
         @endif
     </div>
 @endsection

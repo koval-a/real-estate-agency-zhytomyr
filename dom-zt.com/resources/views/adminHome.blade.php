@@ -15,7 +15,8 @@
 
                 <div class="row">
                     <div class="col-6 col-lg-2 col-md-6">
-                        <div class="card">
+                        <a href="{{ route('admin.view', 'house') }}">
+                            <div class="card card-count-obekt">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -30,9 +31,11 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2 col-md-6">
-                        <div class="card">
+                        <a href="{{ route('admin.view', 'flat') }}">
+                        <div class="card card-count-obekt">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -47,9 +50,11 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2 col-md-6">
-                        <div class="card">
+                        <a href="{{ route('admin.view', 'land') }}">
+                            <div class="card card-count-obekt">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -64,9 +69,11 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-2 col-md-6">
-                        <div class="card">
+                        <a href="{{ route('admin.view', 'commercial-real-estate') }}">
+                            <div class="card card-count-obekt">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -81,6 +88,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                     <div class="col-6 col-lg-4 col-md-6">
                         <div class="card">

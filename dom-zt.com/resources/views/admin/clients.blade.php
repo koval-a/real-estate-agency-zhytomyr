@@ -6,7 +6,7 @@
 
         <div class="container-fluid">
             <div class="info-header">
-                <h1>Власники/Клієнти ({{ $count }})</h1>
+                <h1>Власники ({{ $count }})</h1>
                 <p class="">Власники нерухомості</p>
                 <hr>
             </div>
@@ -30,8 +30,9 @@
                             <div class="modal-body">
 
                                     <input type="text" name="name"  id="name" class="form-control m-1" required placeholder="Ім'я">
-                                    <input type="tel" name="phone"  id="phone" class="form-control m-1" required placeholder="Формат: 0990123456">
-                                    <input type="text" name="address"  id="address" class="form-control m-1" required placeholder="Адреса">
+                                    <input type="text" name="phone"  id="phone" class="form-control m-1"  required placeholder="Формат: 0990123456"
+                                           maxlength="12"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+{{--                                    <input type="text" name="address"  id="address" class="form-control m-1" required placeholder="Адреса">--}}
 
                             </div>
                             <div class="modal-footer">
@@ -44,62 +45,54 @@
             </div>
         </div>
 
-        @if($clients->count() > 0)
+        <div class="col-md-8 m-auto">
+            @if($clients->count() > 0)
 
-        <table class="table">
-            <thead>
-            <tr class="bg-secondary text-white">
-                <td>
-                    #
-                </td>
-                <td>
-                    Ім'я
-                </td>
-                <td>
-                    Телефон
-                </td>
-                <td>
-                    Адреса
-                </td>
-                <td>
-                    ID
-                </td>
-                <td>
-                    Дія
-                </td>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($clients as $key => $owner)
-                <tr>
-                    <td>
-                        {{ $key + 1 }}
-                    </td>
-                    <td>
-                        {{ $owner->name }}
-                    </td>
-                    <td>
-                        {{ $owner->phone }}
-                    </td>
-                    <td>
-                        {{ $owner->address }}
-                    </td>
-                    <td>
-                        {{ $owner->id }}
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.clients.delete', $owner->id) }}" class="btn btn-danger"><i class="fab fa-trash"></i> Видалити</a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-            <hr>
-            {{ $clients->links() }}
-            <hr>
-        @else
-            <span class="p-3">Записів немає.</span>
-        @endif
+                <table class="table">
+                    <thead>
+                    <tr class="bg-secondary text-white">
+                        <td>
+                            #
+                        </td>
+                        <td>
+                            Ім'я
+                        </td>
+                        <td>
+                            Телефон
+                        </td>
+                        <td>
+                            Дія
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($clients as $key => $owner)
+                        <tr>
+                            <td class="col-md-1">
+                                {{ $key + 1 }}
+                            </td>
+                            <td>
+                                {{ $owner->name }} <br>
+                                ID: {{ $owner->id }}
+                            </td>
+                            <td>
+                                {{ $owner->phone }}
+                            </td>
+                            <td class="col-md-3">
+                                <a href="{{ route('admin.clients.edit', $owner->id) }}" class="btn btn-primary">Редагувати</a>
+                                <a href="{{ route('admin.clients.delete.confirm', $owner->id) }}" class="btn btn-danger">Видалити</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <hr>
+                {{ $clients->links() }}
+                <hr>
+            @else
+                <span class="p-3">Записів немає.</span>
+            @endif
+        </div>
 
 
     </div>

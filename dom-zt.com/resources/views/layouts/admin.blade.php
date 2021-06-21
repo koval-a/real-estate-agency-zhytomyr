@@ -100,7 +100,7 @@
                         <li class="sidebar-item  ">
                             <a href="{{ route('admin.clients') }}" class='sidebar-link'>
                                 <i class="bi bi-person"></i>
-                                <span>Власники (Клієнти)</span>
+                                <span>Власники</span>
                             </a>
                         </li>
 

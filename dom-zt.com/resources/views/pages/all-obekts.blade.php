@@ -112,13 +112,7 @@
 
                                         <div class="count-room pt-2">
                                             <span>К-ть кімнат</span>
-                                            <select name="count_room" id="count_room" class="form-control mt-2">
-                                                <option value="0" disabled selected>Оберіть к-ть кімнат</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4+</option>
-                                            </select>
+                                            <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room">
                                         </div>
                                         <div class="level pt-2">
                                             <span>Поверх</span>
@@ -320,7 +314,7 @@
                                             </ul>
                                         </div>
                                         <div class="link-open-obekt p-1">
-                                            <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style" target="_blank">Детальніше</a>
+                                            <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style">Детальніше</a>
                                         </div>
                                     </div>
                                 </div>

@@ -75,13 +75,7 @@
                               <div class="d-flex">
                             <div class="col-md-5">
                                 <span>К-ть кімнат</span>
-                                <select class="form-control" id="count_room" name="count_room">
-                                    <option>-Оберіть к-ть кімнат-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
-                                </select>
+                                <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room">
                             </div>
                             <div class="col-md-3">
                                 <span>Поверх</span>
@@ -256,6 +250,10 @@
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
                         @endforeach
                     </select>
+                    <label>Адреса</label>
+                    <input type="text" name="address" id="address" class="form-control" placeholder="Адреса">
+
+                    <input type="text" name="note_address" id="note_address" class="form-control" placeholder="Нотатка">
                 </div>
             </div>
             <div class="insert-button">

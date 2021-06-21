@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <hr>
-                    @switch($obekt->slug)
+                    @switch($categorySlug)
                         @case('land')
                         land
                         @break
@@ -86,18 +86,12 @@
                         <div class="d-flex">
                             <div class="col-md-5">
                                 <span>К-ть кімнат</span>
-                                <select class="form-control" id="count_room" name="count_room">
-                                    <option>-Оберіть к-ть кімнат-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
-                                </select>
+                                <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ $obekt->count_room }}">
                             </div>
                             <div class="col-md-3">
                                 <span>Поверх</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="level"
-                                       id="level" required>
+                                       id="level" value="{{ $obekt->level }}">
                             </div>
                             <div class="col-md-1 d-flex justify-content-center">
                                 <span>/</span>
@@ -105,7 +99,7 @@
                             <div class="col-md-3">
                                 <span>Поверховість</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
-                                       id="count_level" required>
+                                       id="count_level" value="{{ $obekt->count_level }}">
                             </div>
                         </div>
                         @break
@@ -113,19 +107,13 @@
                         <div class="d-flex">
                             <div class="col-md-6">
                                 <span>К-ть кімнат</span>
-                                <select class="form-control" id="count_room" name="count_room">
-                                    <option>-Оберіть к-ть кімнат-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
-                                </select>
+                                <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ $obekt->count_room }}">
                             </div>
 
                             <div class="col-md-6">
                                 <span>К-ть поверхів</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
-                                       id="count_level" required>
+                                       id="count_level" value="{{ $obekt->count_level }}">
                             </div>
                         </div>
                         @break
@@ -211,6 +199,11 @@
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
                         @endforeach
                     </select>
+
+                    <label>Адреса</label>
+                    <input type="text" name="address" id="address" class="form-control" value="{{ $location[3] }}">
+
+                    <input type="text" name="note_address" id="note_address" class="form-control" value="{{ $location[4] }}">
                 </div>
             </div>
             <div class="insert-button">

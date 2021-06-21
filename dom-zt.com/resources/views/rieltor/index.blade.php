@@ -18,72 +18,80 @@
 
         <div class="row">
             <div class="col-6 col-lg-2 col-md-6">
-                <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="stats-icon purple">
-                                    <i class="iconly-boldHome"></i>
+                <a href="{{ route('rieltor.view', 'house') }}">
+                    <div class="card card-count-obekt">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon purple">
+                                        <i class="iconly-boldHome"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <h6 class="text-muted font-semibold">Будинків</h6>
-                                <h6 class="font-extrabold mb-0">{{ $countHouse ?? 0 }}</h6>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Будинків</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $countHouse ?? 0 }}</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-6 col-lg-2 col-md-6">
-                <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="stats-icon blue">
-                                    <i class="iconly-boldDiscovery"></i>
+                <a href="{{ route('rieltor.view', 'flat') }}">
+                    <div class="card card-count-obekt">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="iconly-boldDiscovery"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <h6 class="text-muted font-semibold">Квартири</h6>
-                                <h6 class="font-extrabold mb-0">{{ $countFlat ?? 0}}</h6>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Квартири</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $countFlat ?? 0}}</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-6 col-lg-2 col-md-6">
-                <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="stats-icon green">
-                                    <i class="iconly-boldDocument"></i>
+                <a href="{{ route('rieltor.view', 'land') }}">
+                    <div class="card card-count-obekt">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon green">
+                                        <i class="iconly-boldDocument"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <h6 class="text-muted font-semibold">Земля</h6>
-                                <h6 class="font-extrabold mb-0">{{ $countLand ?? 0}}</h6>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Земля</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $countLand ?? 0}}</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-6 col-lg-2 col-md-6">
-                <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="stats-icon red">
-                                    <i class="iconly-boldBookmark"></i>
+                <a href="{{ route('rieltor.view', 'commercial-real-estate') }}">
+                    <div class="card card-count-obekt">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon red">
+                                        <i class="iconly-boldBookmark"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <h6 class="text-muted font-semibold">Комр. нерх.</h6>
-                                <h6 class="font-extrabold mb-0">{{ $countCommerceEstate ?? 0}}</h6>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Комр. нерх.</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $countCommerceEstate ?? 0}}</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-6 col-lg-4 col-md-6">
                 <div class="card">

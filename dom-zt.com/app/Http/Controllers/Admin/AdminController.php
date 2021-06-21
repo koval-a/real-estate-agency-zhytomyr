@@ -18,6 +18,7 @@ use App\Users;
 use App\Models\User;
 use App\Models\Rieltors;
 use App\Models\Owner;
+use http\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -134,22 +135,62 @@ class AdminController extends AC
         $newOwner = new Owner();
         $newOwner->name = $request->input('name');
         $newOwner->phone = $request->input('phone');
-        $newOwner->address = $request->input('address');
+//        $newOwner->address = $request->input('address');
 
         if ($newOwner->save()) {
             return back()->with("success", "Власника додано успішно.");
         }
     }
 
-    public function deleteClients($id)
+    public function deleteClients($id, Request $request)
+    {
+        if($request->confirm){
+
+            $owner = Owner::find($id);
+
+            if ($owner->delete()) {
+
+                $count = Owner::count();
+                $clients = Owner::orderBy('id', 'desc')->paginate(10);
+
+                return view('admin.clients', compact('count', 'clients'))->with("success", "Власника видалено успішно.");
+            } else {
+                return back()->with("error", "Виникла помилка видалення.");
+            }
+        }else{
+            return back()->with("failed", "Ви не підтвердили видалення.");
+        }
+    }
+
+    public function deleteConformClients($id)
     {
         $owner = Owner::find($id);
 
-        if ($owner->delete()) {
-            return back()->with("success", "Власника видвлено успішно.");
-        } else {
-            return back()->with("error", "Виникла помилка видалення.");
+        return view('admin.owner.confirm-alert', compact('owner'));
+    }
+
+    public function editClients($id)
+    {
+        $owner = Owner::find($id);
+
+        return view('admin.owner.edit', compact('owner'));
+    }
+
+    public function updatedClients(Request $request, $id)
+    {
+        $owner = Owner::find($id);
+
+        if($request->name){
+            $owner->name = $request->name;
         }
+        if($request->phone){
+            $owner->name = $request->phone;
+        }
+
+        if($owner->save){
+            return view('admin.clients')->with('success', 'Дані оновлено.');
+        }
+        return back()->with('error', 'Дані не оновлено.');
     }
 
     // END - CLEINTS //
@@ -215,17 +256,23 @@ class AdminController extends AC
                 $filterData[2] = $request->square;
             }
 
-            //            if(
-//                $request->rayon_id or
-//                $request->rayon_city_id or
-//                $request->city_id
-//            ){
-//                $rayon = LocationRayon::where('id', $request->rayon_id)->first();
-//                $rayon_city = LocationCityRayon::where('id', $request->rayon_city_id)->first();
-//                $city = LocationCity::where('id', $request->city_id)->first();
-//
-//
-//            }
+            if( $request->rayon_id){
+                $rayon = LocationRayon::find($request->rayon_id);
+                $query->where('rayon_name','=', $rayon->rayon);
+                $filterData[3] = $request->rayon_id;
+            }
+
+            if($request->rayon_city_id) {
+                $rayon_city = LocationCityRayon::find($request->rayon_city_id);
+                $query->where('city_name','=', $rayon_city->rayon_city);
+                $filterData[4] = $request->rayon_city_id;
+            }
+
+            if($request->city_id){
+                $city = LocationCity::where($request->city_id);
+                $query->where('city_name','=', $city->city);
+                $filterData[5] = $request->city_id;
+            }
 
             $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
@@ -529,6 +576,8 @@ class AdminController extends AC
             $rayon = $obekt->rayon_name;
             $city = $obekt->city_name;
             $wall = $obekt->typeWall;
+            $category = Category::find($obekt->category_id);
+            $categorySlug = $category->slug;
 
             $setCurrentSelected = [$appointment, $owner, $rieltor, $rayon, $city, $wall];
 
@@ -542,11 +591,14 @@ class AdminController extends AC
             $city = LocationCity::all();
             $cityRayon = LocationCityRayon::all();
 
-            $location = [$rayon, $city, $cityRayon];
-
             $typeWall = TypeWall::all();
 
-            return view('admin.obekt-edit', compact('obekt', 'typeWall', 'filesImages', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
+            $locationAddressAndNote = Location::find($obekt->location_id);
+            $street = $locationAddressAndNote->street;
+            $note = $locationAddressAndNote->note;
+            $location = [$rayon, $city, $cityRayon, $street, $note];
+
+            return view('admin.obekt-edit', compact('obekt', 'categorySlug', 'typeWall', 'filesImages', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
         } else {
             return back()->with('error', 'Не знайдено для редагуання');
         }
