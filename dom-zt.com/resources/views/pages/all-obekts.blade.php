@@ -14,6 +14,10 @@
                             <input type="text" value="{{$category->id}}" name="id" id="id" class="invisible">
                         </div>
                         <div class="parameters">
+                                <div class="filter-by-id pb-1">
+                                    <sapn>Код об'єкта</sapn>
+                                    <input type="text" name="obekt_id" id="obekt_id" class="form-control" value="{{ $filterData[8] ?? ''}}">
+                                </div>
                                 <div class="parameters-basic__loction">
                                     <span>Розташування об'єкта</span>
                                     <select onchange="showSubList(this)" name="rayon_id" id="rayon_id" class="form-control mt-2">

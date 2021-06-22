@@ -134,8 +134,15 @@ class PublicController extends Controller
             $request->rayon_id or
             $request->rangePrimary or
             $request->rangePrimary2 or
-            $request->square
+            $request->square or
+            $request->obekt_id
         ){
+            // ID
+            if($request->obekt_id){
+                $obekt_id = $request->obekt_id;
+                $filterData[8] = $obekt_id;
+                $query->where('id','=', $obekt_id);
+            }
             // Appointment
             if($request->appointment_id){
                 $typeAppointment = $request->appointment_id;
@@ -186,9 +193,13 @@ class PublicController extends Controller
                 }else{
                     return back()->with('error', 'Початкова ціна має бути меншою за кінцеву!');
                 }
+            }else if($request->rangePrimary == '' and $request->rangePrimary2 != ''){
+                return back()->with('error', 'Введіть початкову ціну!');
+            }else if($request->rangePrimary2 == '' and $request->rangePrimary != '') {
+                return back()->with('error', 'Введіть кінцеву ціну!');
             }
-//            else{
-//                return back()->with('error', 'Введіть початкову/кінцеву ціну!');
+//            }else {
+//                return back()->with('error', 'Введіть ціну!');
 //            }
 
             // Square
