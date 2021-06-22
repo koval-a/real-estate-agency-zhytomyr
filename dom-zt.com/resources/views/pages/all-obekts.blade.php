@@ -2,11 +2,9 @@
 
 @section('content')
     <div class="container pt-5">
-
-        <h1 class="title">{{ $category->name }}</h1>
-
+        <h1 class="title" style="margin-left: 30%">{{ $category->name }}</h1>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 position-fixed" style="z-index: 12; top:15%; width: 350px;">
 
                 <div class="filter bg-white p-3 rounded shadow">
                     <form action="{{ route('filter.data') }}" method="GET" class="">
@@ -225,11 +223,11 @@
                 </div>
 
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 bg-info" style="margin-left: 30%; min-height: 800px;">
 
                 <div class="list-data">
                     @if($obekts->count() > 0)
-                        <div class="row mt-2">
+                        <div class="row">
                             @foreach($obekts as $key => $item)
 
                                 <div class="col-md-4">
