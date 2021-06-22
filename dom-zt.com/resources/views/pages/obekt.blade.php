@@ -107,6 +107,10 @@
                                     <span class="text-secondary">Поверхів:</span>
                                     {{ $obekt->count_level }}
                                 </li>
+                                    <li class="product-filter__item">
+                                    <span class="text-secondary">Заг.площа ділянки:</span>
+                                    {{ $obekt->square_hause_land }} соток
+                                </li>
                             @else
 
                             @endif

@@ -105,15 +105,19 @@
                         @break
                         @case('house')
                         <div class="d-flex">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <span>К-ть кімнат</span>
-                                <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ $obekt->count_room }}">
+                                <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" value="{{ $obekt->count_room }}">
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <span>К-ть поверхів</span>
-                                <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
+                                <input type="number" class="form-control" min="1" step="1" max="1000" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="count_level"
                                        id="count_level" value="{{ $obekt->count_level }}">
+                            </div>
+                            <div class="col-md-4">
+                                <span>Заг. площа ділянки</span>
+                                <input type="number" min="1" step="1" maxlength="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="square_hause_land" id="square_hause_land" class="form-control" value="{{ $obekt->square_hause_land }}">
                             </div>
                         </div>
                         @break

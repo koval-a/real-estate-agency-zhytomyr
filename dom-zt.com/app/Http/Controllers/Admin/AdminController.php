@@ -424,6 +424,7 @@ class AdminController extends AC
             $newObekt->count_room = $request->count_room;
             $newObekt->count_level = $request->count_level;
             $newObekt->level = 0;
+            $newObekt->square_hause_land = $request->square_hause_land;
         }
 
         if ($category_slug == 'commercial-real-estate' or $category_slug == 'land') {

@@ -94,21 +94,20 @@
                         @break
                         @case('house')
                         <div class="d-flex">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <span>К-ть кімнат</span>
-                                <select class="form-control" id="count_room" name="count_room">
-                                    <option>-Оберіть к-ть кімнат-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
-                                </select>
+                                <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <span>К-ть поверхів</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
-                                       id="count_level" required>
+                                       id="count_level" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <span>Заг. площа ділянки</span>
+                                <input type="number" min="1" step="1" maxlength="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="square_hause_land" id="square_hause_land" class="form-control" required>
                             </div>
                         </div>
                         @break
