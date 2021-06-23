@@ -848,5 +848,45 @@ class AdminController extends AC
     // END - PRINT
     //
 
+    //
+    // START - Check obket
+    //
+
+    public function checkObekt(){
+
+        return view('admin.obekt.check-obekt');
+    }
+
+    public function isObekt(Request $request){
+
+        if($request->phone_check){
+
+            if(strlen($request->phone_check) == 12){
+
+                $owner = Owner::where('phone', '=', $request->phone_check)->first();
+                $ownerID = $owner->id;
+                $obektByPhone = Obekts::where('owner_id', '=', $ownerID)->get();
+
+                // information data
+                $countObekt = $obektByPhone->count();
+                $category = Category::all();
+                $appointment = Appointment::all();
+                $dataInfo = [$countObekt, $owner->name, $owner->phone];
+
+                return view('admin.obekt.check-result', compact('obektByPhone', 'dataInfo', 'category', 'appointment'));
+
+            }else{
+                return back()->with('error', 'Довжина номера має бути 12 цифр, ви ввели менше. Виправте будь ласка!');
+            }
+
+
+        }else{
+            return back()->with('error', 'Введіть номер.');
+        }
+    }
+
+    //
+    // END - Check obekt
+    //
 }
 

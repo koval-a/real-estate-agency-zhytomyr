@@ -5,7 +5,7 @@
         <h1>{{$category[1]}}</h1>
         <hr>
         <div class="button-section d-flex justify-content-between">
-            <a href="{{ route('admin.obekt.new', $category[0]) }}" class="btn btn-primary">Додати новий об'єкт</a>
+            <a href="{{ route('admin.obekt.check', $category[0]) }}" class="btn btn-primary">Додати новий об'єкт</a>
             <a href="{{ route('admin.print', $category[0]) }}" class="btn btn-info">Друк</a>
         </div>
         <hr>

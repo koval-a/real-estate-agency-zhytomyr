@@ -91,6 +91,10 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::get('/print/{category}', [AdminController::class, 'getPrintData'])->name('admin.print')->middleware('is_admin');
 
         Route::get('/{category}', [AdminController::class, 'viewObekt'])->name('admin.view')->middleware('is_admin');
+
+        Route::get('/{slug}/check/', [AdminController::class, 'checkObekt'])->name('admin.obekt.check')->middleware('is_admin');
+        Route::post('/check/result', [AdminController::class, 'isObekt'])->name('admin.obekt.is.obekt')->middleware('is_admin');
+
         Route::get('/{slug}/new', [AdminController::class, 'newObekt'])->name('admin.obekt.new')->middleware('is_admin');
         Route::post('/{slug}/insert', [AdminController::class, 'insertObekt'])->name('admin.obekt.insert')->middleware('is_admin');
         Route::get('/delete/{obekt}', [AdminController::class, 'deteleObekt'])->name('admin.obekt.delete')->middleware('is_admin');
