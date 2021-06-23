@@ -6,18 +6,18 @@
 
         <section class="product">
             <div class="container ">
-{{--                <div class="button__back row align-items-center">--}}
-{{--                    <a href="" class="back__link">--}}
-{{--                        <svg class="strelka-left-4" viewBox="0 0 100 85">--}}
-{{--                            <polygon--}}
-{{--                                points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056">--}}
-{{--                            </polygon>--}}
-{{--                        </svg>--}}
-{{--                        <div class="button__link">--}}
-{{--                            <a href="/obekts/{{ $category ->slug }}">Назад</a>--}}
-{{--                        </div>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
+                <div class="button__back row align-items-center">
+                    <a href="" class="back__link">
+                        <svg class="strelka-left-4" viewBox="0 0 100 85">
+                            <polygon
+                                points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056">
+                            </polygon>
+                        </svg>
+                        <div class="button__link">
+                            <a href="/obekts/{{ $category ->slug }}">Назад до об'єктів</a>
+                        </div>
+                    </a>
+                </div>
 
                 {{--                    <div class="breadcrumb__block">--}}
                 {{--                        <ul class="breadcrumb">--}}
