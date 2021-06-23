@@ -29,52 +29,57 @@
             @foreach($obekts as $key => $item)
 
                 <div class="d-flex justify-content-between border m-2 p-3">
-                    <div class="image col-md-2">
-                        <img src="{{$item->main_img}}" alt="obekt-image" class="img-fluid rounded">
-                    </div>
-                    <div class="first col-md-4">
-                        <div class="header-information">
-                            <span>ID:{{ $item->id }}</span>
-                            <br>
-                            <span class="text-secondary">Дата: {{ $item->created_at->format('Y-m-d') }}</span>
-                        </div>
+{{--                    <div class="image col-md-2">--}}
+{{--                        <img src="{{$item->main_img}}" alt="obekt-image" class="img-fluid rounded">--}}
+{{--                    </div>--}}
+                    <div class="first col-md-6 row">
 
-                        <div class="status">
-                            @if($item->isPublic)
-                                @if($item->isPay)
-                                    <span class="bg-danger text-light rounded p-1">
+                        <div class="col-md-6">
+                            <div class="header-information">
+                                <span>ID:{{ $item->id }}</span>
+                                <br>
+                                <span class="text-secondary">Дата: {{ $item->created_at->format('Y-m-d') }}</span>
+                            </div>
+
+                            <div class="status">
+                                @if($item->isPublic)
+                                    @if($item->isPay)
+                                        <span class="bg-danger text-light rounded p-1">
                                             Продано
                                         </span>
-                                @else
-                                    <span class="bg-success text-light rounded p-1">
+                                    @else
+                                        <span class="bg-success text-light rounded p-1">
                                             В продажу
                                         </span>
+                                    @endif
+                                @else
+                                    <span class="text-secondary">Не опубліковано</span>
                                 @endif
-                            @else
-                                <span class="text-secondary">Не опубліковано</span>
-                            @endif
+                            </div>
                         </div>
 
-                        <h3>{{ $item->name }}</h3>
+                        <div class="col-md-6">
+                            <span class="text-primary">{{ $item->name }}</span>
 
-                        <div class="d-flex justify-content-between">
-                            <span>Ціна: $ <i class="text-danger">{{ $item->price }}</i></span>
-                            <br>
-                            <span>Площа: {{ $item->square }} m2</span>
+                            <div class="d-flex justify-content-between">
+                                <span>Ціна: $ <i class="text-danger">{{ $item->price }}</i></span>
+                                <br>
+                                <span>Площа: {{ $item->square }} m2</span>
+                            </div>
+
+                            <span>Тип: </span>
+                            @foreach($appointment as $key => $appoint)
+                                @if($appoint->id ==  $item->appointment_id)
+                                    {{ $appoint->name }}
+                                @endif
+                            @endforeach
                         </div>
-
-                        <span>Тип: </span>
-                        @foreach($appointment as $key => $appoint)
-                            @if($appoint->id ==  $item->appointment_id)
-                                {{ $appoint->name }}
-                            @endif
-                        @endforeach
 
                     </div>
 
-                    <div class="mid col-md-6">
+                    <div class="mid col-md-6 row">
 
-                        <div class="location-info">
+                        <div class="location-info col-md-6">
                             <span>Розміщення: </span>
                             <div class="location">
                                 @if($item->rayon_name != 'м.Житомир')
@@ -86,15 +91,15 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="description">
-                            <span>Опис</span>
-                            <p>
-                                {{ $item->description }}
-                            </p>
-                        </div>
+{{--                        <div class="description">--}}
+{{--                            <span>Опис</span>--}}
+{{--                            <p>--}}
+{{--                                {{ $item->description }}--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
                         @foreach($owners as $key => $owner)
                             @if( $item->owner_id == $owner->id)
-                                <div class="owner-info">
+                                <div class="owner-info col-md-6">
                                     <span>Власник:</span> <br>
                                     {{ $owner->name }}
                                     <br>
