@@ -119,10 +119,10 @@
                                         <div class="level pt-2">
                                             <span>Поверх</span>
 
-                                                <div class="multipleSelection">
+                                                <div class="multipleSelection rounded">
                                                     <div class="selectBox"
                                                          onclick="showCheckboxes()">
-                                                        <select>
+                                                        <select class="form-control">
                                                             <option>Оберіть поверх</option>
                                                         </select>
                                                         <div class="overSelect"></div>

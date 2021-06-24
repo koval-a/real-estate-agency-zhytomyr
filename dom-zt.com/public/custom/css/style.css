@@ -1079,8 +1079,8 @@ input[type="reset"] {
 /* START - Dropdown checkbox */
 
 .multipleSelection {
-    width: 300px;
-    background-color: #BCC2C1;
+
+    background-color: #ececec;
 }
 
 .selectBox {

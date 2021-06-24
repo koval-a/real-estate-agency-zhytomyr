@@ -224,7 +224,7 @@
 
                     <!-- Dropdown -->
                     <select id='selUser' class="form-control w-50" name="owner_id">
-                        <option value='0'>-- Select User --</option>
+                        <option value='0' selected disabled>-Оберіть власника-</option>
                         @foreach($owners as $key => $owner)
                             <option value="{{$owner->id}}">{{$owner->name}}</option>
                         @endforeach
