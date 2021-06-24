@@ -17,10 +17,15 @@
 
             @if($flag == true)
 
-                        <a href="{{ route('admin.obekt.new','flat') }}" class="btn btn-success p-1">
+                <div class="d-flex justify-content-between">
+                    @foreach($category as $key => $categ)
+                        <a href="{{ route('admin.obekt.new',$categ->slug) }}" class="btn btn-block btn-light shadow border-danger pt-4 pb-4 m-1">
                             <i class="bi bi-plus-circle"></i>
-                            Додати об'єкт нерухомості
+                            {{$categ->name}}
                         </a>
+                    @endforeach
+                </div>
+
             @else
             <table class="table table-striped">
                 <thead class="table-dark">

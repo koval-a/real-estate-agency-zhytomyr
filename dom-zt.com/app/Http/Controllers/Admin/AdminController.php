@@ -872,7 +872,8 @@ class AdminController extends AC
 
                 if(!isset($owner)){
                     $flag = true;
-                    return view('admin.obekt.check-result', compact('flag', 'category', 'appointment' ));
+                    $dataInfo = [0, 'Не знайдено', $request->phone_check];
+                    return view('admin.obekt.check-result', compact('flag', 'category', 'appointment' , 'dataInfo'));
                 }else{
 
                     $flag = false;
