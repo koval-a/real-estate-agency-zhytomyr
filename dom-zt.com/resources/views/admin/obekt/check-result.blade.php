@@ -4,17 +4,24 @@
 
     <div class="container-fluid">
         <h1>
-            Результат пошуку за номером - <span class="text-danger">{{ $dataInfo[2] }}</span>
+            Результат пошуку за номером - <span class="text-danger">{{ $dataInfo[2] ?? ''}}</span>
         </h1>
         <p>
-            Знайдено ({{ $dataInfo[0] }}) об'єкти нерухомості за номером - <span class="text-danger">{{ $dataInfo[2] }}</span>
+            Знайдено ({{ $dataInfo[0] ?? '' }}) об'єкти нерухомості за номером - <span class="text-danger">{{ $dataInfo[2] ?? '' }}</span>
         </p>
         <p>
-            Власником ({{ $dataInfo[0] }}) об'єктів нерухомості є <span class="text-danger">{{ $dataInfo[1] }}</span>
+            Власником ({{ $dataInfo[0] ?? '' }}) об'єктів нерухомості є <span class="text-danger">{{ $dataInfo[1] ?? '' }}</span>
         </p>
         <hr>
         <div class="check-result">
 
+            @if($flag == true)
+
+                        <a href="{{ route('admin.obekt.new','flat') }}" class="btn btn-success p-1">
+                            <i class="bi bi-plus-circle"></i>
+                            Додати об'єкт нерухомості
+                        </a>
+            @else
             <table class="table table-striped">
                 <thead class="table-dark">
                 <tr class="bg-secondary text-white">
@@ -135,6 +142,7 @@
                 @endforeach
                 </tbody>
             </table>
+            @endif
         </div>
     </div>
 

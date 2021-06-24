@@ -130,21 +130,33 @@
 
                                                     <div id="checkBoxes">
                                                         <label for="first" class="d-flex p-2">
-                                                            <input type="checkbox" id="first" name="level[]" class="w-auto mr-2" />
+                                                            <input type="checkbox" id="no-first" name="level[]" class="w-auto mr-2" />
                                                             Не перший поврех
                                                         </label>
 
                                                         <label for="second" class="d-flex p-2">
-                                                            <input type="checkbox" id="second" class="w-auto mr-2" />
+                                                            <input type="checkbox" id="no-last" name="level[]" class="w-auto mr-2" />
                                                             Не останій поврех
                                                         </label>
                                                         <label for="third" class="d-flex p-2">
-                                                            <input type="checkbox" id="third" class="w-auto mr-2" />
-                                                            1
+                                                            <input type="checkbox" id="one" name="level[]" class="w-auto mr-2" />
+                                                            1 поверх
                                                         </label>
                                                         <label for="fourth" class="d-flex p-2">
-                                                            <input type="checkbox" id="fourth" class="w-auto mr-2" />
-                                                            2
+                                                            <input type="checkbox" id="two" name="level[]" class="w-auto mr-2" />
+                                                            2 поверх
+                                                        </label>
+                                                        <label for="fourth" class="d-flex p-2">
+                                                            <input type="checkbox" id="three" name="level[]" class="w-auto mr-2" />
+                                                            3 поверх
+                                                        </label>
+                                                        <label for="fourth" class="d-flex p-2">
+                                                            <input type="checkbox" id="four" name="level[]" class="w-auto mr-2" />
+                                                            4 поверх
+                                                        </label>
+                                                        <label for="fourth" class="d-flex p-2">
+                                                            <input type="checkbox" id="fivr" name="level[]" class="w-auto mr-2" />
+                                                            5+ поверх
                                                         </label>
 {{--                                                        @foreach($owners as $key => $owner)--}}
 {{--                                                            <label for="owner-{{$owner->id}}">--}}
@@ -185,17 +197,7 @@
                                         </div>
                                         <div class="count-level pt-2">
                                             <span>Поверховість</span>
-                                            <select name="count_level" id="count_level" class="form-control mt-2">
-                                                <option value="0" disabled selected>Оберіть поверховість</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="9">9</option>
-                                                <option value="12">12</option>
-                                                <option value="21">21+</option>
-                                            </select>
+                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" />
                                         </div>
                                         <div class="opalenya-type pt-2">
                                             <span>Тип опалення</span>
@@ -214,24 +216,11 @@
 
                                         <div class="count-level pt-2">
                                             <span>Поверховість</span>
-                                            <select name="count_level" id="count_room" class="form-control mt-2">
-                                                <option value="0" disabled selected>Оберіть поверховість</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5+</option>
-                                            </select>
+                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_room" class="form-control mt-2" />
                                         </div>
                                         <div class="count-room pt-2">
                                             <span>Кількість кімнат</span>
-                                            <select name="count_room" id="count_room" class="form-control mt-2">
-                                                <option value="0" disabled selected>Оберіть к-ть кімнат</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4+</option>
-                                            </select>
+                                            <input type="number" name="count_room" id="count_room" class="form-control mt-2" />
                                         </div>
                                         <div class="opalenya-type pt-2">
                                             <span>Тип опалення</span>
@@ -281,7 +270,7 @@
                 </div>
 
             </div>
-            <div class="col-md-9 bg-info" style="margin-left: 30%; min-height: 800px;">
+            <div class="col-md-9" style="margin-left: 30%; min-height: 800px;">
 
                 <div class="list-data">
                     @if($obekts->count() > 0)

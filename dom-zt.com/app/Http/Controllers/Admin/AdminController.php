@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
+use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends AC
 {
@@ -859,21 +860,29 @@ class AdminController extends AC
 
     public function isObekt(Request $request){
 
+        // information data
+        $category = Category::all();
+        $appointment = Appointment::all();
+
         if($request->phone_check){
 
             if(strlen($request->phone_check) == 12){
 
                 $owner = Owner::where('phone', '=', $request->phone_check)->first();
-                $ownerID = $owner->id;
-                $obektByPhone = Obekts::where('owner_id', '=', $ownerID)->get();
 
-                // information data
-                $countObekt = $obektByPhone->count();
-                $category = Category::all();
-                $appointment = Appointment::all();
-                $dataInfo = [$countObekt, $owner->name, $owner->phone];
+                if(!isset($owner)){
+                    $flag = true;
+                    return view('admin.obekt.check-result', compact('flag', 'category', 'appointment' ));
+                }else{
 
-                return view('admin.obekt.check-result', compact('obektByPhone', 'dataInfo', 'category', 'appointment'));
+                    $flag = false;
+                    $ownerID = $owner->id;
+                    $obektByPhone = Obekts::where('owner_id', '=', $ownerID)->get();
+                    $countObekt = $obektByPhone->count();
+                    $dataInfo = [$countObekt, $owner->name, $owner->phone];
+
+                    return view('admin.obekt.check-result', compact('flag',  'obektByPhone', 'dataInfo', 'category', 'appointment'));
+                }
 
             }else{
                 return back()->with('error', 'Довжина номера має бути 12 цифр, ви ввели менше. Виправте будь ласка!');
