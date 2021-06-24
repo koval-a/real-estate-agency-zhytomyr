@@ -27,6 +27,11 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src='/custom/jquery-3.2.1.min.js' type='text/javascript'></script>
+    <script src='/custom/select2/dist/js/select2.min.js' type='text/javascript'></script>
+
+    <link href='/custom/select2/dist/css/select2.min.css' rel='stylesheet' type='text/css'>
+
 
 </head>
 

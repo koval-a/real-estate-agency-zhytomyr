@@ -217,6 +217,23 @@
                         <input type="tel" name="phone_owner" id="phone_owner" class="form-control" placeholder="Телефон: 0990091910">
                         <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">
                     </div>
+
+                    <hr>
+                    <!-- Dropdown -->
+                    <select id='selUser' style='width: 200px;'>
+                        <option value='0'>Select User</option>
+                        <option value='1'>Yogesh singh</option>
+                        <option value='2'>Sonarika Bhadoria</option>
+                        <option value='3'>Anil Singh</option>
+                        <option value='4'>Vishal Sahu</option>
+                        <option value='5'>Mayank Patidar</option>
+                        <option value='6'>Vijay Mourya</option>
+                        <option value='7'>Rakesh sahu</option>
+                    </select>
+                    <input type='button' value='Seleted option' id='but_read'>
+
+                    <br/>
+                    <div id='result'></div>
                     <hr>
                     <h4>Ріелтора</h4>
                     <select class="form-control" id="rieltor_id" name="rieltor_id" required>
@@ -309,6 +326,18 @@
             }
 
             $(document).ready( function() {
+
+                    // Initialize select2
+                    $("#selUser").select2();
+
+                    // Read selected option
+                    $('#but_read').click(function(){
+                        var username = $('#selUser option:selected').text();
+                        var userid = $('#selUser').val();
+
+                        $('#result').html("id : " + userid + ", name : " + username);
+                    });
+
                 $(document).on('change', '.btn-file :file', function() {
                     var input = $(this),
                         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -349,6 +378,5 @@
         <hr>
 
     </div>
-
 
 @endsection

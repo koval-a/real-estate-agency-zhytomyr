@@ -118,16 +118,70 @@
                                         </div>
                                         <div class="level pt-2">
                                             <span>Поверх</span>
-                                            <select name="level" id="level" class="form-control mt-2">
-                                                <option value="0" disabled selected>Оберіть поверх</option>
-                                                <option value="no-first">Не перший поврех</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5+</option>
-                                                <option value="no-last">Не останій поврех</option>
-                                            </select>
+
+                                                <div class="multipleSelection">
+                                                    <div class="selectBox"
+                                                         onclick="showCheckboxes()">
+                                                        <select>
+                                                            <option>Оберіть поверх</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+
+                                                    <div id="checkBoxes">
+                                                        <label for="first" class="d-flex p-2">
+                                                            <input type="checkbox" id="first" class="w-auto mr-2" />
+                                                            Не перший поврех
+                                                        </label>
+
+                                                        <label for="second" class="d-flex p-2">
+                                                            <input type="checkbox" id="second" class="w-auto mr-2" />
+                                                            Не останій поврех
+                                                        </label>
+                                                        <label for="third" class="d-flex p-2">
+                                                            <input type="checkbox" id="third" class="w-auto mr-2" />
+                                                            1
+                                                        </label>
+                                                        <label for="fourth" class="d-flex p-2">
+                                                            <input type="checkbox" id="fourth" class="w-auto mr-2" />
+                                                            2
+                                                        </label>
+{{--                                                        @foreach($owners as $key => $owner)--}}
+{{--                                                            <label for="owner-{{$owner->id}}">--}}
+{{--                                                                <input type="checkbox" id="owner-{{$owner->id}}" />--}}
+{{--                                                                {{$owner->name}}--}}
+{{--                                                            </label>--}}
+{{--                                                        @endforeach--}}
+                                                    </div>
+                                                </div>
+
+
+                                            <script>
+                                                var show = true;
+
+                                                function showCheckboxes() {
+                                                    var checkboxes =
+                                                        document.getElementById("checkBoxes");
+
+                                                    if (show) {
+                                                        checkboxes.style.display = "block";
+                                                        show = false;
+                                                    } else {
+                                                        checkboxes.style.display = "none";
+                                                        show = true;
+                                                    }
+                                                }
+                                            </script>
+{{--                                            <select name="level" id="level" class="form-control mt-2">--}}
+{{--                                                <option value="0" disabled selected>Оберіть поверх</option>--}}
+{{--                                                <option value="no-first">Не перший поврех</option>--}}
+{{--                                                <option value="1">1</option>--}}
+{{--                                                <option value="2">2</option>--}}
+{{--                                                <option value="3">3</option>--}}
+{{--                                                <option value="4">4</option>--}}
+{{--                                                <option value="5">5+</option>--}}
+{{--                                                <option value="no-last">Не останій поврех</option>--}}
+{{--                                            </select>--}}
                                         </div>
                                         <div class="count-level pt-2">
                                             <span>Поверховість</span>
