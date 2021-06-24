@@ -130,7 +130,7 @@
 
                                                     <div id="checkBoxes">
                                                         <label for="first" class="d-flex p-2">
-                                                            <input type="checkbox" id="first" class="w-auto mr-2" />
+                                                            <input type="checkbox" id="first" name="level[]" class="w-auto mr-2" />
                                                             Не перший поврех
                                                         </label>
 
