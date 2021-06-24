@@ -114,7 +114,7 @@
 
                                         <div class="count-room pt-2">
                                             <span>К-ть кімнат</span>
-                                            <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room">
+                                            <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ $filterData[10] ?? '' }}">
                                         </div>
                                         <div class="level pt-2">
                                             <span>Поверх</span>
@@ -197,14 +197,14 @@
                                         </div>
                                         <div class="count-level pt-2">
                                             <span>Поверховість</span>
-                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" />
+                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" value="{{ $filterData[11] ?? '' }}" />
                                         </div>
                                         <div class="opalenya-type pt-2">
                                             <span>Тип опалення</span>
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
-                                                <option value="Централізоване">Централізоване</option>
-                                                <option value="Автономне">Автономне</option>
+                                                <option value="Централізоване" {{ $filterData[9]?? '' == 'Централізоване'?'selected':'' }}>Централізоване</option>
+                                                <option value="Автономне"{{ $filterData[9]?? '' == 'Автономне'?'selected':'' }}>Автономне</option>
                                             </select>
                                         </div>
 
@@ -216,18 +216,18 @@
 
                                         <div class="count-level pt-2">
                                             <span>Поверховість</span>
-                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_room" class="form-control mt-2" />
+                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_room" class="form-control mt-2" value="{{ $filterData[11] ?? '' }}" />
                                         </div>
                                         <div class="count-room pt-2">
                                             <span>Кількість кімнат</span>
-                                            <input type="number" name="count_room" id="count_room" class="form-control mt-2" />
+                                            <input type="number" name="count_room" id="count_room" class="form-control mt-2" value="{{ $filterData[10] ?? '' }}" />
                                         </div>
                                         <div class="opalenya-type pt-2">
                                             <span>Тип опалення</span>
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
-                                                <option value="Централізоване">Централізоване</option>
-                                                <option value="Автономне">Автономне</option>
+                                                <option value="Централізоване" {{ $filterData[9]?? '' == 'Централізоване'?'selected':'' }}>Централізоване</option>
+                                                <option value="Автономне"{{ $filterData[9]?? '' == 'Автономне'?'selected':'' }}>Автономне</option>
                                             </select>
                                         </div>
                                     </div>
@@ -244,8 +244,8 @@
                                             <span>Тип опалення</span>
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
-                                                <option value="Централізоване">Централізоване</option>
-                                                <option value="Автономне">Автономне</option>
+                                                <option value="Централізоване" {{ $filterData[9]?? '' == 'Централізоване'?'selected':'' }}>Централізоване</option>
+                                                <option value="Автономне"{{ $filterData[9]?? '' == 'Автономне'?'selected':'' }}>Автономне</option>
                                             </select>
                                         </div>
                                     </div>
