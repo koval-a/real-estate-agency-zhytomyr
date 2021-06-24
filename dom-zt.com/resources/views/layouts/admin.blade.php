@@ -10,28 +10,28 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
-
     <link rel="stylesheet" href="/assets/vendors/iconly/bold.css">
-
     <link rel="stylesheet" href="/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <!-- Bootsrap Icons -->
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+
     <link rel="stylesheet" href="/assets/css/app.css">
 
-
+    <!--Custom Style -->
     <link rel="stylesheet" href="/custom/css/rieltor.css">
     <link rel="stylesheet" href="/custom/css/blog.css">
 
+    <!-- Select2  -->
+
+    <!-- JQuery -->
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 
+    <!-- -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <script src='/custom/jquery-3.2.1.min.js' type='text/javascript'></script>
-    <script src='/custom/select2/dist/js/select2.min.js' type='text/javascript'></script>
-
-    <link href='/custom/select2/dist/css/select2.min.css' rel='stylesheet' type='text/css'>
-
 
 </head>
 
@@ -212,8 +212,8 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
+{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--}}
 
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>

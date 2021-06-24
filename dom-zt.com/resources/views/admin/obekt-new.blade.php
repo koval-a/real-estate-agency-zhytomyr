@@ -128,14 +128,14 @@
 
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <span class="btn btn-light btn-file">
+                            <span class="btn btn-primary btn-file"> Обрати
                                <input type="file" id="imgMain" name="imgMain">
                             </span>
                         </span>
                         <input type="text" class="form-control" readonly>
                     </div>
                     <a data-fancybox="gallery" id='img-upload-a'>
-                        <img id='img-upload' alt="picture" class="m-1 img-fluid">
+                        <img id='img-upload' alt="Головна фотографія" class="m-1 img-fluid">
                     </a>
                     <hr>
                     <span>Додаткові фото</span>
@@ -152,7 +152,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="file" name="images[]" id="images" placeholder="Choose images" multiple>
+                                            <input type="file" name="images[]" id="images" class="btn btn-primary" placeholder="Choose images" multiple>
                                         </div>
                                         @error('images')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -172,7 +172,6 @@
 
                         </div>
                     </div>
-                    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
                     <script >
                         $(function() {
                             // Multiple images preview with JavaScript
@@ -217,23 +216,41 @@
                         <input type="tel" name="phone_owner" id="phone_owner" class="form-control" placeholder="Телефон: 0990091910">
                         <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">
                     </div>
-
                     <hr>
+
+                    <script src='/custom/jquery-3.2.1.min.js' type='text/javascript'></script>
+                    <script src='/custom/select2/dist/js/select2.min.js' type='text/javascript'></script>
+                    <link href='/custom/select2/dist/css/select2.min.css' rel='stylesheet' type='text/css'>
+
                     <!-- Dropdown -->
-                    <select id='selUser' style='width: 200px;'>
-                        <option value='0'>Select User</option>
-                        <option value='1'>Yogesh singh</option>
-                        <option value='2'>Sonarika Bhadoria</option>
-                        <option value='3'>Anil Singh</option>
-                        <option value='4'>Vishal Sahu</option>
-                        <option value='5'>Mayank Patidar</option>
-                        <option value='6'>Vijay Mourya</option>
-                        <option value='7'>Rakesh sahu</option>
+                    <select id='selUser' class="form-control w-50" name="owner_id">
+                        <option value='0'>-- Select User --</option>
+                        @foreach($owners as $key => $owner)
+                            <option value="{{$owner->id}}">{{$owner->name}}</option>
+                        @endforeach
                     </select>
-                    <input type='button' value='Seleted option' id='but_read'>
+
+                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary">
 
                     <br/>
                     <div id='result'></div>
+
+                    <!-- Script -->
+                    <script>
+                        $(document).ready(function(){
+
+                            // Initialize select2
+                            $("#selUser").select2();
+
+                            // Read selected option
+                            $('#but_read').click(function(){
+                                var username = $('#selUser option:selected').text();
+                                var userid = $('#selUser').val();
+
+                                $('#result').html("id : " + userid + ", name : " + username);
+                            });
+                        });
+                    </script>
                     <hr>
                     <h4>Ріелтора</h4>
                     <select class="form-control" id="rieltor_id" name="rieltor_id" required>
@@ -252,14 +269,14 @@
                             <option value="{{$rayon->id}}">{{$rayon->rayon}}</option>
                         @endforeach
                     </select>
-{{--                    <label>Місто</label>--}}
+                    <label>Місто</label>
                     <select name="location_city_id" id="location_city_id" class="form-control invisible">
                         <option disabled selected>Оберіть місто</option>
                         @foreach($location[1] as $key => $city)
                             <option value="{{$city->id}}">{{$city->city}}</option>
                         @endforeach
                     </select>
-{{--                    <label>Район місто</label>--}}
+                    <label>Район місто</label>
                     <select name="location_rayon_city_id" id="location_rayon_city_id" class="form-control invisible">
                         <option disabled selected>Оберіть район міста</option>
                         @foreach($location[2] as $key => $rayon_city)
@@ -326,17 +343,6 @@
             }
 
             $(document).ready( function() {
-
-                    // Initialize select2
-                    $("#selUser").select2();
-
-                    // Read selected option
-                    $('#but_read').click(function(){
-                        var username = $('#selUser option:selected').text();
-                        var userid = $('#selUser').val();
-
-                        $('#result').html("id : " + userid + ", name : " + username);
-                    });
 
                 $(document).on('change', '.btn-file :file', function() {
                     var input = $(this),
