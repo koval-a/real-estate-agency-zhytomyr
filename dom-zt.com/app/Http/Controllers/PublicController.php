@@ -240,6 +240,7 @@ class PublicController extends Controller
             if($request->typeOpalenya){
                 $typeOpalenya = $request->typeOpalenya;
                 $query->where('opalenyaName','=', $typeOpalenya);
+                $filterData[9] = $typeOpalenya;
             }
 
             if($request->typeWall){
@@ -254,24 +255,15 @@ class PublicController extends Controller
             if($request->count_room){
 
                 $count_room = $request->count_room;
-
-                if($count_room >= 4){
-                    $query->where('count_room','>=', $count_room);
-                }else{
-                    $query->where('count_room','=', $count_room);
-                }
+                $query->where('count_room','>=', $count_room);
+                $filterData[10] = $count_room;
             }
 
             if($request->count_level){
 
                 $count_level = $request->count_level;
-
-                if($count_level >=21)
-                {
-                    $query->where('count_level','>=', $count_level);
-                }else{
-                    $query->where('count_level','=', $count_level);
-                }
+                $query->where('count_level','>=', $count_level);
+                $filterData[11] = $count_level;
             }
 
         }
