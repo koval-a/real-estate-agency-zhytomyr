@@ -274,28 +274,33 @@ class PublicController extends Controller
             {
                 $level = $request->level;
 
-                if($level >=5)
+                foreach ($level as $value)
                 {
-                    $query->where('level','>=', $level);
-
-                }else if($level == 'no-first'){
-
-                    $query->where('level','>', 2);
-
-                }else if($level == 'no-last') {
-
-                    if($request->count_level){
-
-                        $lastLavel = $request->count_level;//Obekts::max('level');
-                        $query->where('level','<=', $lastLavel-1);
-
-                    }else{
-                        return back()->with('error', 'Оберіть поверховість!');
-                    }
-
-                } else{
-                    $query->where('level','=', $level);
+                    echo $value;
                 }
+
+//                if($level >=5)
+//                {
+//                    $query->where('level','>=', $level);
+//
+//                }else if($level == 'no-first'){
+//
+//                    $query->where('level','>', 2);
+//
+//                }else if($level == 'no-last') {
+//
+//                    if($request->count_level){
+//
+//                        $lastLavel = $request->count_level;//Obekts::max('level');
+//                        $query->where('level','<=', $lastLavel-1);
+//
+//                    }else{
+//                        return back()->with('error', 'Оберіть поверховість!');
+//                    }
+//
+//                } else{
+//                    $query->where('level','=', $level);
+//                }
 
             }
         }
