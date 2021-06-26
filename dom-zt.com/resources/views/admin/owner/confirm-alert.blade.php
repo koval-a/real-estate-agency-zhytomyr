@@ -38,11 +38,11 @@
                     <hr>
                     <div class="btn-update">
                         <button type="submit" class="btn btn-danger">Видалити</button>
-
+                        <a href="{{ route('admin.clients') }}" class="btn btn-secondary">Відмінити</a>
                     </div>
                 </form>
             </div>
-            <a href="{{ route('admin.clients') }}" class="btn btn-secondary">Відмінити</a>
+
         </div>
 
     </div>

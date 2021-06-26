@@ -41,7 +41,7 @@
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
-                        <div class="logo">
+                        <div class="logo pt-5">
                             <a href="/"><img src="https://static.tildacdn.com/tild3938-3435-4465-a433-303638313134/123.png" alt="Logo" srcset="" class="img-fluid w-100 h-auto"></a>
                         </div>
                         <div class="toggler">
@@ -193,6 +193,16 @@
                             <button type="button" class="close btn btn-light m-2" data-dismiss="alert">&times;</button>{{Session::get('error')}}
                         </div>
                     @endif
+                </div>
+            </div>
+            <div class="bg-transparent d-flex justify-content-between p-3 rounded fixed-top">
+                <span>АН "Житомир"</span>
+                <div class="d-flex">
+                    <a href="/" class="btn btn-primary m-1">В каталог</a>
+                    <a href="/obekts/flat" class="btn btn-outline-primary m-1">Квартири</a>
+                    <a href="/obekts/house" class="btn btn-outline-info m-1">Пр. сектор</a>
+                    <a href="/obekts/land" class="btn btn-outline-success m-1">Земля</a>
+                    <a href="/obekts/commercial-real-estate" class="btn btn-outline-danger m-1">Ком. нерх.</a>
                 </div>
             </div>
             @yield('content')

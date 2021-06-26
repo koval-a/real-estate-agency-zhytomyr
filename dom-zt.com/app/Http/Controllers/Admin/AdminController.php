@@ -152,11 +152,7 @@ class AdminController extends AC
             $owner = Owner::find($id);
 
             if ($owner->delete()) {
-
-                $clients = Owner::orderBy('id', 'desc')->paginate(10);
-                $count = Owner::count();
-//                $this->getClients();
-                return view('admin.clients', compact('clients', 'count'));
+                return redirect('/manage/admin/clients/')->with("success", "Власника видалено успішно.");;
             } else {
                 return back()->with("error", "Виникла помилка видалення.");
             }
@@ -181,18 +177,13 @@ class AdminController extends AC
 
     public function updatedClients($id, Request $request)
     {
-
-        $count = Owner::count();
-        $clients = Owner::orderBy('id', 'desc')->paginate(10);
-
         $owner = Owner::find($id);
 
         $owner->name = $request->name;
-        $owner->name = $request->phone;
+        $owner->phone = $request->phone;
 
         if($owner->save()){
-            //'admin.clients', compact('count', 'clients')
-            return back()->with('success', 'Дані оновлено.');
+            return redirect('/manage/admin/clients/')->with('success', 'Дані оновлено.');
         }else{
             return back()->with('error', 'Дані не оновлено.');
         }

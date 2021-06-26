@@ -18,7 +18,8 @@
                         <span>Ім'я та Прізвище</span>
                         <input type="text" name="name"  id="name" class="form-control m-1"  value="{{ $owner->name }}">
                         <span>Телефон</span>
-                        <input type="tel" name="phone"  id="phone" class="form-control m-1"  value="{{ $owner->phone }}">
+                        <input type="tel" name="phone"  id="phone" class="form-control m-1"  value="{{ $owner->phone }}"
+                            maxlength="12"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
 
                     </div>
                     <div class="btn-update p-2">
