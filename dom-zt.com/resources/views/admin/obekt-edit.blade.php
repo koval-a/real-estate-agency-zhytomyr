@@ -168,6 +168,40 @@
                         </select>
                     </div>
                     <hr>
+                    <script src='/custom/jquery-3.2.1.min.js' type='text/javascript'></script>
+                    <script src='/custom/select2/dist/js/select2.min.js' type='text/javascript'></script>
+                    <link href='/custom/select2/dist/css/select2.min.css' rel='stylesheet' type='text/css'>
+
+                    <!-- Dropdown -->
+                    <select id='selUser' class="form-control w-50" name="owner_id">
+                        <option value='0' selected disabled>-Оберіть власника-</option>
+                        @foreach($owners as $key => $owner)
+                            <option value="{{$owner->id}}">{{$owner->name}}</option>
+                        @endforeach
+                    </select>
+
+                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary">
+
+                    <br/>
+                    <div id='result'></div>
+
+                    <!-- Script -->
+                    <script>
+                        $(document).ready(function(){
+
+                            // Initialize select2
+                            $("#selUser").select2();
+
+                            // Read selected option
+                            $('#but_read').click(function(){
+                                var username = $('#selUser option:selected').text();
+                                var userid = $('#selUser').val();
+
+                                $('#result').html("id : " + userid + ", name : " + username);
+                            });
+                        });
+                    </script>
+                    <hr>
                     <h4>Ріелтор</h4>
                     <select class="form-control" id="rieltor_id" name="rieltor_id" required>
                         <option>-Оберіть ріелтора-</option>
