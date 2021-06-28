@@ -21,7 +21,7 @@ use Jorenvh\Share\ShareFacade;
 
 class PublicController extends Controller
 {
-    public function obekt($slug)
+    public function obekt($slug, $arrayFilterData = [])
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
         $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(4)->get();
@@ -111,7 +111,7 @@ class PublicController extends Controller
 
     }
 
-    public function filterForm(Request $request)
+    public function filterForm(Request $request, $filterData = [])
     {
         $categorySlug = $request->slug;
         $categoryID = $request->id;
