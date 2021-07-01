@@ -680,6 +680,9 @@ input[type="reset"] {
 }
 .filter {
     margin-top: 5%;
+    height: 80vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .product-filter__item {
@@ -1119,3 +1122,20 @@ input[type="reset"] {
 }
 
 /* END - Dropdown checkbox */
+
+.filter-block {
+    z-index: 12;
+    top:15%;
+    width: 350px;
+}
+
+.btn-set-filter {
+    bottom: 2.2%;
+    float: left;
+}
+
+.btn-filter {
+    box-shadow: rgb(0 0 0 / 50%) 0px -6px 6px -6px;
+    background: white;
+    width: 25%;
+}

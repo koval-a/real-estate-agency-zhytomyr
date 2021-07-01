@@ -223,14 +223,14 @@
                     <link href='/custom/select2/dist/css/select2.min.css' rel='stylesheet' type='text/css'>
 
                     <!-- Dropdown -->
-                    <select id='selUser' class="form-control w-50" name="owner_id">
+                    <select id='selUser' class="form-control w-auto" name="owner_id">
                         <option value='0' selected disabled>-Оберіть власника-</option>
                         @foreach($owners as $key => $owner)
-                            <option value="{{$owner->id}}">{{$owner->name}}</option>
+                            <option value="{{$owner->id}}">{{$owner->name}} ({{$owner->phone}})</option>
                         @endforeach
                     </select>
 
-                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary">
+                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary mt-2">
 
                     <br/>
                     <div id='result'></div>

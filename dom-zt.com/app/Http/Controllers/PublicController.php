@@ -274,9 +274,13 @@ class PublicController extends Controller
             {
                 $level = $request->level;
 
+                // First value is - 
+
+                // get also id value
+
                 foreach ($level as $value)
                 {
-                    echo $value;
+                    echo $value . '<br>';
                 }
 
 //                if($level >=5)

@@ -4,7 +4,7 @@
     <div class="container pt-5">
         <h1 class="title" style="margin-left: 30%">{{ $category->name }}</h1>
         <div class="row">
-            <div class="col-md-3 position-fixed" style="z-index: 12; top:15%; width: 350px;">
+            <div class="filter-block col-md-3 position-fixed">
 
                 <div class="filter bg-white p-3 rounded shadow">
                     <form action="{{ route('filter.data') }}" method="GET" class="">
@@ -13,7 +13,7 @@
                             <input type="text" value="{{$category->slug}}" name="slug" id="slug" class="invisible">
                             <input type="text" value="{{$category->id}}" name="id" id="id" class="invisible">
                         </div>
-                        <div class="parameters">
+                        <div class="parameters pb-5 mb-5">
                                 <div class="filter-by-id pb-1">
                                     <sapn>Код об'єкта</sapn>
                                     <input type="text" name="obekt_id" id="obekt_id" class="form-control" value="{{ $filterData[8] ?? ''}}">
@@ -259,11 +259,13 @@
                                 @endswitch
 
                         </div>
-                        <div class="btn-set-filter mt-3">
-                            <button type="submit" class="btn btn-danger pt-2 pb-2">Застосувати</button>
+                        <div class="container btn-set-filter mt-3 fixed-bottom">
+                            <div class="btn-filter m-2">
+                                <button type="submit" class="btn btn-danger pt-2 pb-2">Застосувати</button>
 
-                            <div class="clear-filter text-center pt-2">
-                                <a href="/obekts/{{$category->slug}}" class="text-secondary">Видалити</a>
+                                <div class="clear-filter text-center pt-2 pb-2">
+                                    <a href="/obekts/{{$category->slug}}" class="text-secondary">Видалити</a>
+                                </div>
                             </div>
                         </div>
                     </form>

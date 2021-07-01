@@ -19,20 +19,6 @@
                     </a>
                 </div>
 
-                {{--                    <div class="breadcrumb__block">--}}
-                {{--                        <ul class="breadcrumb">--}}
-                {{--                            <li class="breadcrumb-item"><a href="/">Каталог</a></li>--}}
-                {{--                            <li class="breadcrumb-item">--}}
-                {{--                                <a href="/obekts/ {{ $category ->slug }}">--}}
-                {{--                                    {{ $category ->name }}--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-                {{--                            <li class="breadcrumb-item active">--}}
-                {{--                                <a href="/obekt/{{ $obekt->slug }}">{{ $obekt->name }}</a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-
                 <div class="breadcrumbs">
                     <ul class="breadcrumb pl-2">
                         <li class="p-2">&#127963;</li>
@@ -80,7 +66,7 @@
                             <div class="swiper-button-prev"></div>
                         </div>
                     </div>
-                    <div class="product__info">
+                    <div class="product__info shadow rounded border-light">
                         <p class="product__info--prace">Ціна: {{ $obekt->price }}$</p>
                         <ul class="product-filter__list">
 
@@ -217,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product__info">
+                <div class="product__info shadow rounded border-light">
                     <h4 class="product__info--title">Опис обьекта</h4>
                     <p class="product__info--subtitle">
                         {{ $obekt->description }}
