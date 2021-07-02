@@ -8,7 +8,7 @@
 
                 <div class="filter bg-white p-3 rounded shadow">
                     <form action="{{ route('filter.data') }}" method="GET" class="">
-                        @csrf
+{{--                        @csrf--}}
                         <div class="d-flex">
                             <input type="text" value="{{$category->slug}}" name="slug" id="slug" class="invisible">
                             <input type="text" value="{{$category->id}}" name="id" id="id" class="invisible">
@@ -22,7 +22,15 @@
                                     <span>Розташування об'єкта</span>
                                     <select onchange="showSubList(this)" name="rayon_id" id="rayon_id" class="form-control mt-2">
                                         <option value="0" disabled selected>Оберіть район</option>
+{{--                                        @foreach($locationRayon as $key => $rayon)--}}
+{{--                                            <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>--}}
+{{--                                        @endforeach--}}
                                         @foreach($locationRayon as $key => $rayon)
+                                            @if($filterData[1] ?? '')
+                                                @if($filterData[1] == $rayon->rayon)
+                                                    <option value="{{ $rayon->rayon }}" selected> {{ $rayon->rayon }} </option>
+                                                @endif
+                                            @endif
                                             <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>
                                         @endforeach
                                     </select>
@@ -55,13 +63,19 @@
 
                             <div class="type-wall">
                                 @if($category->slug != 'land')
-                                    <span class="ml-0 pl-0">Тип стін</span>
+                                    <span class="ml-0 pl-0">Тип стін</span> <span class="text-danger">- {{ $filterData[7] ?? ''}}</span>
                                     <select name="typeWall" id="typeWall" class="form-control">
-                                        <option value="0" disabled selected>Оберіть</option>
+                                        <option disabled selected>Оберіть тип</option>
                                         @foreach($typeWall as $key => $wall)
+                                            @if($filterData[7] ?? '')
+                                                @if($filterData[7] == $wall->name)
+                                                    <option value="{{ $wall->name }}" selected> {{ $wall->name }} </option>
+                                                @endif
+                                            @endif
                                             <option value="{{ $wall->name }}">{{ $wall->name }}</option>
                                         @endforeach
                                     </select>
+
                                 @endif
                             </div>
 
@@ -100,7 +114,7 @@
                                         @foreach($appointments as $key => $appointment)
                                             @if($filterData[0] ?? '')
                                                 @if($filterData[0] == $appointment->id)
-                                                    <option value="{{ $appointment->id }}" selected disabled> {{ $appointment->name }} </option>
+                                                    <option value="{{ $appointment->id }}" selected> {{ $appointment->name }} </option>
                                                 @endif
                                             @endif
                                             <option value="{{$appointment->id}}">{{$appointment->name}}</option>
@@ -118,7 +132,9 @@
                                         </div>
                                         <div class="level pt-2">
                                             <span>Поверх</span>
-
+                                                {{$filterData[12] ?? ''}}-
+                                                {{$filterData[13] ?? ''}}-
+                                                {{$filterData[14] ?? ''}}
                                                 <div class="multipleSelection rounded">
                                                     <div class="selectBox"
                                                          onclick="showCheckboxes()">
@@ -129,41 +145,30 @@
                                                     </div>
 
                                                     <div id="checkBoxes">
+
+                                                        <?php
+                                                            for($i = 1; $i < 5; $i++){
+                                                        ?>
+                                                            <label for="third" class="d-flex p-2">
+                                                                <input type="checkbox" id="one" name="level[]" value="<?php echo $i; ?>" class="w-auto mr-2" />
+                                                                <?php echo $i; ?>  поверх
+                                                            </label>
+                                                        <?php } ?>
+                                                        <label for="fourth" class="d-flex p-2">
+                                                            <input type="checkbox" id="five" name="level[]" value="5" class="w-auto mr-2" />
+                                                            5+ поверх
+                                                        </label>
+
                                                         <label for="first" class="d-flex p-2">
-                                                            <input type="checkbox" id="no-first" name="level[]" class="w-auto mr-2" />
+                                                            <input type="checkbox" id="no-first" name="level[]" value="0" class="w-auto mr-2" />
                                                             Не перший поврех
                                                         </label>
 
                                                         <label for="second" class="d-flex p-2">
-                                                            <input type="checkbox" id="no-last" name="level[]" class="w-auto mr-2" />
+                                                            <input type="checkbox" id="no-last" name="level[]" value="6" class="w-auto mr-2" />
                                                             Не останій поврех
                                                         </label>
-                                                        <label for="third" class="d-flex p-2">
-                                                            <input type="checkbox" id="one" name="level[]" class="w-auto mr-2" />
-                                                            1 поверх
-                                                        </label>
-                                                        <label for="fourth" class="d-flex p-2">
-                                                            <input type="checkbox" id="two" name="level[]" class="w-auto mr-2" />
-                                                            2 поверх
-                                                        </label>
-                                                        <label for="fourth" class="d-flex p-2">
-                                                            <input type="checkbox" id="three" name="level[]" class="w-auto mr-2" />
-                                                            3 поверх
-                                                        </label>
-                                                        <label for="fourth" class="d-flex p-2">
-                                                            <input type="checkbox" id="four" name="level[]" class="w-auto mr-2" />
-                                                            4 поверх
-                                                        </label>
-                                                        <label for="fourth" class="d-flex p-2">
-                                                            <input type="checkbox" id="fivr" name="level[]" class="w-auto mr-2" />
-                                                            5+ поверх
-                                                        </label>
-{{--                                                        @foreach($owners as $key => $owner)--}}
-{{--                                                            <label for="owner-{{$owner->id}}">--}}
-{{--                                                                <input type="checkbox" id="owner-{{$owner->id}}" />--}}
-{{--                                                                {{$owner->name}}--}}
-{{--                                                            </label>--}}
-{{--                                                        @endforeach--}}
+
                                                     </div>
                                                 </div>
 
@@ -184,16 +189,6 @@
                                                     }
                                                 }
                                             </script>
-{{--                                            <select name="level" id="level" class="form-control mt-2">--}}
-{{--                                                <option value="0" disabled selected>Оберіть поверх</option>--}}
-{{--                                                <option value="no-first">Не перший поврех</option>--}}
-{{--                                                <option value="1">1</option>--}}
-{{--                                                <option value="2">2</option>--}}
-{{--                                                <option value="3">3</option>--}}
-{{--                                                <option value="4">4</option>--}}
-{{--                                                <option value="5">5+</option>--}}
-{{--                                                <option value="no-last">Не останій поврех</option>--}}
-{{--                                            </select>--}}
                                         </div>
                                         <div class="count-level pt-2">
                                             <span>Поверховість</span>
@@ -203,8 +198,19 @@
                                             <span>Тип опалення</span>
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
-                                                <option value="Централізоване" {{ $filterData[9]?? '' == 'Централізоване'?'selected':'' }}>Централізоване</option>
-                                                <option value="Автономне"{{ $filterData[9]?? '' == 'Автономне'?'selected':'' }}>Автономне</option>
+                                                @if($filterData[9] ?? '')
+                                                    @if($filterData[9] == 'Централізоване')
+                                                        <option value="Централізоване" selected>Централізоване</option>
+                                                        <option value="Автономне">Автономне</option>
+                                                    @elseif($filterData[9] == 'Автономне')
+                                                        <option value="Автономне" selected>Автономне</option>
+                                                        <option value="Централізоване">Централізоване</option>
+                                                    @endif
+                                                @else
+                                                    <option value="Централізоване">Централізоване</option>
+                                                    <option value="Автономне">Автономне</option>
+                                                @endif
+
                                             </select>
                                         </div>
 
@@ -226,17 +232,24 @@
                                             <span>Тип опалення</span>
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
-                                                <option value="Централізоване" {{ $filterData[9]?? '' == 'Централізоване'?'selected':'' }}>Централізоване</option>
-                                                <option value="Автономне"{{ $filterData[9]?? '' == 'Автономне'?'selected':'' }}>Автономне</option>
+                                                @if($filterData[9] ?? '')
+                                                    @if($filterData[9] == 'Централізоване')
+                                                        <option value="Централізоване" selected>Централізоване</option>
+                                                        <option value="Автономне">Автономне</option>
+                                                    @elseif($filterData[9] == 'Автономне')
+                                                        <option value="Автономне" selected>Автономне</option>
+                                                        <option value="Централізоване">Централізоване</option>
+                                                    @endif
+                                                @else
+                                                    <option value="Централізоване">Централізоване</option>
+                                                    <option value="Автономне">Автономне</option>
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
                                     @break
                                     @case('land')
-
-                                    <div class="parameters-land mt-2">
-                                    </div>
-
+                                    <div class="parameters-land mt-2"></div>
                                     @break
                                     @case('commercial-real-estate')
                                     <div class="parameters-commercial-real-estate mt-2">
@@ -244,18 +257,26 @@
                                             <span>Тип опалення</span>
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
-                                                <option value="Централізоване" {{ $filterData[9]?? '' == 'Централізоване'?'selected':'' }}>Централізоване</option>
-                                                <option value="Автономне"{{ $filterData[9]?? '' == 'Автономне'?'selected':'' }}>Автономне</option>
+                                                @if($filterData[9] ?? '')
+                                                    @if($filterData[9] == 'Централізоване')
+                                                        <option value="Централізоване" selected>Централізоване</option>
+                                                        <option value="Автономне">Автономне</option>
+                                                    @elseif($filterData[9] == 'Автономне')
+                                                        <option value="Автономне" selected>Автономне</option>
+                                                        <option value="Централізоване">Централізоване</option>
+                                                    @endif
+                                                @else
+                                                    <option value="Централізоване">Централізоване</option>
+                                                    <option value="Автономне">Автономне</option>
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
-
                                     @break
                                     @default
                                     <div class="not-found-category">
                                         <span>Даної категорії немає!</span>
                                     </div>
-
                                 @endswitch
 
                         </div>
@@ -367,9 +388,11 @@
                                 </div>
                             @endforeach
                         </div>
-                        <hr>
-                        {{ $obekts->links() }}
-                        <hr>
+                        @if($obekts->count() > 10)
+                            <hr>
+                            {{ $obekts->links() }}
+                            <hr>
+                        @endif
                     @else
                         <div class="empty-data p-3">
                             <h2 class="display-4 text-danger"> <i class="bi bi-info-circle-fill"></i> Об'єкти нерухомості відсутні.</h2>

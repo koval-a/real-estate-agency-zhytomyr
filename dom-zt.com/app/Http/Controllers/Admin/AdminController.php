@@ -209,8 +209,9 @@ class AdminController extends AC
         $locationCityRayon = LocationCityRayon::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
+        $typeWall = TypeWall::all();
 
-        return view('admin.obekt', compact('obekts', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+        return view('admin.obekt', compact('obekts', 'typeWall', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
     }
 
     public function filterObektByCategoryView(Request $request, $category){
@@ -224,6 +225,7 @@ class AdminController extends AC
         $locationCityRayon = LocationCityRayon::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
+        $typeWall = TypeWall::all();
 
         $query = Obekts::where('category_id','=',$category[2]);
 
@@ -235,7 +237,11 @@ class AdminController extends AC
             $request->square or
             $request->rayon_id or
             $request->rayon_city_id or
-            $request->city_id
+            $request->city_id or
+            $request->typeOpalenya or
+            $request->typeWall or
+            $request->count_room or
+            $request->count_level
         ){
             if($request->appointment_id){
                 $query->where('appointment_id','=', $request->appointment_id);
@@ -265,14 +271,45 @@ class AdminController extends AC
             }
 
             if($request->city_id){
-                $city = LocationCity::where($request->city_id);
+                $city = LocationCity::find($request->city_id);
                 $query->where('city_name','=', $city->city);
                 $filterData[5] = $request->city_id;
             }
 
+            if( $category[0] == 'flat' or
+                $category[0] == 'house'or
+                $category[0] == 'commercial-real-estate'
+            ) {
+                if($request->typeOpalenya){
+                    $typeOpalenya = $request->typeOpalenya;
+                    $query->where('opalenyaName','=', $typeOpalenya);
+                    $filterData[6] = $typeOpalenya;
+                }
+
+                if($request->typeWall){
+                    $typeWallName = $request->typeWall;
+                    $query->where('typeWall', '=', $typeWallName);
+                    $filterData[7] = $typeWallName;
+                }
+            }
+
+            if($category[0] == 'flat' or $category[0] == 'house'){
+                if($request->count_room){
+                    $count_room = $request->count_room;
+                    $query->where('count_room','=', $count_room);
+                    $filterData[8] = $count_room;
+                }
+
+                if($request->count_level){
+                    $count_level = $request->count_level;
+                    $query->where('count_level','=', $count_level);
+                    $filterData[9] = $count_level;
+                }
+            }
+
             $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
-            return view('admin.obekt', compact('obekts', 'filterData', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+            return view('admin.obekt', compact('obekts', 'typeWall', 'filterData', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
 
         }else{
             return back()->with('error', 'Для фільтрування введіть значення!');

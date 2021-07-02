@@ -18,6 +18,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Jorenvh\Share\ShareFacade;
+use function PHPUnit\Framework\isEmpty;
 
 class PublicController extends Controller
 {
@@ -272,39 +273,50 @@ class PublicController extends Controller
 
             if($request->level)
             {
-                $level = $request->level;
+                $level = $request->input('level');
 
-                // First value is - 
+                $arrayLevel = array();
+                $arrayLevelFirstAndLast = array();
+                $moreFiveLevel = '';
 
-                // get also id value
-
-                foreach ($level as $value)
+                foreach($level as $value)
                 {
-                    echo $value . '<br>';
+                    if ($value == 0) {
+                        $one = 1;
+                        array_push($arrayLevelFirstAndLast, (int)$one);
+                    }else if ($value == 6) {
+                        $lastLevel = Obekts::max('level');
+                        array_push($arrayLevelFirstAndLast, (int)$lastLevel);
+                    }else if ($value == 5) {
+                        $moreFiveLevel = '5+';
+                    }else if(
+                        $value == 1 or
+                        $value == 2 or
+                        $value == 3 or
+                        $value == 4
+                    ){
+                        array_push($arrayLevel, $value);
+                    }
                 }
 
-//                if($level >=5)
-//                {
-//                    $query->where('level','>=', $level);
-//
-//                }else if($level == 'no-first'){
-//
-//                    $query->where('level','>', 2);
-//
-//                }else if($level == 'no-last') {
-//
-//                    if($request->count_level){
-//
-//                        $lastLavel = $request->count_level;//Obekts::max('level');
-//                        $query->where('level','<=', $lastLavel-1);
-//
-//                    }else{
-//                        return back()->with('error', 'Оберіть поверховість!');
-//                    }
-//
-//                } else{
-//                    $query->where('level','=', $level);
-//                }
+                if(!empty($moreFiveLevel)){
+                    echo $moreFiveLevel;
+                    $query->where('level','>', 5);
+                    $filterData[12] = 5;
+                }
+
+                if(!empty($arrayLevelFirstAndLast)){
+                    var_export($arrayLevelFirstAndLast);
+                    $query->whereNotIn('level', $arrayLevelFirstAndLast);
+
+                    $filterData[13] =  implode("|",$arrayLevelFirstAndLast);
+                }
+
+                if(!empty($arrayLevel)){
+                    var_export($arrayLevel);
+                    $query->whereIn('level', $arrayLevel);
+                    $filterData[14] = implode("|",$arrayLevel);
+                }
 
             }
         }
