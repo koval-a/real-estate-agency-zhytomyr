@@ -90,16 +90,28 @@
         <div class="container">
             <h4 class="title">Наші партнери</h4>
 
-            <div class="slider-parthners row bg-danger p-2">
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="https://image.freepik.com/free-vector/luxury-letter-e-logo-design_1017-8903.jpg" class="img-fluid"></div>
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="http://www.webcoderskull.com/img/logo.png" class="img-fluid"></div>
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="https://image.freepik.com/free-vector/3d-box-logo_1103-876.jpg" class="img-fluid"></div>
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="https://image.freepik.com/free-vector/blue-tech-logo_1103-822.jpg" class="img-fluid"></div>
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="https://image.freepik.com/free-vector/colors-curl-logo-template_23-2147536125.jpg" class="img-fluid"></div>
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="https://image.freepik.com/free-vector/abstract-cross-logo_23-2147536124.jpg" class="img-fluid"></div>
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="https://image.freepik.com/free-vector/football-logo-background_1195-244.jpg" class="img-fluid"></div>
-                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto"><img src="https://image.freepik.com/free-vector/background-of-spots-halftone_1035-3847.jpg" class="img-fluid"></div>
-            </div>
+            <div class="slider-parthners row bg-white p-2 rounded shadow">
+                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto">
+                    <img src="/files/images/partners/olx.png" alt="olx" class="img-fluid rounded">
+                </div>
+                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto">
+                    <img src="/files/images/partners/mv.png" alt="mustecki-vorota" class="img-fluid">
+                </div>
+                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto">
+                    <img src="/files/images/partners/ria.png" alt="dom-ria" class="img-fluid">
+                </div>
+                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto">
+                    <img src="/files/images/partners/gc.png" alt="grand-city" class="img-fluid rounded">
+                </div>
+                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto">
+                    <img src="/files/images/partners/asc.jpeg" alt="asc" class="img-fluid">
+                </div>
+                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto">
+                    <img src="/files/images/partners/pr.jpeg" alt="premium" class="img-fluid">
+                </div>
+                <div class="slide col-md-3 d-flex justify-content-center align-items-center m-auto bg-success rounded">
+                    <img src="/files/images/partners/tb-logo-inverse-spac.svg" alt="tb-logo-inverse-spac" class="img-fluid">
+                </div>
         </div>
     </section>
 

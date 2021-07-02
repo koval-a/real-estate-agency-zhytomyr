@@ -1076,7 +1076,7 @@ input[type="reset"] {
     margin-bottom: 10px;
 }
 
-.social__item--image:hover {
+.social__item--image:hover{
     box-shadow: 0 0 10px dimgray;
     background: transparent;
     -webkit-transform: scale(1.3);
@@ -1085,6 +1085,10 @@ input[type="reset"] {
     z-index: 2;
 }
 
+.slide_:hover {
+    box-shadow: 0 0 10px dimgray;
+    border-radius: 15px;
+}
 
 /* START - Dropdown checkbox */
 

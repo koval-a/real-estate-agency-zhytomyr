@@ -23,7 +23,7 @@
                                     </h2>
                                 </a>
                                 <span class="text-secondary"> <i class="bi bi-calendar-date"></i> {{ $item->created_at->format('Y-m-d') }}</span>
-                                <p class="pt-2 text-justify blog-short-text-card">
+                                <p class="pt-2 text-left blog-short-text-card">
                                     {{ Str::limit($item->text, 200) }}
                                 </p>
                                 <div class="link-read-more d-flex mt-2">
