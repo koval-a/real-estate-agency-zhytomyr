@@ -101,7 +101,7 @@
                     <div class="review-top text-center">
                         <h3 class="title">Google Reviews</h3>
                         <div class="link-new-review m-auto">
-                            <a href="#" class="btn btn-outline-danger w-25">Залишити відгук</a>
+                            <a href="https://www.google.com/search?rlz=1C5CHFA_enUA957UA957&tbm=lcl&q=%D0%B6%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80+%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE+%D0%BD%D0%B5%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%81%D1%82%D1%96&spell=1&sa=X&ved=2ahUKEwiNkbby48TxAhVntIsKHejkCEUQBSgAegQIAhAm&biw=1440&bih=789&dpr=2#lrd=0x472c65c63794169d:0x278b654460b1fa40,3,,,&rlfi=hd:;si:2849482533596428864,l,CjjQttC40YLQvtC80LjRgCDQsNCz0LXQvdGC0YHRgtCy0L4g0L3QtdGA0YPRhdC-0LzQvtGB0YLRllo6IjjQttC40YLQvtC80LjRgCDQsNCz0LXQvdGC0YHRgtCy0L4g0L3QtdGA0YPRhdC-0LzQvtGB0YLRlpIBEnJlYWxfZXN0YXRlX2FnZW5jeZoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VONWJVNW1YMVZSRUFFqgExEAEqLSIp0LDQs9C10L3RgtGB0YLQstC-INC90LXRgNGD0YXQvtC80L7RgdGC0ZYoIg;mv:[[50.2673388,28.688070999999997],[50.2476941,28.648444899999998]]" class="btn btn-outline-danger w-25">Залишити відгук</a>
                         </div>
                     </div>
                     <hr>
@@ -264,7 +264,7 @@
                     </div>
                     <hr>
                     <div class="btn-link-google-reviews d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary w-25" target="_blank">Більше відгуків</a>
+                        <a href="https://www.google.com/search?rlz=1C5CHFA_enUA957UA957&tbm=lcl&q=%D0%B6%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80+%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE+%D0%BD%D0%B5%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%81%D1%82%D1%96&spell=1&sa=X&ved=2ahUKEwiNkbby48TxAhVntIsKHejkCEUQBSgAegQIAhAm&biw=1440&bih=789&dpr=2#lrd=0x472c65c63794169d:0x278b654460b1fa40,1,,,&rlfi=hd:;si:2849482533596428864,l,CjjQttC40YLQvtC80LjRgCDQsNCz0LXQvdGC0YHRgtCy0L4g0L3QtdGA0YPRhdC-0LzQvtGB0YLRllo6IjjQttC40YLQvtC80LjRgCDQsNCz0LXQvdGC0YHRgtCy0L4g0L3QtdGA0YPRhdC-0LzQvtGB0YLRlpIBEnJlYWxfZXN0YXRlX2FnZW5jeZoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VONWJVNW1YMVZSRUFFqgExEAEqLSIp0LDQs9C10L3RgtGB0YLQstC-INC90LXRgNGD0YXQvtC80L7RgdGC0ZYoIg;mv:[[50.2673388,28.688070999999997],[50.2476941,28.648444899999998]]" class="btn btn-primary w-25" target="_blank">Більше відгуків</a>
                     </div>
 
                 </section>

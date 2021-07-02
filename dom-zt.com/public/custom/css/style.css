@@ -152,8 +152,15 @@ h6 {
     color: #656366;
 }
 
+.nav__link:hover,
+.footer__contacts-item a:hover,
+.footer__catalog__link:hover,
+.footer__info__link:hover{
+    color: #cc4337;
+}
+
 .nav__link--border:hover {
-    border-bottom: 1px solid #cc4337;
+    border-bottom: 1px solid #cc4337!important;
 }
 
 .nav__link--tel {
