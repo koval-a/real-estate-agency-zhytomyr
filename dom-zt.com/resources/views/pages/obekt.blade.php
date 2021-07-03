@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <div class="product__info shadow rounded border-light">
-                    <h4 class="product__info--title">Опис обьекта</h4>
+                    <h4 class="product__info--title">Опис об'єкта</h4>
                     <p class="product__info--subtitle">
                         {{ $obekt->description }}
                     </p>
@@ -332,7 +332,7 @@
         <section class="cards__object">
             <div class="container">
                 <h4 class="title">
-                    Схожі обьекти
+                    Схожі об'єкти
                 </h4>
                 <ul class="row">
                     @foreach($lastAddedObekts as $key => $item)
