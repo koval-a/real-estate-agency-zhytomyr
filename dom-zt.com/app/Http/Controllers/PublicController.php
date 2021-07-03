@@ -130,6 +130,7 @@ class PublicController extends Controller
         $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID);
 
         $filterData = [];
+        $minutes = 1;
 
         // Basic parameters filters
         if(
@@ -146,6 +147,7 @@ class PublicController extends Controller
                 $unselect_rayon_city = $request->unselect_rayon_city;
                 $query->whereNotIn('city_name', array($unselect_rayon_city));
                 $filterData[15] = $unselect_rayon_city;
+                Cookie::queue(Cookie::make('unselect_rayon_city', $unselect_rayon_city, $minutes));
             }
 
             // ID
@@ -153,18 +155,21 @@ class PublicController extends Controller
                 $obekt_id = $request->obekt_id;
                 $filterData[8] = $obekt_id;
                 $query->where('id','=', $obekt_id);
+                Cookie::queue(Cookie::make('obekt_id', $obekt_id, $minutes));
             }
             // Appointment
             if($request->appointment_id){
                 $typeAppointment = $request->appointment_id;
                 $query->where('appointment_id','=', $typeAppointment);
                 $filterData[0] = $typeAppointment;
+                Cookie::queue(Cookie::make('typeAppointment', $typeAppointment, $minutes));
             }
             // Location
             if($request->rayon_id)
             {
                 $rayon_name = $request->rayon_id; // Райони + м.Житомир
                 $filterData[1] = $rayon_name;
+                Cookie::queue(Cookie::make('rayon_name', $rayon_name, $minutes));
 
                 if($rayon_name == 'м.Житомир') // 51 - Житомир
                 {
@@ -172,6 +177,7 @@ class PublicController extends Controller
                     {
                         $rayon_city = $request->rayon_city; // Райони м.Житомир
                         $filterData[2] = $rayon_city;
+                        Cookie::queue(Cookie::make('rayon_city', $rayon_city, $minutes));
                         $query
                             ->where('rayon_name', '=', $rayon_name)
                             ->where('city_name', '=', $rayon_city);
@@ -181,6 +187,7 @@ class PublicController extends Controller
 
                     $city_name = $request->city_name; // Селища р-н Житомирьский
                     $filterData[3] = $city_name;
+                    Cookie::queue(Cookie::make('city_name', $city_name, $minutes));
                     $query
                         ->where('rayon_name', '=', $rayon_name)
                         ->where('city_name', '=', $city_name);
@@ -198,6 +205,8 @@ class PublicController extends Controller
                     $max_price = $request->rangePrimary2;
                     $filterData[4] = $min_price;
                     $filterData[5] = $max_price;
+                    Cookie::queue(Cookie::make('min_price', $min_price, $minutes));
+                    Cookie::queue(Cookie::make('max_price', $max_price, $minutes));
                     $query->whereBetween('price', [$min_price, $max_price]);
                 }
 
@@ -206,6 +215,8 @@ class PublicController extends Controller
                     $max_price = Obekts::max('price');
                     $filterData[4] = $min_price;
                     $filterData[5] = $max_price;
+                    Cookie::queue(Cookie::make('min_price', $min_price, $minutes));
+                    Cookie::queue(Cookie::make('max_price', $max_price, $minutes));
                     $query->whereBetween('price', [$min_price, $max_price]);
                 }
 
@@ -235,6 +246,7 @@ class PublicController extends Controller
                 $square = $request->square;
                 $query->where('square', '=', $square);
                 $filterData[6] = $square;
+                Cookie::queue(Cookie::make('square', $square, $minutes));
             }
 
         }
@@ -252,12 +264,14 @@ class PublicController extends Controller
                 $typeOpalenya = $request->typeOpalenya;
                 $query->where('opalenyaName','=', $typeOpalenya);
                 $filterData[9] = $typeOpalenya;
+                Cookie::queue(Cookie::make('typeOpalenya', $typeOpalenya, $minutes));
             }
 
             if($request->typeWall){
                 $typeWallName = $request->typeWall;
                 $query->where('typeWall', '=', $typeWallName);
                 $filterData[7] = $typeWallName;
+                Cookie::queue(Cookie::make('typeWallName', $typeWallName, $minutes));
             }
         }
 
@@ -268,6 +282,7 @@ class PublicController extends Controller
                 $count_room = $request->count_room;
                 $query->where('count_room','>=', $count_room);
                 $filterData[10] = $count_room;
+                Cookie::queue(Cookie::make('count_room', $count_room, $minutes));
             }
 
             if($request->count_level){
@@ -275,6 +290,7 @@ class PublicController extends Controller
                 $count_level = $request->count_level;
                 $query->where('count_level','>=', $count_level);
                 $filterData[11] = $count_level;
+                Cookie::queue(Cookie::make('count_level', $count_level, $minutes));
             }
 
         }
@@ -331,12 +347,6 @@ class PublicController extends Controller
             }
         }
 
-        $minutes = 1;
-
-        //set
-        Cookie::queue(Cookie::make('name', $filterData[9]??'', $minutes));
-
-
         $max = Obekts::max('price');
         $min = Obekts::min('price');
         $price = [$max, $min];
@@ -347,9 +357,29 @@ class PublicController extends Controller
     }
 
     public function filterFormClear($categorySlug){
-        //delete cookie
-        $cookie = Cookie::forget('name');
 
-        return redirect('/obekts/'.$categorySlug)->withCookie($cookie);
+        $nameCookie = [
+            'obekt_id',
+            'unselect_rayon_city',
+            'typeAppointment',
+            'rayon_name',
+            'rayon_city',
+            'city_name',
+            'min_price',
+            'max_price',
+            'square',
+            'typeOpalenya',
+            'typeWallName',
+            'count_room',
+            'count_level'
+            ];
+
+        foreach($nameCookie as $name)
+        {
+            //delete cookie
+            Cookie::queue(Cookie::forget($name));
+        }
+
+        return redirect('/obekts/'.$categorySlug);
     }
 }

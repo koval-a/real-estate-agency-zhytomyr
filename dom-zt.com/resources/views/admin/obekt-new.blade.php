@@ -195,27 +195,17 @@
                 </div>
 
                 <div class="owner col-md-4 border p-2">
-                    <h4>Власник</h4>
-                    <div class="d-flex justify-content-between">
 
+                    <div class="d-flex justify-content-between">
+                        <h4>Власник</h4>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="isNewOwner" name="isNewOwner"
                                    onclick="newOwner()">
                             <label class="form-check-label" for="isNewOwner">Додати власника</label>
                         </div>
-                        <select class="form-control w-50" id="owner_id" name="owner_id">
-                            <option disabled>-Оберіть власника-</option>
-                            @foreach($owners as $key => $owner)
-                                <option value="{{$owner->id}}">{{$owner->name}}</option>
-                            @endforeach
-                        </select>
+
                     </div>
-                    <div class="invisible" id="newOwnerForm" name="newOwnerForm">
-                        <h4>Новий власник</h4>
-                        <input type="text" name="name_owner" id="name_owner" class="form-control" placeholder="Ім'я">
-                        <input type="tel" name="phone_owner" id="phone_owner" class="form-control" placeholder="Телефон: 0990091910">
-                        <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">
-                    </div>
+
                     <hr>
 
                     <script src='/custom/jquery-3.2.1.min.js' type='text/javascript'></script>
@@ -230,11 +220,16 @@
                         @endforeach
                     </select>
 
-                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary mt-2">
+{{--                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary mt-2">--}}
 
                     <br/>
                     <div id='result'></div>
-
+                    <div class="invisible" id="newOwnerForm" name="newOwnerForm">
+                        <h4>Новий власник</h4>
+                        <input type="text" name="name_owner" id="name_owner" class="form-control" placeholder="Ім'я">
+                        <input type="tel" name="phone_owner" id="phone_owner" class="form-control" placeholder="Телефон: 0990091910">
+                        <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">
+                    </div>
                     <!-- Script -->
                     <script>
                         $(document).ready(function(){
@@ -298,7 +293,7 @@
             function newOwner() {
 
                 var isNewOwner = document.getElementById("isNewOwner");
-                var ownerList = document.getElementById("owner_id");
+                var ownerList = document.getElementById("selUser");
 
                 if (isNewOwner.checked == true) {
                     ownerList.disabled = true;

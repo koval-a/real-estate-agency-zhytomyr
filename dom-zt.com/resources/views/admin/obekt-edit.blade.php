@@ -154,18 +154,14 @@
                 </div>
 
                 <div class="owner col-md-4 border p-2">
-                    <h4>Власник</h4>
+
                     <div class="d-flex justify-content-between">
-                        <select class="form-control" id="owner_id" name="owner_id">
-                            <option disabled>-Оберіть власника-</option>
-                            @foreach($owners as $key => $owner)
-                                @if($setCurrentSelected[1] == $owner->id)
-                                    <option value="{{$owner->id}}" selected>{{$owner->name}}</option>
-                                @else
-                                    <option value="{{$owner->id}}">{{$owner->name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
+                        <h4>Власник</h4>
+                        @foreach($owners as $key => $owner)
+                            @if($setCurrentSelected[1] == $owner->id)
+                               <span class="text-danger">{{$owner->name}}</span>
+                            @endif
+                        @endforeach
                     </div>
                     <hr>
                     <script src='/custom/jquery-3.2.1.min.js' type='text/javascript'></script>
@@ -174,13 +170,13 @@
 
                     <!-- Dropdown -->
                     <select id='selUser' class="form-control w-auto" name="owner_id">
-                        <option value='0' selected disabled>-Оберіть власника-</option>
+                        <option value='0' selected disabled>-Оберіть нового власника-</option>
                         @foreach($owners as $key => $owner)
                             <option value="{{$owner->id}}">{{$owner->name}} ({{$owner->phone}})</option>
                         @endforeach
                     </select>
 
-                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary mt-2">
+{{--                    <input type='button' value='Підтвердити' id='but_read' class="btn btn-primary mt-2">--}}
 
                     <br/>
                     <div id='result'></div>
