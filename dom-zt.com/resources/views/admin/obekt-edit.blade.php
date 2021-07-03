@@ -20,7 +20,7 @@
                     </textarea>
                     <hr>
                     <div class="d-flex justify-content-between">
-                        <div class="type-build">
+                        <div class="type-build col-md-4">
                             <label>Тип нерухомості</label>
                             <select name="appointment_id" id="appointment_id" class="form-control" required>
                                 <option disabled>Оберіть тип нерухомості</option>
@@ -172,7 +172,14 @@
                     <select id='selUser' class="form-control w-auto" name="owner_id">
                         <option value='0' selected disabled>-Оберіть нового власника-</option>
                         @foreach($owners as $key => $owner)
-                            <option value="{{$owner->id}}">{{$owner->name}} ({{$owner->phone}})</option>
+                            @if($setCurrentSelected[1] == $owner->id)
+                                <span class="text-danger">
+                                    <option value="{{$owner->id}}" selected>{{$owner->name}} ({{$owner->phone}})</option>
+                                </span>
+                            @else
+                                <option value="{{$owner->id}}">{{$owner->name}} ({{$owner->phone}})</option>
+                            @endif
+
                         @endforeach
                     </select>
 
