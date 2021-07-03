@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="col-md-8 m-auto">
+        <div class="">
             @if($clients->count() > 0)
 
                 <table class="table">

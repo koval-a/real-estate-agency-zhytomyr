@@ -214,6 +214,27 @@
                                             </select>
                                         </div>
 
+                                        <div class="unselect">
+                                            <hr>
+                                            <sapn>Виключення по району м.Житомир</sapn>
+                                            <hr>
+                                            <div class="unselect-city-rayon">
+                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">
+                                                    <option value="0" disabled selected>Оберіть</option>
+                                                    @foreach($locationCityRayon as $key => $rayon_city)
+                                                        <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
+                                                    @endforeach
+                                                    @foreach($locationCityRayon as $key => $rayon_city)
+                                                        @if($filterData[15] ?? '')
+                                                            @if($filterData[15] == $rayon_city->rayon_city)
+                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
+                                                            @endif
+                                                        @endif
+                                                            <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     @break
@@ -280,6 +301,7 @@
                                 @endswitch
 
                         </div>
+
                         <div class="container btn-set-filter mt-3 fixed-bottom">
                             <div class="btn-filter m-2">
                                 <button type="submit" class="btn btn-danger pt-2 pb-2">Застосувати</button>

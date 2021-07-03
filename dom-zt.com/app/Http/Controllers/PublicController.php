@@ -136,8 +136,16 @@ class PublicController extends Controller
             $request->rangePrimary or
             $request->rangePrimary2 or
             $request->square or
-            $request->obekt_id
+            $request->obekt_id or
+            $request->unselect_rayon_city
         ){
+            // UnSelect
+            if($request->unselect_rayon_city){
+                $unselect_rayon_city = $request->unselect_rayon_city;
+                $query->whereNotIn('city_name', array($unselect_rayon_city));
+                $filterData[15] = $unselect_rayon_city;
+            }
+
             // ID
             if($request->obekt_id){
                 $obekt_id = $request->obekt_id;
