@@ -404,7 +404,7 @@
                                             </ul>
                                         </div>
                                         <div class="link-open-obekt p-1">
-                                            <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style">Детальніше</a>
+                                            <a href="{{ route('obekt.view', $item->slug, $filterData ?? 'no') }}" class="btn btn--style">Детальніше</a>
                                         </div>
                                     </div>
                                 </div>

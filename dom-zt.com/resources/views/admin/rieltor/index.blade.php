@@ -35,7 +35,7 @@
                                     <span class="input-group-btn">
                                         <span class="btn btn-primary btn-file">
                                             Обрати…
-                                                <br><input type="file" id="imgInp" name="imgInp" required>
+                                                <br><input type="file" id="imgInp" name="imgInp">
                                         </span>
                                     </span>
 

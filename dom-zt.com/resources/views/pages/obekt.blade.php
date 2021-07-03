@@ -14,11 +14,11 @@
                             </polygon>
                         </svg>
                         <div class="button__link">
-                            <a href="/obekts/{{ $category ->slug }}">Назад до об'єктів</a>
+                            <a href="{{ route('category.view', $category ->slug, $filterData) }}">Назад до об'єктів</a>
                         </div>
                     </a>
                 </div>
-
+                {{ var_export($filterData ?? '')}}
                 <div class="breadcrumbs">
                     <ul class="breadcrumb pl-2">
                         <li class="p-2">&#127963;</li>

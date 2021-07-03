@@ -67,6 +67,8 @@ class AdminController extends AC
 
     public function insertRieltor(Request $request)
     {
+        $user = new User();
+
         // Image save on server
         if ($request->hasFile('imgInp')) {
             // check validate
@@ -79,18 +81,22 @@ class AdminController extends AC
             $request->imgInp->move(public_path('files/images/users'), $imageName);
             // save new name image to database
 
-            $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->avatar = $imageName;
-            $user->phone = $request->phone;
-            $user->password = Hash::make($request->password);
-            $user->is_admin = 0;
 
-            if ($user->save()) {
-                return back()->with("success", "Ріелтора додано успішно.");
-            }
 
+
+        }else{
+            $imageName = 'avatar.png';
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->avatar = $imageName;
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
+        $user->is_admin = 0;
+
+        if ($user->save()) {
+            return back()->with("success", "Ріелтора додано успішно.");
         }
 
     }

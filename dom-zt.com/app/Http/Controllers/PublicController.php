@@ -22,7 +22,7 @@ use function PHPUnit\Framework\isEmpty;
 
 class PublicController extends Controller
 {
-    public function obekt($slug, $arrayFilterData = [])
+    public function obekt($slug, Array $filterData = [])
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
         $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(4)->get();
@@ -60,7 +60,7 @@ class PublicController extends Controller
         $filesImages = Files::all();
         $appointment = Appointment::find($obekt->appointment_id);
 
-        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages', 'appointment'));
+        return view('pages.obekt', compact('obekt', 'filterData', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages', 'appointment'));
     }
 
     public function about()
@@ -91,7 +91,7 @@ class PublicController extends Controller
         return view('pages.blog', compact('blog'));
     }
 
-    public function category($categorySlug)
+    public function category($categorySlug, Array $filterData = [])
     {
         $category = Category::where('slug', '=', $categorySlug)->first();
 
@@ -108,7 +108,7 @@ class PublicController extends Controller
 
         $typeWall = TypeWall::all();
 
-        return view('pages.all-obekts', compact('price', 'typeWall', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
+        return view('pages.all-obekts', compact('price', 'filterData', 'typeWall', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
 
     }
 
