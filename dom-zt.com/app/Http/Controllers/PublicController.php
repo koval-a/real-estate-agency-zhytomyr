@@ -332,6 +332,7 @@ class PublicController extends Controller
         }
 
         $minutes = 1;
+
         //set
         Cookie::queue(Cookie::make('name', $filterData[9], $minutes));
 
@@ -345,10 +346,10 @@ class PublicController extends Controller
         return view('pages.all-obekts', compact('obekts',  'typeWall','filterData', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
     }
 
-    public function filterFormClear(){
+    public function filterFormClear($categorySlug){
         //delete cookie
-        Cookie::forget('name');
+        $cookie = Cookie::forget('name');
 
-        return back();
+        return redirect('/obekts/'.$categorySlug)->withCookie($cookie);
     }
 }

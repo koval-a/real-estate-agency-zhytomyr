@@ -35,7 +35,7 @@ Route::get('/obekts/{category}', [PublicController::class, 'category'])->name('c
 
 // Filter
 Route::get('/filter', [PublicController::class, 'filterForm'])->name('filter.data');
-Route::get('/filter/clear', [PublicController::class, 'filterFormClear'])->name('filter.clear');
+Route::get('/filter/{slug}/clear', [PublicController::class, 'filterFormClear'])->name('filter.clear');
 
 Auth::routes();
 

@@ -20,6 +20,7 @@
                 </div>
 
                 {{ Cookie::get('name') }}
+
                 <div class="breadcrumbs">
                     <ul class="breadcrumb pl-2">
                         <li class="p-2">&#127963;</li>

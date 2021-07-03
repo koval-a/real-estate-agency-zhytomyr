@@ -195,7 +195,7 @@
                                             <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" value="{{ $filterData[11] ?? '' }}" />
                                         </div>
                                         <div class="opalenya-type pt-2">
-                                            <span>Тип опалення</span>
+                                            <span>Тип опалення</span> {{ $filterData[9] ?? '' }}
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
 
@@ -308,7 +308,7 @@
                                 <button type="submit" class="btn btn-danger pt-2 pb-2">Застосувати</button>
 
                                 <div class="clear-filter text-center pt-2 pb-2">
-                                    <a href="/obekts/{{$category->slug}}" class="text-secondary">Видалити</a>
+                                    <a href="{{route('filter.clear', $category->slug)}}" class="text-secondary">Видалити</a>
                                 </div>
                             </div>
                         </div>
