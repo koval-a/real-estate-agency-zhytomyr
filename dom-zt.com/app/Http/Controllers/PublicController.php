@@ -334,7 +334,7 @@ class PublicController extends Controller
         $minutes = 1;
 
         //set
-        Cookie::queue(Cookie::make('name', $filterData[9], $minutes));
+        Cookie::queue(Cookie::make('name', $filterData[9]??'', $minutes));
 
 
         $max = Obekts::max('price');
