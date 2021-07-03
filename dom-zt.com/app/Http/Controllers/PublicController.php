@@ -17,12 +17,14 @@ use App\Models\TypeWall;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Jorenvh\Share\ShareFacade;
 use function PHPUnit\Framework\isEmpty;
 
 class PublicController extends Controller
 {
-    public function obekt($slug, Array $filterData = [])
+    public function obekt($slug)
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
         $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(4)->get();
@@ -60,7 +62,7 @@ class PublicController extends Controller
         $filesImages = Files::all();
         $appointment = Appointment::find($obekt->appointment_id);
 
-        return view('pages.obekt', compact('obekt', 'filterData', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages', 'appointment'));
+        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages', 'appointment'));
     }
 
     public function about()
@@ -91,7 +93,7 @@ class PublicController extends Controller
         return view('pages.blog', compact('blog'));
     }
 
-    public function category($categorySlug, Array $filterData = [])
+    public function category($categorySlug)
     {
         $category = Category::where('slug', '=', $categorySlug)->first();
 
@@ -108,11 +110,11 @@ class PublicController extends Controller
 
         $typeWall = TypeWall::all();
 
-        return view('pages.all-obekts', compact('price', 'filterData', 'typeWall', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
+        return view('pages.all-obekts', compact('price', 'typeWall', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
 
     }
 
-    public function filterForm(Request $request, $filterData = [])
+    public function filterForm(Request $request)
     {
         $categorySlug = $request->slug;
         $categoryID = $request->id;
@@ -329,6 +331,11 @@ class PublicController extends Controller
             }
         }
 
+        $minutes = 1;
+        //set
+        Cookie::queue(Cookie::make('name', $filterData[9], $minutes));
+
+
         $max = Obekts::max('price');
         $min = Obekts::min('price');
         $price = [$max, $min];
@@ -336,5 +343,12 @@ class PublicController extends Controller
         $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
         return view('pages.all-obekts', compact('obekts',  'typeWall','filterData', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
+    }
+
+    public function filterFormClear(){
+        //delete cookie
+        Cookie::forget('name');
+
+        return back();
     }
 }

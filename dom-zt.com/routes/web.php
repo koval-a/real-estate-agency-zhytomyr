@@ -30,11 +30,12 @@ Route::get('/about-us', [PublicController::class, 'about'])->name('about');
 
 Route::get('/blog', [PublicController::class, 'blogList'])->name('blog.list');
 Route::get('/blog/{slug}', [PublicController::class, 'blog'])->name('blog.view');
-Route::get('/obekt/{slug}', [PublicController::class, 'obekt'])->name('obekt.view');
+Route::get('/obekt/{slug}/', [PublicController::class, 'obekt'])->name('obekt.view');
 Route::get('/obekts/{category}', [PublicController::class, 'category'])->name('category.view');
 
 // Filter
 Route::get('/filter', [PublicController::class, 'filterForm'])->name('filter.data');
+Route::get('/filter/clear', [PublicController::class, 'filterFormClear'])->name('filter.clear');
 
 Auth::routes();
 

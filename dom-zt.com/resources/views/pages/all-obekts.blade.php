@@ -5,7 +5,7 @@
         <h1 class="title" style="margin-left: 30%">{{ $category->name }}</h1>
         <div class="row">
             <div class="filter-block col-md-3 position-fixed">
-
+{{var_export($filterData??'')}}
                 <div class="filter bg-white p-3 rounded shadow">
                     <form action="{{ route('filter.data') }}" method="GET" class="">
 {{--                        @csrf--}}
@@ -198,11 +198,12 @@
                                             <span>Тип опалення</span>
                                             <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
                                                 <option selected disabled="">Оберіть тип опалення</option>
-                                                @if($filterData[9] ?? '')
-                                                    @if($filterData[9] == 'Централізоване')
+
+                                                @if(Cookie::get('name'))
+                                                    @if(Cookie::get('name') == 'Централізоване')
                                                         <option value="Централізоване" selected>Централізоване</option>
                                                         <option value="Автономне">Автономне</option>
-                                                    @elseif($filterData[9] == 'Автономне')
+                                                    @elseif(Cookie::get('name') == 'Автономне')
                                                         <option value="Автономне" selected>Автономне</option>
                                                         <option value="Централізоване">Централізоване</option>
                                                     @endif
@@ -404,7 +405,7 @@
                                             </ul>
                                         </div>
                                         <div class="link-open-obekt p-1">
-                                            <a href="{{ route('obekt.view', $item->slug, $filterData ?? 'no') }}" class="btn btn--style">Детальніше</a>
+                                            <a href="{{ route('obekt.view', $item->slug, $filterData[9]='Back') }}" class="btn btn--style">Детальніше</a>
                                         </div>
                                     </div>
                                 </div>
