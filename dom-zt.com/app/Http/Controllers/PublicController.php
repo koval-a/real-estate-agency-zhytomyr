@@ -181,6 +181,8 @@ class PublicController extends Controller
                         $query
                             ->where('rayon_name', '=', $rayon_name)
                             ->where('city_name', '=', $rayon_city);
+                    }else{
+                        return back()->with('error', 'Оберіть район місто.');
                     }
 
                 }else if($rayon_name == 'Житомирський'){ // 75 - Житомирський район

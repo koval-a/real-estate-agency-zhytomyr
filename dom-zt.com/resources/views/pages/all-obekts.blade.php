@@ -22,7 +22,7 @@
                                 <div class="parameters-basic__loction">
                                     <span>Розташування об'єкта</span>
                                     <select onchange="showSubList(this)" name="rayon_id" id="rayon_id" class="form-control mt-2">
-                                        <option value="0" disabled selected>Оберіть район</option>
+                                        <option value="0"  selected>Оберіть район</option>
 {{--                                        @foreach($locationRayon as $key => $rayon)--}}
 {{--                                            <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>--}}
 {{--                                        @endforeach--}}
@@ -649,8 +649,22 @@
     </div>
 
     <script>
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+
+
         window.onload = function() {
+            console.log('qwe'+ getCookie('rayon_id'));
             var element = document.getElementById('rayon_id');
+            // check if data in filterdata and cookie set as default if no set default
             element.value = 'м.Житомир';
             var check = (element.value || element.options[element.selectedIndex].value);
             var rayon_city = document.getElementById('rayon_city');
