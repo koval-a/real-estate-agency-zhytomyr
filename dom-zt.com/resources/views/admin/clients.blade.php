@@ -30,7 +30,7 @@
                             <div class="modal-body">
 
                                     <input type="text" name="name"  id="name" class="form-control m-1" required placeholder="Ім'я">
-                                    <input type="text" name="phone"  id="phone" class="form-control m-1"  required placeholder="Формат: 0990123456"
+                                    <input type="text" name="phone"  id="phone" class="form-control m-1"  required placeholder="Формат: 380990123456"
                                            maxlength="12"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
 {{--                                    <input type="text" name="address"  id="address" class="form-control m-1" required placeholder="Адреса">--}}
 

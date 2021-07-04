@@ -72,7 +72,13 @@
                                    id="price" value="{{ $obekt->price }}" required>
                         </div>
                         <div class="col-md-6">
-                            <span>Площа (м2)</span>
+                            <span>Площа
+                                @if($categoryData->slug == 'land')
+                                    (соток)
+                                @else
+                                    (м2)
+                                @endif
+                            </span>
                             <input type="number" class="form-control" min="1" step="1" max="99999999999" name="square"
                                    id="square" value="{{ $obekt->square }}" required>
                         </div>

@@ -27,6 +27,7 @@
 {{--                                            <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>--}}
 {{--                                        @endforeach--}}
                                         @foreach($locationRayon as $key => $rayon)
+
                                             @if($filterData[1] ?? '')
                                                 @if($filterData[1] == $rayon->rayon)
                                                     <option value="{{ $rayon->rayon }}" selected> {{ $rayon->rayon }} </option>
@@ -559,7 +560,9 @@
                                         </a>
                                         <div class="object__text--promo p-1">
                                             <ul class="object__list">
-                                                <li class="object__item object__item--title title_">{{ $item->name }}</li>
+                                                <li class="object__item object__item--title title_">
+                                                    {{ Str::limit($item->name, 20) }}
+                                                </li>
                                                 <li class="object__item object__item--prace">$ {{ $item->price }}</li>
 
                                                 {{--                                <li class="object__item">--}}
@@ -646,12 +649,26 @@
     </div>
 
     <script>
+        window.onload = function() {
+            var element = document.getElementById('rayon_id');
+            element.value = 'м.Житомир';
+            var check = (element.value || element.options[element.selectedIndex].value);
+            var rayon_city = document.getElementById('rayon_city');
+            var city_name = document.getElementById('city_name');
+            if (check == 'м.Житомир') {
+                rayon_city.classList.remove('invisible');
+                rayon_city.classList.add('visible');
+
+                city_name.classList.remove('visible');
+                city_name.classList.add('invisible');
+            }
+        };
+
         function showSubList(a)
         {
             var x = (a.value || a.options[a.selectedIndex].value);
             var rayon_city = document.getElementById('rayon_city');
             var city_name = document.getElementById('city_name');
-            var label_city = document.getElementById('label-city');
 
             if(x == 'м.Житомир') //51
             {

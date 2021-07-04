@@ -61,7 +61,13 @@
                                    id="price" required>
                         </div>
                         <div class="col-md-6">
-                            <span>Площа (м2)</span>
+                            <span>Площа
+                                @if($categoryData->slug == 'land')
+                                    (соток)
+                                @else
+                                    (м2)
+                                @endif
+                            </span>
                             <input type="number" class="form-control" min="1" step="1" max="99999999999" name="square"
                                    id="square" required>
                         </div>
@@ -93,20 +99,20 @@
                         </div>
                         @break
                         @case('house')
-                        <div class="d-flex">
-                            <div class="col-md-4">
+                        <div class="d-flex flex-column">
+                            <div class="col-md-6">
                                 <span>К-ть кімнат</span>
                                 <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <span>К-ть поверхів</span>
                                 <input type="number" class="form-control" min="1" step="1" max="1000" name="count_level"
                                        id="count_level" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
                             </div>
 
-                            <div class="col-md-4">
-                                <span>Заг. площа ділянки</span>
+                            <div class="col-md-6">
+                                <span>Заг. площа ділянки (соток)</span>
                                 <input type="number" min="1" step="1" maxlength="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="square_hause_land" id="square_hause_land" class="form-control" required>
                             </div>
                         </div>
@@ -227,8 +233,9 @@
                     <div class="invisible" id="newOwnerForm" name="newOwnerForm">
                         <h4>Новий власник</h4>
                         <input type="text" name="name_owner" id="name_owner" class="form-control" placeholder="Ім'я">
-                        <input type="tel" name="phone_owner" id="phone_owner" class="form-control" placeholder="Телефон: 0990091910">
-                        <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">
+                        <input type="text" name="phone_owner" id="phone_owner" class="form-control m-1" placeholder="Телефон, формат: 380990123456"
+                               maxlength="12"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+{{--                        <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">--}}
                     </div>
                     <!-- Script -->
                     <script>

@@ -124,7 +124,7 @@
                             @csrf
                             <div class="input-group">
                                 <input type="text" class="form-control" name="q"
-                                       placeholder="Пошук об'єкта за ID">
+                                       placeholder="Пошук об'єкта за ID або назвою">
                                 <span class="input-group-btn">
                             <button type="submit" class="btn btn-danger">
                                 Пошук

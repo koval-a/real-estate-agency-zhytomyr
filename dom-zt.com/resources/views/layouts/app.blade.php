@@ -39,7 +39,7 @@
     <div id="app" class="wrapper">
 
         <header class="header fixed-top">
-            <div class="container-fluid container__header">
+            <div class="container-fluid container__header p-0">
                 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm w-100">
                     <div class="container">
 

@@ -27,7 +27,17 @@
                 </div>
 
             @else
-            <table class="table table-striped">
+                <hr>
+                <div class="d-flex justify-content-between">
+                    @foreach($category as $key => $categ)
+                        <a href="{{ route('admin.obekt.new',$categ->slug) }}"
+                           class="btn btn-block btn-light shadow border-danger pt-4 pb-4 m-1">
+                            <i class="bi bi-plus-circle"></i>
+                            {{$categ->name}}
+                        </a>
+                    @endforeach
+                </div>
+                <table class="table table-striped">
                 <thead class="table-dark">
                 <tr class="bg-secondary text-white">
                     <td>
