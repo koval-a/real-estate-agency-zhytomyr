@@ -7,137 +7,137 @@
             <div class="filter-block col-md-3 position-fixed">
 {{--{{var_export($filterData??'')}}--}}
                 <div class="filter bg-white p-3 rounded shadow">
-                    <form action="{{ route('filter.data') }}" method="GET" class="">
+{{--                    <form action="{{ route('filter.data') }}" method="GET" class="">--}}
 {{--                        @csrf--}}
-                        <div class="d-flex">
-                            <input type="text" value="{{$category->slug}}" name="slug" id="slug" class="invisible">
-                            <input type="text" value="{{$category->id}}" name="id" id="id" class="invisible">
-                        </div>
+{{--                        <div class="d-flex">--}}
+{{--                            <input type="text" value="{{$category->slug}}" name="slug" id="slug" class="invisible">--}}
+{{--                            <input type="text" value="{{$category->id}}" name="id" id="id" class="invisible">--}}
+{{--                        </div>--}}
 
-                        <div class="parameters pb-5 mb-5">
-                                <div class="filter-by-id pb-1">
-                                    <sapn>Код об'єкта</sapn>
-                                    <input type="text" name="obekt_id" id="obekt_id" class="form-control" value="{{ Cookie::get('obekt_id')?Cookie::get('obekt_id'):$filterData[8] ?? '' }}">
-                                </div>
-                                <div class="parameters-basic__loction">
-                                    <span>Розташування об'єкта</span>
-                                    <select onchange="showSubList(this)" name="rayon_id" id="rayon_id" class="form-control mt-2">
-                                        <option value="0"  selected>Оберіть район</option>
+{{--                        <div class="parameters pb-5 mb-5">--}}
+{{--                                <div class="filter-by-id pb-1">--}}
+{{--                                    <sapn>Код об'єкта</sapn>--}}
+{{--                                    <input type="text" name="obekt_id" id="obekt_id" class="form-control" value="{{ Cookie::get('obekt_id')?Cookie::get('obekt_id'):$filterData[8] ?? '' }}">--}}
+{{--                                </div>--}}
+{{--                                <div class="parameters-basic__loction">--}}
+{{--                                    <span>Розташування об'єкта</span>--}}
+{{--                                    <select onchange="showSubList(this)" name="rayon_id" id="rayon_id" class="form-control mt-2">--}}
+{{--                                        <option value="0"  selected>Оберіть район</option>--}}
 {{--                                        @foreach($locationRayon as $key => $rayon)--}}
 {{--                                            <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>--}}
 {{--                                        @endforeach--}}
-                                        @foreach($locationRayon as $key => $rayon)
+{{--                                        @foreach($locationRayon as $key => $rayon)--}}
 
-                                            @if($filterData[1] ?? '')
-                                                @if($filterData[1] == $rayon->rayon)
-                                                    <option value="{{ $rayon->rayon }}" selected> {{ $rayon->rayon }} </option>
-                                                @else
-                                                    <option value="{{ $rayon->rayon }}"> {{ $rayon->rayon }} </option>
-                                                @endif
-                                            @else
-                                                @if(Cookie::get('rayon_name'))
-                                                    @if(Cookie::get('rayon_name') == $rayon->rayon)
-                                                        <option value="{{ $rayon->rayon }}" selected> {{ $rayon->rayon }} </option>
-                                                    @else
-                                                        <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>
-                                                    @endif
-                                                @else
-                                                    <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>
-                                                @endif
-                                            @endif
+{{--                                            @if($filterData[1] ?? '')--}}
+{{--                                                @if($filterData[1] == $rayon->rayon)--}}
+{{--                                                    <option value="{{ $rayon->rayon }}" selected> {{ $rayon->rayon }} </option>--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{ $rayon->rayon }}"> {{ $rayon->rayon }} </option>--}}
+{{--                                                @endif--}}
+{{--                                            @else--}}
+{{--                                                @if(Cookie::get('rayon_name'))--}}
+{{--                                                    @if(Cookie::get('rayon_name') == $rayon->rayon)--}}
+{{--                                                        <option value="{{ $rayon->rayon }}" selected> {{ $rayon->rayon }} </option>--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{$rayon->rayon}}">{{$rayon->rayon}}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
 
-                                        @endforeach
-                                    </select>
-                                    <select name="city_name" id="city_name" class="form-control invisible city_name">
-                                        <option value="0" disabled selected>Оберіть</option>
-                                        @foreach($locationCity as $key => $city)
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                    <select name="city_name" id="city_name" class="form-control invisible city_name">--}}
+{{--                                        <option value="0" disabled selected>Оберіть</option>--}}
+{{--                                        @foreach($locationCity as $key => $city)--}}
 
-                                            @if($filterData[2] ?? '')
-                                                @if($filterData[2] == $city->city)
-                                                    <option value="{{$city->city}}" selected>{{$city->city}}</option>
-                                                @else
-                                                    <option value="{{$city->city}}">{{$city->city}}</option>
-                                                @endif
-                                            @else
-                                                @if(Cookie::get('rayon_city'))
-                                                    @if(Cookie::get('rayon_city') == $city->city)
-                                                        <option value="{{$city->city}}" selected>{{$city->city}}</option>
-                                                    @else
-                                                        <option value="{{$city->city}}">{{$city->city}}</option>
-                                                    @endif
-                                                @else
-                                                    <option value="{{$city->city}}">{{$city->city}}</option>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    <select name="rayon_city" id="rayon_city" class="form-control invisible rayon_city">
-                                        <option value="0" disabled selected>Оберіть</option>
-                                        @foreach($locationCityRayon as $key => $rayon_city)
+{{--                                            @if($filterData[2] ?? '')--}}
+{{--                                                @if($filterData[2] == $city->city)--}}
+{{--                                                    <option value="{{$city->city}}" selected>{{$city->city}}</option>--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{$city->city}}">{{$city->city}}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @else--}}
+{{--                                                @if(Cookie::get('rayon_city'))--}}
+{{--                                                    @if(Cookie::get('rayon_city') == $city->city)--}}
+{{--                                                        <option value="{{$city->city}}" selected>{{$city->city}}</option>--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="{{$city->city}}">{{$city->city}}</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{$city->city}}">{{$city->city}}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                    <select name="rayon_city" id="rayon_city" class="form-control invisible rayon_city">--}}
+{{--                                        <option value="0" disabled selected>Оберіть</option>--}}
+{{--                                        @foreach($locationCityRayon as $key => $rayon_city)--}}
 
-                                            @if($filterData[3] ?? '')
-                                                @if($filterData[3] == $rayon_city->rayon_city)
-                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                @else
-                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                @endif
-                                            @else
-                                                @if(Cookie::get('city_name'))
-                                                    @if(Cookie::get('city_name') == $rayon_city->rayon_city)
-                                                        <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                    @else
-                                                        <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                    @endif
-                                                @else
-                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </select>
+{{--                                            @if($filterData[3] ?? '')--}}
+{{--                                                @if($filterData[3] == $rayon_city->rayon_city)--}}
+{{--                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @else--}}
+{{--                                                @if(Cookie::get('city_name'))--}}
+{{--                                                    @if(Cookie::get('city_name') == $rayon_city->rayon_city)--}}
+{{--                                                        <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
 
-                                </div>
+{{--                                </div>--}}
 
-                            <div class="parameters-basic__price p-0">
-                                <span class="ml-0 pl-0">Ціна ($)</span>
-                                <div class="price-range d-flex justify-content-between mt-1">
-                                    <div class="min-price p-1">
-                                            <span>від </span> <input type="text" id="rangePrimary" name="rangePrimary" class="text-danger form-control" value="{{ Cookie::get('min_price')?Cookie::get('min_price'):$filterData[4] ?? '' }}" />
-                                    </div>
-                                    <div class="max-price p-1">
-                                            <span>до </span><input type="text" id="rangePrimary2" name="rangePrimary2" class="text-danger form-control" value="{{ Cookie::get('max_price')?Cookie::get('max_price'):$filterData[5] ?? '' }}" />
-                                    </div>
-                                </div>
+{{--                            <div class="parameters-basic__price p-0">--}}
+{{--                                <span class="ml-0 pl-0">Ціна ($)</span>--}}
+{{--                                <div class="price-range d-flex justify-content-between mt-1">--}}
+{{--                                    <div class="min-price p-1">--}}
+{{--                                            <span>від </span> <input type="text" id="rangePrimary" name="rangePrimary" class="text-danger form-control" value="{{ Cookie::get('min_price')?Cookie::get('min_price'):$filterData[4] ?? '' }}" />--}}
+{{--                                    </div>--}}
+{{--                                    <div class="max-price p-1">--}}
+{{--                                            <span>до </span><input type="text" id="rangePrimary2" name="rangePrimary2" class="text-danger form-control" value="{{ Cookie::get('max_price')?Cookie::get('max_price'):$filterData[5] ?? '' }}" />--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                            </div>
+{{--                            </div>--}}
 
-                            <div class="type-wall">
-                                @if($category->slug != 'land')
-                                    <span class="ml-0 pl-0">Тип стін</span><span class="text-danger">- {{ $filterData[7] ?? Cookie::get('typeWallName')}}</span>
-                                    <select name="typeWall" id="typeWall" class="form-control">
-                                        <option disabled selected>Оберіть тип</option>
-                                        @foreach($typeWall as $key => $wall)
-                                            @if($filterData[7] ?? '')
-                                                @if($filterData[7] == $wall->name)
-                                                    <option value="{{ $wall->name }}" selected> {{ $wall->name }} </option>
-                                                @else
-                                                    <option value="{{ $wall->name }}">{{ $wall->name }}</option>
-                                                @endif
-                                            @else
-                                                @if(Cookie::get('typeWallName'))
-                                                    @if(Cookie::get('typeWallName') == $wall->name)
-                                                        <option value="{{ $wall->name }}" selected> {{ $wall->name }} </option>
-                                                    @else
-                                                        <option value="{{ $wall->name }}">{{ $wall->name }}</option>
-                                                    @endif
-                                                @else
-                                                    <option value="{{ $wall->name }}">{{ $wall->name }}</option>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </select>
+{{--                            <div class="type-wall">--}}
+{{--                                @if($category->slug != 'land')--}}
+{{--                                    <span class="ml-0 pl-0">Тип стін</span><span class="text-danger">- {{ $filterData[7] ?? Cookie::get('typeWallName')}}</span>--}}
+{{--                                    <select name="typeWall" id="typeWall" class="form-control">--}}
+{{--                                        <option disabled selected>Оберіть тип</option>--}}
+{{--                                        @foreach($typeWall as $key => $wall)--}}
+{{--                                            @if($filterData[7] ?? '')--}}
+{{--                                                @if($filterData[7] == $wall->name)--}}
+{{--                                                    <option value="{{ $wall->name }}" selected> {{ $wall->name }} </option>--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{ $wall->name }}">{{ $wall->name }}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @else--}}
+{{--                                                @if(Cookie::get('typeWallName'))--}}
+{{--                                                    @if(Cookie::get('typeWallName') == $wall->name)--}}
+{{--                                                        <option value="{{ $wall->name }}" selected> {{ $wall->name }} </option>--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="{{ $wall->name }}">{{ $wall->name }}</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{ $wall->name }}">{{ $wall->name }}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
 
-                                @endif
-                            </div>
+{{--                                @endif--}}
+{{--                            </div>--}}
 
 {{--                                <div class="parameters-basic__price p-0">--}}
 {{--                                    <span class="ml-0 pl-0">Ціна ($.тис)</span>--}}
@@ -167,370 +167,370 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
 
-                                <div class="parameters-basic__type-obekt pt-2">
-                                    <span>Тип об'єкта</span>
-                                    <select name="appointment_id" id="appointment_id" class="form-control mt-2">
-                                        <option disabled selected>Оберіть тип</option>
-                                        @foreach($appointments as $key => $appointment)
-                                            @if(Cookie::get('typeAppointment'))
-                                                @if(Cookie::get('typeAppointment') == $appointment->id)
-                                                    <option value="{{ $appointment->id }}"
-                                                            selected> {{ $appointment->name }} </option>
-                                                @else
-                                                    <option
-                                                        value="{{ $appointment->id }}"> {{ $appointment->name }} </option>
-                                                @endif
-                                            @else
-                                                @if($filterData[0] ?? '')
-                                                    @if($filterData[0] == $appointment->id)
-                                                        <option value="{{ $appointment->id }}"
-                                                                selected> {{ $appointment->name }} </option>
-                                                    @else
-                                                        <option
-                                                            value="{{ $appointment->id }}"> {{ $appointment->name }} </option>
-                                                    @endif
-                                                @else
-                                                    <option value="{{$appointment->id}}">{{$appointment->name}}</option>
-                                                @endif
-                                            @endif
+{{--                                <div class="parameters-basic__type-obekt pt-2">--}}
+{{--                                    <span>Тип об'єкта</span>--}}
+{{--                                    <select name="appointment_id" id="appointment_id" class="form-control mt-2">--}}
+{{--                                        <option disabled selected>Оберіть тип</option>--}}
+{{--                                        @foreach($appointments as $key => $appointment)--}}
+{{--                                            @if(Cookie::get('typeAppointment'))--}}
+{{--                                                @if(Cookie::get('typeAppointment') == $appointment->id)--}}
+{{--                                                    <option value="{{ $appointment->id }}"--}}
+{{--                                                            selected> {{ $appointment->name }} </option>--}}
+{{--                                                @else--}}
+{{--                                                    <option--}}
+{{--                                                        value="{{ $appointment->id }}"> {{ $appointment->name }} </option>--}}
+{{--                                                @endif--}}
+{{--                                            @else--}}
+{{--                                                @if($filterData[0] ?? '')--}}
+{{--                                                    @if($filterData[0] == $appointment->id)--}}
+{{--                                                        <option value="{{ $appointment->id }}"--}}
+{{--                                                                selected> {{ $appointment->name }} </option>--}}
+{{--                                                    @else--}}
+{{--                                                        <option--}}
+{{--                                                            value="{{ $appointment->id }}"> {{ $appointment->name }} </option>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    <option value="{{$appointment->id}}">{{$appointment->name}}</option>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
 
-                                        @endforeach
-                                    </select>
-                                </div>
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
 
-                                @switch($category->slug)
-                                    @case('flat')
-                                    <div class="parameters-flat mt-2">
+{{--                                @switch($category->slug)--}}
+{{--                                    @case('flat')--}}
+{{--                                    <div class="parameters-flat mt-2">--}}
 
-                                        <div class="count-room pt-2">
-                                            <span>К-ть кімнат</span>
-                                            <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ Cookie::get('count_room')?Cookie::get('count_room'):$filterData[10] ?? '' }}">
-                                        </div>
-                                        <div class="level pt-2">
-                                            <span>Поверх</span>
-                                                {{$filterData[12] ?? ''}}-
-                                                {{$filterData[13] ?? ''}}-
-                                                {{$filterData[14] ?? ''}}
-                                                <div class="multipleSelection rounded">
-                                                    <div class="selectBox"
-                                                         onclick="showCheckboxes()">
-                                                        <select class="form-control">
-                                                            <option>Оберіть поверх</option>
-                                                        </select>
-                                                        <div class="overSelect"></div>
-                                                    </div>
+{{--                                        <div class="count-room pt-2">--}}
+{{--                                            <span>К-ть кімнат</span>--}}
+{{--                                            <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ Cookie::get('count_room')?Cookie::get('count_room'):$filterData[10] ?? '' }}">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="level pt-2">--}}
+{{--                                            <span>Поверх</span>--}}
+{{--                                                {{$filterData[12] ?? ''}}---}}
+{{--                                                {{$filterData[13] ?? ''}}---}}
+{{--                                                {{$filterData[14] ?? ''}}--}}
+{{--                                                <div class="multipleSelection rounded">--}}
+{{--                                                    <div class="selectBox"--}}
+{{--                                                         onclick="showCheckboxes()">--}}
+{{--                                                        <select class="form-control">--}}
+{{--                                                            <option>Оберіть поверх</option>--}}
+{{--                                                        </select>--}}
+{{--                                                        <div class="overSelect"></div>--}}
+{{--                                                    </div>--}}
 
-                                                    <div id="checkBoxes">
+{{--                                                    <div id="checkBoxes">--}}
 
-                                                        <?php
-                                                            for($i = 1; $i < 5; $i++){
-                                                        ?>
-                                                            <label for="third" class="d-flex p-2">
-                                                                <input type="checkbox" id="one" name="level[]" value="<?php echo $i; ?>" class="w-auto mr-2" />
-                                                                <?php echo $i; ?>  поверх
-                                                            </label>
-                                                        <?php } ?>
-                                                        <label for="fourth" class="d-flex p-2">
-                                                            <input type="checkbox" id="five" name="level[]" value="5" class="w-auto mr-2" />
-                                                            5+ поверх
-                                                        </label>
+{{--                                                        <?php--}}
+{{--                                                            for($i = 1; $i < 5; $i++){--}}
+{{--                                                        ?>--}}
+{{--                                                            <label for="third" class="d-flex p-2">--}}
+{{--                                                                <input type="checkbox" id="one" name="level[]" value="<?php echo $i; ?>" class="w-auto mr-2" />--}}
+{{--                                                                <?php echo $i; ?>  поверх--}}
+{{--                                                            </label>--}}
+{{--                                                        <?php } ?>--}}
+{{--                                                        <label for="fourth" class="d-flex p-2">--}}
+{{--                                                            <input type="checkbox" id="five" name="level[]" value="5" class="w-auto mr-2" />--}}
+{{--                                                            5+ поверх--}}
+{{--                                                        </label>--}}
 
-                                                        <label for="first" class="d-flex p-2">
-                                                            <input type="checkbox" id="no-first" name="level[]" value="0" class="w-auto mr-2" />
-                                                            Не перший поврех
-                                                        </label>
+{{--                                                        <label for="first" class="d-flex p-2">--}}
+{{--                                                            <input type="checkbox" id="no-first" name="level[]" value="0" class="w-auto mr-2" />--}}
+{{--                                                            Не перший поврех--}}
+{{--                                                        </label>--}}
 
-                                                        <label for="second" class="d-flex p-2">
-                                                            <input type="checkbox" id="no-last" name="level[]" value="6" class="w-auto mr-2" />
-                                                            Не останій поврех
-                                                        </label>
+{{--                                                        <label for="second" class="d-flex p-2">--}}
+{{--                                                            <input type="checkbox" id="no-last" name="level[]" value="6" class="w-auto mr-2" />--}}
+{{--                                                            Не останій поврех--}}
+{{--                                                        </label>--}}
 
-                                                    </div>
-                                                </div>
-
-
-                                            <script>
-                                                var show = true;
-
-                                                function showCheckboxes() {
-                                                    var checkboxes =
-                                                        document.getElementById("checkBoxes");
-
-                                                    if (show) {
-                                                        checkboxes.style.display = "block";
-                                                        show = false;
-                                                    } else {
-                                                        checkboxes.style.display = "none";
-                                                        show = true;
-                                                    }
-                                                }
-                                            </script>
-                                        </div>
-                                        <div class="count-level pt-2">
-                                            <span>Поверховість</span>
-                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" value="{{ Cookie::get('count_level')?Cookie::get('count_level'):$filterData[11] ?? '' }}" />
-                                        </div>
-                                        <div class="opalenya-type pt-2">
-                                            <span>Тип опалення</span> {{ $filterData[9] ?? Cookie::get('typeOpalenya') }}
-                                            <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
-                                                <option selected disabled="">Оберіть тип опалення</option>
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
 
-                                                    @if($filterData[9] ?? '')
-                                                        @if($filterData[9] == 'Централізоване')
-                                                            <option value="Централізоване" selected>Централізоване</option>
-                                                            <option value="Автономне">Автономне</option>
-                                                        @elseif($filterData[9] == 'Автономне')
-                                                            <option value="Автономне" selected>Автономне</option>
-                                                            <option value="Централізоване">Централізоване</option>
-                                                        @else
-                                                            <option value="Централізоване">Централізоване</option>
-                                                            <option value="Автономне">Автономне</option>
-                                                        @endif
-                                                    @else
-                                                        @if(Cookie::get('typeOpalenya'))
-                                                            @if(Cookie::get('typeOpalenya') == 'Централізоване')
-                                                                <option value="Централізоване" selected>Централізоване</option>
-                                                                <option value="Автономне">Автономне</option>
-                                                            @elseif(Cookie::get('typeOpalenya') == 'Автономне')
-                                                                <option value="Автономне" selected>Автономне</option>
-                                                                <option value="Централізоване">Централізоване</option>
-                                                            @endif
-                                                        @else
-                                                        <option value="Централізоване">Централізоване</option>
-                                                        <option value="Автономне">Автономне</option>
-                                                        @endif
-                                                    @endif
+{{--                                            <script>--}}
+{{--                                                var show = true;--}}
+
+{{--                                                function showCheckboxes() {--}}
+{{--                                                    var checkboxes =--}}
+{{--                                                        document.getElementById("checkBoxes");--}}
+
+{{--                                                    if (show) {--}}
+{{--                                                        checkboxes.style.display = "block";--}}
+{{--                                                        show = false;--}}
+{{--                                                    } else {--}}
+{{--                                                        checkboxes.style.display = "none";--}}
+{{--                                                        show = true;--}}
+{{--                                                    }--}}
+{{--                                                }--}}
+{{--                                            </script>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="count-level pt-2">--}}
+{{--                                            <span>Поверховість</span>--}}
+{{--                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" value="{{ Cookie::get('count_level')?Cookie::get('count_level'):$filterData[11] ?? '' }}" />--}}
+{{--                                        </div>--}}
+{{--                                        <div class="opalenya-type pt-2">--}}
+{{--                                            <span>Тип опалення</span> {{ $filterData[9] ?? Cookie::get('typeOpalenya') }}--}}
+{{--                                            <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">--}}
+{{--                                                <option selected disabled="">Оберіть тип опалення</option>--}}
+
+
+{{--                                                    @if($filterData[9] ?? '')--}}
+{{--                                                        @if($filterData[9] == 'Централізоване')--}}
+{{--                                                            <option value="Централізоване" selected>Централізоване</option>--}}
+{{--                                                            <option value="Автономне">Автономне</option>--}}
+{{--                                                        @elseif($filterData[9] == 'Автономне')--}}
+{{--                                                            <option value="Автономне" selected>Автономне</option>--}}
+{{--                                                            <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        @else--}}
+{{--                                                            <option value="Централізоване">Централізоване</option>--}}
+{{--                                                            <option value="Автономне">Автономне</option>--}}
+{{--                                                        @endif--}}
+{{--                                                    @else--}}
+{{--                                                        @if(Cookie::get('typeOpalenya'))--}}
+{{--                                                            @if(Cookie::get('typeOpalenya') == 'Централізоване')--}}
+{{--                                                                <option value="Централізоване" selected>Централізоване</option>--}}
+{{--                                                                <option value="Автономне">Автономне</option>--}}
+{{--                                                            @elseif(Cookie::get('typeOpalenya') == 'Автономне')--}}
+{{--                                                                <option value="Автономне" selected>Автономне</option>--}}
+{{--                                                                <option value="Централізоване">Централізоване</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @else--}}
+{{--                                                        <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        <option value="Автономне">Автономне</option>--}}
+{{--                                                        @endif--}}
+{{--                                                    @endif--}}
 
 
 
-                                            </select>
-                                        </div>
+{{--                                            </select>--}}
+{{--                                        </div>--}}
 
-                                        <div class="unselect">
-                                            <hr>
-                                            <sapn>Виключення по району м.Житомир</sapn>
-                                            <hr>
-                                            <div class="unselect-city-rayon">
-                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">
-                                                    <option value="0" disabled selected>Оберіть</option>
-                                                    @foreach($locationCityRayon as $key => $rayon_city)
-                                                        @if($filterData[15] ?? '')
-                                                            @if($filterData[15] == $rayon_city->rayon_city)
-                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @else
-                                                            @if(Cookie::get('unselect_rayon_city'))
-                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)
-                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                                @else
-                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                                @endif
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @endif
+{{--                                        <div class="unselect">--}}
+{{--                                            <hr>--}}
+{{--                                            <sapn>Виключення по району м.Житомир</sapn>--}}
+{{--                                            <hr>--}}
+{{--                                            <div class="unselect-city-rayon">--}}
+{{--                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">--}}
+{{--                                                    <option value="0" disabled selected>Оберіть</option>--}}
+{{--                                                    @foreach($locationCityRayon as $key => $rayon_city)--}}
+{{--                                                        @if($filterData[15] ?? '')--}}
+{{--                                                            @if($filterData[15] == $rayon_city->rayon_city)--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @else--}}
+{{--                                                            @if(Cookie::get('unselect_rayon_city'))--}}
+{{--                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @else--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @endif--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @endif--}}
 
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    @break
-                                    @case('house')
-                                    <div class="parameters-house mt-2">
+{{--                                    @break--}}
+{{--                                    @case('house')--}}
+{{--                                    <div class="parameters-house mt-2">--}}
 
-                                        <div class="count-level pt-2">
-                                            <span>Поверховість</span>
-                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" value="{{ Cookie::get('count_level')?Cookie::get('count_level'):$filterData[11] ?? '' }}" />
-                                        </div>
-                                        <div class="count-room pt-2">
-                                            <span>Кількість кімнат</span>
-                                            <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ Cookie::get('count_room')?Cookie::get('count_room'):$filterData[10] ?? '' }}">
-                                        </div>
-                                        <div class="opalenya-type pt-2">
-                                            <span>Тип опалення</span>
-                                            <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
-                                                <option selected disabled="">Оберіть тип опалення</option>
-                                                @if($filterData[9] ?? '')
-                                                    @if($filterData[9] == 'Централізоване')
-                                                        <option value="Централізоване" selected>Централізоване</option>
-                                                        <option value="Автономне">Автономне</option>
-                                                    @elseif($filterData[9] == 'Автономне')
-                                                        <option value="Автономне" selected>Автономне</option>
-                                                        <option value="Централізоване">Централізоване</option>
-                                                    @else
-                                                        <option value="Централізоване">Централізоване</option>
-                                                        <option value="Автономне">Автономне</option>
-                                                    @endif
-                                                @else
-                                                    @if(Cookie::get('typeOpalenya'))
-                                                        @if(Cookie::get('typeOpalenya') == 'Централізоване')
-                                                            <option value="Централізоване" selected>Централізоване</option>
-                                                            <option value="Автономне">Автономне</option>
-                                                        @elseif(Cookie::get('typeOpalenya') == 'Автономне')
-                                                            <option value="Автономне" selected>Автономне</option>
-                                                            <option value="Централізоване">Централізоване</option>
-                                                        @endif
-                                                    @else
-                                                        <option value="Централізоване">Централізоване</option>
-                                                        <option value="Автономне">Автономне</option>
-                                                    @endif
-                                                @endif
-                                            </select>
-                                        </div>
-                                        <div class="unselect">
-                                            <hr>
-                                            <sapn>Виключення по району м.Житомир</sapn>
-                                            <hr>
-                                            <div class="unselect-city-rayon">
-                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">
-                                                    <option value="0" disabled selected>Оберіть</option>
-                                                    @foreach($locationCityRayon as $key => $rayon_city)
-                                                        @if($filterData[15] ?? '')
-                                                            @if($filterData[15] == $rayon_city->rayon_city)
-                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @else
-                                                            @if(Cookie::get('unselect_rayon_city'))
-                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)
-                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                                @else
-                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                                @endif
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @endif
+{{--                                        <div class="count-level pt-2">--}}
+{{--                                            <span>Поверховість</span>--}}
+{{--                                            <input type="number" min="1" step="1" max="999" name="count_level" id="count_level" class="form-control mt-2" value="{{ Cookie::get('count_level')?Cookie::get('count_level'):$filterData[11] ?? '' }}" />--}}
+{{--                                        </div>--}}
+{{--                                        <div class="count-room pt-2">--}}
+{{--                                            <span>Кількість кімнат</span>--}}
+{{--                                            <input type="number" min="1" step="1" max="1000" class="form-control" id="count_room" name="count_room" value="{{ Cookie::get('count_room')?Cookie::get('count_room'):$filterData[10] ?? '' }}">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="opalenya-type pt-2">--}}
+{{--                                            <span>Тип опалення</span>--}}
+{{--                                            <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">--}}
+{{--                                                <option selected disabled="">Оберіть тип опалення</option>--}}
+{{--                                                @if($filterData[9] ?? '')--}}
+{{--                                                    @if($filterData[9] == 'Централізоване')--}}
+{{--                                                        <option value="Централізоване" selected>Централізоване</option>--}}
+{{--                                                        <option value="Автономне">Автономне</option>--}}
+{{--                                                    @elseif($filterData[9] == 'Автономне')--}}
+{{--                                                        <option value="Автономне" selected>Автономне</option>--}}
+{{--                                                        <option value="Централізоване">Централізоване</option>--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        <option value="Автономне">Автономне</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    @if(Cookie::get('typeOpalenya'))--}}
+{{--                                                        @if(Cookie::get('typeOpalenya') == 'Централізоване')--}}
+{{--                                                            <option value="Централізоване" selected>Централізоване</option>--}}
+{{--                                                            <option value="Автономне">Автономне</option>--}}
+{{--                                                        @elseif(Cookie::get('typeOpalenya') == 'Автономне')--}}
+{{--                                                            <option value="Автономне" selected>Автономне</option>--}}
+{{--                                                            <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        @endif--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        <option value="Автономне">Автономне</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @endif--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="unselect">--}}
+{{--                                            <hr>--}}
+{{--                                            <sapn>Виключення по району м.Житомир</sapn>--}}
+{{--                                            <hr>--}}
+{{--                                            <div class="unselect-city-rayon">--}}
+{{--                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">--}}
+{{--                                                    <option value="0" disabled selected>Оберіть</option>--}}
+{{--                                                    @foreach($locationCityRayon as $key => $rayon_city)--}}
+{{--                                                        @if($filterData[15] ?? '')--}}
+{{--                                                            @if($filterData[15] == $rayon_city->rayon_city)--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @else--}}
+{{--                                                            @if(Cookie::get('unselect_rayon_city'))--}}
+{{--                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @else--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @endif--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @endif--}}
 
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @break
-                                    @case('land')
-                                    <div class="parameters-land mt-2">
-                                        <div class="unselect">
-                                            <hr>
-                                            <sapn>Виключення по району м.Житомир</sapn>
-                                            <hr>
-                                            <div class="unselect-city-rayon">
-                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">
-                                                    <option value="0" disabled selected>Оберіть</option>
-                                                    @foreach($locationCityRayon as $key => $rayon_city)
-                                                        @if($filterData[15] ?? '')
-                                                            @if($filterData[15] == $rayon_city->rayon_city)
-                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @else
-                                                            @if(Cookie::get('unselect_rayon_city'))
-                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)
-                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                                @else
-                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                                @endif
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @endif
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    @break--}}
+{{--                                    @case('land')--}}
+{{--                                    <div class="parameters-land mt-2">--}}
+{{--                                        <div class="unselect">--}}
+{{--                                            <hr>--}}
+{{--                                            <sapn>Виключення по району м.Житомир</sapn>--}}
+{{--                                            <hr>--}}
+{{--                                            <div class="unselect-city-rayon">--}}
+{{--                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">--}}
+{{--                                                    <option value="0" disabled selected>Оберіть</option>--}}
+{{--                                                    @foreach($locationCityRayon as $key => $rayon_city)--}}
+{{--                                                        @if($filterData[15] ?? '')--}}
+{{--                                                            @if($filterData[15] == $rayon_city->rayon_city)--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @else--}}
+{{--                                                            @if(Cookie::get('unselect_rayon_city'))--}}
+{{--                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @else--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @endif--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @endif--}}
 
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @break
-                                    @case('commercial-real-estate')
-                                    <div class="parameters-commercial-real-estate mt-2">
-                                        <div class="opalenya-type pt-2">
-                                            <span>Тип опалення</span>
-                                            <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">
-                                                <option selected disabled="">Оберіть тип опалення</option>
-                                                @if($filterData[9] ?? '')
-                                                    @if($filterData[9] == 'Централізоване')
-                                                        <option value="Централізоване" selected>Централізоване</option>
-                                                        <option value="Автономне">Автономне</option>
-                                                    @elseif($filterData[9] == 'Автономне')
-                                                        <option value="Автономне" selected>Автономне</option>
-                                                        <option value="Централізоване">Централізоване</option>
-                                                    @else
-                                                        <option value="Централізоване">Централізоване</option>
-                                                        <option value="Автономне">Автономне</option>
-                                                    @endif
-                                                @else
-                                                    @if(Cookie::get('typeOpalenya'))
-                                                        @if(Cookie::get('typeOpalenya') == 'Централізоване')
-                                                            <option value="Централізоване" selected>Централізоване</option>
-                                                            <option value="Автономне">Автономне</option>
-                                                        @elseif(Cookie::get('typeOpalenya') == 'Автономне')
-                                                            <option value="Автономне" selected>Автономне</option>
-                                                            <option value="Централізоване">Централізоване</option>
-                                                        @endif
-                                                    @else
-                                                        <option value="Централізоване">Централізоване</option>
-                                                        <option value="Автономне">Автономне</option>
-                                                    @endif
-                                                @endif
-                                            </select>
-                                        </div>
-                                        <div class="unselect">
-                                            <hr>
-                                            <sapn>Виключення по району м.Житомир</sapn>
-                                            <hr>
-                                            <div class="unselect-city-rayon">
-                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">
-                                                    <option value="0" disabled selected>Оберіть</option>
-                                                    @foreach($locationCityRayon as $key => $rayon_city)
-                                                        @if($filterData[15] ?? '')
-                                                            @if($filterData[15] == $rayon_city->rayon_city)
-                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @else
-                                                            @if(Cookie::get('unselect_rayon_city'))
-                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)
-                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>
-                                                                @else
-                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                                @endif
-                                                            @else
-                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>
-                                                            @endif
-                                                        @endif
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    @break--}}
+{{--                                    @case('commercial-real-estate')--}}
+{{--                                    <div class="parameters-commercial-real-estate mt-2">--}}
+{{--                                        <div class="opalenya-type pt-2">--}}
+{{--                                            <span>Тип опалення</span>--}}
+{{--                                            <select name="typeOpalenya" id="typeOpalenya" class="form-control mt-2">--}}
+{{--                                                <option selected disabled="">Оберіть тип опалення</option>--}}
+{{--                                                @if($filterData[9] ?? '')--}}
+{{--                                                    @if($filterData[9] == 'Централізоване')--}}
+{{--                                                        <option value="Централізоване" selected>Централізоване</option>--}}
+{{--                                                        <option value="Автономне">Автономне</option>--}}
+{{--                                                    @elseif($filterData[9] == 'Автономне')--}}
+{{--                                                        <option value="Автономне" selected>Автономне</option>--}}
+{{--                                                        <option value="Централізоване">Централізоване</option>--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        <option value="Автономне">Автономне</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @else--}}
+{{--                                                    @if(Cookie::get('typeOpalenya'))--}}
+{{--                                                        @if(Cookie::get('typeOpalenya') == 'Централізоване')--}}
+{{--                                                            <option value="Централізоване" selected>Централізоване</option>--}}
+{{--                                                            <option value="Автономне">Автономне</option>--}}
+{{--                                                        @elseif(Cookie::get('typeOpalenya') == 'Автономне')--}}
+{{--                                                            <option value="Автономне" selected>Автономне</option>--}}
+{{--                                                            <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        @endif--}}
+{{--                                                    @else--}}
+{{--                                                        <option value="Централізоване">Централізоване</option>--}}
+{{--                                                        <option value="Автономне">Автономне</option>--}}
+{{--                                                    @endif--}}
+{{--                                                @endif--}}
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="unselect">--}}
+{{--                                            <hr>--}}
+{{--                                            <sapn>Виключення по району м.Житомир</sapn>--}}
+{{--                                            <hr>--}}
+{{--                                            <div class="unselect-city-rayon">--}}
+{{--                                                <select name="unselect_rayon_city" id="unselect_rayon_city" class="form-control">--}}
+{{--                                                    <option value="0" disabled selected>Оберіть</option>--}}
+{{--                                                    @foreach($locationCityRayon as $key => $rayon_city)--}}
+{{--                                                        @if($filterData[15] ?? '')--}}
+{{--                                                            @if($filterData[15] == $rayon_city->rayon_city)--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @else--}}
+{{--                                                            @if(Cookie::get('unselect_rayon_city'))--}}
+{{--                                                                @if(Cookie::get('unselect_rayon_city') == $rayon_city->rayon_city)--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}" selected>{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @else--}}
+{{--                                                                    <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                                @endif--}}
+{{--                                                            @else--}}
+{{--                                                                <option value="{{$rayon_city->rayon_city}}">{{$rayon_city->rayon_city}}</option>--}}
+{{--                                                            @endif--}}
+{{--                                                        @endif--}}
 
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @break
-                                    @default
-                                    <div class="not-found-category">
-                                        <span>Даної категорії немає!</span>
-                                    </div>
-                                @endswitch
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    @break--}}
+{{--                                    @default--}}
+{{--                                    <div class="not-found-category">--}}
+{{--                                        <span>Даної категорії немає!</span>--}}
+{{--                                    </div>--}}
+{{--                                @endswitch--}}
 
-                        </div>
+{{--                        </div>--}}
 
-                        <div class="container btn-set-filter mt-3 fixed-bottom">
-                            <div class="btn-filter m-2">
-                                <button type="submit" class="btn btn-danger pt-2 pb-2">Застосувати</button>
+{{--                        <div class="container btn-set-filter mt-3 fixed-bottom">--}}
+{{--                            <div class="btn-filter m-2">--}}
+{{--                                <button type="submit" class="btn btn-danger pt-2 pb-2">Застосувати</button>--}}
 
-                                <div class="clear-filter text-center pt-2 pb-2">
-                                    <a href="{{route('filter.clear', $category->slug)}}" class="text-secondary">Видалити</a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+{{--                                <div class="clear-filter text-center pt-2 pb-2">--}}
+{{--                                    <a href="{{route('filter.clear', $category->slug)}}" class="text-secondary">Видалити</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
                 </div>
 
             </div>
