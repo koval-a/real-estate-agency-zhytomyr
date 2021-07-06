@@ -236,47 +236,38 @@
                 <div class="pluses__block--flex">
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-                                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-                            </svg>
+                            <img src="/files/images/safetly/security.svg" alt="security-image" class="img-fluid">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <h4 class="text-danger text-uppercase display-5">Безпека</h4>
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Гарантуємо надійний юридичний супровід при купівлі-продажу нерухомості.
                         </p>
                     </div>
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
-                                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
-                                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
-                            </svg>
+                            <img src="/files/images/safetly/experience.svg" alt="security-image" class="img-fluid">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <h4 class="text-danger text-uppercase display-5">Досвід</h4>
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            З вашою нерухомістю працють кваліфіковані експерти з нерухомості, які мають великий досвід роботи з нерухомістю.
                         </p>
                     </div>
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                            </svg>
+                            <img src="/files/images/safetly/quality.svg" alt="security-image" class="img-fluid">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <h4 class="text-danger text-uppercase display-5">Прозорість</h4>
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Надаємо всю необхідну клієнту інформацію за будь-якому етапі співпраці.
                         </p>
                     </div>
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
-                                <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                            </svg>
+                            <img src="/files/images/safetly/honesty.svg" alt="security-image" class="img-fluid">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Title</h4>
+                        <h4 class="text-danger text-uppercase display-5">Якість</h4>
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Ми працюємо виключно в інтересах клієнта, що підтверджують сотні позитивних відгуків від наших клієнтів.
                         </p>
                     </div>
                 </div>

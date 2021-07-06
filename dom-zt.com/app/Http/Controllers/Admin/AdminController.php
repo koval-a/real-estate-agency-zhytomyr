@@ -500,39 +500,39 @@ class AdminController extends AC
 
         $newLocation->region_id = 1; // Житомирська область
 
-        // check city or rayon
-        $newLocation->rayon_id = $request->location_rayon_id;
-        // 51 - Житомир
-        if ($request->location_rayon_id == 51) {
-            // 93 - none для міста якщо район м.Житомир
-            $newLocation->city_id = 93;
-            $newLocation->city_rayon_id = $request->location_rayon_city_id;
-            $rayon_city = LocationCityRayon::where('id', $request->location_rayon_city_id)->first();
-            $newObekt->city_name = $rayon_city->rayon_city;
-        } else if ($request->location_rayon_id == 75) {
-            // 75 - Житомирський район
-            $newLocation->city_id = $request->location_city_id;
-            // 34 - -- для района міста якщо обрано Житомирський район
-            $newLocation->city_rayon_id = 34;
-            $city = LocationCity::where('id', $request->location_city_id)->first();
-            $newObekt->city_name = $city->city;
-        } else {
-            // Якщо обрано з пункта район не м.Житомир або Житомирський район
-            $newLocation->city_id = 93;
-            $newLocation->city_rayon_id = 34;
-            $newObekt->city_name = '-';
-        }
+//        // check city or rayon
+//        $newLocation->rayon_id = $request->location_rayon_id;
+//        // 51 - Житомир
+//        if ($request->location_rayon_id == 51) {
+//            // 93 - none для міста якщо район м.Житомир
+//            $newLocation->city_id = 93;
+//            $newLocation->city_rayon_id = $request->location_rayon_city_id;
+//            $rayon_city = LocationCityRayon::where('id', $request->location_rayon_city_id)->first();
+//            $newObekt->city_name = $rayon_city->rayon_city;
+//        } else if ($request->location_rayon_id == 75) {
+//            // 75 - Житомирський район
+//            $newLocation->city_id = $request->location_city_id;
+//            // 34 - -- для района міста якщо обрано Житомирський район
+//            $newLocation->city_rayon_id = 34;
+//            $city = LocationCity::where('id', $request->location_city_id)->first();
+//            $newObekt->city_name = $city->city;
+//        } else {
+//            // Якщо обрано з пункта район не м.Житомир або Житомирський район
+//            $newLocation->city_id = 93;
+//            $newLocation->city_rayon_id = 34;
+//            $newObekt->city_name = '-';
+//        }
 
-        $newLocation->street = $request->address;
-        $newLocation->note = $request->note_address;
-
-        $newLocation->save();
-
-        $lastID_Location = Location::latest()->first();
-        $newObekt->location_id = $lastID_Location->id;
-        $rayon = LocationRayon::where('id', $request->location_rayon_id)->first();
-        $newObekt->rayon_name = $rayon->rayon;
-
+//        $newLocation->street = $request->address;
+//        $newLocation->note = $request->note_address;
+//
+//        $newLocation->save();
+//
+//        $lastID_Location = Location::latest()->first();
+//        $newObekt->location_id = $lastID_Location->id;
+//        $rayon = LocationRayon::where('id', $request->location_rayon_id)->first();
+//        $newObekt->rayon_name = $rayon->rayon;
+//
 
         // check if new owner
         if ($request->isNewOwner == true) {
@@ -605,10 +605,6 @@ class AdminController extends AC
     {
         $nameObekt = $obekt->name;
         $msg = "Об'єкт " . $nameObekt . " видалено успішно.";
-        // Location delete
-        $location = Location::where('id', '=', $obekt->location_id);
-        $location->delete();
-
         // Owner delete  - not delete
 
         // Files delete

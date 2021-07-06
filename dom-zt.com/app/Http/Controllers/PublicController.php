@@ -28,17 +28,17 @@ class PublicController extends Controller
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
         $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(4)->get();
-        $locationData = Location::all();
+
         $locationRayon = LocationCityRayon::all();
 
         $category = Category::where('id', '=', $obekt->category_id)->first();
         $rieltor = Rieltors::where('id', '=', $obekt->rieltor_id)->first();
         $location = Location::where('id', '=', $obekt->location_id)->first();
 
-        $region = LocationRegion::where('id', '=', $location->region_id)->first();
-        $rayon = LocationRayon::where('id', '=', $location->rayon_id)->first();
-        $city = LocationCity::where('id', '=', $location->city_id)->first();
-        $cityRayon = LocationCityRayon::where('id', '=', $location->city_rayon_id)->first();
+//        $region = LocationRegion::where('id', '=', $location->region_id)->first();
+//        $rayon = LocationRayon::where('id', '=', $location->rayon_id)->first();
+//        $city = LocationCity::where('id', '=', $location->city_id)->first();
+//        $cityRayon = LocationCityRayon::where('id', '=', $location->city_rayon_id)->first();
 
         $locationRegion = $region->region?$region->region: '-';
         $locatonRayon = $rayon->rayon?$rayon->rayon: '-';
@@ -47,7 +47,7 @@ class PublicController extends Controller
         $locationStreet = $location->street?$location->street: '-';
         $locationNote = $location->note?$location->note: '-';
 
-        $dataLocation = [$locationRegion, $locatonRayon, $locationCity, $locationCityRayon, $locationStreet, $locationNote];
+//        $dataLocation = [$locationRegion, $locatonRayon, $locationCity, $locationCityRayon, $locationStreet, $locationNote];
 
         // https://packagist.org/packages/jorenvanhocht/laravel-share
         // Share::currentPage()->facebook();
@@ -62,7 +62,7 @@ class PublicController extends Controller
         $filesImages = Files::all();
         $appointment = Appointment::find($obekt->appointment_id);
 
-        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'dataLocation', 'lastAddedObekts', 'locationData', 'locationRayon', 'shareButtonLink', 'filesImages', 'appointment'));
+        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'lastAddedObekts',  'shareButtonLink', 'filesImages', 'appointment'));
     }
 
     public function about()
@@ -99,7 +99,7 @@ class PublicController extends Controller
 
         $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->orderBy('created_at', 'DESC')->paginate(10);
         $appointments = Appointment::where('type', '=', $categorySlug)->get();
-        $location = Location::all();
+//        $location = Location::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
         $locationCityRayon = LocationCityRayon::all();
@@ -110,7 +110,7 @@ class PublicController extends Controller
 
         $typeWall = TypeWall::all();
 
-        return view('pages.all-obekts', compact('price', 'typeWall', 'obekts', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
+        return view('pages.all-obekts', compact('price', 'typeWall', 'obekts', 'category', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
 
     }
 

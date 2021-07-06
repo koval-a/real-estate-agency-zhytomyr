@@ -27,7 +27,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        @if($categoryData->slug != 'land')
+                        @if($categoryData['slug'] != 'land')
                             <div class="opalemya">
                                 <label>Тип опалення</label>
                                 <select class="form-control" id="opalenyaName" name="opalenyaName">
@@ -41,7 +41,7 @@
                                 <select name="typeWall" id="typeWall" class="form-control">
                                     <option value="0" disabled selected>Оберіть</option>
                                     @foreach($typeWall as $key => $wall)
-                                        <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+                                        <option value="{{ $wall->id }}">{{ $wall->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -62,10 +62,10 @@
                         </div>
                         <div class="col-md-6">
                             <span>Площа
-                                @if($categoryData == 'land')
+                                @if($categoryData['slug'] == 'land')
                                     (соток)
                                 @else
-                                    (м2)
+                                    (м2) {{$categoryData}}
                                 @endif
                             </span>
                             <input type="number" class="form-control" min="1" step="1" max="99999999999" name="square"
@@ -75,7 +75,7 @@
                     <hr>
                     @switch($categoryData->slug)
                         @case('land')
-                            land
+
                         @break
                         @case('flat')
                               <div class="d-flex">
