@@ -17,15 +17,55 @@
                     <div class="confirm">
                         <div class="text-information">
                             <div class="info-data p-3">
-                                <h2 class="display-4 text-danger"> <i class="bi bi-info-circle-fill"></i> Попередження.</h2>
+                                <h2 class="display-4 text-danger"> <i class="bi bi-info-circle-fill"></i> Зверніть увагу!</h2>
                             </div>
                             <p>
                                 При видаленні власника, автоматично видаляться всі об'єкти нерухомості, що з ним пов'язані.
-                                Тобто ті в яких він зазначений як власник об'єкта нерухомості.
                             </p>
                             <p>
-                                Незалежно від того, що певний об'єкт нерухомості власника міг бути видалений раніше.
+                                Об'єкт (об'єкти) нерухомості власника які будуть видалені:
                             </p>
+                        </div>
+                        <hr>
+                        <div class="obekts-list">
+                            @foreach($obekts as $key => $item)
+                                <div class="d-flex justify-content-between p-2 border border-danger rounded m-1">
+                                    <span class="col-md-1 p-2">ID: {{ $item->id }}</span>
+                                    <span class="col-md-3 p-2">{{ $item->name }}</span>
+                                    <span class="col-md-2 p-2">
+                                        #
+                                        @foreach($data[0] as $category)
+                                            @if($category->id == $item->category_id)
+                                                {{ $category->name }}
+                                            @endif
+                                        @endforeach
+                                    </span>
+                                    <span class="col-md-2 p-2">$ {{ $item->price }}</span>
+                                    <div class="col-md-4 d-flex">
+                                        <span class="p-2">
+                                            @foreach($data[1] as $rayon)
+                                                @if($rayon->id == $item->location_rayon_id)
+                                                    {{ $rayon->rayon }}
+                                                @endif
+                                            @endforeach
+                                        </span>
+                                        <span class="p-2">
+                                            @foreach($data[2] as $city)
+                                                @if($city->id == $item->location_city_id)
+                                                    {{ $city->city }}
+                                                @endif
+                                            @endforeach
+                                        </span>
+                                        <span class="p-2">
+                                            @foreach($data[3] as $rayon_city)
+                                                @if($rayon_city->id == $item->location_rayon_city_id)
+                                                    {{ $rayon_city->rayon_city }}
+                                                @endif
+                                            @endforeach
+                                        </span>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                         <hr>
                         <div class="form-check">

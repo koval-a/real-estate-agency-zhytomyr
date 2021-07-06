@@ -125,6 +125,22 @@ class AdminController extends AC
 
     }
 
+    public function searchClients(Request $request)
+    {
+        $searchQuery = $request->input('owner-search');
+
+        if ($searchQuery != "") {
+            $clients= Owner::where('name', 'LIKE', '%' . $searchQuery . '%')->orWhere('phone', 'LIKE', '%' . $searchQuery . '%')->paginate(10)->setPath('');
+            $pagination = $clients->appends(array(
+                'searchQuery' => $request->input('owner-search')
+            ));
+            if (count($clients) > 0)
+                $count = count($clients);
+                return view('admin.clients', compact('clients', 'count'));
+        }
+        return back()->with('error', 'Нічого не знайдено!');
+    }
+
     // END - RIELTORS //
 
     // START - CLEINTS //
@@ -170,8 +186,14 @@ class AdminController extends AC
     public function deleteConformClients($id)
     {
         $owner = Owner::find($id);
+        $obekts = Obekts::where('owner_id', '=', $owner->id)->get();
+        $category = Category::all();
+        $rayon = LocationRayon::all();
+        $city = LocationCity::all();
+        $city_rayon = LocationCityRayon::all();
+        $data = [$category, $rayon, $city, $city_rayon];
 
-        return view('admin.owner.confirm-alert', compact('owner'));
+        return view('admin.owner.confirm-alert', compact('owner', 'obekts', 'data'));
     }
 
     public function editClients($id)
@@ -898,7 +920,7 @@ class AdminController extends AC
 
         if($request->phone_check){
 
-            if(strlen($request->phone_check) == 12){
+            if(strlen($request->phone_check) == 10){
 
                 $owner = Owner::where('phone', '=', $request->phone_check)->first();
 
@@ -918,7 +940,7 @@ class AdminController extends AC
                 }
 
             }else{
-                return back()->with('error', 'Довжина номера має бути 12 цифр, ви ввели менше. Виправте будь ласка!');
+                return back()->with('error', 'Довжина номера має бути 10 цифр, ви ввели менше. Виправте будь ласка!');
             }
 
 

@@ -195,7 +195,7 @@
                     @endif
                 </div>
             </div>
-            <div class="bg-transparent d-flex justify-content-between p-3 rounded fixed-top">
+            <div class="bg-transparent d-flex justify-content-between p-3 rounded">
                 <span>АН "Житомир"</span>
                 <div class="d-flex">
                     <a href="/" class="btn btn-primary m-1">В каталог</a>

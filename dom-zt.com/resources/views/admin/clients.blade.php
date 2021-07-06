@@ -10,10 +10,33 @@
                 <p class="">Власники нерухомості</p>
                 <hr>
             </div>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#exampleModal">
-                Додати
-            </button>
+            <div class="d-flex justify-content-between">
+
+                <div class="col-md-6">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary m-auto" data-toggle="modal" data-target="#exampleModal">
+                        Додати
+                    </button>
+                </div>
+
+                <div class="search-bar col-md-6 row">
+
+                    <form action="{{ route('admin.clients.search') }}" method="POST" role="search" class="col-md-10 m-auto">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="owner-search"
+                                   placeholder="Пошук за номеру телефона та імені">
+                            <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary">
+                                Пошук
+                            </button>
+                        </span>
+                        </div>
+                    </form>
+                    <a href="{{ route('admin.clients') }}" class="btn btn-secondary col-md-2 m-auto">Очистити</a>
+                </div>
+            </div>
+            <hr>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -31,7 +54,7 @@
 
                                     <input type="text" name="name"  id="name" class="form-control m-1" required placeholder="Ім'я">
                                     <input type="text" name="phone"  id="phone" class="form-control m-1"  required placeholder="Формат: 380990123456"
-                                           maxlength="12"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                           maxlength="10"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
 {{--                                    <input type="text" name="address"  id="address" class="form-control m-1" required placeholder="Адреса">--}}
 
                             </div>

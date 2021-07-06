@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-6">
                             <span>Площа
-                                @if($categoryData->slug == 'land')
+                                @if($categorySlug == 'land')
                                     (соток)
                                 @else
                                     (м2)

@@ -27,136 +27,135 @@
                 </div>
 
             @else
-                <hr>
                 <div class="d-flex justify-content-between">
                     @foreach($category as $key => $categ)
-                        <a href="{{ route('admin.obekt.new',$categ->slug) }}"
-                           class="btn btn-block btn-light shadow border-danger pt-4 pb-4 m-1">
+                        <a href="{{ route('admin.obekt.new',$categ->slug) }}" class="btn btn-block btn-light shadow border-danger pt-4 pb-4 m-1">
                             <i class="bi bi-plus-circle"></i>
                             {{$categ->name}}
                         </a>
                     @endforeach
                 </div>
+                <hr>
                 <table class="table table-striped">
-                <thead class="table-dark">
-                <tr class="bg-secondary text-white">
-                    <td>
-                        #
-                    </td>
-                    <td>
-                        Власник
-                    </td>
-                    <td>Статус</td>
-                    <td>
-                        Назва
-                    </td>
-                    <td>
-                        Розміщення
-                    </td>
-                    <td>
-                        Тип об'єкту
-                    </td>
-                    <td>
-                        Ціна ($)
-                    </td>
-                    <td>
-                        Площа (m2)
-                    </td>
-                    <td>
-                        Дія
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($obektByPhone as $key => $item)
-                    <tr>
+                    <thead class="table-dark">
+                    <tr class="bg-secondary text-white">
                         <td>
-                            {{ $key + 1 }}
+                            #
                         </td>
                         <td>
-                            <i class="bi bi-person"></i>{{ $dataInfo[1] }}
-                            <br>
-                            <i class="bi bi-phone"></i>{{ $dataInfo[2] }}
+                            Власник
+                        </td>
+                        <td>Статус</td>
+                        <td>
+                            Назва
                         </td>
                         <td>
-                            @if($item->isPublic)
-                                @if($item->isPay)
-                                    <span class="bg-light-danger text-light p-2 m-2 rounded">
-                                            Продано
-                                        </span>
-                                @else
-                                    <span class="bg-success text-light p-2 m-2 rounded">
-                                            В продажу
-                                        </span>
-                                @endif
-                            @else
-                                <span class="text-secondary">Не опубліковано</span>
-                            @endif
-
+                            Розміщення
                         </td>
                         <td>
-                            <div class="d-flex1 p-2">
-                                <a href="{{ route('obekt.view', $item->slug) }}"
-                                   target="_blank">{{ $item->name }}</a>
-                                <br>
-                                ID: # {{ $item->id }}
-                            </div>
-
-                        </td>
-                        <td><i class="bi bi-map"></i>
-                            @if($item->rayon_name != 'м.Житомир')
-                                <span>р-н </span>
-                            @endif
-                            {{ $item->rayon_name }}
-                            @if($item->city_name != '-')
-                                <br>
-                                <i class="bi bi-map-fill"></i> {{ $item->city_name }}
-                            @endif
+                            Тип об'єкту
                         </td>
                         <td>
-                            @foreach($appointment as $key => $appoint)
-                                @if($appoint->id ==  $item->appointment_id)
-                                    <span class="text-danger">#
-                                    @switch($appoint->type)
-                                            @case('land')
-                                            Земля
-                                            @break
-                                            @case('house')
-                                            Будинок
-                                            @break
-                                            @case('flat')
-                                            Квартира
-                                            @break
-                                            @case('commercial-real-estate')
-                                            Комерційна нерухомість
-                                            @break
-                                        @endswitch
-                                    </span>
-                                    <br>
-                                    {{ $appoint->name }}
-                                @endif
-                            @endforeach
+                            Ціна ($)
                         </td>
                         <td>
-                            $ {{ $item->price }}
+                            Площа (m2)
                         </td>
                         <td>
-                            {{ $item->square }} m2
-                        </td>
-                        <td>
-                            @foreach($category as $key => $categoriya)
-                                @if($categoriya->id == $item->category_id)
-                                    <a href="{{ route('admin.obekt.new',$categoriya->slug ) }}" class="btn btn-success p-1">
-                                        <i class="bi bi-plus-circle"></i>
-                                        Додати об'єкт нерухомості
-                                    </a>
-                                @endif
-                            @endforeach
+                            Дія
                         </td>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($obektByPhone as $key => $item)
+                        <tr>
+                            <td>
+                                {{ $key + 1 }}
+                            </td>
+                            <td>
+                                <i class="bi bi-person"></i>{{ $dataInfo[1] }}
+                                <br>
+                                <i class="bi bi-phone"></i>{{ $dataInfo[2] }}
+                            </td>
+                            <td>
+                                @if($item->isPublic)
+                                    @if($item->isPay)
+                                        <span class="bg-light-danger text-light p-2 m-2 rounded">
+                                            Продано
+                                        </span>
+                                    @else
+                                        <span class="bg-success text-light p-2 m-2 rounded">
+                                            В продажу
+                                        </span>
+                                    @endif
+                                @else
+                                    <span class="text-secondary">Не опубліковано</span>
+                                @endif
+
+                            </td>
+                            <td>
+                                <div class="d-flex1 p-2">
+                                    <a href="{{ route('obekt.view', $item->slug) }}"
+                                       target="_blank">{{ $item->name }}</a>
+                                    <br>
+                                    ID: # {{ $item->id }}
+                                </div>
+
+                            </td>
+                            <td><i class="bi bi-map"></i>
+                                @if($item->rayon_name != 'м.Житомир')
+                                    <span>р-н </span>
+                                @endif
+                                {{ $item->rayon_name }}
+                                @if($item->city_name != '-')
+                                    <br>
+                                    <i class="bi bi-map-fill"></i> {{ $item->city_name }}
+                                @endif
+                            </td>
+                            <td>
+                                @foreach($appointment as $key => $appoint)
+                                    @if($appoint->id ==  $item->appointment_id)
+                                        <span class="text-danger">#
+                                    @switch($appoint->type)
+                                                @case('land')
+                                                Земля
+                                                @break
+                                                @case('house')
+                                                Будинок
+                                                @break
+                                                @case('flat')
+                                                Квартира
+                                                @break
+                                                @case('commercial-real-estate')
+                                                Комерційна нерухомість
+                                                @break
+                                            @endswitch
+                                    </span>
+                                        <br>
+                                        {{ $appoint->name }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                $ {{ $item->price }}
+                            </td>
+                            <td>
+                                {{ $item->square }} m2
+                            </td>
+                            <td>
+                                @foreach($category as $key => $categoriya)
+                                    @if($categoriya->id == $item->category_id)
+                                        <a href="{{ route('admin.obekt.new',$categoriya->slug ) }}" class="btn btn-success w-100 p-1">
+                                            <i class="bi bi-plus-circle m-1"></i>
+                                            {{ $categoriya->name }}
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             @endif
         </div>
     </div>
