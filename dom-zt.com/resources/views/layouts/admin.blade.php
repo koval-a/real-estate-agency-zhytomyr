@@ -196,7 +196,9 @@
                 </div>
             </div>
             <div class="bg-transparent d-flex justify-content-between p-3 rounded">
-                <span>АН "Житомир"</span>
+                <div class="btn-go-to-dashboard">
+                    <a href="{{ route('admin.home') }}" class="p-2 font-bold border btn btn-primary rounded"><i class="bi bi-grid-fill"></i> На головну</a>
+                </div>
                 <div class="d-flex">
                     <a href="/" class="btn btn-primary m-1">В каталог</a>
                     <a href="/obekts/flat" class="btn btn-outline-primary m-1">Квартири</a>
@@ -223,11 +225,13 @@
     </div>
 
 {{--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>--}}
+{{--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>--}}
 
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
-
+    <script src="/assets/js/popper.min.js"></script>
 {{--    <script src="/assets/vendors/apexcharts/apexcharts.js"></script>--}}
 {{--    <script src="/assets/js/pages/dashboard.js"></script>--}}
 

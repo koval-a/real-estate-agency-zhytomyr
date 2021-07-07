@@ -38,7 +38,7 @@
                             </div>
                             <div class="typeWall">
                                 <span class="ml-0 pl-0">Тип стін</span>
-                                <select name="typeWall" id="typeWall" class="form-control">
+                                <select name="type_wall_id" id="type_wall_id" class="form-control">
                                     <option value="0" disabled selected>Оберіть</option>
                                     @foreach($typeWall as $key => $wall)
                                         <option value="{{ $wall->id }}">{{ $wall->name }}</option>
@@ -65,7 +65,7 @@
                                 @if($categoryData['slug'] == 'land')
                                     (соток)
                                 @else
-                                    (м2) {{$categoryData}}
+                                    (м2)
                                 @endif
                             </span>
                             <input type="number" class="form-control" min="1" step="1" max="99999999999" name="square"
@@ -279,7 +279,7 @@
                         @endforeach
                     </select>
                     <label>Район місто</label>
-                    <select name="location_rayon_city_id" id="location_rayon_city_id" class="form-control invisible">
+                    <select name="location_city_rayon_id" id="location_city_rayon_id" class="form-control invisible">
                         <option disabled selected>Оберіть район міста</option>
                         @foreach($location[2] as $key => $rayon_city)
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
@@ -288,7 +288,7 @@
                     <label>Адреса</label>
                     <input type="text" name="address" id="address" class="form-control" placeholder="Адреса">
 
-                    <input type="text" name="note_address" id="note_address" class="form-control" placeholder="Нотатка">
+                    <input type="text" name="note" id="note" class="form-control" placeholder="Нотатка">
                 </div>
             </div>
             <div class="insert-button">
@@ -317,7 +317,7 @@
             {
                 var x = (a.value || a.options[a.selectedIndex].value);
                 var city_name = document.getElementById('location_city_id');
-                var rayon_city = document.getElementById('location_rayon_city_id');
+                var rayon_city = document.getElementById('location_city_rayon_id');
 
                 if(x == 51)
                 {

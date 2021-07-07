@@ -5,26 +5,42 @@
     <div class="container-fluid">
         <h1>Всі об'єкти нерухомості</h1>
         <hr>
-        <div class="row">
-            <div class="search-bar col-md-6">
+        <div class="d-flex justify-content-between">
+            <div class="col-md-3">
+                <div class="dropdown">
+                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Додати об'єкт
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        @foreach($category as $item)
+                            <a class="dropdown-item" href="{{ route('admin.obekt.check', $item->slug, false) }}" class="btn btn-light">
+                                {{ $item->name }}
+                            </a>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 row">
+                <div class="search-bar col-md-10">
 
-                <form action="{{ route('admin.search') }}" method="POST" role="search">
-                    @csrf
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="q"
-                               placeholder="Пошук за ID та назвою об'єкта">
-                        <span class="input-group-btn">
+                    <form action="{{ route('admin.search') }}" method="POST" role="search">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="q"
+                                   placeholder="Пошук за ID та назвою об'єкта">
+                            <span class="input-group-btn">
                             <button type="submit" class="btn btn-danger">
                                 Пошук
                             </button>
                         </span>
-                    </div>
-                </form>
+                        </div>
+                    </form>
 
-            </div>
+                </div>
 
-            <div class="link-all-obekt col-md-4">
-                <a href="{{ route('admin.allView') }}" class="btn btn-primary">Очистити</a>
+                <div class="link-all-obekt col-md-2">
+                    <a href="{{ route('admin.allView') }}" class="btn btn-primary">Очистити</a>
+                </div>
             </div>
         </div>
         <hr>

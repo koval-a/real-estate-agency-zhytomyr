@@ -33,21 +33,6 @@ class PublicController extends Controller
 
         $category = Category::where('id', '=', $obekt->category_id)->first();
         $rieltor = Rieltors::where('id', '=', $obekt->rieltor_id)->first();
-        $location = Location::where('id', '=', $obekt->location_id)->first();
-
-//        $region = LocationRegion::where('id', '=', $location->region_id)->first();
-//        $rayon = LocationRayon::where('id', '=', $location->rayon_id)->first();
-//        $city = LocationCity::where('id', '=', $location->city_id)->first();
-//        $cityRayon = LocationCityRayon::where('id', '=', $location->city_rayon_id)->first();
-
-        $locationRegion = $region->region?$region->region: '-';
-        $locatonRayon = $rayon->rayon?$rayon->rayon: '-';
-        $locationCity = $city->city?$city->city: '-';
-        $locationCityRayon = $cityRayon->rayon_city?$cityRayon->rayon_city: '-';
-        $locationStreet = $location->street?$location->street: '-';
-        $locationNote = $location->note?$location->note: '-';
-
-//        $dataLocation = [$locationRegion, $locatonRayon, $locationCity, $locationCityRayon, $locationStreet, $locationNote];
 
         // https://packagist.org/packages/jorenvanhocht/laravel-share
         // Share::currentPage()->facebook();

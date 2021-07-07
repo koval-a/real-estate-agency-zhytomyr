@@ -240,7 +240,7 @@
                         @endforeach
                     </select>
                     {{--                    <label>Район місто</label>--}}
-                    <select name="location_rayon_city_id" id="location_rayon_city_id" class="form-control invisible">
+                    <select name="location_city_rayon_id" id="location_city_rayon_id" class="form-control invisible">
                         <option disabled selected>Оберіть район міста</option>
                         @foreach($location[2] as $key => $rayon_city)
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>
@@ -248,9 +248,9 @@
                     </select>
 
                     <label>Адреса</label>
-                    <input type="text" name="address" id="address" class="form-control" value="{{ $location[3] }}">
+                    <input type="text" name="address" id="address" class="form-control" value="{{$obekt->address }}">
 
-                    <input type="text" name="note_address" id="note_address" class="form-control" value="{{ $location[4] }}">
+                    <input type="text" name="note" id="note" class="form-control" value="{{ $obekt->note }}">
                 </div>
             </div>
             <div class="insert-button">
@@ -263,7 +263,7 @@
             {
                 var x = (a.value || a.options[a.selectedIndex].value);
                 var city_name = document.getElementById('location_city_id');
-                var rayon_city = document.getElementById('location_rayon_city_id');
+                var rayon_city = document.getElementById('location_city_rayon_id');
 
                 if(x == 51)
                 {

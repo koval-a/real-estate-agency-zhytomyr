@@ -350,12 +350,11 @@ class AdminController extends AC
         $obekts = Obekts::orderBy('id', 'DESC')->paginate(10);
 
         $appointment = Appointment::all();
-        $locationRayon = LocationCityRayon::all();
-        $location = Location::all();
         $owners = Owner::all();
         $filesImages = Files::all();
+        $category = Category::all();
 
-        return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
+        return view('admin.all-obekt', compact('obekts', 'owners', 'appointment', 'category', 'filesImages'));
     }
 
     public function searchObekt(Request $request)
@@ -455,11 +454,14 @@ class AdminController extends AC
         $id_category = Category::where('slug', '=', $category_slug)->first();
         $newObekt->category_id = $id_category->id;
         $newObekt->square = $request->square;
-        $newObekt->typeWall = $request->typeWall;
+        $newObekt->type_wall_id = $request->type_wall_id;
 
         $newObekt->isPublic = 1; // 1 - public 0 - hidden
         $newObekt->appointment_id = $request->appointment_id;
         $newObekt->rieltor_id = $request->rieltor_id;
+
+        $newObekt->note = $request->note;
+        $newObekt->address = $request->address;
 
         $slug = $this->transliterate($request->name);
         $newObekt->slug = $slug;
@@ -496,43 +498,9 @@ class AdminController extends AC
 
 
         // location
-        $newLocation = new Location();
-
-        $newLocation->region_id = 1; // Житомирська область
-
-//        // check city or rayon
-//        $newLocation->rayon_id = $request->location_rayon_id;
-//        // 51 - Житомир
-//        if ($request->location_rayon_id == 51) {
-//            // 93 - none для міста якщо район м.Житомир
-//            $newLocation->city_id = 93;
-//            $newLocation->city_rayon_id = $request->location_rayon_city_id;
-//            $rayon_city = LocationCityRayon::where('id', $request->location_rayon_city_id)->first();
-//            $newObekt->city_name = $rayon_city->rayon_city;
-//        } else if ($request->location_rayon_id == 75) {
-//            // 75 - Житомирський район
-//            $newLocation->city_id = $request->location_city_id;
-//            // 34 - -- для района міста якщо обрано Житомирський район
-//            $newLocation->city_rayon_id = 34;
-//            $city = LocationCity::where('id', $request->location_city_id)->first();
-//            $newObekt->city_name = $city->city;
-//        } else {
-//            // Якщо обрано з пункта район не м.Житомир або Житомирський район
-//            $newLocation->city_id = 93;
-//            $newLocation->city_rayon_id = 34;
-//            $newObekt->city_name = '-';
-//        }
-
-//        $newLocation->street = $request->address;
-//        $newLocation->note = $request->note_address;
-//
-//        $newLocation->save();
-//
-//        $lastID_Location = Location::latest()->first();
-//        $newObekt->location_id = $lastID_Location->id;
-//        $rayon = LocationRayon::where('id', $request->location_rayon_id)->first();
-//        $newObekt->rayon_name = $rayon->rayon;
-//
+        $newObekt->location_rayon_id = $request->location_rayon_id;
+        $newObekt->location_city_id = $request->location_city_id;
+        $newObekt->location_city_rayon_id = $request->location_city_rayon_id;
 
         // check if new owner
         if ($request->isNewOwner == true) {
@@ -631,30 +599,30 @@ class AdminController extends AC
             $appointment = $obekt->appointment_id;
             $owner = $obekt->owner_id;
             $rieltor = $obekt->rieltor_id;
-            $rayon = $obekt->rayon_name;
-            $city = $obekt->city_name;
+
+            $rayonCurrent = LocationRayon::where('id', $obekt->location_rayon_id)->pluck('rayon');
+            $cityCurrent = LocationCity::where('id', $obekt->location_city_id)->pluck('city');
+            $cityRayon1 = LocationCityRayon::where('id', $obekt->location_city_rayon_id)->pluck('rayon_city');
+
+
             $wall = $obekt->typeWall;
             $category = Category::find($obekt->category_id);
             $categorySlug = $category->slug;
 
-            $setCurrentSelected = [$appointment, $owner, $rieltor, $rayon, $city, $wall];
+            $setCurrentSelected = [$appointment, $owner, $rieltor, $rayonCurrent, $cityCurrent, $wall];
 
             $rieltors = Rieltors::where('is_admin', '=', 0)->get();
 
             $owners = Owner::all();
             $typeBuild = Appointment::all();
-
             $filesImages = Files::all();
             $rayon = LocationRayon::all();
             $city = LocationCity::all();
             $cityRayon = LocationCityRayon::all();
-
             $typeWall = TypeWall::all();
 
-            $locationAddressAndNote = Location::find($obekt->location_id);
-            $street = $locationAddressAndNote->street;
-            $note = $locationAddressAndNote->note;
-            $location = [$rayon, $city, $cityRayon, $street, $note];
+            $location = [$rayon, $city, $cityRayon];
+
 
             return view('admin.obekt-edit', compact('obekt', 'categorySlug', 'typeWall', 'filesImages', 'typeBuild', 'owners', 'rieltors', 'location', 'setCurrentSelected'));
         } else {

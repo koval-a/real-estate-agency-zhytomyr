@@ -143,14 +143,8 @@
                                 {{ $item->square }} m2
                             </td>
                             <td>
-                                @foreach($category as $key => $categoriya)
-                                    @if($categoriya->id == $item->category_id)
-                                        <a href="{{ route('admin.obekt.new',$categoriya->slug ) }}" class="btn btn-success w-100 p-1">
-                                            <i class="bi bi-plus-circle m-1"></i>
-                                            {{ $categoriya->name }}
-                                        </a>
-                                    @endif
-                                @endforeach
+                                <a href="{{ route('admin.obekt.edit', $item) }}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                                <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
