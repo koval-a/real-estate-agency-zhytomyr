@@ -37,7 +37,7 @@
 </head>
 <body>
     <div id="app" class="wrapper">
-
+        <button onclick="topFunction()" id="myBtn" title="Перейти к началу"> <i class="bi bi-arrow-bar-up"></i> </button>
         <header class="header fixed-top">
             <div class="container-fluid container__header p-0">
                 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm w-100">
@@ -58,7 +58,7 @@
                             </ul>
 
                             <!-- Right Side Of Navbar -->
-                            <ul class="navbar-nav pt-2 ml-auto">
+                            <ul id="menu" class="navbar-nav pt-2 ml-auto">
                                 <li class="nav__item ">
                                     <a href="/" class="nav__link">Каталог</a>
                                 </li>

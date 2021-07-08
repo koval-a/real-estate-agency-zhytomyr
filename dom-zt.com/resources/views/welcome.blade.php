@@ -22,12 +22,12 @@
             <section class="company">
                 <div class="container">
                     <div class="company__block">
-                        <div class="company__block-flex company__block-left">
+                        <div class="company__block-flex company__block-left col-md-6 col-12">
                             <div class="company__image">
                                 <img src="/custom/icons/annie-nyle-r1suqz8GIN0-unsplash.jpeg" alt="" class="company__img">
                             </div>
                         </div>
-                        <div class="company__block-flex company__block-right">
+                        <div class="company__block-flex company__block-right col-md-6 col-12">
                             <h1 class="company__title title">Агенство нерухомості Житомир</h1>
                             <p class="company__info">
                                 Компанія "Агенство нерухомості "Житомир" працює в місті Житомирі з 2017 року.

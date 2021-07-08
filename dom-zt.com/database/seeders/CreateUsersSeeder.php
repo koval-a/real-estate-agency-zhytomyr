@@ -21,7 +21,7 @@ class CreateUsersSeeder extends Seeder
                'email'=>'admin@dom-zt.com',
                'is_admin'=>'1',
                'password'=> bcrypt('123456'),
-               'avatar'=> 'admin.png',
+               'avatar'=> 'avatar.png',
                'phone'=> '000-000-0000',
             ],
             [
@@ -29,11 +29,11 @@ class CreateUsersSeeder extends Seeder
                'email'=>'rieltor@dom-zt.com',
                'is_admin'=>'0',
                'password'=> bcrypt('123456'),
-               'avatar'=> 'rieltor.png',
+               'avatar'=> 'avatar.png',
                'phone'=> '098-001-0101',
             ],
         ];
-  
+
         foreach ($user as $key => $value) {
             User::create($value);
         }
