@@ -71,9 +71,9 @@
                     <td>
                         Власник
                     </td>
-                    <td>
-                        Дія
-                    </td>
+{{--                    <td>--}}
+{{--                        Дія--}}
+{{--                    </td>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -115,17 +115,17 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>
-                            @if($item->isPay)
-                                <a href="{{ route('rieltor.isPay', [$item->id]) }}" class="btn btn-secondary">
-                                    Скасувати
-                                </a>
-                            @else
-                                <a href="{{ route('rieltor.isPay', [$item->id]) }}" class="btn btn-success">
-                                    Продано
-                                </a>
-                            @endif
-                        </td>
+{{--                        <td>--}}
+{{--                            @if($item->isPay)--}}
+{{--                                <a href="{{ route('rieltor.isPay', [$item->id]) }}" class="btn btn-secondary">--}}
+{{--                                    Скасувати--}}
+{{--                                </a>--}}
+{{--                            @else--}}
+{{--                                <a href="{{ route('rieltor.isPay', [$item->id]) }}" class="btn btn-success">--}}
+{{--                                    Продано--}}
+{{--                                </a>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
                     </tr>
                 @endforeach
                 </tbody>

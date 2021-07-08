@@ -47,10 +47,10 @@
                                 <select name="typeWall" id="typeWall" class="form-control">
                                     @foreach($typeWall as $key => $wall)
 
-                                        @if($setCurrentSelected[5] == $wall->name)
-                                            <option value="{{$wall->name}}" selected>{{$wall->name}}</option>
+                                        @if($setCurrentSelected[6] ?? '' == $wall->id)
+                                            <option value="{{$wall->id}}" selected>{{$wall->name}}</option>
                                         @else
-                                            <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+                                            <option value="{{ $wall->id }}">{{ $wall->name }}</option>
                                         @endif
 
                                     @endforeach
@@ -223,8 +223,17 @@
                         @endforeach
                     </select>
                     <hr>
-                    <h4>Розміщення <br>поточне: <span class="text-danger">{{$setCurrentSelected[3]}}, {{$setCurrentSelected[4]}}</span>
-                        <br> нове:</h4>
+                    <h4>Розміщення поточне:</h4>
+                    <div class="d-flex">
+                        <input type="text" name="rayonCurrent" id="rayonCurrent" value="{{$setCurrentSelected[3]->rayon ?? ''}}" class="form-control" readonly>
+
+                        @if($setCurrentSelected[4]->city ?? '' != '')
+                            <input type="text" name="cityCurrent" id="cityCurrent" value="{{$setCurrentSelected[4]->city ?? ''}}" class="form-control" readonly>
+                        @else
+                            <input type="text" name="rayonCityCurrent" id="rayonCityCurrent" value="{{$setCurrentSelected[5]->rayon_city ?? ''}}" class="form-control" readonly>
+                        @endif
+
+                    </div>
                     <label>Район</label>
                     <select onchange="showList(this)" name="location_rayon_id" id="location_rayon_id" class="form-control">
                         <option disabled selected>Оберіть район</option>
@@ -240,7 +249,7 @@
                         @endforeach
                     </select>
                     {{--                    <label>Район місто</label>--}}
-                    <select name="location_city_rayon_id" id="location_city_rayon_id" class="form-control invisible">
+                    <select name="location_city_rayon_id" id="location_city_rayon_id" class="form-control invisible" style="margin-top: -30px">
                         <option disabled selected>Оберіть район міста</option>
                         @foreach($location[2] as $key => $rayon_city)
                             <option value="{{$rayon_city->id}}">{{$rayon_city->rayon_city}}</option>

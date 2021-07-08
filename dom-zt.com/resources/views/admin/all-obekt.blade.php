@@ -26,8 +26,8 @@
                     <form action="{{ route('admin.search') }}" method="POST" role="search">
                         @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control" name="q"
-                                   placeholder="Пошук за ID та назвою об'єкта">
+                            <input type="text" class="form-control" name="q" value="{{$q??''}}"
+                                   placeholder="Пошук за ID, назвою об'єкта та номером телефону власника">
                             <span class="input-group-btn">
                             <button type="submit" class="btn btn-danger">
                                 Пошук
@@ -188,18 +188,23 @@
 {{--                            </span>--}}
 {{--                        </td>--}}
                         <td>
-                            <div class="d-flex p-2">
-                                @if($item->isPublic)
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
-                                        <i class="bi bi-eye-slash"></i>
-                                    </a>
-                                @else
-                                    <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
-                                       <i class="bi bi-eye"></i>
-                                    </a>
-                                @endif
-                                <a href="{{ route('admin.obekt.edit', $item) }}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
-                                <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger p-1"><i class="bi bi-trash"></i></a>
+                            <div class="dropdown">
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Виконати
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    @if($item->isPublic)
+                                        <a href="{{route('admin.isPublic', $item->id)}}" class="dropdown-item text-secondary">
+                                            <i class="bi bi-eye-slash"></i> Приховати
+                                        </a>
+                                    @else
+                                        <a href="{{route('admin.isPublic', $item->id)}}" class="dropdown-item text-success">
+                                            <i class="bi bi-eye"></i> Опублікувати
+                                        </a>
+                                    @endif
+                                    <a href="{{ route('admin.obekt.edit', $item) }}" class="dropdown-item text-primary"><i class="bi bi-pencil"></i> Редагувати</a>
+                                    <a href="{{ route('admin.obekt.delete', $item) }}" class="dropdown-item text-danger"><i class="bi bi-trash"></i> Видалити</a>
+                                </ul>
                             </div>
                         </td>
                     </tr>

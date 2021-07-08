@@ -222,7 +222,11 @@
                     <select id='selUser' class="form-control w-auto" name="owner_id">
                         <option value='0' selected disabled>-Оберіть власника-</option>
                         @foreach($owners as $key => $owner)
-                            <option value="{{$owner->id}}">{{$owner->name}} ({{$owner->phone}})</option>
+                            @if(Cookie::get('owner-id-for-new-obket-form-check-result')?? '' != '')
+                                <option value="{{$owner->id}}" selected>{{$owner->name}} ({{$owner->phone}})</option>
+                            @else
+                                <option value="{{$owner->id}}">{{$owner->name}} ({{$owner->phone}})</option>
+                            @endif
                         @endforeach
                     </select>
 
@@ -258,7 +262,6 @@
                     <select class="form-control" id="rieltor_id" name="rieltor_id" required>
                         <option>-Оберіть ріелтора-</option>
                         @foreach($rieltors as $key => $rieltor)
-
                             <option value="{{$rieltor->id}}">{{$rieltor->name}}</option>
                         @endforeach
                     </select>

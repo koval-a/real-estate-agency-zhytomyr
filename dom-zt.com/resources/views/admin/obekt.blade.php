@@ -206,16 +206,16 @@
                             <td>
                                 @if($item->isPublic)
                                     @if($item->isPay)
-                                        <span class="bg-light-danger text-light p-2 m-2 rounded">
-                                            Продано
+                                        <span class="bg-success text-light p-2 m-2 rounded">
+                                           <i class="bi bi-check-circle-fill"></i>  Продано
                                         </span>
                                     @else
-                                        <span class="bg-success text-light p-2 m-2 rounded">
-                                            В продажу
+                                        <span class="bg-dark text-light p-2 m-2 rounded">
+                                            <i class="bi bi-cart-fill"></i> В продажу
                                         </span>
                                     @endif
                                 @else
-                                    <span class="text-secondary">Не опубліковано</span>
+                                    <span class="text-secondary"> <i class="bi bi-info-circle-fill"></i> Не опубліковано</span>
                                 @endif
 
                             </td>
@@ -228,15 +228,28 @@
                                 </div>
 
                             </td>
-                            <td><i class="bi bi-map"></i>
-                                @if($item->rayon_name != 'м.Житомир')
-                                    <span>р-н </span>
-                                @endif
-                                {{ $item->rayon_name }}
-                                @if($item->city_name != '-')
-                                    <br>
-                                    <i class="bi bi-map-fill"></i> {{ $item->city_name }}
-                                @endif
+                            <td>
+                                <i class="bi bi-map"></i>
+                                @foreach($locationRayon as $name)
+                                    @if($name->id == $item->location_rayon_id)
+                                        @if($name->rayon != 'м.Житомир')
+                                            <span>р-н </span>
+                                        @endif
+                                        {{ $name->rayon }}
+                                    @endif
+                                @endforeach
+                                <br>
+                                <i class="bi bi-map-fill"></i>
+                                @foreach($locationCity as $name)
+                                    @if($name->id == $item->location_city_id)
+                                        {{ $name->city }}
+                                    @endif
+                                @endforeach
+                                @foreach($locationCityRayon as $name)
+                                    @if($name->id == $item->location_city_rayon_id)
+                                        {{ $name->rayon_city }}
+                                    @endif
+                                @endforeach
                             </td>
                             {{--                        <td>--}}
                             {{--                            {{ $item->created_at->format('Y-m-d') }}--}}
@@ -294,20 +307,32 @@
                             {{--                                --}}{{--                                </p>--}}
                             {{--                            </td>--}}
                             <td>
-                                <div class="d-flex p-2">
-                                    @if($item->isPublic)
-                                        <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-secondary">
-                                            <i class="bi bi-eye-slash"></i>
-                                        </a>
-                                    @else
-                                        <a href="{{route('admin.isPublic', $item->id)}}" class="btn btn-success">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                    @endif
-                                    <a href="{{ route('admin.obekt.edit', $item) }}" class="btn btn-primary"><i
-                                            class="bi bi-pencil"></i></a>
-                                    <a href="{{ route('admin.obekt.delete', $item) }}" class="btn btn-danger p-1"><i
-                                            class="bi bi-trash"></i></a>
+                                <div class="dropdown">
+                                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Виконати
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        @if($item->isPay)
+                                            <a href="{{ route('admin.isPay', [$item->id]) }}" class="dropdown-item text-secondary">
+                                                <i class="bi bi-cart-x-fill"></i> Скасувати
+                                            </a>
+                                        @else
+                                            <a href="{{ route('admin.isPay', [$item->id]) }}" class="dropdown-item text-success">
+                                                <i class="bi bi-cart-check-fill"></i> Продано
+                                            </a>
+                                        @endif
+                                        @if($item->isPublic)
+                                            <a href="{{route('admin.isPublic', $item->id)}}" class="dropdown-item text-secondary">
+                                                <i class="bi bi-eye-slash"></i> Приховати
+                                            </a>
+                                        @else
+                                            <a href="{{route('admin.isPublic', $item->id)}}" class="dropdown-item text-success">
+                                                <i class="bi bi-eye"></i> Опублікувати
+                                            </a>
+                                        @endif
+                                        <a href="{{ route('admin.obekt.edit', $item) }}" class="dropdown-item text-primary"><i class="bi bi-pencil"></i> Редагувати</a>
+                                        <a href="{{ route('admin.obekt.delete', $item) }}" class="dropdown-item text-danger"><i class="bi bi-trash"></i> Видалити</a>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>

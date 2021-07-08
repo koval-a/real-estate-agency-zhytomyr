@@ -22,6 +22,8 @@ use http\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
@@ -80,9 +82,6 @@ class AdminController extends AC
             // move to folder image
             $request->imgInp->move(public_path('files/images/users'), $imageName);
             // save new name image to database
-
-
-
 
         }else{
             $imageName = 'avatar.png';
@@ -360,19 +359,31 @@ class AdminController extends AC
     public function searchObekt(Request $request)
     {
         $locationRayon = LocationCityRayon::all();
-        $location = Location::all();
         $appointment = Appointment::all();
         $owners = Owner::all();
         $filesImages = Files::all();
+        $category = Category::all();
 
         $q = $request->input('q');
         if ($q != "") {
-            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
-            $pagination = $obekts->appends(array(
-                'q' => $request->input('q')
-            ));
+
+            if(is_numeric($q))
+            {
+                $owner = Owner::where('phone', $q)->first();
+                $obekts = Obekts::where('owner_id', $owner->id)->paginate(10)->setPath('');
+                $pagination = $obekts->appends(array(
+                    'q' => $request->input('q')
+                ));
+
+            }else{
+                $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
+                $pagination = $obekts->appends(array(
+                    'q' => $request->input('q')
+                ));
+            }
+
             if (count($obekts) > 0)
-                return view('admin.all-obekt', compact('obekts', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
+                return view('admin.all-obekt', compact('obekts', 'q', 'owners', 'category', 'locationRayon', 'appointment', 'filesImages'));
         }
         return back()->with('error', 'Нічого не знайдено!');
     }
@@ -600,16 +611,15 @@ class AdminController extends AC
             $owner = $obekt->owner_id;
             $rieltor = $obekt->rieltor_id;
 
-            $rayonCurrent = LocationRayon::where('id', $obekt->location_rayon_id)->pluck('rayon');
-            $cityCurrent = LocationCity::where('id', $obekt->location_city_id)->pluck('city');
-            $cityRayon1 = LocationCityRayon::where('id', $obekt->location_city_rayon_id)->pluck('rayon_city');
+            $rayonCurrent = LocationRayon::where('id', $obekt->location_rayon_id)->first();
+            $cityCurrent = LocationCity::where('id', $obekt->location_city_id)->first();
+            $cityRayonCurrnet = LocationCityRayon::where('id', $obekt->location_city_rayon_id)->first();
 
-
-            $wall = $obekt->typeWall;
+            $wall = TypeWall::where('id', $obekt->type_wall_id)->first();
             $category = Category::find($obekt->category_id);
             $categorySlug = $category->slug;
 
-            $setCurrentSelected = [$appointment, $owner, $rieltor, $rayonCurrent, $cityCurrent, $wall];
+            $setCurrentSelected = [$appointment, $owner, $rieltor, $rayonCurrent, $cityCurrent, $cityRayonCurrnet, $wall];
 
             $rieltors = Rieltors::where('is_admin', '=', 0)->get();
 
@@ -647,7 +657,29 @@ class AdminController extends AC
         $updateObekt->owner_id = $request->owner_id;
         $updateObekt->rieltor_id = $request->rieltor_id;
         $updateObekt->opalenyaName = $request->opalenyaName;
-        $updateObekt->typeWall = $request->typeWall;
+        $updateObekt->type_wall_id = $request->typeWall;
+
+        if ($request->location_rayon_id == 51) {
+            $updateObekt->location_rayon_id = $request->location_rayon_id;
+            if ($request->location_city_rayon_id == '') {
+                return back()->with('error', 'Оберіть район міста');
+            }else{
+                $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
+                $updateObekt->location_city_id = null;
+            }
+        }else if($request->location_rayon_id == 75){
+            $updateObekt->location_rayon_id = $request->location_rayon_id;
+            if ($request->location_city_id == '') {
+                return back()->with('error', 'Оберіть селище');
+            }else{
+                $updateObekt->location_city_id = $request->location_city_id;
+                $updateObekt->location_city_rayon_id = null;
+            }
+        }else{
+            $updateObekt->location_rayon_id = $request->rayonCurrent;
+            $updateObekt->location_city_rayon_id = $request->rayonCityCurrent;
+            $updateObekt->location_city_id = $request->cityCurrent;
+        }
 
         $category_slug = Category::find($updateObekt->category_id);
         $category_slug_name = $category_slug->slug;
@@ -686,29 +718,6 @@ class AdminController extends AC
             }
         }
 
-        // Location update
-//        $updateLocation = Location::find($updateObekt->locaton_id);
-
-        if($request->location_rayon_id){
-//            $updateLocation->rayon_id = $request->location_rayon_id;
-            $locationRayon = LocationRayon::find($request->location_rayon_id);
-            $updateObekt->rayon_name = $locationRayon->rayon;
-        }
-
-        if($request->location_rayon_city_id){
-//            $updateLocation->rayon_id = $request->location_rayon_city_id;
-            $locationCityRayon = LocationCityRayon::find($request->location_rayon_city_id);
-            $updateObekt->city_name = $locationCityRayon->rayon_city;
-        }
-
-        if($request->location_city_id){
-//            $updateLocation->rayon_id = $request->location_city_id;
-            $locationCity = LocationCity::find($request->location_city_id);
-            $updateObekt->city_name = $locationCity->city;
-        }
-
-//        $updateLocation->save();
-
         // Obekt update
         if ($updateObekt->save()) {
 
@@ -734,6 +743,22 @@ class AdminController extends AC
         } else {
             return back()->with("error", "Виникла помилка.");
         }
+    }
+
+    public function isPay($id)
+    {
+        $obekt = Obekts::find($id);
+
+        if($obekt->isPay == 1)
+        {
+            $obekt->isPay = 0;
+        }else{
+            $obekt->isPay = 1;
+        }
+
+        $obekt->save();
+
+        return back();
     }
 
     // END - OBEKT //
@@ -896,11 +921,21 @@ class AdminController extends AC
 
                     $flag = false;
                     $ownerID = $owner->id;
+                    
+                    if(Cookie::get('owner-id-for-new-obket-form-check-result')){
+                        Cookie::queue(Cookie::forget('owner-id-for-new-obket-form-check-result'));
+                    }else{
+                        Cookie::queue(Cookie::make('owner-id-for-new-obket-form-check-result', $ownerID, 1));
+                    }
+
                     $obektByPhone = Obekts::where('owner_id', '=', $ownerID)->get();
                     $countObekt = $obektByPhone->count();
                     $dataInfo = [$countObekt, $owner->name, $owner->phone];
+                    $locationCityRayon = LocationCityRayon::all();
+                    $locationRayon = LocationRayon::all();
+                    $locationCity = LocationCity::all();
 
-                    return view('admin.obekt.check-result', compact('flag',  'obektByPhone', 'dataInfo', 'category', 'appointment'));
+                    return view('admin.obekt.check-result', compact('flag', 'locationCityRayon', 'locationCity', 'locationRayon', 'obektByPhone', 'dataInfo', 'category', 'appointment'));
                 }
 
             }else{

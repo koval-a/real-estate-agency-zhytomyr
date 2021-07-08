@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Jorenvh\Share\ShareFacade;
 use function PHPUnit\Framework\isEmpty;
 
@@ -29,10 +30,19 @@ class PublicController extends Controller
         $obekt = Obekts::where('slug', '=', $slug)->first();
         $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(4)->get();
 
-        $locationRayon = LocationCityRayon::all();
+        $locationCityRayon = LocationCityRayon::where('id', $obekt->location_city_rayon_id)->first();
+        $locationCity = LocationCity::where('id', $obekt->location_city_id)->first();
+        $locationRayon = LocationRayon::where('id', $obekt->location_rayon_id)->first();
+
+        $rayon = $locationRayon->rayon??'';
+        $city = $locationCity->city??'';
+        $cityRayon = $locationCityRayon->rayon_city??'';
+
+        $locationFull = [$rayon, $city, $cityRayon];
 
         $category = Category::where('id', '=', $obekt->category_id)->first();
         $rieltor = Rieltors::where('id', '=', $obekt->rieltor_id)->first();
+        $typeWall = TypeWall::where('id', $obekt->type_wall_id)->pluck('name');
 
         // https://packagist.org/packages/jorenvanhocht/laravel-share
         // Share::currentPage()->facebook();
@@ -41,13 +51,14 @@ class PublicController extends Controller
         $linkTwitter = ShareFacade::currentPage()->twitter()->getRawLinks();
         $linkTelegram = ShareFacade::currentPage()->telegram()->getRawLinks();
         $linkWhatsapp = ShareFacade::currentPage()->whatsapp()->getRawLinks();
+        $currentURL = URL::current();
 
-        $shareButtonLink = [$linkFacebook, $linkTwitter, $linkTelegram, $linkWhatsapp];
+        $shareButtonLink = [$linkFacebook, $linkTwitter, $linkTelegram, $linkWhatsapp, $currentURL];
 
         $filesImages = Files::all();
         $appointment = Appointment::find($obekt->appointment_id);
 
-        return view('pages.obekt', compact('obekt', 'rieltor', 'category', 'lastAddedObekts',  'shareButtonLink', 'filesImages', 'appointment'));
+        return view('pages.obekt', compact('obekt', 'typeWall', 'rieltor', 'category', 'lastAddedObekts',  'shareButtonLink', 'filesImages', 'appointment', 'locationFull'));
     }
 
     public function about()
@@ -84,7 +95,6 @@ class PublicController extends Controller
 
         $obekts = Obekts::where('isPublic', '=', 1)->where('category_id', '=', $category->id)->orderBy('created_at', 'DESC')->paginate(10);
         $appointments = Appointment::where('type', '=', $categorySlug)->get();
-//        $location = Location::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
         $locationCityRayon = LocationCityRayon::all();

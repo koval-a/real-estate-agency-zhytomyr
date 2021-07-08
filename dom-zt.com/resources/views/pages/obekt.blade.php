@@ -67,7 +67,9 @@
                         </div>
                     </div>
                     <div class="product__info shadow rounded border-light">
-                        <p class="product__info--prace">Ціна: {{ $obekt->price }}$</p>
+                        <p class="product__info--prace">
+                            Ціна: {{ number_format($obekt->price, 2, '.', ',') }}$
+                        </p>
                         <ul class="product-filter__list">
 
                             @if( $category ->slug  != 'land')
@@ -112,7 +114,7 @@
 
                             <li class="product-filter__item">
                                 <span class="text-secondary"> Тип стін: </span>
-                                {{ $obekt->typeWall }}
+                                {{ $typeWall[0] }}
                             </li>
 
                             <li class="product-filter__item">
@@ -121,11 +123,12 @@
                             </li>
 
                             <li class="product-filter__item">
-                                <span class="text-secondary">Розташування: </span>
-                                {{ $dataLocation[0] ?? ''}},
-                                {{ $obekt->rayon_name }},
-                                {{ $obekt->city_name }}
+                                <span class="text-secondary">Розташування: </span> <br><br>
+                                {{ $locationFull[0] }},
+                                {{ $locationFull[1] }}
+                                {{ $locationFull[2] }}
                             </li>
+                                <hr>
                             <li class="product-filter__item">
                                     <span class="text-secondary">Дата публікації: </span>{{ $obekt->created_at->format('Y-m-d') }}
                             </li>
@@ -138,8 +141,7 @@
                             <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">
                                 {{ $rieltor->phone }}
                             </a>
-                            <br>
-                            <br>
+                            <hr>
                             {{--                            <p class="product__info--text">--}}
                             {{--                                Експерт з нерухомості допоможе знайти вам найкращий варіант!--}}
                             {{--                                Отримайте безкоштовну консультацію за номером телефону:--}}
@@ -158,19 +160,40 @@
                             {{--                                    </a>--}}
                             {{--                                </div>--}}
                         </div>
+                        @if(Auth::user())
+                            <div class="note">
+                                <span>Нотатка</span>
+                                <div class="bg-warning shadow rounded p-2 m-1">
+                                    {{ $obekt->note }}
+                                </div>
+                                <span>Адреса</span>
+                                <div class="bg-warning shadow rounded p-2 m-1">
+                                    {{ $obekt->address }}
+                                </div>
+                            </div>
+                        @endif
 
-                        <div class="note">
-                            <span>Нотатка</span>
-                            @if(Auth::user())
-                                {{ $dataLocation[5] ?? ''}}
-                            @endif
-                            <div class="bg-warning shadow rounded p-2 m-1">
-                                {{ $obekt->note }}
-                            </div>
-                            <span>Адреса</span>
-                            <div class="bg-warning shadow rounded p-2 m-1">
-                                {{ $obekt->address }}
-                            </div>
+                        <div class="copy-shaere-link">
+                            <!-- The text field is hidden -->
+                            <input type="text" value="{{$shareButtonLink[4]}}" id="myInput" class="invisible">
+                            <!-- The button used to copy the text -->
+                            <button onclick="myFunction()" class="btn btn-secondary w-100 p-2">Скопіювати URL</button>
+                            <script>
+                                function myFunction() {
+                                    /* Get the text field */
+                                    var copyText = document.getElementById("myInput");
+
+                                    /* Select the text field */
+                                    copyText.select();
+                                    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                                    /* Copy the text inside the text field */
+                                    document.execCommand("copy");
+
+                                    /* Alert the copied text */
+                                    alert("Посилання скопійовано: " + copyText.value);
+                                }
+                            </script>
                         </div>
 
                         {{--                        <div class="product__info--social">--}}
@@ -240,13 +263,13 @@
             </div>
         </section>
 
-        <section class="plus">
+        <section class="company-plus">
             <div class="container">
                 <h3 class="plus__title title">Чому нам довіряють?</h3>
                 <div class="pluses__block--flex">
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <img src="/files/images/safetly/security.svg" alt="security-image" class="img-fluid">
+                            <img src="/files/images/safetly/security.svg" alt="security-image" class="img-fluid  w-50">
                         </div>
                         <h4 class="text-danger text-uppercase display-5">Безпека</h4>
                         <p class="text-justify">
@@ -255,7 +278,7 @@
                     </div>
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <img src="/files/images/safetly/experience.svg" alt="security-image" class="img-fluid">
+                            <img src="/files/images/safetly/experience.svg" alt="security-image" class="img-fluid  w-50">
                         </div>
                         <h4 class="text-danger text-uppercase display-5">Досвід</h4>
                         <p class="text-justify">
@@ -265,7 +288,7 @@
                     </div>
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <img src="/files/images/safetly/quality.svg" alt="security-image" class="img-fluid">
+                            <img src="/files/images/safetly/quality.svg" alt="security-image" class="img-fluid w-50">
                         </div>
                         <h4 class="text-danger text-uppercase display-5">Прозорість</h4>
                         <p class="text-justify">
@@ -274,7 +297,7 @@
                     </div>
                     <div class="pluses__block text-center">
                         <div class="p-2">
-                            <img src="/files/images/safetly/honesty.svg" alt="security-image" class="img-fluid">
+                            <img src="/files/images/safetly/honesty.svg" alt="security-image" class="img-fluid w-50">
                         </div>
                         <h4 class="text-danger text-uppercase display-5">Якість</h4>
                         <p class="text-justify">
@@ -339,7 +362,7 @@
                 </h4>
                 <ul class="row">
                     @foreach($lastAddedObekts as $key => $item)
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="shadow rounded p-2">
                                 <a href="{{ route('obekt.view', $item->slug) }}" class="object__link">
                                     <div class="object__image1 h-auto">
@@ -349,7 +372,7 @@
                                 <div class="object__text--promo p-3">
                                     <ul class="object__list">
                                         <li class="object__item object__item--title">{{ $item->name }}</li>
-                                        <li class="object__item object__item--prace">$ {{ $item->price }}</li>
+                                        <li class="object__item object__item--prace">$ {{ number_format($item->price, 2, '.', ',') }}</li>
                                         {{--                                        <li class="object__item">Район:--}}
                                         {{--                                            @foreach($locationData as $key => $loc)--}}
                                         {{--                                                @if($loc->id == $item->location_id)--}}

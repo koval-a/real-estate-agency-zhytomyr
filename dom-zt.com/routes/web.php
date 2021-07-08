@@ -115,6 +115,8 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     });
 
+    Route::get('/pay/{id}', [AdminController::class, 'isPay'])->name('admin.isPay');
+
     Route::get('/settings/info', [AdminController::class, 'settings'])->name('admin.settings')->middleware('is_admin');
     Route::post('/settings/save', [AdminController::class, 'settingsSave'])->name('admin.settings.save')->middleware('is_admin');
 
