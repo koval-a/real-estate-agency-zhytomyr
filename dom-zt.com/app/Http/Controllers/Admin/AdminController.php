@@ -921,7 +921,7 @@ class AdminController extends AC
 
                     $flag = false;
                     $ownerID = $owner->id;
-                    
+
                     if(Cookie::get('owner-id-for-new-obket-form-check-result')){
                         Cookie::queue(Cookie::forget('owner-id-for-new-obket-form-check-result'));
                     }else{
