@@ -24,8 +24,8 @@ class NoteFactory extends Factory
         return [
             'date_publish' => $this->faker->date('Y-m-d', strtotime('now +' . $this->faker->unique()->numberBetween(1, 31) . ' days')),
             'note_text' => $this->faker->paragraph,
-            'obekt_id' => $this->faker->numberBetween(50,100),
-            'user_id' => $this->faker->numberBetween(10,20),
+            'obekt_id' => $this->faker->numberBetween(1,100),
+            'user_id' => $this->faker->numberBetween(32,40),
         ];
     }
 }

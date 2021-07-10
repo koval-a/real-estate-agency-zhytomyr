@@ -14,6 +14,6 @@ class ObektTableSeeder extends Seeder
      */
     public function run()
     {
-        Obekts::factory()->count(100)->create();
+        Obekts::factory()->count(1000)->create();
     }
 }

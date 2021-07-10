@@ -884,8 +884,15 @@ class AdminController extends AC
         $filesImages = Files::all();
         $owners = Owner::all();
         $appointment = Appointment::where('type', '=', $category)->get();
+        $locationRayon = LocationRayon::all();
+        $locationCity = LocationCity::all();
+        $locationCityRayon = LocationCityRayon::all();
+        $rieltor = Users::all();
 
-        return view('admin.print', compact('obekts', 'category', 'filesImages', 'owners', 'appointment'));
+        return view('admin.print',
+            compact('obekts','rieltor', 'category','filesImages','owners',
+                'appointment', 'locationRayon', 'locationCity', 'locationCityRayon'
+            ));
     }
 
     //

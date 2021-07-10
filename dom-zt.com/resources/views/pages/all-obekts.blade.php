@@ -25,7 +25,7 @@
     <section class="container obekts-by-category">
         <div class="header-obekts-by-category pl-4">
             <h1 class="title- text-danger font-bold text-uppercase display-4">
-                {{ $category['name'] }}
+                {{ $category['name'] }} ({{ $obekts->count() }})
             </h1>
         </div>
         <div class="container d-flex justify-content-between">
@@ -70,7 +70,7 @@
                                                     </div>
                                                 @endif
                                                 <div class="obekt-image">
-                                                  <img src="{{'/files/images/blog/blog.jpeg'}}" alt="obekt-image" class="img-fluid rounded obekt-image__img">
+                                                  <img src="{{ $item->main_img }}" alt="obekt-image" class="img-fluid rounded obekt-image__img">
 
                                                                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                                                     <!-- news-sidbar -->
