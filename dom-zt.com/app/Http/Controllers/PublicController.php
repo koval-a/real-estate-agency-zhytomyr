@@ -117,7 +117,6 @@ class PublicController extends Controller
         $category = Category::where('slug', '=', $categorySlug)->first();
         $appointments = Appointment::where('type', '=', $categorySlug)->get();
         $typeWall = TypeWall::all();
-        $location = Location::all();
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
         $locationCityRayon = LocationCityRayon::all();
@@ -139,58 +138,58 @@ class PublicController extends Controller
         ){
             // UnSelect
             if($request->unselect_rayon_city){
-                $unselect_rayon_city = $request->unselect_rayon_city;
-                $query->whereNotIn('city_name', array($unselect_rayon_city));
-                $filterData[15] = $unselect_rayon_city;
-                Cookie::queue(Cookie::make('unselect_rayon_city', $unselect_rayon_city, $minutes));
+                $query->whereNotIn('location_rayon_id', array($request->unselect_rayon_city));
+                $filterData[15] = $request->unselect_rayon_city;
+                Cookie::queue(Cookie::make('unselect_rayon_city', $request->unselect_rayon_city, $minutes));
             }
 
             // ID
             if($request->obekt_id){
-                $obekt_id = $request->obekt_id;
-                $filterData[8] = $obekt_id;
-                $query->where('id','=', $obekt_id);
-                Cookie::queue(Cookie::make('obekt_id', $obekt_id, $minutes));
+                $filterData[8] = $request->obekt_id;
+                $query->where('id','=', $request->obekt_id);
+                Cookie::queue(Cookie::make('obekt_id', $request->obekt_id, $minutes));
             }
             // Appointment
             if($request->appointment_id){
-                $typeAppointment = $request->appointment_id;
-                $query->where('appointment_id','=', $typeAppointment);
-                $filterData[0] = $typeAppointment;
-                Cookie::queue(Cookie::make('typeAppointment', $typeAppointment, $minutes));
+                $query->where('appointment_id','=', $request->appointment_id);
+                $filterData[0] = $request->appointment_id;
+                Cookie::queue(Cookie::make('typeAppointment', $request->appointment_id, $minutes));
             }
             // Location
             if($request->rayon_id)
             {
-                $rayon_name = $request->rayon_id; // Райони + м.Житомир
-                $filterData[1] = $rayon_name;
-                Cookie::queue(Cookie::make('rayon_name', $rayon_name, $minutes));
+                $filterData[1] = $request->rayon_id;
+                Cookie::queue(Cookie::make('rayon_name', $request->rayon_id, $minutes));
 
-                if($rayon_name == 'м.Житомир') // 51 - Житомир
+                if($request->rayon_id == 51) // 51 - Житомир
                 {
                     if($request->rayon_city)
                     {
-                        $rayon_city = $request->rayon_city; // Райони м.Житомир
-                        $filterData[2] = $rayon_city;
-                        Cookie::queue(Cookie::make('rayon_city', $rayon_city, $minutes));
+                        // Райони м.Житомир
+                        $filterData[2] = $request->rayon_city;
+                        Cookie::queue(Cookie::make('rayon_city', $request->rayon_city, $minutes));
                         $query
-                            ->where('rayon_name', '=', $rayon_name)
-                            ->where('city_name', '=', $rayon_city);
+                            ->where('location_rayon_id', '=', $request->rayon_id)
+                            ->where('location_city_rayon_id', '=', $request->rayon_city);
                     }else{
                         return back()->with('error', 'Оберіть район місто.');
                     }
 
-                }else if($rayon_name == 'Житомирський'){ // 75 - Житомирський район
+                }else if($request->rayon_id == 75){ // 75 - Житомирський район
 
-                    $city_name = $request->city_name; // Селища р-н Житомирьский
-                    $filterData[3] = $city_name;
-                    Cookie::queue(Cookie::make('city_name', $city_name, $minutes));
-                    $query
-                        ->where('rayon_name', '=', $rayon_name)
-                        ->where('city_name', '=', $city_name);
+                    if($request->city_name){
+                        // Селища р-н Житомирьский
+                        $filterData[3] = $request->city_name;
+                        Cookie::queue(Cookie::make('city_name', $request->city_name, $minutes));
+                        $query
+                            ->where('location_rayon_id', '=', $request->rayon_id)
+                            ->where('location_city_id', '=', $request->city_name);
+                    }else{
+                        return back()->with('error', 'Оберіть селище.');
+                    }
 
                 }else{
-                    $query->where('rayon_name', '=', $rayon_name);
+                    $query->where('location_rayon_id', '=', $request->rayon_id);
                 }
             }
 
@@ -258,36 +257,30 @@ class PublicController extends Controller
             $categorySlug == 'commercial-real-estate'
         ) {
             if($request->typeOpalenya){
-                $typeOpalenya = $request->typeOpalenya;
-                $query->where('opalenyaName','=', $typeOpalenya);
-                $filterData[9] = $typeOpalenya;
-                Cookie::queue(Cookie::make('typeOpalenya', $typeOpalenya, $minutes));
+                $query->where('opalenyaName','=', $request->typeOpalenya);
+                $filterData[9] = $request->typeOpalenya;
+                Cookie::queue(Cookie::make('typeOpalenya', $request->typeOpalenya, $minutes));
             }
 
             if($request->typeWall){
-                $typeWallName = $request->typeWall;
-                $query->where('typeWall', '=', $typeWallName);
-                $filterData[7] = $typeWallName;
-                Cookie::queue(Cookie::make('typeWallName', $typeWallName, $minutes));
+                $query->where('type_wall_id', '=', $request->typeWall);
+                $filterData[7] = $request->typeWall;
+                Cookie::queue(Cookie::make('typeWallName', $request->typeWall, $minutes));
             }
         }
 
         if($categorySlug == 'house' or $categorySlug == 'flat') {
 
             if($request->count_room){
-
-                $count_room = $request->count_room;
-                $query->where('count_room','>=', $count_room);
-                $filterData[10] = $count_room;
-                Cookie::queue(Cookie::make('count_room', $count_room, $minutes));
+                $query->where('count_room','>=', $request->count_room);
+                $filterData[10] = $request->count_room;
+                Cookie::queue(Cookie::make('count_room', $request->count_room, $minutes));
             }
 
             if($request->count_level){
-
-                $count_level = $request->count_level;
-                $query->where('count_level','>=', $count_level);
-                $filterData[11] = $count_level;
-                Cookie::queue(Cookie::make('count_level', $count_level, $minutes));
+                $query->where('count_level','>=', $request->count_leve);
+                $filterData[11] = $request->count_leve;
+                Cookie::queue(Cookie::make('count_level', $request->count_leve, $minutes));
             }
 
         }
@@ -350,7 +343,7 @@ class PublicController extends Controller
 
         $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
-        return view('pages.all-obekts', compact('obekts',  'typeWall','filterData', 'category', 'location', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
+        return view('pages.all-obekts', compact('obekts',  'typeWall','filterData', 'category', 'locationRayon', 'locationCity','locationCityRayon', 'appointments', 'price'));
     }
 
     public function filterFormClear($categorySlug){
