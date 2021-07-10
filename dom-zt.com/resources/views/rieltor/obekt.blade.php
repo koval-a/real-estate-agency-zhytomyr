@@ -94,16 +94,36 @@
                             </span>
                         </td>
                         <td>
-                            {{ $item->rayon_name }}, {{ $item->city_name }}
+                            <i class="bi bi-map"></i>
+                            @foreach( $location[0] as $name)
+                                @if($name->id == $item->location_rayon_id)
+                                    @if($name->rayon != 'м.Житомир')
+                                        <span>р-н </span>
+                                    @endif
+                                    {{ $name->rayon }}
+                                @endif
+                            @endforeach
+                            <br>
+                            <i class="bi bi-map-fill"></i>
+                            @foreach( $location[1] as $name)
+                                @if($name->id == $item->location_city_id)
+                                    {{ $name->city }}
+                                @endif
+                            @endforeach
+                            @foreach( $location[2] as $name)
+                                @if($name->id == $item->location_city_rayon_id)
+                                    {{ $name->rayon_city }}
+                                @endif
+                            @endforeach
                         </td>
                         <td>
-                            {{ $item->price }}
+                            {{ number_format($item->price, 2, '.', ',') }}
                         </td>
                         <td>
                             {{ $item->square }}
                         </td>
                         <td>
-                            {{ $item->description }}
+                            {{ Str::limit($item->description, 150) }}
                         </td>
                         <td>
                             @foreach($owners as $kwy => $owner)

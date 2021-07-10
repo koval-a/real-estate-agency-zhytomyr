@@ -97,7 +97,7 @@
                                     {{ $item->address }}
                                 </td>
                                 <td>
-                                    $ {{ $item->price }}
+                                    $ {{ number_format($item->price, 2, '.', ',') }}
                                 </td>
                                 <td>
                                     {{ $item->square }} m2

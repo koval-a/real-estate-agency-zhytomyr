@@ -5,7 +5,9 @@ use App\Models\Appointment;
 use App\Models\Category;
 use App\Models\Files;
 use App\Models\Location;
+use App\Models\LocationCity;
 use App\Models\LocationCityRayon;
+use App\Models\LocationRayon;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 
@@ -91,6 +93,7 @@ class RieltorController extends AC
         // 3 - flat
         // 4 - commerce estate
         $owners = Owner::all();
+        $location = [LocationRayon::all(), LocationCity::all(), LocationCityRayon::all()];
 
         switch ($category)
         {
@@ -98,25 +101,25 @@ class RieltorController extends AC
             {
                 $categoryName = 'Земельні ділянки';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 3)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
+                return view('rieltor.obekt', compact('obekts', 'location', 'categoryName', 'category', 'owners'));
             }
             case 'house' :
             {
                 $categoryName = 'Будинки';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 2)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
+                return view('rieltor.obekt', compact('obekts', 'location', 'categoryName', 'category', 'owners'));
             }
             case 'flat' :
             {
                 $categoryName = 'Квартири';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 1)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
+                return view('rieltor.obekt', compact('obekts', 'location', 'categoryName', 'category', 'owners'));
             }
             case 'commercial-real-estate' :
             {
                 $categoryName = 'Комерційна нерухомість';
                 $obekts = Obekts::where('rieltor_id', '=', $getUserID)->where('category_id', '=', 4)->paginate(10);
-                return view('rieltor.obekt', compact('obekts', 'categoryName', 'category', 'owners'));
+                return view('rieltor.obekt', compact('obekts', 'location', 'categoryName', 'category', 'owners'));
             }
         }
 
