@@ -225,12 +225,21 @@
                     <hr>
                     <h4>Розміщення поточне:</h4>
                     <div class="d-flex">
-                        <input type="text" name="rayonCurrent" id="rayonCurrent" value="{{$setCurrentSelected[3]->rayon ?? ''}}" class="form-control" readonly>
 
+                        <div class="rayon">
+                            <input type="text" name="rayonCurrentName" id="rayonCurrentName" value="{{$setCurrentSelected[3]->rayon ?? ''}}" class="form-control" readonly>
+                            <input type="text" class="invisible" id="rayonCurrent" name="rayonCurrent" value="{{$setCurrentSelected[3]->id ?? ''}}">
+                        </div>
                         @if($setCurrentSelected[4]->city ?? '' != '')
-                            <input type="text" name="cityCurrent" id="cityCurrent" value="{{$setCurrentSelected[4]->city ?? ''}}" class="form-control" readonly>
+                           <div class="city">
+                               <input type="text" name="cityCurrentName" id="cityCurrentName" value="{{$setCurrentSelected[4]->city ?? ''}}" class="form-control" readonly>
+                               <input type="text" class="invisible" id="cityCurrent" name="cityCurrent" value="{{$setCurrentSelected[4]->id ?? ''}}">
+                           </div>
                         @else
-                            <input type="text" name="rayonCityCurrent" id="rayonCityCurrent" value="{{$setCurrentSelected[5]->rayon_city ?? ''}}" class="form-control" readonly>
+                            <div class="rayon_city">
+                                <input type="text" class="invisible" id="rayonCityCurrent" name="rayonCityCurrent" value="{{$setCurrentSelected[5]->id ?? ''}}">
+                                <input type="text" name="rayonCityCurrentName" id="rayonCityCurrentName" value="{{$setCurrentSelected[5]->rayon_city ?? ''}}" class="form-control" readonly>
+                            </div>
                         @endif
 
                     </div>
