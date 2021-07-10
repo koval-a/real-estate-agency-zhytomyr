@@ -124,14 +124,26 @@
 
                         </td>
                         <td><i class="bi bi-map"></i>
-                            @if($item->rayon_name != 'м.Житомир')
-                                <span>р-н </span>
-                            @endif
-                                {{ $item->rayon_name }}
-                            @if($item->city_name != '-')
-                                <br>
-                                <i class="bi bi-map-fill"></i> {{ $item->city_name }}
-                            @endif
+                            @foreach( $location[0] as $name)
+                                @if($name->id == $item->location_rayon_id)
+                                    @if($name->rayon != 'м.Житомир')
+                                        <span>р-н </span>
+                                    @endif
+                                    {{ $name->rayon }}
+                                @endif
+                            @endforeach
+                            <br>
+                            <i class="bi bi-map-fill"></i>
+                            @foreach( $location[1] as $name)
+                                @if($name->id == $item->location_city_id)
+                                    {{ $name->city }}
+                                @endif
+                            @endforeach
+                            @foreach( $location[2] as $name)
+                                @if($name->id == $item->location_city_rayon_id)
+                                    {{ $name->rayon_city }}
+                                @endif
+                            @endforeach
                         </td>
                         {{--                        <td>--}}
                         {{--                            {{ $item->created_at->format('Y-m-d') }}--}}

@@ -347,8 +347,9 @@ class AdminController extends AC
         $owners = Owner::all();
         $filesImages = Files::all();
         $category = Category::all();
+        $location = [LocationRayon::all(), LocationCity::all(), LocationCityRayon::all()];
 
-        return view('admin.all-obekt', compact('obekts', 'owners', 'appointment', 'category', 'filesImages'));
+        return view('admin.all-obekt', compact('obekts', 'location','owners', 'appointment', 'category', 'filesImages'));
     }
 
     public function searchObekt(Request $request)
