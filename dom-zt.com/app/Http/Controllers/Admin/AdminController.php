@@ -286,20 +286,17 @@ class AdminController extends AC
             }
 
             if( $request->rayon_id){
-                $rayon = LocationRayon::find($request->rayon_id);
-                $query->where('rayon_name','=', $rayon->rayon);
+                $query->where('location_rayon_id','=', $request->rayon_id);
                 $filterData[3] = $request->rayon_id;
             }
 
             if($request->rayon_city_id) {
-                $rayon_city = LocationCityRayon::find($request->rayon_city_id);
-                $query->where('city_name','=', $rayon_city->rayon_city);
+                $query->where('location_city_rayon_id','=', $request->rayon_city_id);
                 $filterData[4] = $request->rayon_city_id;
             }
 
             if($request->city_id){
-                $city = LocationCity::find($request->city_id);
-                $query->where('city_name','=', $city->city);
+                $query->where('location_city_id','=', $request->city_id);
                 $filterData[5] = $request->city_id;
             }
 
@@ -308,15 +305,13 @@ class AdminController extends AC
                 $category[0] == 'commercial-real-estate'
             ) {
                 if($request->typeOpalenya){
-                    $typeOpalenya = $request->typeOpalenya;
-                    $query->where('opalenyaName','=', $typeOpalenya);
-                    $filterData[6] = $typeOpalenya;
+                    $query->where('opalenyaName','=', $request->typeOpalenya);
+                    $filterData[6] = $request->typeOpalenya;
                 }
 
                 if($request->typeWall){
-                    $typeWallName = $request->typeWall;
-                    $query->where('typeWall', '=', $typeWallName);
-                    $filterData[7] = $typeWallName;
+                    $query->where('type_wall_id', '=', $request->typeWall);
+                    $filterData[7] = $request->typeWall;
                 }
             }
 

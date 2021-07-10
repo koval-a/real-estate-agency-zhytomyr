@@ -98,11 +98,11 @@
                             <option disabled selected>Оберіть тип</option>
                             @foreach($typeWall as $key => $wall)
                                 @if($filterData[7] ?? '')
-                                    @if($filterData[7] == $wall->name)
-                                        <option value="{{ $wall->name }}" selected> {{ $wall->name }} </option>
+                                    @if($filterData[7] == $wall->id)
+                                        <option value="{{ $wall->id }}" selected> {{ $wall->name }} </option>
                                     @endif
                                 @endif
-                                <option value="{{ $wall->name }}">{{ $wall->name }}</option>
+                                <option value="{{ $wall->id }}">{{ $wall->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -150,6 +150,8 @@
             </div>
 
         </form>
+        <hr>
+        {{ $obekts->links() }}
         <hr>
         @if($obekts->count() > 0)
             <div class="all-obekt">
