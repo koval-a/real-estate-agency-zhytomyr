@@ -603,16 +603,17 @@ class AdminController extends AC
     {
         if ($obekt) {
 
-            $appointment = $obekt->appointment_id;
-            $owner = $obekt->owner_id;
-            $rieltor = $obekt->rieltor_id;
+            $obekt1 = Obekts::find($obekt->id);
+            $appointment = $obekt1->appointment_id;
+            $owner = $obekt1->owner_id;
+            $rieltor = $obekt1->rieltor_id;
 
-            $rayonCurrent = LocationRayon::where('id', $obekt->location_rayon_id)->first();
-            $cityCurrent = LocationCity::where('id', $obekt->location_city_id)->first();
-            $cityRayonCurrnet = LocationCityRayon::where('id', $obekt->location_city_rayon_id)->first();
+            $rayonCurrent = LocationRayon::where('id', $obekt1->location_rayon_id)->first();
+            $cityCurrent = LocationCity::where('id', $obekt1->location_city_id)->first();
+            $cityRayonCurrnet = LocationCityRayon::where('id', $obekt1->location_city_rayon_id)->first();
 
-            $wall = TypeWall::where('id', $obekt->type_wall_id)->first();
-            $category = Category::find($obekt->category_id);
+            $wall = TypeWall::where('id', $obekt1->type_wall_id)->first();
+            $category = Category::find($obekt1->category_id);
             $categorySlug = $category->slug;
 
             $setCurrentSelected = [$appointment, $owner, $rieltor, $rayonCurrent, $cityCurrent, $cityRayonCurrnet, $wall];
@@ -653,7 +654,13 @@ class AdminController extends AC
         $updateObekt->owner_id = $request->owner_id;
         $updateObekt->rieltor_id = $request->rieltor_id;
         $updateObekt->opalenyaName = $request->opalenyaName;
-        $updateObekt->type_wall_id = $request->typeWall;
+        $updateObekt->type_wall_id = $request->type_wall_id;
+        $updateObekt->count_room = $request->count_room;
+        $updateObekt->count_level = $request->count_level;
+        $updateObekt->level = $request->level;
+        $updateObekt->note = $request->note;
+        $updateObekt->address = $request->address;
+        $updateObekt->square_hause_land = $request->square_hause_land;
 
         if ($request->location_rayon_id == 51) {
             $updateObekt->location_rayon_id = $request->location_rayon_id;

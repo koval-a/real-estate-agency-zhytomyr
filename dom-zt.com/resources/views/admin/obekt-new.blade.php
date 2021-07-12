@@ -32,6 +32,7 @@
                                 <label>Тип опалення</label>
                                 <select class="form-control" id="opalenyaName" name="opalenyaName">
                                     <option disabled>-Оберіть тип опалення-</option>
+                                    <option value="-1" selected>Не обрано</option>
                                     <option value="Автономне">Автономне</option>
                                     <option value="Централізоване">Централізоване</option>
                                 </select>
@@ -39,7 +40,8 @@
                             <div class="typeWall">
                                 <span class="ml-0 pl-0">Тип стін</span>
                                 <select name="type_wall_id" id="type_wall_id" class="form-control">
-                                    <option value="0" disabled selected>Оберіть</option>
+                                    <option value="0" disabled>Оберіть</option>
+                                    <option value="-1" selected>Не обрано</option>
                                     @foreach($typeWall as $key => $wall)
                                         <option value="{{ $wall->id }}">{{ $wall->name }}</option>
                                     @endforeach

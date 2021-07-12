@@ -38,21 +38,26 @@
                                 <label>Тип опалення</label>
                                 <select class="form-control" id="opalenyaName" name="opalenyaName">
                                     <option disabled>-Оберіть тип опалення-</option>
-                                    <option value="Автономне">Автономне</option>
-                                    <option value="Централізоване">Централізоване</option>
+                                    @if($obekt->opalenyaName == 'Автономне')
+                                        <option value="-1">Не обрано</option>
+                                        <option value="Автономне" selected>Автономне</option>
+                                        <option value="Централізоване">Централізоване</option>
+                                    @elseif($obekt->opalenyaName == 'Централізоване')
+                                        <option value="-1">Не обрано</option>
+                                        <option value="Автономне">Автономне</option>
+                                        <option value="Централізоване" selected>Централізоване</option>
+                                    @else
+                                        <option value="-1" selected>Не обрано</option>
+                                        <option value="Автономне">Автономне</option>
+                                        <option value="Централізоване">Централізоване</option>
+                                    @endif
                                 </select>
                             </div>
                             <div class="typeWall">
                                 <span class="ml-0 pl-0">Тип стін</span>
-                                <select name="typeWall" id="typeWall" class="form-control">
+                                <select name="type_wall_id" id="type_wall_id" class="form-control">
                                     @foreach($typeWall as $key => $wall)
-
-                                        @if($setCurrentSelected[6] ?? '' == $wall->id)
-                                            <option value="{{$wall->id}}" selected>{{$wall->name}}</option>
-                                        @else
-                                            <option value="{{ $wall->id }}">{{ $wall->name }}</option>
-                                        @endif
-
+                                        <option value="{{$wall->id}}" {{ $setCurrentSelected[6]->id == $wall->id?'selected':''}}>{{$wall->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

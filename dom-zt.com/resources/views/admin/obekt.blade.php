@@ -212,7 +212,7 @@
                                            <i class="bi bi-check-circle-fill"></i>  Продано
                                         </span>
                                     @else
-                                        <span class="bg-dark text-light p-2 m-2 rounded">
+                                        <span class="bg-warning text-light p-2 m-2 rounded">
                                             <i class="bi bi-cart-fill"></i> В продажу
                                         </span>
                                     @endif

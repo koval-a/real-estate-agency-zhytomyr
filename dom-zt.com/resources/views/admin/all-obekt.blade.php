@@ -102,18 +102,17 @@
                         <td>
                             @if($item->isPublic)
                                 @if($item->isPay)
-                                    <span class="bg-light-danger text-light p-2 m-2 rounded">
-                                            Продано
+                                    <span class="bg-success text-light p-2 m-2 rounded">
+                                           <i class="bi bi-check-circle-fill"></i>  Продано
                                         </span>
                                 @else
-                                    <span class="bg-success text-light p-2 m-2 rounded">
-                                            В продажу
+                                    <span class="bg-warning text-light p-2 m-2 rounded">
+                                            <i class="bi bi-cart-fill"></i> В продажу
                                         </span>
                                 @endif
                             @else
-                                <span class="text-secondary">Не опубліковано</span>
+                                <span class="text-secondary"> <i class="bi bi-info-circle-fill"></i> Не опубліковано</span>
                             @endif
-
                         </td>
                         <td>
                             <div class="d-flex1 p-2">
