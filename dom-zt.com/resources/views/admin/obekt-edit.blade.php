@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-fluid pb-2">
-
+        {{ $categorySlug }}
         <h1>Редарування об'єкту нерухомості - {{ $obekt->name }}</h1>
         <hr>
         <form action="{{ route('admin.obekt.updated', $obekt->id) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        @if($obekt->slug != 'land')
+                        @if($categorySlug != 'land')
                             <div class="opalemya">
                                 <label>Тип опалення</label>
                                 <select class="form-control" id="opalenyaName" name="opalenyaName">
