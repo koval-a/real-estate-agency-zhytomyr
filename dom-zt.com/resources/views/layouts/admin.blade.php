@@ -231,7 +231,7 @@
 
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
+{{--    <script src="/assets/js/bootstrap.min.js"></script>--}}
     <script src="/assets/js/popper.min.js"></script>
 
 {{--    <script src="/assets/vendors/apexcharts/apexcharts.js"></script>--}}

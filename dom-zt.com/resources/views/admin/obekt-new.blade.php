@@ -239,7 +239,7 @@
                     <div class="invisible" id="newOwnerForm" name="newOwnerForm">
                         <h4>Новий власник</h4>
                         <input type="text" name="name_owner" id="name_owner" class="form-control" placeholder="Ім'я">
-                        <input type="text" name="phone_owner" id="phone_owner" class="form-control m-1" placeholder="Телефон, формат: 380990123456"
+                        <input type="text" name="phone_owner" id="phone_owner" class="form-control m-1" placeholder="Телефон, формат: 0990123456"
                                maxlength="12"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
 {{--                        <input type="text" name="address_owner" id="address_owners" class="form-control" placeholder="Адреса">--}}
                     </div>

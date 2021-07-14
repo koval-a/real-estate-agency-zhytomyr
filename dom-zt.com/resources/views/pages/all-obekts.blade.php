@@ -84,15 +84,46 @@
                                       </div>
                                     </div>
                                   </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingTwo2">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo2" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                Назва фільтру #2
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo2" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                Фільтри
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingTwo1">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo1" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                Назва фільтру #2
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo1" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                Фільтри
+                                            </div>
+                                        </div>
+                                    </div>
                                   <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingThree">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                        Назва фільтру #3
+                                       Виключення розміщення
                                       </button>
                                     </h2>
                                     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body">
-                                          Фільтри
+                                          <div class="locationRayon-select">
+                                              @foreach($locationRayon as $key => $rayon)
+                                                  <label for="{{ $rayon->rayon }}" class="d-flex p-2">
+                                                      <input type="checkbox" id="unselect_location_rayon_id-{{ $rayon->id }}" name="location_rayon[]"
+                                                             value="{{ $rayon->id }}" class="w-auto mr-2"/> {{ $rayon->rayon }}
+                                                  </label>
+                                              @endforeach
+                                          </div>
                                       </div>
                                     </div>
                                   </div>
