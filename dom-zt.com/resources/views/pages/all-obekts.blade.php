@@ -11,7 +11,7 @@
             height: 50vh;
         }
 
-        .filters-parameters, .obekts-div {
+        .filters-parameters, .obekts-div, .locationRayon-select {
             overflow: scroll;
         }
 
@@ -19,6 +19,10 @@
             text-align: center;
             width: 13vw;
             height: 10vh;
+        }
+
+        .locationRayon-select {
+            height: 200px;
         }
     </style>
 
@@ -52,12 +56,19 @@
                                   <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Назва фільтру #1
+                                        Розміщення
                                       </button>
                                     </h2>
                                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body">
-                                          Фільтри
+                                          <div class="locationRayon-select">
+                                              @foreach($locationRayon as $key => $rayon)
+                                                  <label for="{{ $rayon->rayon }}" class="d-flex p-2">
+                                                      <input type="checkbox" id="location_rayon_id-{{ $rayon->id }}" name="location_rayon[]"
+                                                             value="{{ $rayon->id }}" class="w-auto mr-2"/> {{ $rayon->rayon }}
+                                                  </label>
+                                              @endforeach
+                                          </div>
                                       </div>
                                     </div>
                                   </div>
@@ -77,6 +88,7 @@
                                     <h2 class="accordion-header" id="flush-headingThree">
                                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                                         Назва фільтру #3
+                                      </button>
                                     </h2>
                                     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                                       <div class="accordion-body">
@@ -795,20 +807,6 @@
             </div>
         </div>
     </section>
-
-    <div class="col-md-9" style="margin-left: 30%; min-height: 800px;">
-
-        {{--                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--}}
-        {{--                <!-- news-sidbar -->--}}
-        {{--                <ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-4453172390299200" data-ad-slot="1427392196" data-ad-format="auto" data-full-width-responsive="true"></ins>--}}
-        {{--                <script>--}}
-        {{--                    (adsbygoogle = window.adsbygoogle || []).push({});--}}
-        {{--                </script>--}}
-
-    </div>
-    </div>
-
-    {{--    </div>--}}
 
     <script>
         function getCookie(cname) {
