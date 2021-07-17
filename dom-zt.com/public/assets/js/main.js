@@ -30,26 +30,26 @@ window.addEventListener('resize', (event) => {
     }
 });
 
-document.addEventListener('DOMContentLoaded',  () => {
-    document.querySelector('.burger-btn').addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('active');
-    });
-    document.querySelector('.sidebar-hide').addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('active');
-
-    });
-
-    // Perfect Scrollbar Init
-    if(typeof PerfectScrollbar == 'function') {
-        const container = document.querySelector(".sidebar-wrapper");
-        const ps = new PerfectScrollbar(container, {
-            wheelPropagation: false
-        });
-    }
-
-    // Scroll into active sidebar
-    document.querySelector('.sidebar-item.active').scrollIntoView(false)
-});
+// window.addEventListener('DOMContentLoaded',  () => {
+//     document.querySelector('.burger-btn').addEventListener('click', () => {
+//         document.getElementById('sidebar').classList.toggle('active');
+//     });
+//     document.querySelector('.sidebar-hide').addEventListener('click', () => {
+//         document.getElementById('sidebar').classList.toggle('active');
+//
+//     });
+//
+//     // Perfect Scrollbar Init
+//     if(typeof PerfectScrollbar == 'function') {
+//         const container = document.querySelector(".sidebar-wrapper");
+//         const ps = new PerfectScrollbar(container, {
+//             wheelPropagation: false
+//         });
+//     }
+//
+//     // Scroll into active sidebar
+//     document.querySelector('.sidebar-item.active').scrollIntoView(false)
+// });
 
 
 

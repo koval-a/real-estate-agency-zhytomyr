@@ -17,7 +17,7 @@
 
         .btn-select {
             text-align: center;
-            width: 13avw;
+            width: 13vw;
             height: 10vh;
         }
 
@@ -731,17 +731,6 @@
                                                 <div class="obekt-image">
                                                     <img src="{{ $item->main_img }}" alt="obekt-image"
                                                          class="img-fluid rounded obekt-image__img">
-
-                                                    <script async
-                                                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                                    <!-- news-sidbar -->
-                                                    <ins class="adsbygoogle" style="display: block;"
-                                                         data-ad-client="ca-pub-4453172390299200"
-                                                         data-ad-slot="1427392196" data-ad-format="auto"
-                                                         data-full-width-responsive="true"></ins>
-                                                    <script>
-                                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                                    </script>
                                                 </div>
 
                                             </a>
@@ -852,22 +841,22 @@
         }
 
 
-        window.onload = function () {
-            console.log('qwe' + getCookie('rayon_id'));
-            var element = document.getElementById('rayon_id');
-            // check if data in filterdata and cookie set as default if no set default
-            element.value = 'м.Житомир';
-            var check = (element.value || element.options[element.selectedIndex].value);
-            var rayon_city = document.getElementById('rayon_city');
-            var city_name = document.getElementById('city_name');
-            if (check == 'м.Житомир') {
-                rayon_city.classList.remove('invisible');
-                rayon_city.classList.add('visible');
-
-                city_name.classList.remove('visible');
-                city_name.classList.add('invisible');
-            }
-        };
+        // window.onload = function () {
+        //     console.log('qwe' + getCookie('rayon_id'));
+        //     var element = document.getElementById('rayon_id');
+        //     // check if data in filterdata and cookie set as default if no set default
+        //     element.value = 51;
+        //     var check = (element.value || element.options[element.selectedIndex].value);
+        //     var rayon_city = document.getElementById('rayon_city');
+        //     var city_name = document.getElementById('city_name');
+        //     if (check == 'м.Житомир') {
+        //         rayon_city.classList.remove('invisible');
+        //         rayon_city.classList.add('visible');
+        //
+        //         city_name.classList.remove('visible');
+        //         city_name.classList.add('invisible');
+        //     }
+        // };
 
         function showSubList(a) {
             var x = (a.value || a.options[a.selectedIndex].value);
