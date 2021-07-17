@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RieltorController;
@@ -32,7 +33,6 @@ Route::get('/home', function () {
 Route::get('/contact',[PublicController::class, 'contact'])->name('contact');
 Route::get('/about-us', [PublicController::class, 'about'])->name('about');
 Route::get('/feedback', [FeedbackController::class, 'getFeedbck'])->name('feedback');
-Route::post('/feedback/new', [FeedbackController::class, 'insertFeedbck'])->name('feedback.new');
 Route::get('/blog', [PublicController::class, 'blogList'])->name('blog.list');
 Route::get('/blog/{slug}', [PublicController::class, 'blog'])->name('blog.view');
 Route::get('/obekt/{slug}/', [PublicController::class, 'obekt'])->name('obekt.view');
@@ -86,10 +86,11 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
 
     Route::group(['prefix'=>'/feedback', 'namespace' => 'Admin'], function() {
 
-        Route::get('/', [AdminController::class, 'getFeedbck'])->name('admin.feedback');
-        Route::get('/set/private/{id}', [AdminController::class, 'setPublic'])->name('admin.feedback.private');
-        Route::get('/set/public/{id}', [AdminController::class, 'setPrivate'])->name('admin.feedback.public');
-        Route::get('/delete/{id}', [AdminController::class, 'deleteFeedback'])->name('admin.feedback.delete');
+        Route::get('/', [FeedbackController::class, 'getFeedbck'])->name('admin.feedback');
+        Route::get('/set/private/{id}', [FeedbackController::class, 'setPrivate'])->name('admin.feedback.private');
+        Route::get('/set/public/{id}', [FeedbackController::class, 'setPublic'])->name('admin.feedback.public');
+        Route::get('/delete/{id}', [FeedbackController::class, 'deleteFeedback'])->name('admin.feedback.delete');
+        Route::post('/new', [FeedbackController::class, 'insertFeedback'])->name('admin.feedback.insert');
     });
 
     Route::group(['prefix'=>'/rieltors', 'namespace' => 'Admin'], function(){

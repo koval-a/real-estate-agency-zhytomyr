@@ -6,7 +6,39 @@
 
         <div class="container-fluid">
             <div class="info-header">
-                <h1>Відгуки ({{ $feedback->count() }})</h1>
+                <h1>Відгукі ({{ $feedback->count() }})</h1>
+                <hr>
+                <button type="button" class="btn btn-primary m-auto" data-toggle="modal" data-target="#exampleModal">
+                    Додати
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Новий відгук</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('admin.feedback.insert') }}" method="POST">
+                                @csrf
+                                <div class="modal-body">
+
+                                    <input type="text" name="name"  id="name" class="form-control m-1" required placeholder="Ім'я">
+                                    <input type="email" name="email"  id="email" class="form-control m-1" required placeholder="E-mail">
+                                    <textarea name="commnet" id="commnet" cols="30" rows="10" class="form-control" required placeholder="Відгук"></textarea>
+                                    <input type="number" name="starts"  id="starts" class="form-control m-1"  required placeholder="Оцінка від 1 до 5"
+                                           step="1" min="1" max="5">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                                    <button type="submit" class="btn btn-primary">Додати</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <hr>
             </div>
         </div>
@@ -24,10 +56,10 @@
                             Статус
                         </td>
                         <td>
-                            Дата
+                            Автор
                         </td>
                         <td>
-                            Автор
+                            Оцінка
                         </td>
                         <td>
                             Коментар
@@ -40,7 +72,7 @@
                     <tbody>
                     @foreach($feedback as $key => $commnent)
                         <tr>
-                            <td class="col-md-1">
+                            <td>
                                 {{ $key + 1 }}
                             </td>
                             <td>
@@ -49,9 +81,8 @@
                                 @else
                                     <span class="text-success"> Опублікуваний </span>
                                 @endif
-                            </td>
-                            <td>
-                                {{ $commnent->date }}
+                                <br>
+                                Додано з {{ $commnent->date }}
                             </td>
                             <td>
                                 {{ $commnent->name }}
@@ -59,6 +90,9 @@
                                 {{ $commnent->email }}
                             </td>
                             <td>
+                                {{ $commnent->starts }} / 5
+                            </td>
+                            <td class="col-md-4">
                                 {{ $commnent->commnet }}
                             </td>
                             <td>
