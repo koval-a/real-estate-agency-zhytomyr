@@ -42,6 +42,8 @@ Route::get('/obekt/{slug}/', [PublicController::class, 'obekt'])->name('obekt.vi
 Route::get('/obekts/{category}', [PublicController::class, 'category'])->name('category.view');
 
 // Filter
+Route::post('/obekts/filter/', [PublicController::class, 'filterByAjax'])->name('filter.ajax');
+
 Route::get('/filter', [PublicController::class, 'filterForm'])->name('filter.data');
 Route::get('/filter/{slug}/clear', [PublicController::class, 'filterFormClear'])->name('filter.clear');
 

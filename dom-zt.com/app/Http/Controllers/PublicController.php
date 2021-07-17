@@ -28,7 +28,7 @@ class PublicController extends Controller
     public function obekt($slug)
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();
-        $lastAddedObekts = Obekts::where('slug', '=', $slug)->limit(4)->get();
+        $lastAddedObekts = Obekts::orderBy('id', 'desc')->take(8)->get();
 
         $locationCityRayon = LocationCityRayon::where('id', $obekt->location_city_rayon_id)->first();
         $locationCity = LocationCity::where('id', $obekt->location_city_id)->first();
@@ -371,5 +371,34 @@ class PublicController extends Controller
         }
 
         return redirect('/obekts/'.$categorySlug);
+    }
+
+    public function filterByAjax(Request $request){
+
+        // todo
+        $categorySlug = $request->slug;
+        $categoryID = $request->id;
+
+        $category = Category::where('slug', '=', $categorySlug)->first();
+        $appointments = Appointment::where('type', '=', $categorySlug)->get();
+        $typeWall = TypeWall::all();
+        $locationRayon = LocationRayon::all();
+        $locationCity = LocationCity::all();
+        $locationCityRayon = LocationCityRayon::all();
+
+        if($request->location_rayon){
+            $obekts = Obekts::where('isPublic','=',1)
+                ->where('category_id','=',$categoryID)
+                ->where('location_rayon_id', '=', $request->location_rayon)
+                ->orderBy('id', 'DESC')
+                ->paginate(10);
+        }else{
+            $obekts = Obekts::where('isPublic','=',1)
+                ->where('category_id','=',$categoryID)
+                ->orderBy('id', 'DESC')
+                ->paginate(10);
+        }
+
+        return view('pages.obekts.list', compact('obekts',  'typeWall', 'category', 'locationRayon', 'locationCity','locationCityRayon', 'appointments'));
     }
 }

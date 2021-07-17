@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="breadcrumbs">
-                    <ul class="breadcrumb pl-2">
+                    <ul class="breadcrumb pl-2 pt-2 pb-2">
                         <li class="p-2">&#127963;</li>
                         <li class="bg-danger1 p-2 rounded mr-1"><a href="/" class="text-danger">Каталог</a></li>
                         {{--                        <li class="p-2">&#128073;</li>--}}
@@ -271,7 +271,7 @@
                         <div class="p-2">
                             <img src="/files/images/safetly/security.svg" alt="security-image" class="img-fluid  w-50">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Безпека</h4>
+                        <h4 class="text-danger text-uppercase display-">Безпека</h4>
                         <p class="text-justify">
                             Гарантуємо надійний юридичний супровід при купівлі-продажу нерухомості.
                         </p>
@@ -280,7 +280,7 @@
                         <div class="p-2">
                             <img src="/files/images/safetly/experience.svg" alt="security-image" class="img-fluid  w-50">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Досвід</h4>
+                        <h4 class="text-danger text-uppercase display-">Досвід</h4>
                         <p class="text-justify">
                             З вашою нерухомістю працють кваліфіковані експерти з нерухомості, які мають великий досвід
                             роботи з нерухомістю.
@@ -290,7 +290,7 @@
                         <div class="p-2">
                             <img src="/files/images/safetly/quality.svg" alt="security-image" class="img-fluid w-50">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Прозорість</h4>
+                        <h4 class="text-danger text-uppercase display-">Прозорість</h4>
                         <p class="text-justify">
                             Надаємо всю необхідну клієнту інформацію за будь-якому етапі співпраці.
                         </p>
@@ -299,7 +299,7 @@
                         <div class="p-2">
                             <img src="/files/images/safetly/honesty.svg" alt="security-image" class="img-fluid w-50">
                         </div>
-                        <h4 class="text-danger text-uppercase display-5">Якість</h4>
+                        <h4 class="text-danger text-uppercase display-">Якість</h4>
                         <p class="text-justify">
                             Ми працюємо виключно в інтересах клієнта, що підтверджують сотні позитивних відгуків від
                             наших клієнтів.
@@ -309,52 +309,6 @@
             </div>
         </section>
 
-        {{--        <section class="last-addedd">--}}
-        {{--            <h2>Новинки</h2>--}}
-        {{--            <div class="row">--}}
-        {{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
-        {{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
-
-        {{--                    <div class="text-left">--}}
-        {{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
-        {{--                        <br> level: 1--}}
-        {{--                        <br> $34 000--}}
-        {{--                        <br> street: Kievska 88--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
-        {{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
-
-        {{--                    <div class="text-left">--}}
-        {{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
-        {{--                        <br> level: 1--}}
-        {{--                        <br> $34 000--}}
-        {{--                        <br> street: Kievska 88--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
-        {{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
-
-        {{--                    <div class="text-left">--}}
-        {{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
-        {{--                        <br> level: 1--}}
-        {{--                        <br> $34 000--}}
-        {{--                        <br> street: Kievska 88--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--                <div class="col-md-3 text-center bg-light1 shadow p-2 shadow m-auto">--}}
-        {{--                    <img src="https://media-exp1.licdn.com/dms/image/C561BAQFAKxecRx6LCw/company-background_10000/0/1583261816136?e=2159024400&v=beta&t=sqoDq4EQZkPGQ3_t9a2huGdQTWAPztn1wCL8NETsp-4" alt="blog-image" class="rounded shadow m-auto" width="200px">--}}
-
-        {{--                    <div class="text-left">--}}
-        {{--                        <h5 class="mt-2"><a href="#">Title</a></h5>--}}
-        {{--                        <br> level: 1--}}
-        {{--                        <br> $34 000--}}
-        {{--                        <br> street: Kievska 88--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </section>--}}
-
         <section class="cards__object">
             <div class="container">
                 <h4 class="title">
@@ -363,38 +317,40 @@
                 <ul class="row">
                     @foreach($lastAddedObekts as $key => $item)
                         <div class="col-md-3">
-                            <div class="shadow rounded p-2">
+                            <div class="obekt-card shadow rounded p-2">
                                 <a href="{{ route('obekt.view', $item->slug) }}" class="object__link">
-                                    <div class="object__image1 h-auto">
-                                        <img src="/custom/icons/flat.jpeg" alt="obekt-image" class="img-fluid">
+                                    @if($item->isPay)
+                                        <div class="is-pay m-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-tag text-danger"
+                                                 id="tag-pay" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
+                                                <path
+                                                    d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
+                                            </svg>
+                                            <span class="text-danger">Продано</span>
+                                        </div>
+                                    @endif
+                                    <div class="obekt-image">
+                                        <img src="{{ $item->main_img }}" alt="obekt-image"
+                                             class="img-fluid rounded obekt-image__img">
                                     </div>
-                                </a>
-                                <div class="object__text--promo p-3">
-                                    <ul class="object__list">
-                                        <li class="object__item object__item--title">{{ $item->name }}</li>
-                                        <li class="object__item object__item--prace">$ {{ number_format($item->price, 2, '.', ',') }}</li>
-                                        {{--                                        <li class="object__item">Район:--}}
-                                        {{--                                            @foreach($locationData as $key => $loc)--}}
-                                        {{--                                                @if($loc->id == $item->location_id)--}}
-                                        {{--                                                    @foreach($locationRayon as $key => $rayon)--}}
-                                        {{--                                                        @if($rayon->id == $loc->city_rayon_id)--}}
-                                        {{--                                                            {{$rayon->rayon_city}}--}}
-                                        {{--                                                        @endif--}}
-                                        {{--                                                    @endforeach--}}
-                                        {{--                                                @endif--}}
-                                        {{--                                            @endforeach--}}
 
-                                        {{--                                        </li>--}}
-                                        {{--                                        <li class="object__item">К-ть кімнат: {{ $item->count_room }}</li>--}}
-                                        {{--                                        <li class="object__item">Опалення: {{ $item->opalenyaName }}</li>--}}
-                                        {{--                                        <li class="object__item">Площа: {{ $item->square }}</li>--}}
-                                        {{--                                        <li class="object__item">Поверх: {{ $item->level }}--}}
-                                        {{--                                            /{{ $item->count_level }}</li>--}}
+                                </a>
+                                <div class="object__text--promo p-1">
+                                    <ul class="object__list">
+                                        <li class="object__item object__item--title title_">
+                                            {{ Str::limit($item->name, 20) }}
+                                        </li>
+                                        <li class="object__item object__item--prace">
+                                            $ {{ number_format($item->price, 2, '.', ',') }}
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="link-open-obekt p-1">
-                                    <a href="{{ route('obekt.view', $item->slug) }}" class="btn btn--style"
-                                       target="_blank">Дізнатися детальніше</a>
+                                    <a href="{{ route('obekt.view', $item->slug, $filterData[9]='Back') }}"
+                                       class="btn btn--style">Детальніше</a>
                                 </div>
                             </div>
                         </div>
