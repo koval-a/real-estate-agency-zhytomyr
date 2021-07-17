@@ -260,7 +260,8 @@ class AdminController extends AC
 
         if(
             $request->appointment_id or
-            $request->price or
+            $request->price_from or
+            $request->price_to or
             $request->square or
             $request->rayon_id or
             $request->rayon_city_id or
@@ -275,9 +276,14 @@ class AdminController extends AC
                 $filterData[0] = $request->appointment_id;
             }
 
-            if($request->price){
-                $query->where('price','<=', $request->price);
-                $filterData[1] = $request->price;
+            if($request->price_from){
+                $query->where('price','>=', $request->price_from);
+                $filterData[1] = $request->price_from;
+            }
+
+            if($request->price_to){
+                $query->where('price','<=', $request->price_to);
+                $filterData[11] = $request->price_to;
             }
 
             if($request->square){

@@ -29,11 +29,17 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="price">
-                    <span>Ціна до</span>
-                    <input type="number" class="form-control" name="price" id="price"
+                <div class="price-from">
+                    <span>Ціна від ($)</span>
+                    <input type="number" class="form-control" name="price_from" id="price_from"
                            value="{{ $filterData[1] ?? '' }}">
                 </div>
+                <div class="price-to">
+                    <span>Ціна до ($)</span>
+                    <input type="number" class="form-control" name="price_to" id="price_to"
+                           value="{{ $filterData[11] ?? '' }}">
+                </div>
+
                 {{--                <div class="square">--}}
                 {{--                    <span>Площа</span>--}}
                 {{--                    <input type="number" class="form-control" name="square" id="square" value="{{ $filterData[2] ?? '' }}">--}}
@@ -92,8 +98,7 @@
             <div class="opalenya-and-wall d-flex">
                 @if($category[0] == 'commercial-real-estate' or $category[0] == 'house' or $category[0] == 'flat')
                     <div class="col-md-3">
-                        <span class="ml-0 pl-0">Тип стін</span> <span
-                            class="text-danger">- {{ $filterData[7] ?? ''}}</span>
+                        <span class="ml-0 pl-0">Тип стін</span>
                         <select name="typeWall" id="typeWall" class="form-control">
                             <option disabled selected>Оберіть тип</option>
                             @foreach($typeWall as $key => $wall)
