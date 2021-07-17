@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RieltorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicController;
-use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +19,7 @@ use Auth;
 
 
 // Home page
-Route::get('/', function () {
-    $category = \App\Models\Category::all();
-    return view('welcome', compact('category'));
-});
+Route::get('/',[PublicController::class, 'index']);
 
 Route::get('/home', function () {
 
@@ -35,7 +31,8 @@ Route::get('/home', function () {
 // Pages
 Route::get('/contact',[PublicController::class, 'contact'])->name('contact');
 Route::get('/about-us', [PublicController::class, 'about'])->name('about');
-
+Route::get('/feedback', [FeedbackController::class, 'getFeedbck'])->name('feedback');
+Route::post('/feedback/new', [FeedbackController::class, 'insertFeedbck'])->name('feedback.new');
 Route::get('/blog', [PublicController::class, 'blogList'])->name('blog.list');
 Route::get('/blog/{slug}', [PublicController::class, 'blog'])->name('blog.view');
 Route::get('/obekt/{slug}/', [PublicController::class, 'obekt'])->name('obekt.view');
@@ -85,6 +82,14 @@ Route::group(['prefix'=>'manage/admin', 'namespace' => 'Admin'], function(){
         Route::post('/updated/{id}', [AdminController::class, 'updatedClients'])->name('admin.clients.updated')->middleware('is_admin');
         Route::get('/delete/confirm/{id}', [AdminController::class, 'deleteConformClients'])->name('admin.clients.delete.confirm')->middleware('is_admin');
         Route::post('/deleted/{id}', [AdminController::class, 'deleteClients'])->name('admin.clients.delete')->middleware('is_admin');
+    });
+
+    Route::group(['prefix'=>'/feedback', 'namespace' => 'Admin'], function() {
+
+        Route::get('/', [AdminController::class, 'getFeedbck'])->name('admin.feedback');
+        Route::get('/set/private/{id}', [AdminController::class, 'setPublic'])->name('admin.feedback.private');
+        Route::get('/set/public/{id}', [AdminController::class, 'setPrivate'])->name('admin.feedback.public');
+        Route::get('/delete/{id}', [AdminController::class, 'deleteFeedback'])->name('admin.feedback.delete');
     });
 
     Route::group(['prefix'=>'/rieltors', 'namespace' => 'Admin'], function(){

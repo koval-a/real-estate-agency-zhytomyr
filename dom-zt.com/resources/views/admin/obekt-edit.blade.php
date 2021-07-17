@@ -8,8 +8,8 @@
         <hr>
         <form action="{{ route('admin.obekt.updated', $obekt->id) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
             @csrf
-            <div class="row p-3">
-                <div class="obket-info col-md-4 border p-2">
+            <div class="from-section">
+                <div class="obket-info col-12 border p-2">
                     <h4>Інформація про об'єкт</h4>
                     <label>Назва нерухомості</label>
                     <input type="text" name="name" id="name" value="{{ $obekt->name }}" class="form-control" placeholder="Назва" required>
@@ -139,7 +139,7 @@
                     @endswitch
                 </div>
 
-                <div class="location col-md-4 border p-2">
+                <div class="location col-12 border p-2">
                     <h4>Фотографії</h4>
                     <hr>
                     <span>Поточна головна фотографія</span> <hr>
@@ -164,7 +164,7 @@
                     </div>
                 </div>
 
-                <div class="owner col-md-4 border p-2">
+                <div class="owner col-12 border p-2">
 
                     <div class="d-flex justify-content-between">
                         <h4>Власник</h4>
@@ -229,21 +229,20 @@
                     </select>
                     <hr>
                     <h4>Розміщення поточне:</h4>
-                    <div class="d-flex">
-
-                        <div class="rayon">
+                    <div class="row p-2">
+                        <div class="rayon col-md-4 row">
                             <input type="text" name="rayonCurrentName" id="rayonCurrentName" value="{{$setCurrentSelected[3]->rayon ?? ''}}" class="form-control" readonly>
                             <input type="text" class="invisible" id="rayonCurrent" name="rayonCurrent" value="{{$setCurrentSelected[3]->id ?? ''}}">
                         </div>
                         @if($setCurrentSelected[4]->city ?? '' != '')
-                           <div class="city">
+                           <div class="city col-md-4 row">
                                <input type="text" name="cityCurrentName" id="cityCurrentName" value="{{$setCurrentSelected[4]->city ?? ''}}" class="form-control" readonly>
                                <input type="text" class="invisible" id="cityCurrent" name="cityCurrent" value="{{$setCurrentSelected[4]->id ?? ''}}">
                            </div>
                         @else
-                            <div class="rayon_city">
-                                <input type="text" class="invisible" id="rayonCityCurrent" name="rayonCityCurrent" value="{{$setCurrentSelected[5]->id ?? ''}}">
+                            <div class="rayon_city col-md-4 row">
                                 <input type="text" name="rayonCityCurrentName" id="rayonCityCurrentName" value="{{$setCurrentSelected[5]->rayon_city ?? ''}}" class="form-control" readonly>
+                                <input type="text" class="invisible" id="rayonCityCurrent" name="rayonCityCurrent" value="{{$setCurrentSelected[5]->id ?? ''}}">
                             </div>
                         @endif
 
@@ -278,7 +277,7 @@
             </div>
             <div class="insert-button">
                 <hr>
-                <button type="submit" class="btn btn-primary btn-block w-25">Оновити дані</button>
+                <button type="submit" class="btn btn-primary btn-block w-100 p-2">Оновити дані</button>
             </div>
         </form>
         <script>

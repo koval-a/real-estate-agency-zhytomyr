@@ -29,7 +29,7 @@
     <section class="container obekts-by-category">
         <div class="header-obekts-by-category pl-4">
             <h1 class="title- text-danger font-bold text-uppercase display-4">
-                {{ $category['name']  ?? ''}} ({{ $obekts->count() }})
+                {{ $category['name']  ?? ''}}
             </h1>
         </div>
         <div class="container d-flex justify-content-between">

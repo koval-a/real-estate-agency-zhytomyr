@@ -132,6 +132,15 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-title">Відгукі</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('admin.feedback') }}" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Відгукі</span>
+                            </a>
+                        </li>
+
 {{--                        <li class="sidebar-item  ">--}}
 {{--                            <a href="application-gallery.html" class='sidebar-link'>--}}
 {{--                                <i class="bi bi-image-fill"></i>--}}

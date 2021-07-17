@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Category;
+use App\Models\Feedback;
 use App\Models\Files;
 use App\Models\Location;
 use App\Models\LocationCity;
@@ -25,6 +26,14 @@ use function PHPUnit\Framework\isEmpty;
 
 class PublicController extends Controller
 {
+    public function index()
+    {
+        $category = Category::all();
+        $feedback = Feedback::where('public', 1)->take(10)->get();
+
+        return view('welcome', compact('category', 'feedback'));
+    }
+
     public function obekt($slug)
     {
         $obekt = Obekts::where('slug', '=', $slug)->first();

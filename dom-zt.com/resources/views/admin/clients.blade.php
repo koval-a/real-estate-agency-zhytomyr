@@ -25,7 +25,7 @@
                         @csrf
                         <div class="input-group">
                             <input type="text" class="form-control" name="owner-search"
-                                   placeholder="Пошук за номеру телефона та імені">
+                                   placeholder="Пошук за номеру телефона та імені" value="{{ $searchQuery ?? '' }}">
                             <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary">
                                 Пошук

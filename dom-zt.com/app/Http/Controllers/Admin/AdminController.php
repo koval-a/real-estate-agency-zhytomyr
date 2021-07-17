@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Appointment;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Feedback;
 use App\Models\Files;
 use App\Models\Location;
 use App\Models\LocationCity;
@@ -133,11 +134,18 @@ class AdminController extends AC
             $pagination = $clients->appends(array(
                 'searchQuery' => $request->input('owner-search')
             ));
-            if (count($clients) > 0)
+
+            if (count($clients) > 0){
                 $count = count($clients);
-                return view('admin.clients', compact('clients', 'count'));
+                return view('admin.clients', compact('clients', 'count', 'searchQuery'));
+            }else{
+                return back()->with('error', 'Нічого не знайдено!');
+            }
+
+        }else{
+            return back()->with('error', 'Нічого не знайдено!');
         }
-        return back()->with('error', 'Нічого не знайдено!');
+
     }
 
     // END - RIELTORS //
@@ -276,8 +284,8 @@ class AdminController extends AC
                 $filterData[0] = $request->appointment_id;
             }
 
-            if($request->price_from){
-                $query->where('price','>=', $request->price_from);
+            if($request->price_from) {
+                $query->where('price', '>=', $request->price_from);
                 $filterData[1] = $request->price_from;
             }
 
@@ -979,6 +987,53 @@ class AdminController extends AC
 
     //
     // END - Check obekt
+    //
+
+    //
+    // START - Feedback
+    //
+
+    public function getFeedbck()
+    {
+        $feedback = Feedback::paginate(10);
+
+        return view('admin.feedback', compact('feedback'));
+    }
+
+    public function setPublic($id)
+    {
+        $feedback = Feedback::find($id);
+        $feedback->public = 1;
+        if($feedback->save()){
+            return redirect('manage/admin/feedback')->with('success', 'Коментар опубліковано.');
+        }else{
+            return redirect('manage/admin/feedback')->with('error', 'WFT');
+        }
+    }
+
+    public function setPrivate($id)
+    {
+        $feedback = Feedback::find($id);
+        $feedback->public = 0;
+
+        if($feedback->save()){
+            return redirect('manage/admin/feedback')->with('success', 'Коментар приховано.');
+        }else{
+            return redirect('manage/admin/feedback')->with('error', 'WFT');
+        }
+
+    }
+
+    public function deleteFeedback($id)
+    {
+        $feedback = Feedback::find($id);
+        $feedback->delete();
+
+        return redirect('manage/admin/feedback')->with('success', 'Коментар видалено.');
+    }
+
+    //
+    // END - Feedback
     //
 }
 

@@ -8,8 +8,8 @@
         <hr>
         <form action="{{ route('admin.obekt.insert', $categoryData->slug) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
             @csrf
-            <div class="row">
-                <div class="obket-info col-md-4 border p-2">
+            <div class="form-section">
+                <div class="obket-info col-12 border p-2">
                     <h4>Інформація про об'єкт</h4>
                     <label>Назва нерухомості</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Назва" required>
@@ -130,7 +130,7 @@
                     @endswitch
                 </div>
 
-                <div class="location col-md-4 border p-2">
+                <div class="location col-12 border p-2">
                     <h4>Фотографії</h4>
                     <hr>
 
@@ -202,7 +202,7 @@
                     </script>
                 </div>
 
-                <div class="owner col-md-4 border p-2">
+                <div class="owner col-12 border p-2">
 
                     <div class="d-flex justify-content-between">
                         <h4>Власник</h4>
@@ -298,7 +298,7 @@
             </div>
             <div class="insert-button">
                 <hr>
-                <button type="submit" class="btn btn-success btn-block w-25">Зберегти</button>
+                <button type="submit" class="btn btn-success btn-block w-100 p-2">Зберегти</button>
             </div>
         </form>
         <script>
