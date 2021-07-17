@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RieltorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicController;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,13 @@ use App\Http\Controllers\PublicController;
 Route::get('/', function () {
     $category = \App\Models\Category::all();
     return view('welcome', compact('category'));
+});
+
+Route::get('/home', function () {
+
+    $role = Auth::user()->is_admin == 0? 'rieltor' : 'admin';
+
+    return redirect('/manage/'. $role . '/dashboard');
 });
 
 // Pages

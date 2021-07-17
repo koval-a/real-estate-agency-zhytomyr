@@ -354,7 +354,10 @@ class AdminController extends AC
 
     public function searchObekt(Request $request)
     {
-        $locationRayon = LocationCityRayon::all();
+        $rayon = LocationRayon::all();
+        $city = LocationCity::all();
+        $cityRayon = LocationCityRayon::all();
+        $location = [$rayon, $city, $cityRayon];
         $appointment = Appointment::all();
         $owners = Owner::all();
         $filesImages = Files::all();
@@ -363,7 +366,7 @@ class AdminController extends AC
         $q = $request->input('q');
         if ($q != "") {
 
-            if(is_numeric($q))
+            if(is_numeric($q) and strlen($q) >= 10)
             {
                 $owner = Owner::where('phone', $q)->first();
                 $obekts = Obekts::where('owner_id', $owner->id)->paginate(10)->setPath('');
@@ -379,7 +382,7 @@ class AdminController extends AC
             }
 
             if (count($obekts) > 0)
-                return view('admin.all-obekt', compact('obekts', 'q', 'owners', 'category', 'locationRayon', 'appointment', 'filesImages'));
+                return view('admin.all-obekt', compact('obekts', 'q', 'owners', 'category', 'location', 'appointment', 'filesImages'));
         }
         return back()->with('error', 'Нічого не знайдено!');
     }
@@ -480,6 +483,7 @@ class AdminController extends AC
             if ($request->level > $request->count_level) {
                 return back()->with("error", "Кількість поверхів не може бути менше за поверх.");
             }
+
             $newObekt->count_room = $request->count_room;
             $newObekt->count_level = $request->count_level;
             $newObekt->level = $request->level;
@@ -500,7 +504,11 @@ class AdminController extends AC
         if ($category_slug == 'land') {
             $newObekt->opalenyaName = 'none';
         } else {
-            $newObekt->opalenyaName = $request->opalenyaName;
+            if($request->opalenyaName == 'no-select'){
+                $newObekt->opalenyaName = null;
+            }else{
+                $newObekt->opalenyaName = $request->opalenyaName;
+            }
         }
 
 
@@ -520,7 +528,12 @@ class AdminController extends AC
             $lastID_Owner = Owner::latest()->first();
             $newObekt->owner_id = $lastID_Owner->id;
         } else {
-            $newObekt->owner_id = $request->owner_id;
+            if($request->owner_id){
+                $newObekt->owner_id = $request->owner_id;
+            }else{
+                return back()->with("error", "Оберіть власника або додайте його.");
+            }
+
         }
 
         // Image save

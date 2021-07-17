@@ -81,7 +81,7 @@
                                     <a href="{{ route('admin.view', 'flat') }}">Квартири</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{{ route('admin.view', 'house') }}">Будинки</a>
+                                    <a href="{{ route('admin.view', 'house') }}">Приватний сектор</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="{{ route('admin.view', 'commercial-real-estate') }}">Комерційна нерухомість</a>
@@ -139,7 +139,7 @@
 {{--                            </a>--}}
 {{--                        </li>--}}
 
-                        <li class="sidebar-title">Налаштування</li>
+{{--                        <li class="sidebar-title">Налаштування</li>--}}
 
 {{--                        <li class="sidebar-item  ">--}}
 {{--                            <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>--}}
@@ -148,12 +148,12 @@
 {{--                            </a>--}}
 {{--                        </li>--}}
 
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('admin.settings') }}" class='sidebar-link'>
-                                <i class="bi bi-puzzle-fill"></i>
-                                <span>Інформація</span>
-                            </a>
-                        </li>
+{{--                        <li class="sidebar-item  ">--}}
+{{--                            <a href="{{ route('admin.settings') }}" class='sidebar-link'>--}}
+{{--                                <i class="bi bi-puzzle-fill"></i>--}}
+{{--                                <span>Інформація</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
 
                         <li class="sidebar-title">

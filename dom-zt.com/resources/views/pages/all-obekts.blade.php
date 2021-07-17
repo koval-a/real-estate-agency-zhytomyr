@@ -17,7 +17,7 @@
 
         .btn-select {
             text-align: center;
-            width: 13vw;
+            width: 13avw;
             height: 10vh;
         }
 

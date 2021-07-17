@@ -39,15 +39,15 @@
                                 <select class="form-control" id="opalenyaName" name="opalenyaName">
                                     <option disabled>-Оберіть тип опалення-</option>
                                     @if($obekt->opalenyaName == 'Автономне')
-                                        <option value="-1">Не обрано</option>
+                                        <option value="1">Не обрано</option>
                                         <option value="Автономне" selected>Автономне</option>
                                         <option value="Централізоване">Централізоване</option>
                                     @elseif($obekt->opalenyaName == 'Централізоване')
-                                        <option value="-1">Не обрано</option>
+                                        <option value="0">Не обрано</option>
                                         <option value="Автономне">Автономне</option>
                                         <option value="Централізоване" selected>Централізоване</option>
                                     @else
-                                        <option value="-1" selected>Не обрано</option>
+                                        <option value="1" selected>Не обрано</option>
                                         <option value="Автономне">Автономне</option>
                                         <option value="Централізоване">Централізоване</option>
                                     @endif
