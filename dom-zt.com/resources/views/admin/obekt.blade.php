@@ -7,7 +7,8 @@
         <div class="button-section d-flex justify-content-between">
             <a href="{{ route('admin.obekt.check', $category[0], false) }}" class="btn btn-primary">Додати новий
                 об'єкт</a>
-            <a href="{{ route('admin.print', $category[0]) }}" class="btn btn-info">Друк</a>
+{{--            <a href="{{ route('admin.print', $category[0]) }}" class="btn btn-info">Друк</a>--}}
+            <input name="b_print" type="button" class="ipt btn btn-info"  onClick="printdiv('div_print');" value=" Друк">
         </div>
         <hr>
         <form action="{{ route('admin.filter', $category[0]) }}" method="GET">
@@ -355,4 +356,121 @@
             <span class="p-3">Записів не знайдено.</span>
         @endif
     </div>
+    <div id="div_print" class="all-obekt invisible">
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+            <tr class="bg-secondary text-white">
+                <td>#</td>
+                <td>ID</td>
+                <td>Тип</td>
+                <td>Розміщення</td>
+                <td>Ціна ($)</td>
+                <td>Площа (m2)</td>
+                <td>Опис</td>
+                <td>Нотатка</td>
+                <td>Власник</td>
+                <td>Ріелтор</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($obekts as $key => $item)
+                <tr>
+                    <td>
+                        {{ $key + 1 }}
+                    </td>
+                    <td>
+                        {{ $item->id }}
+                    </td>
+                    <td>
+                        @switch($category[0])
+                            @case('land')
+                            Земля
+                            @break
+                            @case('house')
+                            Будинок
+                            @break
+                            @case('flat')
+                            Квартира
+                            @break
+                            @case('commercial-real-estate')
+                            Комерційна нерухомість
+                            @break
+                        @endswitch
+                    </td>
+                    <td>
+                        <i class="bi bi-map"></i>
+                        @foreach($locationRayon as $name)
+                            @if($name->id == $item->location_rayon_id)
+                                @if($name->rayon != 'м.Житомир')
+                                    <span>р-н </span>
+                                @endif
+                                {{ $name->rayon }}
+                            @endif
+                        @endforeach
+                        <br>
+                        <i class="bi bi-map-fill"></i>
+                        @foreach($locationCity as $name)
+                            @if($name->id == $item->location_city_id)
+                                {{ $name->city }}
+                            @endif
+                        @endforeach
+                        @foreach($locationCityRayon as $name)
+                            @if($name->id == $item->location_city_rayon_id)
+                                {{ $name->rayon_city }}
+                            @endif
+                        @endforeach
+                        <br>
+                        <i class="bi bi-house"></i>
+                        {{ $item->address }}
+                    </td>
+                    <td>
+                        $ {{ number_format($item->price, 2, '.', ',') }}
+                    </td>
+                    <td>
+                        {{ $item->square }} m2
+                    </td>
+                    <td>
+                        {{ Str::limit($item->description, 50) }}
+                    </td>
+                    <td>
+                        {{ $item->note }}
+                    </td>
+                    <td>
+                        @foreach($owners as $key => $owner)
+                            @if( $item->owner_id == $owner->id)
+                                <i class="bi bi-person"></i>{{ $owner->name }}
+                                <br>
+                                <i class="bi bi-phone"></i>{{ $owner->phone }}
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($rieltors as $user)
+                            @if($item->rieltor_id == $user->id)
+                                <i class="bi bi-person"></i>{{ $user->name }}
+                                <br>
+                                <i class="bi bi-phone"></i>{{ $user->phone }}
+                            @endif
+                        @endforeach
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+
+    </div>
+    <script language="javascript">
+        function printdiv(printpage)
+        {
+            var headstr = "<html><head><title></title></head><body>";
+            var footstr = "</body>";
+            var newstr = document.all.item(printpage).innerHTML;
+            var oldstr = document.body.innerHTML;
+            document.body.innerHTML = headstr+newstr+footstr;
+            window.print();
+            document.body.innerHTML = oldstr;
+            return false;
+        }
+    </script>
 @endsection

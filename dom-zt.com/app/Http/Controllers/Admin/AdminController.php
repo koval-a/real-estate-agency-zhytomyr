@@ -245,8 +245,9 @@ class AdminController extends AC
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
         $typeWall = TypeWall::all();
+        $rieltors = User::all();
 
-        return view('admin.obekt', compact('obekts', 'typeWall', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+        return view('admin.obekt', compact('obekts', 'rieltors','typeWall', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
     }
 
     public function filterObektByCategoryView(Request $request, $category){
@@ -261,6 +262,7 @@ class AdminController extends AC
         $locationRayon = LocationRayon::all();
         $locationCity = LocationCity::all();
         $typeWall = TypeWall::all();
+        $rieltors = User::all();
 
         $query = Obekts::where('category_id','=',$category[2]);
 
@@ -345,7 +347,7 @@ class AdminController extends AC
 
             $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
-            return view('admin.obekt', compact('obekts', 'typeWall', 'filterData', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+            return view('admin.obekt', compact('obekts', 'rieltors','typeWall', 'filterData', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
 
         }else{
             return back()->with('error', 'Для фільтрування введіть значення!');
@@ -382,17 +384,10 @@ class AdminController extends AC
 
             if(is_numeric($q) and strlen($q) >= 5 and strlen($q) <= 12)
             {
-                $owner = Owner::where('phone',  'LIKE', '%' . $q . '%')->get();
-                $obekts = Obekts::where('owner_id', $owner->id)->paginate(10)->setPath('');
-                $pagination = $obekts->appends(array(
-                    'q' => $request->input('q')
-                ));
-
+                $owner = Owner::where('phone',  'LIKE', '%' . $q . '%')->first()->id;
+                $obekts = Obekts::where('owner_id', '=', $owner)->paginate(10);
             }else{
                 $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
-                $pagination = $obekts->appends(array(
-                    'q' => $request->input('q')
-                ));
             }
 
             if (count($obekts) > 0) {
