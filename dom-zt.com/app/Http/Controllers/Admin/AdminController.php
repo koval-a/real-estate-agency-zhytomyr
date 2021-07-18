@@ -380,9 +380,9 @@ class AdminController extends AC
         $q = $request->input('q');
         if ($q != "") {
 
-            if(is_numeric($q) and strlen($q) >= 10)
+            if(is_numeric($q) and strlen($q) >= 5 and strlen($q) <= 12)
             {
-                $owner = Owner::where('phone', $q)->first();
+                $owner = Owner::where('phone',  'LIKE', '%' . $q . '%')->get();
                 $obekts = Obekts::where('owner_id', $owner->id)->paginate(10)->setPath('');
                 $pagination = $obekts->appends(array(
                     'q' => $request->input('q')
@@ -395,10 +395,15 @@ class AdminController extends AC
                 ));
             }
 
-            if (count($obekts) > 0)
+            if (count($obekts) > 0) {
                 return view('admin.all-obekt', compact('obekts', 'q', 'owners', 'category', 'location', 'appointment', 'filesImages'));
+            }else{
+                return back()->with('error', 'Нічого не знайдено!');
+            }
+        }else{
+            return redirect('/manage/admin/obekts/search/');
         }
-        return back()->with('error', 'Нічого не знайдено!');
+
     }
 
     public function newObekt($categorySlug)
@@ -706,9 +711,9 @@ class AdminController extends AC
                 $updateObekt->location_city_rayon_id = null;
             }
         }else{
-            $updateObekt->location_rayon_id = $request->rayonCurrent;
-            $updateObekt->location_city_rayon_id = $request->rayonCityCurrent;
-            $updateObekt->location_city_id = $request->cityCurrent;
+            $updateObekt->location_rayon_id = $request->location_rayon_id;
+            $updateObekt->location_city_rayon_id = null;
+            $updateObekt->location_city_id = null;
         }
 
         $category_slug = Category::find($updateObekt->category_id);

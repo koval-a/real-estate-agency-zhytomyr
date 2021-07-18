@@ -200,7 +200,8 @@
 {{--                        </td>--}}
                         <td>
                             <div class="dropdown">
-                                Виконати
+                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Виконати
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     @if($item->isPublic)
@@ -214,8 +215,7 @@
                                     @endif
                                     <a href="{{ route('admin.obekt.edit', $item) }}" class="dropdown-item text-primary"><i class="bi bi-pencil"></i> Редагувати</a>
                                     <a href="{{ route('admin.obekt.delete', $item) }}" class="dropdown-item text-danger"><i class="bi bi-trash"></i> Видалити</a>
-                                </ul>   <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-
+                                </ul>
                             </div>
                         </td>
                     </tr>

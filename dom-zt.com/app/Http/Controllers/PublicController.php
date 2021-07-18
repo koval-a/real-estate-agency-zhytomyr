@@ -395,14 +395,15 @@ class PublicController extends Controller
         $locationCity = LocationCity::all();
         $locationCityRayon = LocationCityRayon::all();
 
-        $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID);
+//        $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID);
 
         if($request->location_rayon){
 
-            $query->where('location_rayon_id', '=', $request->location_rayon);
+            $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID)->where('location_rayon_id', '=', $request->location_rayon);
 
         }else{
             // default
+            $query = Obekts::where('isPublic','=',1)->where('category_id','=',$categoryID);
         }
 
         $obekts = $query->orderBy('id', 'DESC')->paginate(10);

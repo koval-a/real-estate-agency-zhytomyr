@@ -162,22 +162,27 @@ class RieltorController extends AC
     public function search(Request $request, $category)
     {
         $locationRayon = LocationCityRayon::all();
-        $location = Location::all();
         $appointment = Appointment::all();
         $owners = Owner::all();
         $filesImages = Files::all();
+        $location = [LocationRayon::all(), LocationCity::all(), LocationCityRayon::all()];
 
         $q = $request->input('q');
+
         if ($q != "") {
-            $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
-            $pagination = $obekts->appends(array(
-                'q' => $request->input('q')
-            ));
-            if (count($obekts) > 0)
-                return view('rieltor.obekt', compact('obekts','category', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
+
+            $obekts = Obekts::where('rieltor_id', '=', Auth::user()->id)->where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
+
+            if (count($obekts) > 0){
+                return view('rieltor.obekt', compact('obekts', 'q', 'category', 'owners', 'location', 'locationRayon', 'appointment', 'filesImages'));
+            }else{
+                return back()->with('error', 'Нічого не знайдено!');
+            }
+
+        }else{
+            return redirect('/manage/rieltor/my-real-estate/' . $category);
         }
 
-        return back()->with('error', 'Нічого не знайдено!');
     }
 
 }

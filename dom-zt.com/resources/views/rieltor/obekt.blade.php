@@ -21,7 +21,7 @@
                     @csrf
                     <div class="input-group">
                         <input type="text" class="form-control" name="q"
-                               placeholder="Пошук за ID об'єкта">
+                               placeholder="Пошук за ID об'єкта" value="{{ $q ?? '' }}">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-danger">
                                 Пошук

@@ -68,7 +68,7 @@
                                 <a href="{{ route('rieltor.view', 'flat') }}">Квартири</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="{{ route('rieltor.view', 'house') }}">Будинки</a>
+                                <a href="{{ route('rieltor.view', 'house') }}">Приватний сектор</a>
                             </li>
                             <li class="submenu-item ">
                                 <a href="{{ route('rieltor.view', 'commercial-real-estate') }}">Комерційна нерухомість</a>
