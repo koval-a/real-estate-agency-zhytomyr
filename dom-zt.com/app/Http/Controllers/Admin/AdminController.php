@@ -689,6 +689,11 @@ class AdminController extends AC
         $updateObekt->address = $request->address;
         $updateObekt->square_hause_land = $request->square_hause_land;
 
+    if($request->rayonCityCurrent == '' or $request->cityCurrent  == '' or $request->rayonCurrent  == ''){
+            $updateObekt->location_rayon_id = $request->location_rayon_id;
+            $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
+            $updateObekt->location_city_id = $request->location_city_id;
+    }else{
         if ($request->location_rayon_id == 51) {
             $updateObekt->location_rayon_id = $request->location_rayon_id;
             if ($request->location_city_rayon_id == '') {
@@ -710,6 +715,8 @@ class AdminController extends AC
             $updateObekt->location_city_rayon_id = null;
             $updateObekt->location_city_id = null;
         }
+    }
+        
 
         $category_slug = Category::find($updateObekt->category_id);
         $category_slug_name = $category_slug->slug;

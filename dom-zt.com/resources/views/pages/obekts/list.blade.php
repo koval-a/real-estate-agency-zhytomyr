@@ -30,7 +30,7 @@
 
                             </a>
                             <div class="object__text--promo p-1">
-                                <ul class="object__list">
+                                <ul class="object__list p-0">
                                     <li class="object__item object__item--title title_">
                                         {{ Str::limit($item->name, 20) }}
                                     </li>

@@ -70,7 +70,7 @@
                         <p class="product__info--prace">
                             Ціна: {{ number_format($obekt->price, 2, '.', ',') }}$
                         </p>
-                        <ul class="product-filter__list">
+                        <ul class="product-filter__list p-0">
 
                             @if( $category->slug  != 'land')
                                 @if( $category->slug != 'commercial-real-estate')
