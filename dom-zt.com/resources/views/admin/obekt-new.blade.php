@@ -270,7 +270,7 @@
                     <hr>
                     <h4>Розміщення</h4>
                     <label>Район</label>
-                    <select onchange="showList(this)" name="location_rayon_id" id="location_rayon_id" class="form-control">
+                    <select onchange="showList(this)" name="location_rayon_id" id="location_rayon_id" class="form-control" required>
                         <option disabled selected>Оберіть район</option>
                         @foreach($location[0] as $key => $rayon)
                             <option value="{{$rayon->id}}">{{$rayon->rayon}}</option>
