@@ -689,10 +689,11 @@ class AdminController extends AC
         $updateObekt->address = $request->address;
         $updateObekt->square_hause_land = $request->square_hause_land;
 
-    if($request->rayonCityCurrent == '' or $request->cityCurrent  == '' or $request->rayonCurrent  == ''){
-            $updateObekt->location_rayon_id = $request->location_rayon_id;
-            $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
-            $updateObekt->location_city_id = $request->location_city_id;
+    if(
+        $request->rayonCityCurrent == '' or $request->cityCurrent  == '' or $request->rayonCurrent  == '' or
+        $request->location_rayon_id == '' or $request->location_city_rayon_id == '' or $request->location_city_id == ''
+    ){
+        return back()->with('error', 'Оберіть розміщення!');
     }else{
         if ($request->location_rayon_id == 51) {
             $updateObekt->location_rayon_id = $request->location_rayon_id;
@@ -702,21 +703,36 @@ class AdminController extends AC
                 $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
                 $updateObekt->location_city_id = null;
             }
-        }else if($request->location_rayon_id == 75){
-            $updateObekt->location_rayon_id = $request->location_rayon_id;
-            if ($request->location_city_id == '') {
-                return back()->with('error', 'Оберіть селище');
-            }else{
-                $updateObekt->location_city_id = $request->location_city_id;
-                $updateObekt->location_city_rayon_id = null;
-            }
-        }else{
-            $updateObekt->location_rayon_id = $request->location_rayon_id;
-            $updateObekt->location_city_rayon_id = null;
-            $updateObekt->location_city_id = null;
         }
     }
-        
+
+//    else{
+//        $updateObekt->location_rayon_id = $request->location_rayon_id;
+//        $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
+//        $updateObekt->location_city_id = $request->location_city_id;
+//        if ($request->location_rayon_id == 51) {
+//            $updateObekt->location_rayon_id = $request->location_rayon_id;
+//            if ($request->location_city_rayon_id == '') {
+//                return back()->with('error', 'Оберіть район міста');
+//            }else{
+//                $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
+//                $updateObekt->location_city_id = null;
+//            }
+//        }else if($request->location_rayon_id == 75){
+//            $updateObekt->location_rayon_id = $request->location_rayon_id;
+//            if ($request->location_city_id == '') {
+//                return back()->with('error', 'Оберіть селище');
+//            }else{
+//                $updateObekt->location_city_id = $request->location_city_id;
+//                $updateObekt->location_city_rayon_id = null;
+//            }
+//        }else{
+//            $updateObekt->location_rayon_id = $request->location_rayon_id;
+//            $updateObekt->location_city_rayon_id = null;
+//            $updateObekt->location_city_id = null;
+//        }
+//    }
+
 
         $category_slug = Category::find($updateObekt->category_id);
         $category_slug_name = $category_slug->slug;
