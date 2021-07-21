@@ -84,7 +84,7 @@ class AdminController extends AC
             $request->imgInp->move(public_path('files/images/users'), $imageName);
             // save new name image to database
 
-        }else{
+        } else {
             $imageName = 'avatar.png';
         }
 
@@ -130,19 +130,19 @@ class AdminController extends AC
         $searchQuery = $request->input('owner-search');
 
         if ($searchQuery != "") {
-            $clients= Owner::where('name', 'LIKE', '%' . $searchQuery . '%')->orWhere('phone', 'LIKE', '%' . $searchQuery . '%')->paginate(10)->setPath('');
+            $clients = Owner::where('name', 'LIKE', '%' . $searchQuery . '%')->orWhere('phone', 'LIKE', '%' . $searchQuery . '%')->paginate(10)->setPath('');
             $pagination = $clients->appends(array(
                 'searchQuery' => $request->input('owner-search')
             ));
 
-            if (count($clients) > 0){
+            if (count($clients) > 0) {
                 $count = count($clients);
                 return view('admin.clients', compact('clients', 'count', 'searchQuery'));
-            }else{
+            } else {
                 return back()->with('error', 'Нічого не знайдено!');
             }
 
-        }else{
+        } else {
             return back()->with('error', 'Нічого не знайдено!');
         }
 
@@ -169,14 +169,14 @@ class AdminController extends AC
 
         if ($newOwner->save()) {
             return back()->with("success", "Власника додано успішно.");
-        }else{
+        } else {
             return back()->with("error", "Власника не додано.");
         }
     }
 
     public function deleteClients($id, Request $request)
     {
-        if($request->confirm){
+        if ($request->confirm) {
 
             $owner = Owner::find($id);
 
@@ -185,7 +185,7 @@ class AdminController extends AC
             } else {
                 return back()->with("error", "Виникла помилка видалення.");
             }
-        }else{
+        } else {
             return back()->with("failed", "Ви не підтвердили видалення.");
         }
     }
@@ -217,9 +217,9 @@ class AdminController extends AC
         $owner->name = $request->name;
         $owner->phone = $request->phone;
 
-        if($owner->save()){
+        if ($owner->save()) {
             return redirect('/manage/admin/clients/')->with('success', 'Дані оновлено.');
-        }else{
+        } else {
             return back()->with('error', 'Дані не оновлено.');
         }
     }
@@ -247,10 +247,11 @@ class AdminController extends AC
         $typeWall = TypeWall::all();
         $rieltors = User::all();
 
-        return view('admin.obekt', compact('obekts', 'rieltors','typeWall', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+        return view('admin.obekt', compact('obekts', 'rieltors', 'typeWall', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
     }
 
-    public function filterObektByCategoryView(Request $request, $category){
+    public function filterObektByCategoryView(Request $request, $category)
+    {
 
         $category = Category::where('slug', '=', $category)->first();
         $category = [$category->slug, $category->name, $category->id];
@@ -264,11 +265,11 @@ class AdminController extends AC
         $typeWall = TypeWall::all();
         $rieltors = User::all();
 
-        $query = Obekts::where('category_id','=',$category[2]);
+        $query = Obekts::where('category_id', '=', $category[2]);
 
         $filterData = [];
 
-        if(
+        if (
             $request->appointment_id or
             $request->price_from or
             $request->price_to or
@@ -280,76 +281,76 @@ class AdminController extends AC
             $request->typeWall or
             $request->count_room or
             $request->count_level
-        ){
-            if($request->appointment_id){
-                $query->where('appointment_id','=', $request->appointment_id);
+        ) {
+            if ($request->appointment_id) {
+                $query->where('appointment_id', '=', $request->appointment_id);
                 $filterData[0] = $request->appointment_id;
             }
 
-            if($request->price_from) {
+            if ($request->price_from) {
                 $query->where('price', '>=', $request->price_from);
                 $filterData[1] = $request->price_from;
             }
 
-            if($request->price_to){
-                $query->where('price','<=', $request->price_to);
+            if ($request->price_to) {
+                $query->where('price', '<=', $request->price_to);
                 $filterData[11] = $request->price_to;
             }
 
-            if($request->square){
-                $query->where('square','=', $request->square);
+            if ($request->square) {
+                $query->where('square', '=', $request->square);
                 $filterData[2] = $request->square;
             }
 
-            if( $request->rayon_id){
-                $query->where('location_rayon_id','=', $request->rayon_id);
+            if ($request->rayon_id) {
+                $query->where('location_rayon_id', '=', $request->rayon_id);
                 $filterData[3] = $request->rayon_id;
             }
 
-            if($request->rayon_city_id) {
-                $query->where('location_city_rayon_id','=', $request->rayon_city_id);
+            if ($request->rayon_city_id) {
+                $query->where('location_city_rayon_id', '=', $request->rayon_city_id);
                 $filterData[4] = $request->rayon_city_id;
             }
 
-            if($request->city_id){
-                $query->where('location_city_id','=', $request->city_id);
+            if ($request->city_id) {
+                $query->where('location_city_id', '=', $request->city_id);
                 $filterData[5] = $request->city_id;
             }
 
-            if( $category[0] == 'flat' or
-                $category[0] == 'house'or
+            if ($category[0] == 'flat' or
+                $category[0] == 'house' or
                 $category[0] == 'commercial-real-estate'
             ) {
-                if($request->typeOpalenya){
-                    $query->where('opalenyaName','=', $request->typeOpalenya);
+                if ($request->typeOpalenya) {
+                    $query->where('opalenyaName', '=', $request->typeOpalenya);
                     $filterData[6] = $request->typeOpalenya;
                 }
 
-                if($request->typeWall){
+                if ($request->typeWall) {
                     $query->where('type_wall_id', '=', $request->typeWall);
                     $filterData[7] = $request->typeWall;
                 }
             }
 
-            if($category[0] == 'flat' or $category[0] == 'house'){
-                if($request->count_room){
+            if ($category[0] == 'flat' or $category[0] == 'house') {
+                if ($request->count_room) {
                     $count_room = $request->count_room;
-                    $query->where('count_room','=', $count_room);
+                    $query->where('count_room', '=', $count_room);
                     $filterData[8] = $count_room;
                 }
 
-                if($request->count_level){
+                if ($request->count_level) {
                     $count_level = $request->count_level;
-                    $query->where('count_level','=', $count_level);
+                    $query->where('count_level', '=', $count_level);
                     $filterData[9] = $count_level;
                 }
             }
 
             $obekts = $query->orderBy('id', 'DESC')->paginate(10);
 
-            return view('admin.obekt', compact('obekts', 'rieltors','typeWall', 'filterData', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
+            return view('admin.obekt', compact('obekts', 'rieltors', 'typeWall', 'filterData', 'locationRayon', 'locationCity', 'locationCityRayon', 'category', 'filesImages', 'owners', 'appointment'));
 
-        }else{
+        } else {
             return back()->with('error', 'Для фільтрування введіть значення!');
         }
 
@@ -365,7 +366,7 @@ class AdminController extends AC
         $category = Category::all();
         $location = [LocationRayon::all(), LocationCity::all(), LocationCityRayon::all()];
 
-        return view('admin.all-obekt', compact('obekts', 'location','owners', 'appointment', 'category', 'filesImages'));
+        return view('admin.all-obekt', compact('obekts', 'location', 'owners', 'appointment', 'category', 'filesImages'));
     }
 
     public function searchObekt(Request $request)
@@ -382,20 +383,28 @@ class AdminController extends AC
         $q = $request->input('q');
         if ($q != "") {
 
-            if(is_numeric($q) and strlen($q) >= 5 and strlen($q) <= 12)
-            {
-                $owner = Owner::where('phone',  'LIKE', '%' . $q . '%')->first()->id;
-                $obekts = Obekts::where('owner_id', '=', $owner)->paginate(10);
-            }else{
+            if (is_numeric($q) and strlen($q) >= 5 and strlen($q) <= 12) {
+
+                if( Owner::where('phone', 'LIKE', '%' . $q . '%')->exists() ){
+                    return Redirect()->back()->withInput()->with('error', 'Нічого не знайдено!');
+                }
+                $owner = Owner::where('phone', 'LIKE', '%' . $q . '%')->get();
+                if(isset($owner[0])){
+                    $obekts = Obekts::where('owner_id', '=', $owner[0])->paginate(10);
+                }else{
+                    return Redirect()->back()->withInput()->with('error', 'Нічого не знайдено!');
+                }
+
+            } else {
                 $obekts = Obekts::where('name', 'LIKE', '%' . $q . '%')->orWhere('id', 'LIKE', '%' . $q . '%')->paginate(10)->setPath('');
             }
 
             if (count($obekts) > 0) {
                 return view('admin.all-obekt', compact('obekts', 'q', 'owners', 'category', 'location', 'appointment', 'filesImages'));
-            }else{
+            } else {
                 return back()->with('error', 'Нічого не знайдено!');
             }
-        }else{
+        } else {
             return redirect('/manage/admin/obekts/search/');
         }
 
@@ -518,9 +527,9 @@ class AdminController extends AC
         if ($category_slug == 'land') {
             $newObekt->opalenyaName = 'none';
         } else {
-            if($request->opalenyaName == 'no-select'){
+            if ($request->opalenyaName == 'no-select') {
                 $newObekt->opalenyaName = null;
-            }else{
+            } else {
                 $newObekt->opalenyaName = $request->opalenyaName;
             }
         }
@@ -542,9 +551,9 @@ class AdminController extends AC
             $lastID_Owner = Owner::latest()->first();
             $newObekt->owner_id = $lastID_Owner->id;
         } else {
-            if($request->owner_id){
+            if ($request->owner_id) {
                 $newObekt->owner_id = $request->owner_id;
-            }else{
+            } else {
                 return back()->with("error", "Оберіть власника або додайте його.");
             }
 
@@ -669,7 +678,7 @@ class AdminController extends AC
 
         $updateObekt = Obekts::find($id);
 
-        if($updateObekt->name != $request->name){
+        if ($updateObekt->name != $request->name) {
             $updateObekt->name = $request->name;
         }
 
@@ -689,56 +698,66 @@ class AdminController extends AC
         $updateObekt->address = $request->address;
         $updateObekt->square_hause_land = $request->square_hause_land;
 
-    if(
-        $request->rayonCityCurrent == '' or $request->cityCurrent  == '' or $request->rayonCurrent  == '' or
-        $request->location_rayon_id == '' or $request->location_city_rayon_id == '' or $request->location_city_id == ''
-    ){
-        return back()->with('error', 'Оберіть розміщення!');
-    }else{
+
+        if (
+            $request->location_rayon_id == '' and
+            ( $request->location_city_rayon_id == ''
+                or
+                $request->location_city_id = '')
+
+        ) {
+            if (
+                $request->rayonCurrent == '' and ($request->rayonCityCurrent == '' or $request->cityCurrent == '')
+            ) {
+                return back()->with('error', 'Поточного розміщення немає!');
+            } else {
+
+                if( $request->rayonCurrent != '' and ($request->rayonCityCurrent == '' or $request->cityCurrent == '')){
+                    $updateObekt->location_rayon_id = $request->rayonCurrent;
+                    $updateObekt->location_city_rayon_id = null;
+                    $updateObekt->location_city_id = null;
+                }
+
+                $updateObekt->location_rayon_id = $request->rayonCurrent;
+                $updateObekt->location_city_rayon_id = $request->rayonCityCurrent;
+                $updateObekt->location_city_id = $request->cityCurrent;
+            }
+
+        }
+
+        if ($request->location_rayon_id != 51 or $request->location_rayon_id != 75) {
+
+            $updateObekt->location_rayon_id = $request->location_rayon_id;
+            $updateObekt->location_city_rayon_id = null;
+            $updateObekt->location_city_id = null;
+
+        }
+
         if ($request->location_rayon_id == 51) {
             $updateObekt->location_rayon_id = $request->location_rayon_id;
             if ($request->location_city_rayon_id == '') {
                 return back()->with('error', 'Оберіть район міста');
-            }else{
+            } else {
                 $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
                 $updateObekt->location_city_id = null;
             }
         }
-    }
 
-//    else{
-//        $updateObekt->location_rayon_id = $request->location_rayon_id;
-//        $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
-//        $updateObekt->location_city_id = $request->location_city_id;
-//        if ($request->location_rayon_id == 51) {
-//            $updateObekt->location_rayon_id = $request->location_rayon_id;
-//            if ($request->location_city_rayon_id == '') {
-//                return back()->with('error', 'Оберіть район міста');
-//            }else{
-//                $updateObekt->location_city_rayon_id = $request->location_city_rayon_id;
-//                $updateObekt->location_city_id = null;
-//            }
-//        }else if($request->location_rayon_id == 75){
-//            $updateObekt->location_rayon_id = $request->location_rayon_id;
-//            if ($request->location_city_id == '') {
-//                return back()->with('error', 'Оберіть селище');
-//            }else{
-//                $updateObekt->location_city_id = $request->location_city_id;
-//                $updateObekt->location_city_rayon_id = null;
-//            }
-//        }else{
-//            $updateObekt->location_rayon_id = $request->location_rayon_id;
-//            $updateObekt->location_city_rayon_id = null;
-//            $updateObekt->location_city_id = null;
-//        }
-//    }
-
+        if ($request->location_rayon_id == 75) {
+            $updateObekt->location_rayon_id = $request->location_rayon_id;
+            if ($request->location_city_id == '') {
+                return back()->with('error', 'Оберіть селище');
+            } else {
+                $updateObekt->location_city_id = $request->location_city_id;
+                $updateObekt->location_city_rayon_id = null;
+            }
+        }
 
         $category_slug = Category::find($updateObekt->category_id);
         $category_slug_name = $category_slug->slug;
         $path = 'files/images/obekts/' . $category_slug_name . '/' . $updateObekt->slug;
 
-        if($updateObekt->main_img == '/files/images/default/obekt.jpeg'){
+        if ($updateObekt->main_img == '/files/images/default/obekt.jpeg') {
 
             // If main image is default then create folder for upload image
 
@@ -758,7 +777,7 @@ class AdminController extends AC
                 // save new name image to database
                 $updateObekt->main_img = '/' . $path . '/' . $imageMainName;
             }
-        }else{
+        } else {
             if ($request->hasFile('imgMain')) {
                 $currentImage = $updateObekt->main_img;
                 File::delete(public_path($path), $currentImage);
@@ -802,10 +821,9 @@ class AdminController extends AC
     {
         $obekt = Obekts::find($id);
 
-        if($obekt->isPay == 1)
-        {
+        if ($obekt->isPay == 1) {
             $obekt->isPay = 0;
-        }else{
+        } else {
             $obekt->isPay = 1;
         }
 
@@ -834,14 +852,14 @@ class AdminController extends AC
         $image = $blog->picture;
         $path = public_path('files/images/blog');
 
-        if($image != 'blog.jpeg'){
+        if ($image != 'blog.jpeg') {
             unlink($path . '/' . $image);
         }
 
         if ($blog->delete()) {
 
             return back()->with("success", "Пост видалено успішно.");
-        }else{
+        } else {
             return back()->with("error", "Пост не видалено.");
         }
 
@@ -858,11 +876,11 @@ class AdminController extends AC
         $blog->title = $request->input('title');
         $blog->slug = $this->transliterate($request->input('title'));
 
-        if(strlen($request->input('text')) >= 200){
+        if (strlen($request->input('text')) >= 200) {
 
             $blog->text = $request->input('text');
 
-        }else{
+        } else {
             return back()->with("error", "Текст посту має бути мінімум 200 символів.");
         }
 
@@ -889,8 +907,8 @@ class AdminController extends AC
         // save data
         if ($blog->save()) {
             return redirect('/manage/admin/blog')->with("success", "Пост додано успішно.");
-        }else{
-             return back()->with("error", "Сталась помилка, перевірте введені дані.");
+        } else {
+            return back()->with("error", "Сталась помилка, перевірте введені дані.");
         }
     }
 
@@ -914,7 +932,7 @@ class AdminController extends AC
         if ($address) {
             Config::set('adminsettings.social.youtube', $address);
             return back()->with("success", "Налаштування збережено");
-        }else{
+        } else {
             return back()->with("failed", "Помилка збереження!");
         }
 
@@ -943,7 +961,7 @@ class AdminController extends AC
         $rieltor = Users::all();
 
         return view('admin.print',
-            compact('obekts','rieltor', 'category','filesImages','owners',
+            compact('obekts', 'rieltor', 'category', 'filesImages', 'owners',
                 'appointment', 'locationRayon', 'locationCity', 'locationCityRayon'
             ));
     }
@@ -956,35 +974,37 @@ class AdminController extends AC
     // START - Check obket
     //
 
-    public function checkObekt(){
+    public function checkObekt()
+    {
 
         return view('admin.obekt.check-obekt');
     }
 
-    public function isObekt(Request $request){
+    public function isObekt(Request $request)
+    {
 
         // information data
         $category = Category::all();
         $appointment = Appointment::all();
 
-        if($request->phone_check){
+        if ($request->phone_check) {
 
-            if(strlen($request->phone_check) == 10){
+            if (strlen($request->phone_check) == 10) {
 
                 $owner = Owner::where('phone', '=', $request->phone_check)->first();
 
-                if(!isset($owner)){
+                if (!isset($owner)) {
                     $flag = true;
                     $dataInfo = [0, 'Не знайдено', $request->phone_check];
-                    return view('admin.obekt.check-result', compact('flag', 'category', 'appointment' , 'dataInfo'));
-                }else{
+                    return view('admin.obekt.check-result', compact('flag', 'category', 'appointment', 'dataInfo'));
+                } else {
 
                     $flag = false;
                     $ownerID = $owner->id;
 
-                    if(Cookie::get('owner-id-for-new-obket-form-check-result')){
+                    if (Cookie::get('owner-id-for-new-obket-form-check-result')) {
                         Cookie::queue(Cookie::forget('owner-id-for-new-obket-form-check-result'));
-                    }else{
+                    } else {
                         Cookie::queue(Cookie::make('owner-id-for-new-obket-form-check-result', $ownerID, 1));
                     }
 
@@ -998,12 +1018,12 @@ class AdminController extends AC
                     return view('admin.obekt.check-result', compact('flag', 'locationCityRayon', 'locationCity', 'locationRayon', 'obektByPhone', 'dataInfo', 'category', 'appointment'));
                 }
 
-            }else{
+            } else {
                 return back()->with('error', 'Довжина номера має бути 10 цифр, ви ввели менше. Виправте будь ласка!');
             }
 
 
-        }else{
+        } else {
             return back()->with('error', 'Введіть номер.');
         }
     }

@@ -82,6 +82,15 @@
                                                                  value="{{ $appoint->id }}" class="w-auto mr-2"/> {{ $appoint->name }}
                                                       </label>
                                                   </div>
+                                                  <label>
+                                                      <input
+                                                          name="appointment" type="checkbox" value="{{ $appoint->id }}"
+                                                          @if (in_array($appoint->id, explode(',', request()->input('filter'))))
+                                                             checked
+                                                          @endif
+                                                      >
+                                                      name {{ $appoint->name }}
+                                                  </label>
                                               @endforeach
                                           </div>
                                         </div>

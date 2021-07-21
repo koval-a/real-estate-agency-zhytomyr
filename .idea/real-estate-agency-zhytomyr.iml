@@ -117,6 +117,7 @@
       <excludeFolder url="file://$MODULE_DIR$/dom-zt.com/vendor/fakerphp/faker" />
       <excludeFolder url="file://$MODULE_DIR$/dom-zt.com/vendor/opis/closure" />
       <excludeFolder url="file://$MODULE_DIR$/dom-zt.com/vendor/jorenvanhocht/laravel-share" />
+      <excludeFolder url="file://$MODULE_DIR$/dom-zt.com/vendor/psr/http-factory" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
