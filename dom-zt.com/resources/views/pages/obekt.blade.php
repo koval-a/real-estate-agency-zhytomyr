@@ -73,16 +73,16 @@
                         <ul class="product-filter__list p-0">
 
                             @if( $category->slug  != 'land')
-                                @if( $category->slug != 'commercial-real-estate')
+                                @if( $category ->slug != 'commercial-real-estate')
                                     <li class="product-filter__item">
                                         <span class="text-secondary"> К-ть кімнат: </span>
-                                        {{ $obekt->count_room?? '' }}
+                                        {{ $obekt->count_room ?? '' }}
                                     </li>
                                 @endif
 
                                 <li class="product-filter__item">
                                     <span class="text-secondary">Опалення:  </span>
-                                    {{ $obekt->opalenyaName ?? ''}} </li>
+                                    {{ $obekt->opalenyaName ?? '' }} </li>
                             @endif
 
                             @if( $category->slug  == 'flat' )
@@ -90,7 +90,7 @@
                                     <span class="text-secondary">Поверх:</span>
                                     {{ $obekt->level ?? '' }} / {{ $obekt->count_level ?? '' }}
                                 </li>
-                            @elseif( $category ->slug  == 'house' )
+                            @elseif( $category->slug  == 'house' )
                                 <li class="product-filter__item">
                                     <span class="text-secondary">Поверхів:</span>
                                     {{ $obekt->count_level ?? '' }}
@@ -109,22 +109,27 @@
                                 @else
                                     <span class="text-secondary">Призначення: </span>
                                 @endif
-                                {{$appointment->name ?? '' }}
+                                {{$appointment->name ?? ''}}
                             </li>
 
+                            @if( $category->slug  != 'land')
                             <li class="product-filter__item">
                                 <span class="text-secondary"> Тип стін: </span>
                                 {{ $typeWall[0] ?? '' }}
                             </li>
-
                             <li class="product-filter__item">
                                 <span class="text-secondary">Площа: </span>
                                 {{ $obekt->square ?? '' }} m2
                             </li>
-
+                            @else
+                            <li class="product-filter__item">
+                                <span class="text-secondary">Площа: </span>
+                                {{ $obekt->square ?? '' }} соток(а)
+                            </li>
+                            @endif
                             <li class="product-filter__item">
                                 <span class="text-secondary">Розташування: </span> <br><br>
-                                {{ $locationFull[0] ?? '' }},
+                                р-н: {{ $locationFull[0] ?? '' }},
                                 {{ $locationFull[1] ?? '' }}
                                 {{ $locationFull[2] ?? '' }}
                             </li>
@@ -139,19 +144,36 @@
                         <div class="product__info--rieltor">
                             <h4 class="rieltor__title"> {{ $rieltor->name }}</h4>
                             <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">
-                                {{ $rieltor->phone ?? '' }}
+                                {{ $rieltor->phone }}
                             </a>
                             <hr>
+                            {{--                            <p class="product__info--text">--}}
+                            {{--                                Експерт з нерухомості допоможе знайти вам найкращий варіант!--}}
+                            {{--                                Отримайте безкоштовну консультацію за номером телефону:--}}
+                            {{--                                <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">--}}
+                            {{--                                    {{ $rieltor->phone }}--}}
+                            {{--                                </a>--}}
+                            {{--                            </p>--}}
+                            {{--                                <div class="rieltor__number">--}}
+                            {{--                                    <a href="tel:+3809700010000" class="rieltor__number--link-image">--}}
+                            {{--                                        <div class="phone">--}}
+                            {{--                                            <img src="/custom/icons/call.svg" alt="phone rieltor" class="phone--image">--}}
+                            {{--                                        </div>--}}
+                            {{--                                    </a>--}}
+                            {{--                                    <a href="tel: {{ $rieltor->phone }}" class="rieltor__number--link-namber">--}}
+                            {{--                                       {{ $rieltor->phone }}--}}
+                            {{--                                    </a>--}}
+                            {{--                                </div>--}}
                         </div>
                         @if(Auth::user())
                             <div class="note">
                                 <span>Нотатка</span>
                                 <div class="bg-warning shadow rounded p-2 m-1">
-                                    {{ $obekt->note ?? '' }}
+                                    {{ $obekt->note }}
                                 </div>
                                 <span>Адреса</span>
                                 <div class="bg-warning shadow rounded p-2 m-1">
-                                    {{ $obekt->address ?? ''}}
+                                    {{ $obekt->address }}
                                 </div>
                             </div>
                         @endif
@@ -179,6 +201,44 @@
                             </script>
                         </div>
 
+                        {{--                        <div class="product__info--social">--}}
+                        {{--                            --}}{{--                                <h5>Поділіться обьектом в соціальних мережах:</h5>--}}
+                        {{--                            <h5 class="mr-2">Поділитися:</h5>--}}
+                        {{--                            <ul class="social__list d-flex justify-content-between">--}}
+                        {{--                                <a href="viber://forward?text=http://127.0.0.1:8000/obekt/{{$obekt->slug}}"--}}
+                        {{--                                   class="social__item--link" target="_blank">--}}
+                        {{--                                    <div class="social__item">--}}
+                        {{--                                        <img src="/custom/icons/social__viber.svg" alt="social viber"--}}
+                        {{--                                             class="social__item--image rounded-circle">--}}
+                        {{--                                    </div>--}}
+                        {{--                                </a>--}}
+                        {{--                                <a href="{{ $shareButtonLink[0] }}" class="social__item--link" target="_blank">--}}
+                        {{--                                    <div class="social__item">--}}
+                        {{--                                        <img src="/custom/icons/social__fb.svg" alt="social facebook"--}}
+                        {{--                                             class="social__item--image">--}}
+                        {{--                                    </div>--}}
+                        {{--                                </a>--}}
+                        {{--                                <a href="{{ $shareButtonLink[1] }}" class="social__item--link" target="_blank">--}}
+                        {{--                                    <div class="social__item">--}}
+                        {{--                                        <img src="https://image.flaticon.com/icons/png/512/124/124021.png"--}}
+                        {{--                                             alt="social twitter" class="social__item--image rounded">--}}
+                        {{--                                    </div>--}}
+                        {{--                                </a>--}}
+                        {{--                                <a href="{{ $shareButtonLink[3] }}" class="social__item--link" target="_blank">--}}
+                        {{--                                    <div class="social__item">--}}
+                        {{--                                        <img--}}
+                        {{--                                            src="https://pics.freeicons.io/uploads/icons/png/19979306911530099344-512.png"--}}
+                        {{--                                            alt="social whatsapp" class="social__item--image rounded">--}}
+                        {{--                                    </div>--}}
+                        {{--                                </a>--}}
+                        {{--                                <a href="{{ $shareButtonLink[2] }}" class="social__item--link" target="_blank">--}}
+                        {{--                                    <div class="social__item">--}}
+                        {{--                                        <img src="/custom/icons/social__telegram.svg" alt="social telegram"--}}
+                        {{--                                             class="social__item--image rounded-circle">--}}
+                        {{--                                    </div>--}}
+                        {{--                                </a>--}}
+                        {{--                            </ul>--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
                 <div class="product__info shadow rounded border-light">
